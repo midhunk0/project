@@ -1,20 +1,12 @@
-// @ts-nocheck
 import React, { useState } from "react";
-// eslint-disable-next-line
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { tokens } from "../../theme";
 import { Link } from "react-router-dom";
 import PixIcon from "@mui/icons-material/Pix";
-// import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-// import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
-// import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
-// import PeopleOutlineOutlinedIcon from "@mui/icons-material/PeopleOutlineOutlined";
-// import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import FlexBetween from "./FlexBetween";
 
 const Topbar=()=>{
-    const theme=useTheme();
-    const colors=tokens(theme.palette);
+    const colors=tokens();
     const [selected, setSelected]=useState("home");
     return(
         <FlexBetween 
@@ -22,7 +14,8 @@ const Topbar=()=>{
             p="0.5rem 0rem"
             color={colors.gray[300]}
         >
-            <FlexBetween gap="0.75rem"> 
+            {/* logo and name */}
+            <FlexBetween gap="0.75rem" marginLeft="10px"> 
                 <Link 
                     to="/" 
                     onClick={() => setSelected("home")}
@@ -32,16 +25,16 @@ const Topbar=()=>{
                     }} 
                 >
                     <Box display="flex" alignItems="center">
-                        <PixIcon sx={{ fontSize:"28px" }}/>
-                        <Typography variant="h4" fontSize="16px">
+                        <PixIcon sx={{ fontSize:"28px"}} />
+                        <Typography variant="h4" fontSize="16px" marginLeft="10px">
                             PMS
                         </Typography>
                     </Box>
                 </Link>
             </FlexBetween>
-
-            <FlexBetween gap="2rem">
-            <Box sx={{ "&:hover":{ color:colors.primary[100] }}}>
+            {/* topbar items */}
+            <FlexBetween gap="2rem" marginRight="10px">
+                <Box sx={{ "&:hover":{ color:colors.primary[100] }}}>
                     <Link 
                         to="/" 
                         onClick={() => setSelected("Home")}
@@ -50,22 +43,19 @@ const Topbar=()=>{
                             textDecoration:"inherit"
                         }}    
                     >
-                        {/* <IconButton>
-                            <HomeOutlinedIcon/>
-                        </IconButton> */}
-                        Home
+                        <Typography>Home</Typography>
                     </Link>
                 </Box>
                 <Box sx={{ "&:hover":{ color:colors.primary[100] }}}>
                     <Link 
-                        to="/students" 
+                        to="/student" 
                         onClick={() => setSelected("Students")}
                         style={{
                             color:selected==="Students" ? "inherit" : colors.gray[700],
                             textDecoration:"inherit"
                         }}    
                     >
-                        Students
+                        <Typography>Students</Typography>
                     </Link>
                 </Box>
                 <Box sx={{ "&:hover":{ color:colors.primary[100] }}}>
@@ -77,7 +67,7 @@ const Topbar=()=>{
                             textDecoration:"inherit"
                         }}    
                     >
-                        Recruiter
+                        <Typography>Recruiter</Typography>
                     </Link>
                 </Box>
                 <Box sx={{ "&:hover":{ color:colors.primary[100] }}}>
@@ -89,7 +79,7 @@ const Topbar=()=>{
                             textDecoration:"inherit"
                         }}    
                     >
-                        Alumni
+                        <Typography>Alumni</Typography>
                     </Link>
                 </Box>
                 <Box sx={{ "&:hover":{ color:colors.primary[100] }}}>
@@ -101,7 +91,7 @@ const Topbar=()=>{
                             textDecoration:"inherit"
                         }}    
                     >
-                        Contact
+                        <Typography>Contact</Typography>
                     </Link>
                 </Box>
             </FlexBetween>
