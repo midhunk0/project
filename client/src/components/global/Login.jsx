@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { Box, Button, TextField, Typography, styled } from "@mui/material";
 
 const CssTextField = styled(TextField)({
@@ -43,12 +43,12 @@ const Login=()=>{
                 <CssTextField required label="Enter your name"/>
                 <CssTextField required label="Password" type="password"/>
                 <Button variant="contained" color="success" >Sign In</Button>
-                <Typography variant="h6">
+                {/* <Typography variant="h6">
                     Don't have an account? 
                     <Link to="/student/register" style={{ textDecoration:"none" }}>
                         Register
                     </Link>
-                </Typography>
+                </Typography> */}
             </Box>
         </Box>
     )

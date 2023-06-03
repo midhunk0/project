@@ -65,8 +65,8 @@ const Topbar=()=>{
                         style={{
                             color:selected==="Recruiter" ? "inherit" : colors.gray[700],
                             textDecoration:"inherit"
-                        }}    
-                    >
+                        }}   
+                    > 
                         <Typography>Recruiter</Typography>
                     </Link>
                 </Box>
@@ -99,3 +99,7 @@ const Topbar=()=>{
     )
 }
 export default Topbar;
+
+
+
+

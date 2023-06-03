@@ -1,11 +1,16 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
- 
+import RecruiterSidebar from "./RecruiterSidebar";
+import { Outlet } from "react-router-dom";
+
 const Recruiter=()=>{
     return(
-        <Box m="20px" width="100%" display="flex">
-            <Typography variant="h4">Recruiters</Typography>
-        </Box>
+        <div>
+            <Box display="flex">
+                <RecruiterSidebar/>
+                <Outlet/>
+            </Box>
+        </div>
     )
 }
 

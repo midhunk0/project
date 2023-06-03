@@ -19,7 +19,7 @@ const Item=({ title, to, selected, setSelected })=>{
     )
 } 
 
-const StudentSidebar=({onLogout})=>{
+const RecruiterSidebar=()=>{
     const [selected, setSelected]=useState();
     return(
         <Box display="flex">
@@ -48,7 +48,7 @@ const StudentSidebar=({onLogout})=>{
                                     fontSize:"2rem"
                                 }}                                
                             >
-                                midhun
+                                tim cook
                             </Typography>
                         </Box>
                     </Box>
@@ -56,65 +56,46 @@ const StudentSidebar=({onLogout})=>{
                     <Box>
                         <Item
                             title="Home"
-                            to="/student/home"
+                            to="/recruiter"
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
-                            title="Soft Skill Resources"
-                            to="/student/skill"
+                            title="Why Recruit?"
+                            to="/recruiter/why"
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Item
+                            title="Achivements"
+                            to="/recruiter/achivement"
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Item
+                            title="Recruiter's Portal"
+                            to="/recruiter/portal"
+                            selected={selected}
+                            setSelected={setSelected}
+                        />
+                        <Item
+                            title="Extra Curriculars"
+                            to="/recruiter/extra"
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
                             title="Internships"
-                            to="/student/internship"
+                            to="/recruiter/internship"
                             selected={selected}
                             setSelected={setSelected}
                         />
                         <Item
-                            title="Placements"
-                            to="/student/placement"
+                            title="Placement Records"
+                            to="/recruiter/placement"
                             selected={selected}
                             setSelected={setSelected}
                         />
-                        <Item
-                            title="Notifications"
-                            to="/student/notification"
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
-                        <Item
-                            title="Preperations"
-                            to="/student/preperation"
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
-                        <Item
-                            title="Graduate Study Cell"
-                            to="/student/studycell"
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
-                        <Item
-                            title="International Opportunities"
-                            to="/student/international"
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
-                        <Item
-                            title="Edit Profile"
-                            to="/student/edit"
-                            selected={selected}
-                            setSelected={setSelected}
-                        />
-                        {/* <Item
-                            title="Logout"
-                            to="/student/login"
-                            selected={selected}
-                            setSelected={setSelected}
-                        /> */}
-                        <MenuItem onClick={onLogout}><Typography>Logout</Typography></MenuItem>
                     </Box>
                 </Menu>
             </Sidebar>
@@ -122,4 +103,4 @@ const StudentSidebar=({onLogout})=>{
     )
 }
 
-export default StudentSidebar;
+export default RecruiterSidebar;
