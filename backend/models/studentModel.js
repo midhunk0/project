@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const studentSchema = new mongoose.Schema(
     {
-        name: {
+        username: {
             type: String,
             required: true,
         },
@@ -46,6 +46,10 @@ const studentSchema = new mongoose.Schema(
         cv: {
             type: String,
         },
+        isAdmin:{
+            type:Boolean,
+            default:false
+        }
     },
     { timestamps: true }
 );
