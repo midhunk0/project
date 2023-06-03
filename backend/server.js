@@ -26,7 +26,20 @@ app.get("/", (req, res) => {
     });
 });
 
-const PORT = process.env.PORT || 8800;
+//to handle errors
+app.use((err,req,res,next)=>{
+    const errorStatus=err.status||500
+    const errorMessage=err.message||"something went wrong"
+    return res.status(errorStatus).json({
+        success:false,
+        status:errorStatus,
+        message:errorMessage,
+        stack:err.stack,
+    })
+})
+
+
+const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
     console.log(
@@ -34,3 +47,4 @@ app.listen(PORT, () => {
             .white
     );
 });
+
