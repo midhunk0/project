@@ -26,6 +26,10 @@ import StudyCell from "./components/students/StudyCell";
 import StudentInternship from "./components/students/Internship";
 import StudentPlacement from "./components/students/Placement";
 import StudentHome from "./components/students/StudentHome";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
+import Invitations from "./pages/Admin/Invitations";
+import Students from "./pages/Admin/Students";
+import Recruiters from "./pages/Admin/Recruiters";
 
 const App=()=>{
     return (
@@ -59,6 +63,10 @@ const App=()=>{
                     <Route path="studycell" element={<StudyCell/>}/>
                     <Route path="login" element={<Login/>}/>
                 </Route>
+                <Route path="admin" element={<AdminDashboard/>} />
+                <Route path="admin/invitations" element={<Invitations/>} />
+                <Route path="admin/students" element={<Students/>} />
+                <Route path="admin/recruiters" element={<Recruiters/>} />
             </Routes>
         </Router>
     );
