@@ -3,18 +3,22 @@ import colors from "colors";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import connectDB from "./config/db.js";
+import studentRoute from "./routes/studentRoute.js";
 
-//configure env
+// Configure env
 dotenv.config();
 
-//database config
+// Database config
 connectDB();
 
 const app = express();
 
-//middlewares
+// Middlewares
 app.use(express.json());
 app.use(morgan("dev"));
+
+// Routes
+app.use("/api/students", studentRoute);
 
 app.get("/", (req, res) => {
     res.send({
