@@ -1,19 +1,12 @@
 import React from "react";
-import AdminMenu from "../../components/AdminMenu";
+import { Box, Typography } from "@mui/material";
 
-const Students= () => {
-  return (
-    <div className="container-fluid m-3 p-3">
-      <div className="row">
-        <div className="col-md-3">
-          <AdminMenu />
-        </div>
-        <div className="col-md-6">
-          <h2>Students</h2>
-        </div>
-      </div>
-    </div>
-  );
-};
+const Students=()=>{
+    return(
+        <Box m="20px" width="100%">
+            <Typography variant="h4">Students</Typography>
+        </Box>
+    )
+}
 
 export default Students;

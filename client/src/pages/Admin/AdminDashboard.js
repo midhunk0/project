@@ -1,30 +1,13 @@
 import React from "react";
+import { Box, Typography } from "@mui/material";
 
-
-
-import AdminMenu from "../../components/AdminMenu";
-// import { useAuth } from '../../context/auth'
-
-const AdminDashboard = () => {
-    //   const [auth]=useAuth();
+const AdminDashboard=()=>{
     return (
-        <>
-            
-            <div className="container-fluid m-3 p-3">
-                <div className="row">
-                    <div className="col-md-3">
-                        <AdminMenu />
-                    </div>
-                    <div className="col-md-9">
-                        <div className="card w-75 p-3">
-                            <h3>Admin Name: </h3>
-                            <h3>Admin Email: </h3>
-                            <h3>Admin contact: </h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </>
+        <Box width="100%" margin="30px" border="1px lightgrey solid">
+            <Typography variant="h4" m="10px">Admin Name:</Typography>
+            <Typography variant="h4" m="10px">Admin Email:</Typography>
+            <Typography variant="h4" m="10px">Admin Contact:</Typography>
+        </Box>
     );
 };
 

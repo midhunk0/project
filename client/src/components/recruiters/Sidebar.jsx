@@ -1,17 +1,11 @@
-import React, { useState } from "react";
-import { tokens } from "../../theme";
+import React from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Typography, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const Item=({ title, to, selected, setSelected })=>{
-    const colors=tokens();
+const Item=({ title, to })=>{
     return(
-        <MenuItem
-            active={selected===title}
-            style={{color:colors.gray[100]}}
-            onClick={()=>setSelected(title)}
-        >
+        <MenuItem>
             <Link to={to} style={{textDecoration:"none", color:"inherit"}}>
                 <Typography>{title}</Typography>
             </Link>
@@ -20,7 +14,6 @@ const Item=({ title, to, selected, setSelected })=>{
 } 
 
 const RecruiterSidebar=()=>{
-    const [selected, setSelected]=useState();
     return(
         <Box display="flex">
             <Sidebar>
@@ -57,44 +50,30 @@ const RecruiterSidebar=()=>{
                         <Item
                             title="Home"
                             to="/recruiter"
-                            selected={selected}
-                            setSelected={setSelected}
                         />
                         <Item
                             title="Why Recruit?"
                             to="/recruiter/why"
-                            selected={selected}
-                            setSelected={setSelected}
                         />
                         <Item
                             title="Achivements"
                             to="/recruiter/achivement"
-                            selected={selected}
-                            setSelected={setSelected}
                         />
                         <Item
                             title="Recruiter's Portal"
                             to="/recruiter/portal"
-                            selected={selected}
-                            setSelected={setSelected}
                         />
                         <Item
                             title="Extra Curriculars"
                             to="/recruiter/extra"
-                            selected={selected}
-                            setSelected={setSelected}
                         />
                         <Item
                             title="Internships"
                             to="/recruiter/internship"
-                            selected={selected}
-                            setSelected={setSelected}
                         />
                         <Item
                             title="Placement Records"
                             to="/recruiter/placement"
-                            selected={selected}
-                            setSelected={setSelected}
                         />
                     </Box>
                 </Menu>

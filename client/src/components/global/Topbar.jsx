@@ -5,14 +5,30 @@ import { Link } from "react-router-dom";
 import PixIcon from "@mui/icons-material/Pix";
 import FlexBetween from "./FlexBetween";
 
-const Topbar=()=>{
+const Item=({ title, to, selected, setSelected })=>{
     const colors=tokens();
+    return(
+        <Box>
+            <Link 
+                to={to}
+                onClick={()=>setSelected(title)}
+                style={{
+                    color:selected===title ? "inherit" : colors.gray[700],
+                    textDecoration:"inherit"
+                }}    
+            >
+                <Typography>{title}</Typography>
+            </Link>
+        </Box>
+    )
+}
+
+const Topbar=()=>{
     const [selected, setSelected]=useState("home");
     return(
         <FlexBetween 
             mb="0.25rem"
             p="0.5rem 0rem"
-            color={colors.gray[300]}
         >
             {/* logo and name */}
             <FlexBetween gap="0.75rem" marginLeft="10px"> 
@@ -31,75 +47,41 @@ const Topbar=()=>{
                         </Typography>
                     </Box>
                 </Link>
-            </FlexBetween>
+            </FlexBetween> 
             {/* topbar items */}
-            <FlexBetween gap="2rem" marginRight="10px">
-                <Box sx={{ "&:hover":{ color:colors.primary[100] }}}>
-                    <Link 
-                        to="/" 
-                        onClick={() => setSelected("Home")}
-                        style={{
-                            color:selected==="Home" ? "inherit" : colors.gray[700],
-                            textDecoration:"inherit"
-                        }}    
-                    >
-                        <Typography>Home</Typography>
-                    </Link>
-                </Box>
-                <Box sx={{ "&:hover":{ color:colors.primary[100] }}}>
-                    <Link 
-                        to="/student" 
-                        onClick={() => setSelected("Students")}
-                        style={{
-                            color:selected==="Students" ? "inherit" : colors.gray[700],
-                            textDecoration:"inherit"
-                        }}    
-                    >
-                        <Typography>Students</Typography>
-                    </Link>
-                </Box>
-                <Box sx={{ "&:hover":{ color:colors.primary[100] }}}>
-                    <Link 
-                        to="/recruiter" 
-                        onClick={() => setSelected("Recruiter")}
-                        style={{
-                            color:selected==="Recruiter" ? "inherit" : colors.gray[700],
-                            textDecoration:"inherit"
-                        }}   
-                    > 
-                        <Typography>Recruiter</Typography>
-                    </Link>
-                </Box>
-                <Box sx={{ "&:hover":{ color:colors.primary[100] }}}>
-                    <Link 
-                        to="/alumni" 
-                        onClick={() => setSelected("Alumni")}
-                        style={{
-                            color:selected==="Alumni" ? "inherit" : colors.gray[700],
-                            textDecoration:"inherit"
-                        }}    
-                    >
-                        <Typography>Alumni</Typography>
-                    </Link>
-                </Box>
-                <Box sx={{ "&:hover":{ color:colors.primary[100] }}}>
-                    <Link 
-                        to="/contact" 
-                        onClick={() => setSelected("Contact")}
-                        style={{
-                            color:selected==="Contact" ? "inherit" : colors.gray[700],
-                            textDecoration:"inherit"
-                        }}    
-                    >
-                        <Typography>Contact</Typography>
-                    </Link>
-                </Box>
+            <FlexBetween gap="2rem" marginRight="20px">
+                <Item
+                    title="Home"
+                    to="/"
+                    selected={selected}
+                    setSelected={setSelected}
+                />
+                <Item
+                    title="Student"
+                    to="/student"
+                    selected={selected}
+                    setSelected={setSelected}
+                />
+                <Item
+                    title="Recruiter"
+                    to="/recruiter"
+                    selected={selected}
+                    setSelected={setSelected}
+                />
+                <Item
+                    title="Alumni"
+                    to="/alumni"
+                    selected={selected}
+                    setSelected={setSelected}
+                />
+                <Item
+                    title="Contact"
+                    to="/contact"
+                    selected={selected}
+                    setSelected={setSelected}
+                />
             </FlexBetween>
         </FlexBetween>
     )
 }
 export default Topbar;
-
-
-
-

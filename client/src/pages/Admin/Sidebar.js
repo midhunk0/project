@@ -1,17 +1,11 @@
-import React, { useState } from "react";
-import { tokens } from "../../theme";
+import React from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { Typography, Box } from "@mui/material";
 import { Link } from "react-router-dom";
+import { Typography, Box } from "@mui/material";
 
-const Item=({ title, to, selected, setSelected })=>{
-    const colors=tokens();
+const Item=({ title, to })=>{
     return(
-        <MenuItem
-            active={selected===title}
-            style={{color:colors.gray[100]}}
-            onClick={()=>setSelected(title)}
-        >
+        <MenuItem>
             <Link to={to} style={{textDecoration:"none", color:"inherit"}}>
                 <Typography>{title}</Typography>
             </Link>
@@ -19,8 +13,7 @@ const Item=({ title, to, selected, setSelected })=>{
     )
 } 
 
-const ContactSidebar=()=>{
-    const [selected, setSelected]=useState();
+const AdminSidebar=()=>{
     return(
         <Box display="flex">
             <Sidebar>
@@ -35,29 +28,31 @@ const ContactSidebar=()=>{
                                     fontSize:"2rem"
                                 }}                                
                             >
-                                About
+                                Admin Panel
                             </Typography>
                         </Box>
                     </Box>
                     {/* menu items */}
                     <Box>
                         <Item
-                            title="About CGPU"
-                            to="/contact/about"
-                            selected={selected}
-                            setSelected={setSelected}
+                            title="Dashboard"
+                            to="/admin/dashboard"
                         />
                         <Item
-                            title="CGPU Team"
-                            to="/contact/cgpu"
-                            selected={selected}
-                            setSelected={setSelected}
+                            title="Invitations"
+                            to="/admin/invitations"
                         />
                         <Item
-                            title="Website Team"
-                            to="/contact/website"
-                            selected={selected}
-                            setSelected={setSelected}
+                            title="Students"
+                            to="/admin/students"
+                        />
+                        <Item
+                            title="Recruiters"
+                            to="/admin/recruiters"
+                        />
+                        <Item
+                            title="Logout"
+                            to="/"
                         />
                     </Box>
                 </Menu>
@@ -66,5 +61,4 @@ const ContactSidebar=()=>{
     )
 }
 
-export default ContactSidebar;
-
+export default AdminSidebar;

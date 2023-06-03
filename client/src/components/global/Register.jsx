@@ -1,14 +1,13 @@
 import { Box, Button, TextField, Typography, styled } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
         color: '#A0AAB4',
     },
-    '& .MuiInput-underline:after': {
-        borderBottomColor: '#B2BAC2',
-    },
+    // '& .MuiInput-underline:after': {
+    //     borderBottomColor: '#B2BAC2',
+    // },
     '& .MuiOutlinedInput-root': {
         '&.Mui-focused fieldset': {
             borderColor: '#6F7E8C',
@@ -21,14 +20,14 @@ const Register=()=>{
         <Box
             height="91.6vh"
             width="100%"
-            component="form"
+            // component="form"
             display="flex"
             alignItems="center"
             justifyContent="center"
             bgcolor="whitesmoke"
-            sx={{
-                "& .MuiTextField-root": { m:1, width:"25ch" }
-            }}
+            // sx={{
+            //     "& .MuiTextField-root": { m:1, width:"25ch" }
+            // }}
         >
             <Box
                 bgcolor="white"
@@ -44,12 +43,6 @@ const Register=()=>{
                 <CssTextField required label="Enter your email" type="email"/>
                 <CssTextField required label="Password" type="password"/>
                 <Button variant="contained" color="success">Sign Up</Button>
-                <Typography variant="h6">
-                    Do you have an account? 
-                    <Link to="/student/login" style={{ textDecoration:"none" }}>
-                        Login
-                    </Link>
-                </Typography>
             </Box>
         </Box>
     )

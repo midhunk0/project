@@ -1,19 +1,12 @@
 import React from "react";
-import AdminMenu from "../../components/AdminMenu";
+import { Box, Typography } from "@mui/material";
 
-const Invitations = () => {
-  return (
-    <div className="container-fluid m-3 p-3">
-      <div className="row">
-        <div className="col-md-3">
-          <AdminMenu />
-        </div>
-        <div className="col-md-6">
-          <h2>Invitations</h2>
-        </div>
-      </div>
-    </div>
-  );
-};
+const Invitations=()=>{
+    return(
+        <Box m="20px" width="100%">
+            <Typography variant="h4">Invitations</Typography>
+        </Box>
+    )
+}
 
 export default Invitations;

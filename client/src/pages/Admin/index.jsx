@@ -1,17 +1,17 @@
 import React from "react";
 import { Box } from "@mui/material";
-import StudentSidebar from "./Sidebar";
+import AdminSidebar from "./Sidebar";
 import { Outlet } from "react-router-dom";
 
-const Student=()=>{
+const Admin=()=>{
     return(
         <div>
             <Box display="flex">
-                <StudentSidebar/>
+                <AdminSidebar/>
                 <Outlet/>
             </Box>
         </div>
     )
 }
 
-export default Student;
+export default Admin;

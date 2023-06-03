@@ -1,17 +1,11 @@
-import React, { useState } from "react";
-import { tokens } from "../../theme";
+import React from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Typography, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const Item=({ title, to, selected, setSelected })=>{
-    const colors=tokens();
+const Item=({ title, to })=>{
     return(
-        <MenuItem
-            active={selected===title}
-            style={{color:colors.gray[100]}}
-            onClick={()=>setSelected(title)}
-        >
+        <MenuItem>
             <Link to={to} style={{textDecoration:"none", color:"inherit"}}>
                 <Typography>{title}</Typography>
             </Link>
@@ -19,8 +13,7 @@ const Item=({ title, to, selected, setSelected })=>{
     )
 } 
 
-const StudentSidebar=({onLogout})=>{
-    const [selected, setSelected]=useState();
+const StudentSidebar=()=>{
     return(
         <Box display="flex">
             <Sidebar>
@@ -57,64 +50,43 @@ const StudentSidebar=({onLogout})=>{
                         <Item
                             title="Home"
                             to="/student/home"
-                            selected={selected}
-                            setSelected={setSelected}
                         />
                         <Item
                             title="Soft Skill Resources"
                             to="/student/skill"
-                            selected={selected}
-                            setSelected={setSelected}
                         />
                         <Item
                             title="Internships"
                             to="/student/internship"
-                            selected={selected}
-                            setSelected={setSelected}
                         />
                         <Item
                             title="Placements"
                             to="/student/placement"
-                            selected={selected}
-                            setSelected={setSelected}
                         />
                         <Item
                             title="Notifications"
                             to="/student/notification"
-                            selected={selected}
-                            setSelected={setSelected}
                         />
                         <Item
                             title="Preperations"
                             to="/student/preperation"
-                            selected={selected}
-                            setSelected={setSelected}
                         />
                         <Item
                             title="Graduate Study Cell"
                             to="/student/studycell"
-                            selected={selected}
-                            setSelected={setSelected}
                         />
                         <Item
                             title="International Opportunities"
                             to="/student/international"
-                            selected={selected}
-                            setSelected={setSelected}
                         />
                         <Item
                             title="Edit Profile"
                             to="/student/edit"
-                            selected={selected}
-                            setSelected={setSelected}
                         />
-                        {/* <Item
+                        <Item
                             title="Logout"
                             to="/student/login"
-                            selected={selected}
-                            setSelected={setSelected}
-                        /> */}
-                        <MenuItem onClick={onLogout}><Typography>Logout</Typography></MenuItem>
+                        />
                     </Box>
                 </Menu>
             </Sidebar>
