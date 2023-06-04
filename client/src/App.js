@@ -3,13 +3,13 @@ import "./App.css";
 import Topbar from "./components/global/Topbar";
 import Home from "./components/home";
 import Alumni from "./components/alumni";
-import Contact from "./components/contact";
+import Contact from "./pages/Contact/contact.js";
 import Recruiter from "./components/recruiters";
 import Student from "./components/students";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import About from "./components/contact/About";
-import CGPU from "./components/contact/CGPU";
-import Website from "./components/contact/Website";
+// import About from "./components/contact/About";
+// import CGPU from "./components/contact/CGPU";
+// import Website from "./components/contact/Website";
 import Why from "./components/recruiters/Why";
 import Extra from "./components/recruiters/Extra";
 import Achivement from "./components/recruiters/Achivement";
@@ -32,6 +32,7 @@ import Recruiters from "./pages/Admin/Recruiters";
 import Admin from "./pages/Admin";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 
+<<<<<<< Updated upstream
 const App=()=>{
     return (
         <Router basename="">
@@ -74,5 +75,44 @@ const App=()=>{
         </Router>
     );
 }
+=======
+const App = () => {
+  return (
+    <Router basename="">
+      <Topbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="alumni" element={<Alumni />} />
+        <Route path="contact" element={<Contact />} />
+
+        <Route path="recruiter" element={<Recruiter />}>
+          <Route path="extra" element={<Extra />} />
+          <Route path="achivement" element={<Achivement />} />
+          <Route path="internship" element={<RecruiterInternship />} />
+          <Route path="placement" element={<RecruiterPlacement />} />
+          <Route path="why" element={<Why />} />
+          <Route path="portal" element={<Portal />} />
+        </Route>
+        <Route path="student" element={<Student />}>
+          <Route path="home" element={<StudentHome />} />
+          <Route path="edit" element={<Edit />} />
+          <Route path="international" element={<International />} />
+          <Route path="internship" element={<StudentInternship />} />
+          <Route path="notification" element={<Notification />} />
+          <Route path="placement" element={<StudentPlacement />} />
+          <Route path="preperation" element={<Preperation />} />
+          <Route path="skill" element={<Skill />} />
+          <Route path="studycell" element={<StudyCell />} />
+          <Route path="login" element={<Login />} />
+        </Route>
+        <Route path="admin" element={<AdminDashboard />} />
+        <Route path="admin/invitations" element={<Invitations />} />
+        <Route path="admin/students" element={<Students />} />
+        <Route path="admin/recruiters" element={<Recruiters />} />
+      </Routes>
+    </Router>
+  );
+};
+>>>>>>> Stashed changes
 
 export default App;
