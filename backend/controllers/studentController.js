@@ -1,19 +1,29 @@
-import Student from "../models/studentModel.js";
+import students from "../models/studentModel.js";
 
-export const registerStudentController = async (req, res) => {
+export const registerStudentController = async (req, res, next) => {
     try {
-        const { studentCollegeId, cgpa } = req.body;
+        const { studentCollegeID, cgpa } = req.body;
 
         // Check if the student with the provided student ID already exists
-        const existingStudent = await Student.findOne({ studentCollegeId });
+        const existingStudent = await students.findOne({ studentCollegeID });
         if (existingStudent) {
             return res.status(409).json({ error: "Student already exists" });
         }
 
         // Create a new student instance
-        const student = new Student({
-            studentCollegeId,
-            cgpa,
+        const student = new students({
+            username:"",
+            email:"",
+            studentCollegeID:req.body.studentCollegeID,
+            phone:"",
+            address:"",
+            cgpa:req.body.cgpa,
+            skills:[""],
+            department:"",
+            backlogs:0,
+            profilePicture:"",
+            cv:"",
+            isAdmin:false
         });
 
         // Save the student to the database
@@ -21,17 +31,17 @@ export const registerStudentController = async (req, res) => {
 
         res.status(201).json({ message: "Student registered successfully" });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "An error occurred" });
+        next(error);
+        // res.status(500).json({ error: "An error occurred" });
     }
 };
 
 export const loginStudentController = async (req, res) => {
     try {
-        const { studentCollegeId, password } = req.body;
+        const { studentCollegeID, password } = req.body;
 
         // Check if the student with the provided student ID exists
-        const student = await Student.findOne({ studentCollegeId });
+        const student = await students.findOne({ studentCollegeID });
         if (!student) {
             return res.status(404).json({ error: "Student not found" });
         }
@@ -50,10 +60,10 @@ export const loginStudentController = async (req, res) => {
 
 export const getProfileStudentController = async (req, res) => {
     try {
-        const { studentId } = req.params;
+        const { studentID } = req.params;
 
         // Find the student with the provided student ID
-        const student = await Student.findById(studentId);
+        const student = await students.findById(studentID);
         if (!student) {
             return res.status(404).json({ error: "Student not found" });
         }
@@ -67,11 +77,11 @@ export const getProfileStudentController = async (req, res) => {
 
 export const updateProfileStudentController = async (req, res) => {
     try {
-        const { studentId } = req.params;
+        const { studentID } = req.params;
         const { name, email, phone, address } = req.body;
 
         // Find the student with the provided student ID
-        const student = await Student.findById(studentId);
+        const student = await students.findById(studentID);
         if (!student) {
             return res.status(404).json({ error: "Student not found" });
         }
@@ -111,11 +121,11 @@ export const uploadExcelStudentController = async (req, res) => {
 
 export const changePasswordStudentController = async (req, res) => {
     try {
-        const { studentId } = req.params;
+        const { studentID } = req.params;
         const { currentPassword, newPassword } = req.body;
 
         // Find the student with the provided student ID
-        const student = await Student.findById(studentId);
+        const student = await student.findById(studentID);
         if (!student) {
             return res.status(404).json({ error: "Student not found" });
         }
@@ -140,11 +150,11 @@ export const changePasswordStudentController = async (req, res) => {
 
 export const addProfileDetailsStudentController = async (req, res) => {
     try {
-        const { studentId } = req.params;
+        const { studentID } = req.params;
         const { address } = req.body;
 
         // Find the student with the provided student ID
-        const student = await Student.findById(studentId);
+        const student = await students.findById(studentID);
         if (!student) {
             return res.status(404).json({ error: "Student not found" });
         }

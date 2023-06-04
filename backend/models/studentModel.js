@@ -4,12 +4,15 @@ const studentSchema = new mongoose.Schema(
     {
         username: {
             type: String,
-            required: true,
+            // required: true,
+            default:""
         },
         email: {
             type: String,
-            required: true,
-            unique: true,
+            // required: true,
+            // unique: true,
+            default:""
+
         },
         studentCollegeID: {
             type: String,
@@ -18,11 +21,15 @@ const studentSchema = new mongoose.Schema(
         },
         phone: {
             type: String,
-            required: true,
+            // required: true,
+            default:""
+
         },
         address: {
             type: String,
-            required: true,
+            // required: true,
+            default:""
+
         },
         cgpa: {
             type: Number,
@@ -31,10 +38,13 @@ const studentSchema = new mongoose.Schema(
         skills: {
             type: [String],
             default: [],
+
         },
         department: {
             type: String,
-            required: true,
+            // required: true,
+            default:""
+
         },
         backlogs: {
             type: Number,
@@ -42,9 +52,13 @@ const studentSchema = new mongoose.Schema(
         },
         profilePicture: {
             type: String,
+            default:""
+
         },
         cv: {
             type: String,
+            default:""
+
         },
         isAdmin:{
             type:Boolean,
