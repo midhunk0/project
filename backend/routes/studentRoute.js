@@ -35,8 +35,8 @@ router.post("/studentRegister", registerStudentController);
 router.post("/studentLogin", loginStudentController);
 
 // Student profile route
-router.get("/StudentProfile", getProfileStudentController);
-router.put("/StudentProfile", updateProfileStudentController);
+router.get("/StudentProfile/:id", getProfileStudentController);
+router.put("/StudentProfile/:id", updateProfileStudentController);
 
 // Route for uploading Excel file and registering students
 router.post(
@@ -46,9 +46,9 @@ router.post(
 );
 
 // Route for changing password
-router.put("/StudentPassword", changePasswordStudentController);
+router.put("/StudentPassword/:id", changePasswordStudentController);
 
 // Route for adding other profile details
-router.put("/StudentProfile/details", addProfileDetailsStudentController);
+router.put("/StudentProfile/details/:id", addProfileDetailsStudentController);
 
 export default router;

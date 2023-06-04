@@ -14,6 +14,7 @@ export const registerStudentController = async (req, res, next) => {
         const student = new students({
             username:"",
             email:"",
+            password:"",
             studentCollegeID:req.body.studentCollegeID,
             phone:"",
             address:"",
@@ -31,7 +32,7 @@ export const registerStudentController = async (req, res, next) => {
 
         res.status(201).json({ message: "Student registered successfully" });
     } catch (error) {
-        next(error);
+        next(error); 
         // res.status(500).json({ error: "An error occurred" });
     }
 };
@@ -60,7 +61,7 @@ export const loginStudentController = async (req, res) => {
 
 export const getProfileStudentController = async (req, res) => {
     try {
-        const { studentID } = req.params;
+        const studentID  = req.params.id;
 
         // Find the student with the provided student ID
         const student = await students.findById(studentID);
@@ -68,7 +69,7 @@ export const getProfileStudentController = async (req, res) => {
             return res.status(404).json({ error: "Student not found" });
         }
 
-        res.status(200).json({ student });
+        res.status(200).json( {student} );
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "An error occurred" });
@@ -77,8 +78,8 @@ export const getProfileStudentController = async (req, res) => {
 
 export const updateProfileStudentController = async (req, res) => {
     try {
-        const { studentID } = req.params;
-        const { name, email, phone, address } = req.body;
+        const  studentID  = req.params.id;
+        const { username, email, phone, address } = req.body;
 
         // Find the student with the provided student ID
         const student = await students.findById(studentID);
@@ -87,7 +88,7 @@ export const updateProfileStudentController = async (req, res) => {
         }
 
         // Update the student profile
-        student.name = name;
+        student.username = username;
         student.email = email;
         student.phone = phone;
         student.address = address;
@@ -119,13 +120,13 @@ export const uploadExcelStudentController = async (req, res) => {
     }
 };
 
-export const changePasswordStudentController = async (req, res) => {
+export const changePasswordStudentController = async (req, res,next) => {
     try {
-        const { studentID } = req.params;
+        const  studentID  = req.params.id;
         const { currentPassword, newPassword } = req.body;
 
         // Find the student with the provided student ID
-        const student = await student.findById(studentID);
+        const student = await students.findById(studentID);
         if (!student) {
             return res.status(404).json({ error: "Student not found" });
         }
@@ -142,15 +143,15 @@ export const changePasswordStudentController = async (req, res) => {
         await student.save();
 
         res.status(200).json({ message: "Password changed successfully" });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "An error occurred" });
+    } catch (err) {
+        next(err);
+        // res.status(500).json({ error: "An error occurred" });
     }
 };
 
 export const addProfileDetailsStudentController = async (req, res) => {
     try {
-        const { studentID } = req.params;
+        const  studentID  = req.params.id;
         const { address } = req.body;
 
         // Find the student with the provided student ID
