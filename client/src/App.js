@@ -32,7 +32,6 @@ import Recruiters from "./pages/Admin/Recruiters";
 import Admin from "./pages/Admin";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 
-<<<<<<< Updated upstream
 const App=()=>{
     return (
         <Router basename="">
@@ -41,9 +40,7 @@ const App=()=>{
                 <Route path="/" element={<Home/>}/>
                 <Route path="alumni" element={<Alumni/>}/>
                 <Route path="contact" element={<Contact/>}>
-                    <Route path="about" element={<About/>}/>
-                    <Route path="cgpu" element={<CGPU/>}/>
-                    <Route path="website" element={<Website/>}/>
+                   
                 </Route>
                 <Route path="recruiter" element={<Recruiter/>}>
                     <Route path="extra" element={<Extra/>}/>
@@ -75,44 +72,5 @@ const App=()=>{
         </Router>
     );
 }
-=======
-const App = () => {
-  return (
-    <Router basename="">
-      <Topbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="alumni" element={<Alumni />} />
-        <Route path="contact" element={<Contact />} />
-
-        <Route path="recruiter" element={<Recruiter />}>
-          <Route path="extra" element={<Extra />} />
-          <Route path="achivement" element={<Achivement />} />
-          <Route path="internship" element={<RecruiterInternship />} />
-          <Route path="placement" element={<RecruiterPlacement />} />
-          <Route path="why" element={<Why />} />
-          <Route path="portal" element={<Portal />} />
-        </Route>
-        <Route path="student" element={<Student />}>
-          <Route path="home" element={<StudentHome />} />
-          <Route path="edit" element={<Edit />} />
-          <Route path="international" element={<International />} />
-          <Route path="internship" element={<StudentInternship />} />
-          <Route path="notification" element={<Notification />} />
-          <Route path="placement" element={<StudentPlacement />} />
-          <Route path="preperation" element={<Preperation />} />
-          <Route path="skill" element={<Skill />} />
-          <Route path="studycell" element={<StudyCell />} />
-          <Route path="login" element={<Login />} />
-        </Route>
-        <Route path="admin" element={<AdminDashboard />} />
-        <Route path="admin/invitations" element={<Invitations />} />
-        <Route path="admin/students" element={<Students />} />
-        <Route path="admin/recruiters" element={<Recruiters />} />
-      </Routes>
-    </Router>
-  );
-};
->>>>>>> Stashed changes
 
 export default App;
