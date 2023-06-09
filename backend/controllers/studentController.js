@@ -13,8 +13,8 @@ export const registerStudentController = async (req, res, next) => {
         // Create a new student instance
         const student = new students({
             username:"",
-            email:"",
             password:"",
+            email:"",
             studentCollegeID:req.body.studentCollegeID,
             phone:"",
             address:"",
