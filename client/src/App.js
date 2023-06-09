@@ -41,7 +41,7 @@ const App=()=>{
                 </Route>
                 <Route path="recruiter" element={<Recruiter/>}>
                     <Route path="extra" element={<Extra/>}/>
-                    <Route path="achivement" element={<Achivement/>}/>
+                    <Route path="achievement" element={<Achivement/>}/>
                     <Route path="internship" element={<RecruiterInternship/>}/>
                     <Route path="placement" element={<RecruiterPlacement/>}/>
                     <Route path="why" element={<Why/>}/>

@@ -88,12 +88,13 @@
 
 
 
-import React, { useState } from "react";
+import React from "react";
 import { Box, Typography, IconButton, Menu, MenuItem } from "@mui/material";
 import { Link } from "react-router-dom";
 import PixIcon from "@mui/icons-material/Pix";
 import MenuIcon from "@mui/icons-material/Menu";
 import FlexBetween from "./FlexBetween";
+import { useState } from "react";
 
 const Item = ({ title, to, selected, setSelected }) => {
     const isActive = selected === title;
@@ -192,7 +193,7 @@ const Topbar = () => {
             </Box>
 
             {/* hamburger menu */}
-            <Box sx={{ display: { xs: "block", md: "none" }, marginRight: "10px" }}>
+            <Box sx={{ display: { xs: "block", md: "none" } }}>
                 <IconButton
                     color="inherit"
                     aria-label="menu"
