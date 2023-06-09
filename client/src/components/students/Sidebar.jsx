@@ -29,7 +29,7 @@ const StudentSidebar=()=>{
                                 alt="user-profile"
                                 width="100px"
                                 height="100px"
-                                src={`../../assets/user.png`}
+                                src={`../../../assets/user.png`}
                                 style={{cursor:"pointer", borderRadius:"50%", margin:"10px"}}
                             />
                         </Box>
@@ -47,46 +47,16 @@ const StudentSidebar=()=>{
                     </Box>
                     {/* menu items */}
                     <Box>
-                        <Item
-                            title="Home"
-                            to="/student/home"
-                        />
-                        <Item
-                            title="Soft Skill Resources"
-                            to="/student/skill"
-                        />
-                        <Item
-                            title="Internships"
-                            to="/student/internship"
-                        />
-                        <Item
-                            title="Placements"
-                            to="/student/placement"
-                        />
-                        <Item
-                            title="Notifications"
-                            to="/student/notification"
-                        />
-                        <Item
-                            title="Preperations"
-                            to="/student/preperation"
-                        />
-                        <Item
-                            title="Graduate Study Cell"
-                            to="/student/studycell"
-                        />
-                        <Item
-                            title="International Opportunities"
-                            to="/student/international"
-                        />
-                        <Item
-                            title="Edit Profile"
-                            to="/student/edit"
-                        />
-                        <Item
-                            title="Logout"
-                            to="/student/login"
-                        />
+                        <Item title="Home" to="/student/home"/>
+                        <Item title="Soft Skill Resources" to="/student/skill"/>
+                        <Item title="Internships" to="/student/internship"/>
+                        <Item title="Placements" to="/student/placement"/>
+                        <Item title="Notifications" to="/student/notification"/>
+                        <Item title="Preperations" to="/student/preperation"/>
+                        <Item title="Graduate Study Cell" to="/student/studycell"/>
+                        <Item title="International Opportunities" to="/student/international"/>
+                        <Item title="Edit Profile" to="/student/edit"/>
+                        <Item title="Logout" to="/student/login"/>
                     </Box>
                 </Menu>
             </Sidebar>

@@ -3,13 +3,10 @@ import "./App.css";
 import Topbar from "./components/global/Topbar";
 import Home from "./components/home";
 import Alumni from "./components/alumni";
-import Contact from "./pages/Contact/contact.js";
+import Contact from "./components/contact";
 import Recruiter from "./components/recruiters";
 import Student from "./components/students";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-// import About from "./components/contact/About";
-// import CGPU from "./components/contact/CGPU";
-// import Website from "./components/contact/Website";
 import Why from "./components/recruiters/Why";
 import Extra from "./components/recruiters/Extra";
 import Achivement from "./components/recruiters/Achivement";
@@ -18,6 +15,7 @@ import RecruiterPlacement from "./components/recruiters/Placement";
 import Portal from "./components/recruiters/Portal";
 import Login from "./components/global/Login";
 import Edit from "./components/students/Edit";
+import StudentHome from "./components/students/StudentHome";
 import International from "./components/students/International";
 import Notification from "./components/students/Notification";
 import Preperation from "./components/students/Preperation";
@@ -25,7 +23,6 @@ import Skill from "./components/students/Skill";
 import StudyCell from "./components/students/StudyCell";
 import StudentInternship from "./components/students/Internship";
 import StudentPlacement from "./components/students/Placement";
-import StudentHome from "./components/students/StudentHome";
 import Invitations from "./pages/Admin/Invitations";
 import Students from "./pages/Admin/Students";
 import Recruiters from "./pages/Admin/Recruiters";
@@ -50,6 +47,7 @@ const App=()=>{
                     <Route path="why" element={<Why/>}/>
                     <Route path="portal" element={<Portal/>}/>
                 </Route>
+                <Route path="student/login" element={<Login/>}/>
                 <Route path="student" element={<Student/>}>
                     <Route path="home" element={<StudentHome/>}/>
                     <Route path="edit" element={<Edit/>}/>

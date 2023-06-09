@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 
 const Skill=()=>{
     return(
-        <Box m="20px" width="100%">
+        <Box m="20px" display="flex">
             <Typography variant="h4">Soft Skill Resources</Typography>
         </Box>
     )

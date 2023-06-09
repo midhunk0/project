@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 
 const Edit=()=>{
     return(
-        <Box m="20px" width="100%" display="flex">
+        <Box m="20px" display="flex">
             <Typography variant="h4">Edit Profile</Typography>
         </Box>
     )

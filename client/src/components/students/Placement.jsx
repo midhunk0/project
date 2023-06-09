@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 
 const StudentPlacement=()=>{
     return(
-        <Box m="20px" width="100%">
+        <Box m="20px" display="flex">
             <Typography variant="h4">Placement</Typography>
         </Box>
     )

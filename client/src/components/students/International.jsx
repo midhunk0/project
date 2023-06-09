@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 
 const International=()=>{
     return(
-        <Box m="20px" width="100%">
+        <Box m="20px" display="flex">
             <Typography variant="h4">International Opportunites</Typography>
         </Box>
     )
