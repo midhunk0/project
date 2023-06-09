@@ -1,66 +1,85 @@
 import React, { useState } from "react";
 import { Box, Button, TextField, Typography, styled } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const CssTextField = styled(TextField)({
-    '& label.Mui-focused': {
-        color: '#A0AAB4',
+  '& label.Mui-focused': {
+    color: '#A0AAB4',
+  },
+  '& .MuiOutlinedInput-root': {
+    '&.Mui-focused fieldset': {
+      borderColor: '#6F7E8C',
     },
-    // '& .MuiInput-underline:after': {
-    //     borderBottomColor: '#B2BAC2',
-    // },
-    '& .MuiOutlinedInput-root': {
-        '&.Mui-focused fieldset': {
-            borderColor: '#6F7E8C',
-        },
-    },
+  },
 });
 
-const Login=()=>{
-    const [username, setUsername]=useState("");
-    const [password, setPassword]=useState("");
-    const navigate=useNavigate();
-    const handleUsername=(e)=>{
-        setUsername(e.target.value);
+const Login = () => {
+  const [credentials, setCredentials] = useState({
+    studentCollegeID: "",
+    password: ""
+  });
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post(
+        "http://localhost:8080/api/students/studentLogin",
+        credentials
+      );
+      console.log(res.data); // Log the response data for troubleshooting
+      navigate("/student/home");
+    } catch (err) {
+      console.log(err.response); // Log the error response for troubleshooting
     }
-    const handlePassword=(e)=>{
-        setPassword(e.target.value);
-    }
-    const handleLogin=()=>{
-        if(username==="name" && password==="pass"){
-            console.log("Login successful!");
-            navigate("/student");
-        }
-    }
-    return(
-        <Box
-            height="91.5vh"
-            width="100%"
-            // component="form"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            bgcolor="whitesmoke"
-            // sx={{
-            //     "& MuiTextField-root": { m:1, width:"25ch" }
-            // }}
-        >
-            <Box
-                bgcolor="white"
-                padding="20px 60px"
-                borderRadius="10px"
-                display="flex"
-                alignItems="center"
-                flexDirection="column"
-                gap="10px"
-            >
-                <Typography variant="h5" marginTop="10px" marginBottom="30px">Login</Typography>
-                <CssTextField required value={username} onChange={handleUsername} label="Enter your name"/>
-                <CssTextField required value={password} onChange={handlePassword} label="Password" type="password"/>
-                <Button variant="contained" color="success" onClick={handleLogin}>Sign In</Button>
-            </Box>
-        </Box>
-    )
-}
+  };
+
+  return (
+    <Box
+      height="91.5vh"
+      width="100%"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      bgcolor="whitesmoke"
+    >
+      <Box
+        bgcolor="white"
+        padding="20px 60px"
+        borderRadius="10px"
+        display="flex"
+        alignItems="center"
+        flexDirection="column"
+        gap="10px"
+      >
+        <Typography variant="h5" marginTop="10px" marginBottom="30px">
+          Login
+        </Typography>
+        <CssTextField
+          required
+          id="studentCollegeID"
+          onChange={handleChange}
+          label="Enter your collegeID"
+        />
+        <CssTextField
+          required
+          id="password"
+          type="password"
+          onChange={handleChange}
+          label="Password"
+        />
+        <Button variant="contained" color="success" onClick={handleSubmit}>
+          Sign In
+        </Button>
+      </Box>
+    </Box>
+  );
+};
 
 export default Login;
