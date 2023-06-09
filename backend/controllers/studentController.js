@@ -1,9 +1,10 @@
 import students from "../models/studentModel.js";
 
-export const registerStudentController = async (req, res, next) => {
+export const registerStudentController = async (req, res,next) => {
     try {
+        console.log("hyy")
         const { studentCollegeID, cgpa } = req.body;
-
+        console.log(studentCollegeID, cgpa)
         // Check if the student with the provided student ID already exists
         const existingStudent = await students.findOne({ studentCollegeID });
         if (existingStudent) {

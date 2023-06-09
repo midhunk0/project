@@ -1,19 +1,7 @@
-import { LineAxisOutlined } from "@mui/icons-material";
 import React, { useState } from "react";
 import * as XLSX from "xlsx";
-import axios from "axios";
 
-<<<<<<< HEAD
-const Invitations=()=>{
-    return(
-        <Box m="20px" display="flex">
-            <Typography variant="h4">Invitations</Typography>
-        </Box>
-    )
-}
-=======
-
-const Invitations = () => {
+const UploadExcel = () => {
     const [file, setFile] = useState(null);
 
     const handleFileChange = (e) => {
@@ -38,10 +26,18 @@ const Invitations = () => {
             const jsonData = XLSX.utils.sheet_to_json(
                 workbook.Sheets[workbook.SheetNames[0]]
             );
+            console.log(jsonData);
+            
 
             // Send each user from the jsonData array to the server for registration
-            const requests = jsonData.map(async (user) =>
-                await axios.post("http://localhost:8080/api/students/studentRegister", user)
+            const requests = jsonData.map((user) =>
+                fetch("http://localhost:8080/api/students/studentRegister", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(user),
+                })
                     .then((response) => {
                         if (!response.ok) {
                             throw new Error("Network response was not ok");
@@ -84,6 +80,5 @@ const Invitations = () => {
         </div>
     );
 };
->>>>>>> 8df4246b0c549662321388cb40963b51675d2dcb
 
-export default Invitations;
+export default UploadExcel;
