@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Box, Button, TextField, Typography, styled } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useContext } from "react";
+import { SearchContext } from "../../contexts/SearchContext";
 
 const CssTextField = styled(TextField)({
     "& label.Mui-focused": {
@@ -21,6 +23,8 @@ const Login = () => {
     });
     const navigate = useNavigate();
 
+    const {dispatch}=useContext(SearchContext);
+
     const handleChange = (e) => {
         setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
     };
@@ -35,6 +39,7 @@ const Login = () => {
             );
             const id=res.data.student._id;
             console.log(id);
+            dispatch({ type: "NEW_SEARCH", payload: {id} })
              // Log the response data for troubleshooting
             navigate("/student/home",{state:{id}});
         } catch (err) {

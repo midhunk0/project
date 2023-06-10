@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
+import { SearchContext } from "../../contexts/SearchContext";
 
 
-const Edit = ({ studentId }) => {
-    
+const Edit = () => {
+
     const [profileDetails, setProfileDetails] = useState({
         username: "",
         email: "",
@@ -16,6 +17,8 @@ const Edit = ({ studentId }) => {
         profilePicture: null,
         cv: null,
     });
+
+    const { id } = useContext(SearchContext);
     const [newSkill, setNewSkill] = useState("");
 
     const handleChange = (e) => {
@@ -81,17 +84,22 @@ const Edit = ({ studentId }) => {
                 value.forEach((item) => formData.append(key, item));
             }
         });
-
+        console.log(profileDetails)
+        for (const pair of formData.entries()) {
+            console.log(pair[0], pair[1]); // Log each field and its value
+        }// This will still log an empty object, but the data is present
         try {
             const res = await axios.put(
-                `/api/students/StudentProfile/${studentId}`,
+                `/api/students/StudentProfile/${id}`,
                 formData,
                 {
                     headers: {
                         "Content-Type": "multipart/form-data",
                     },
                 }
+
             );
+
 
             console.log(res.data); // Log the response data for troubleshooting
             // Reset the form or perform any other necessary actions

@@ -1,5 +1,6 @@
 // StudentHome.js
 import React, { useState, useEffect } from "react";
+import './studentHome.css'
 import {
     Box,
     Button,
@@ -11,6 +12,8 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import useFetch from "../../hooks/useFetch";
+import { useContext } from "react";
+import { SearchContext } from "../../contexts/SearchContext";
 
 const CssTextField = styled(TextField)({
     "& label.Mui-focused": {
@@ -28,13 +31,13 @@ const StudentHome = () => {
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [flag, setFlag] = useState(false);
     const [passwordUpdated, setPasswordUpdated] = useState(false);
-    const location = useLocation();
-    const id = location.state.id;
+    const {id}=useContext(SearchContext);
 
 
 
     const dataStudent = useFetch(`/api/students/StudentProfile/${id}`);
     const student = dataStudent.data;
+    console.log(student)
 
     useEffect(() => {
         // Check if the password has been updated
@@ -119,8 +122,6 @@ const StudentHome = () => {
                 </Box> :
                 <>
                     <div className="left">
-                        <div className="editButton">Edit</div>
-                        <h1 className="title">Information</h1>
                         <div className="item">
                             <img
                                 src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
@@ -128,24 +129,44 @@ const StudentHome = () => {
                                 className="itemImg"
                             />
                             <div className="details">
-                                <h1 className="itemTitle">Jane Doe</h1>
+                                <h1 className="itemTitle">{student.username}</h1>
                                 <div className="detailItem">
                                     <span className="itemKey">Email:</span>
-                                    <span className="itemValue">janedoe@gmail.com</span>
+                                    <span className="itemValue">{student.email}</span>
                                 </div>
                                 <div className="detailItem">
                                     <span className="itemKey">Phone:</span>
-                                    <span className="itemValue">+1 2345 67 89</span>
+                                    <span className="itemValue">+ {student.phone}</span>
                                 </div>
                                 <div className="detailItem">
                                     <span className="itemKey">Address:</span>
                                     <span className="itemValue">
-                                        Elton St. 234 Garden Yd. NewYork
+                                        {student.address}
                                     </span>
                                 </div>
                                 <div className="detailItem">
-                                    <span className="itemKey">Country:</span>
-                                    <span className="itemValue">USA</span>
+                                    <span className="itemKey">Department:</span>
+                                    <span className="itemValue">{student.department}</span>
+                                </div>
+                                <div className="detailItem">
+                                    <span className="itemKey">CGPA:</span>
+                                    <span className="itemValue">{student.cgpa}</span>
+                                </div>
+                                <div className="detailItem">
+                                    <span className="itemKey">backlogs:</span>
+                                    <span className="itemValue">{student.backlogs}</span>
+                                </div>
+                                <div className="detailItem">
+                                    <span className="itemKey">skills:</span>
+                                    {/* <span className="itemValue">
+                                        {student.skills.map((skill)=>{
+                                            return(
+                                                <div>
+                                                    {skill}
+                                                </div>
+                                            )
+                                        })}
+                                        </span> */}
                                 </div>
                             </div>
                         </div>

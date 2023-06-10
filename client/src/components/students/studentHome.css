@@ -1,0 +1,44 @@
+/* studentHome.css */
+
+.left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .itemImg {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+  
+  .details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .itemTitle {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .detailItem {
+    margin-top: 10px;
+  }
+  
+  .itemKey {
+    font-weight: bold;
+  }
+  
+  .itemValue {
+    margin-left: 5px;
+  }
+  
+  
