@@ -21,8 +21,6 @@ const Login = () => {
     });
     const navigate = useNavigate();
 
-    const [id,setId]=useState("");
-
     const handleChange = (e) => {
         setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
     };

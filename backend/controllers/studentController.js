@@ -1,6 +1,6 @@
 import students from "../models/studentModel.js";
 
-export const registerStudentController = async (req, res,next) => {
+export const registerStudentController = async (req, res, next) => {
     try {
         const { studentCollegeID, cgpa } = req.body;
         console.log(studentCollegeID, cgpa)
@@ -12,19 +12,19 @@ export const registerStudentController = async (req, res,next) => {
 
         // Create a new student instance
         const student = new students({
-            username:"",
-            password:"",
-            email:"",
-            studentCollegeID:req.body.studentCollegeID,
-            phone:"",
-            address:"",
-            cgpa:req.body.cgpa,
-            skills:[""],
-            department:"",
-            backlogs:0,
-            profilePicture:"",
-            cv:"",
-            isAdmin:false
+            username: "",
+            password: "",
+            email: "",
+            studentCollegeID: req.body.studentCollegeID,
+            phone: "",
+            address: "",
+            cgpa: req.body.cgpa,
+            skills: [""],
+            department: "",
+            backlogs: 0,
+            profilePicture: "",
+            cv: "",
+            isAdmin: false
         });
 
         // Save the student to the database
@@ -32,7 +32,7 @@ export const registerStudentController = async (req, res,next) => {
 
         res.status(201).json({ message: "Student registered successfully" });
     } catch (error) {
-        next(error); 
+        next(error);
         // res.status(500).json({ error: "An error occurred" });
     }
 };
@@ -61,7 +61,7 @@ export const loginStudentController = async (req, res) => {
 
 export const getProfileStudentController = async (req, res) => {
     try {
-        const studentID  = req.params.id;
+        const studentID = req.params.id;
 
         // Find the student with the provided student ID
         const student = await students.findById(studentID);
@@ -78,27 +78,32 @@ export const getProfileStudentController = async (req, res) => {
 
 export const updateProfileStudentController = async (req, res) => {
     try {
-        const  studentID  = req.params.id;
-        const { username, email, phone, address } = req.body;
+        const studentID = req.params.id;
+        const { username, email, phone, address, skills, department, backlogs, profilePicture, cv } = req.body;
 
         // Find the student with the provided student ID
-        const student = await students.findById(studentID);
-        if (!student) {
-            return res.status(404).json({ error: "Student not found" });
-        }
+        await students.findByIdAndUpdate(studentID, {
+            username : username,
+            email : email,
+            phone : phone,
+            address : address,
+            skills:skills,
+            department:department,
+            backlogs:backlogs,
+
+        });
+
+        // if (!student) {
+        //     return res.status(404).json({ error: "Student not found" });
+        // }
 
         // Update the student profile
-        student.username = username;
-        student.email = email;
-        student.phone = phone;
-        student.address = address;
 
         // Save the updated student profile
-        await student.save();
+        
 
         res.status(200).json({
             message: "Profile updated successfully",
-            student,
         });
     } catch (error) {
         console.error(error);
@@ -120,30 +125,32 @@ export const uploadExcelStudentController = async (req, res) => {
     }
 };
 
-export const changePasswordStudentController = async (req, res,next) => {
+export const changePasswordStudentController = async (req, res, next) => {
     try {
-        const  studentID  = req.params.id;
-        const { currentPassword, newPassword } = req.body;
+        const studentID = req.params.id;
+        const { newPassword } = req.body;
 
+        await students.findByIdAndUpdate(studentID, { password: newPassword });
         // Find the student with the provided student ID
-        const student = await students.findById(studentID);
-        if (!student) {
-            return res.status(404).json({ error: "Student not found" });
-        }
+        // const student = await students.findById(studentID);
+        // if (!student) {
+        //     return res.status(404).json({ error: "Student not found" });
+        // }
 
-        // Check if the current password is correct
-        if (currentPassword !== student.password) {
-            return res.status(401).json({ error: "Invalid password" });
-        }
+        // // Check if the current password is correct
+        // if (currentPassword !== student.password) {
+        //     return res.status(401).json({ error: "Invalid password" });
+        // }
 
-        // Update the password
-        student.password = newPassword;
+        // // Update the password
+        // student.password = newPassword;
 
         // Save the updated password
-        await student.save();
+        // await student.save();
 
         res.status(200).json({ message: "Password changed successfully" });
     } catch (err) {
+        console.log(err);
         next(err);
         // res.status(500).json({ error: "An error occurred" });
     }
@@ -151,7 +158,7 @@ export const changePasswordStudentController = async (req, res,next) => {
 
 export const addProfileDetailsStudentController = async (req, res) => {
     try {
-        const  studentID  = req.params.id;
+        const studentID = req.params.id;
         const { address } = req.body;
 
         // Find the student with the provided student ID
