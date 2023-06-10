@@ -21,6 +21,8 @@ const Login = () => {
     });
     const navigate = useNavigate();
 
+    const [id,setId]=useState("");
+
     const handleChange = (e) => {
         setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
     };
@@ -33,8 +35,10 @@ const Login = () => {
                 "http://localhost:8080/api/students/studentLogin",
                 credentials
             );
-            console.log(res.data); // Log the response data for troubleshooting
-            navigate("/student/home");
+            const id=res.data.student._id;
+            console.log(id);
+             // Log the response data for troubleshooting
+            navigate("/student/home",{state:{id}});
         } catch (err) {
             console.log(err.response); // Log the error response for troubleshooting
         }

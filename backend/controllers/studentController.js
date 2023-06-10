@@ -2,7 +2,6 @@ import students from "../models/studentModel.js";
 
 export const registerStudentController = async (req, res,next) => {
     try {
-        console.log("hyy")
         const { studentCollegeID, cgpa } = req.body;
         console.log(studentCollegeID, cgpa)
         // Check if the student with the provided student ID already exists
@@ -70,7 +69,7 @@ export const getProfileStudentController = async (req, res) => {
             return res.status(404).json({ error: "Student not found" });
         }
 
-        res.status(200).json( {student} );
+        res.status(200).json(student);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "An error occurred" });
