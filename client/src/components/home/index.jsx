@@ -26,15 +26,20 @@ const Home = () => {
                             data-target="#carouselExampleIndicators"
                             data-slide-to="2"
                         ></li>
+                        <li
+                            data-target="#carouselExampleIndicators"
+                            data-slide-to="3"
+                        ></li>
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img
                                 className="d-block w-100"
-                                src={`../../../assets/college.jpg`}
+                                src={`../../../assets/cet_front.jpg`}
                                 style={{
                                     background: "cover",
                                     width: "100%",
+                                    maxHeight:"650px",
                                 }}
                                 alt="First slide"
                             />
@@ -42,10 +47,11 @@ const Home = () => {
                         <div class="carousel-item">
                             <img
                                 class="d-block w-100"
-                                src={`../../../assets/college.jpg`}
+                                src={`../../../assets/cet_gate.jpg`}
                                 style={{
                                     background: "cover",
                                     width: "100%",
+                                    maxHeight:"650px",
                                 }}
                                 alt="Second slide"
                             />
@@ -53,12 +59,25 @@ const Home = () => {
                         <div class="carousel-item">
                             <img
                                 class="d-block w-100"
-                                src={`../../../assets/college.jpg`}
+                                src={`../../../assets/cet_sideview.jpg`}
                                 style={{
                                     background: "cover",
                                     width: "100%",
+                                    maxHeight:"650px",
                                 }}
                                 alt="Third slide"
+                            />
+                        </div>
+                        <div class="carousel-item">
+                            <img
+                                class="d-block w-100"
+                                src={`../../../assets/cet_plaque.jpg`}
+                                style={{
+                                    background: "cover",
+                                    width: "100%",
+                                    maxHeight:"650px",
+                                }}
+                                alt="Fourth slide"
                             />
                         </div>
                     </div>
