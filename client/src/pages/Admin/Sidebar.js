@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import { Box, Typography, IconButton, Menu, MenuItem } from "@mui/material";
 import { Link } from "react-router-dom";
-import { tokens } from "../../theme";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Sidebar } from "react-pro-sidebar";
+import { tokens } from "../../theme";
 import FlexBetween from "../../components/global/FlexBetween";
 
-const colors=tokens();
+const colors = tokens();
+
 const Item = ({ title, to, selected, setSelected }) => {
   const isActive = selected === title;
+
   const itemStyle = {
     textDecoration: "none",
-    height:"50px",
+    height: "50px",
     color: isActive ? "#fff" : "inherit",
-    backgroundColor: isActive ? colors.blueAccent[500] : "inherit",
+    backgroundColor: isActive ? colors.gray[100] : "inherit",
     "&:hover": {
       backgroundColor: isActive ? "#000" : "#f5f5f5",
     },
@@ -31,8 +33,29 @@ const Item = ({ title, to, selected, setSelected }) => {
     </MenuItem>
   );
 };
+
+const getMenuItems = (selected, setSelected) => {
+  const menuItems = [
+    { title: "Dashboard", to: "/admin/dashboard" },
+    { title: "Invitations", to: "/admin/invitations" },
+    { title: "Students", to: "/admin/students" },
+    { title: "Recruiters", to: "/admin/recruiters" },
+    { title: "Logout", to: "/" },
+  ];
+
+  return menuItems.map((item) => (
+    <Item
+      key={item.title}
+      title={item.title}
+      to={item.to}
+      selected={selected}
+      setSelected={setSelected}
+    />
+  ));
+};
+
 const AdminSidebar = () => {
-  const [selected, setSelected] = useState("Home");
+  const [selected, setSelected] = useState();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -46,27 +69,27 @@ const AdminSidebar = () => {
   };
 
   return (
-    <FlexBetween sx={{background:colors.blueAccent[500]}}>
+    <FlexBetween>
       {/* logo and name */}
-      <Box sx={{ display: { xs: "none", md: "flex" }, height:"100vh"}}>
+      <Box sx={{ display: { xs: "none", md: "flex" }, height: "100vh" }}>
         {/* topbar items */}
         <Box display="flex">
           <Sidebar>
             {/* user image and name*/}
             <Box mb="25px">
-                <Box
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                >
-                    <img
-                    alt="user-profile"
-                    width="100px"
-                    height="100px"
-                    src="../../assets/user.png"
-                    style={{ cursor: "pointer", borderRadius: "50%", margin: "10px" }}
-                    />
-                </Box>
+              <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <img
+                  alt="user-profile"
+                  width="100px"
+                  height="100px"
+                  src="../../assets/user.png"
+                  style={{ cursor: "pointer", borderRadius: "50%", margin: "10px" }}
+                />
+              </Box>
               <Box textAlign="center">
                 <Typography
                   variant="h2"
@@ -75,43 +98,12 @@ const AdminSidebar = () => {
                     fontSize: "2rem"
                   }}
                 >
-                  Admin Panel
+                  midhun
                 </Typography>
               </Box>
             </Box>
             {/* menu items */}
-            <Box>
-              <Item
-                title="Dashboard"
-                to="/admin/dashboard"
-                selected={selected}
-                setSelected={setSelected}
-              />
-              <Item
-                title="Invitations"
-                to="/admin/invitations"
-                selected={selected}
-                setSelected={setSelected}
-              />
-              <Item
-                title="Students"
-                to="/admin/students"
-                selected={selected}
-                setSelected={setSelected}
-              />
-              <Item
-                title="Recruiters"
-                to="/admin/recruiters"
-                selected={selected}
-                setSelected={setSelected}
-              />
-              <Item
-                title="Logout"
-                to="/"
-                selected={selected}
-                setSelected={setSelected}
-              />
-            </Box>
+            <Box>{getMenuItems(selected, setSelected)}</Box>
           </Sidebar>
         </Box>
       </Box>
@@ -130,36 +122,7 @@ const AdminSidebar = () => {
           onClose={handleMenuClose}
           onClick={handleMenuClose}
         >
-          <Item
-                title="Dashboard"
-                to="/admin/dashboard"
-                selected={selected}
-                setSelected={setSelected}
-              />
-              <Item
-                title="Invitations"
-                to="/admin/invitations"
-                selected={selected}
-                setSelected={setSelected}
-              />
-              <Item
-                title="Students"
-                to="/admin/students"
-                selected={selected}
-                setSelected={setSelected}
-              />
-              <Item
-                title="Recruiters"
-                to="/admin/recruiters"
-                selected={selected}
-                setSelected={setSelected}
-              />
-              <Item
-                title="Logout"
-                to="/"
-                selected={selected}
-                setSelected={setSelected}
-              />
+          {getMenuItems(selected, setSelected)}
         </Menu>
       </Box>
     </FlexBetween>

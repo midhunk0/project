@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Footer from "./components/global/footer";
+import Footer from "./components/global/Footer";
 import Topbar from "./components/global/Topbar";
 import Home from "./components/home";
 import Alumni from "./components/alumni";
@@ -28,10 +28,10 @@ import Students from "./pages/Admin/Students";
 import Recruiters from "./pages/Admin/Recruiters";
 import Admin from "./pages/Admin";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
-import Login from "./components/global/Login";
-// import RecruiterLogin from "./components/recruiters/Login";
-// import RecruiterHome from "./components/recruiters/RecruiterHome";
-// import StudentLogin from "./components/students/Login";
+import RecruiterLogin from "./components/recruiters/Login";
+import RecruiterHome from "./components/recruiters/RecruiterHome";
+import StudentLogin from "./components/students/Login";
+import RecruiterRegister from "./components/recruiters/Register";
 
 const App = () => {
   return (
@@ -41,7 +41,10 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="alumni" element={<Alumni />} />
         <Route path="contact" element={<Contact />}></Route>
+        <Route path="recruiter/login" element={<RecruiterLogin />} />
+        <Route path="recruiter/register" element={<RecruiterRegister />} />
         <Route path="recruiter" element={<Recruiter />}>
+          <Route path="home" element={<RecruiterHome />} />
           <Route path="extra" element={<Extra />} />
           <Route path="achievement" element={<Achivement />} />
           <Route path="internship" element={<RecruiterInternship />} />
@@ -49,8 +52,8 @@ const App = () => {
           <Route path="why" element={<Why />} />
           <Route path="portal" element={<Portal />} />
         </Route>
-        <Route path="student/login" element={<Login />} />
-        <Route path="student" element={<Student />}>
+        <Route path="student/login" element={<StudentLogin />} />
+        <Route path="student" element={<Student/>}>
           <Route path="home" element={<StudentHome />} />
           <Route path="edit" element={<Edit />} />
           <Route path="international" element={<International />} />
@@ -60,7 +63,7 @@ const App = () => {
           <Route path="preperation" element={<Preperation />} />
           <Route path="skill" element={<Skill />} />
           <Route path="studycell" element={<StudyCell />} />
-          <Route path="login" element={<Login />} />
+          <Route path="login" element={<StudentLogin />} />
         </Route>
         <Route path="admin" element={<Admin />}>
           <Route path="dashboard" element={<AdminDashboard />} />

@@ -7,7 +7,7 @@ const Home = () => {
   const colors = tokens();
   return (
     <>
-      <Box margin="30px">
+      <Box margin="10px">
         <div
           id="carouselExampleIndicators"
           className="carousel slide"

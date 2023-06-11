@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Button, TextField, Typography, styled } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { tokens } from "../../theme";
 
 const CssTextField = styled(TextField)({
@@ -28,7 +28,7 @@ const RecruiterLogin=()=>{
     const handleLogin=()=>{
         if(username==="" && password===""){
             console.log("Login successful!");
-            navigate("/recruiter");
+            navigate("/recruiter/home");
         }
     }
     return(
@@ -39,7 +39,6 @@ const RecruiterLogin=()=>{
             alignItems="center"
             justifyContent="center"
             bgcolor="whitesmoke"
-            sx={{background:colors.blueAccent[800]}}
         >
             <Box
                 bgcolor="white"
@@ -53,10 +52,18 @@ const RecruiterLogin=()=>{
                 <Typography variant="h5" marginTop="10px" marginBottom="30px">Login</Typography>
                 <CssTextField required value={username} onChange={handleUsername} label="Enter your name"/>
                 <CssTextField required value={password} onChange={handlePassword} label="Password" type="password"/>
-                <Button variant="contained" style={{background:colors.blueAccent[500]}} onClick={handleLogin}>Sign In</Button>
+                <Button variant="contained" sx={{background:colors.gray[100],'&:hover':{background:colors.gray[100]}}} onClick={handleLogin}>Sign In</Button>
+                <Typography variant="h6">
+                    Don't have an account?{" "}
+                    <Link to="/recruiter/register" style={{ textDecoration:"none" }}>
+                        Register
+                    </Link>
+                </Typography>            
             </Box>
         </Box>
     )
 }
 
 export default RecruiterLogin;
+
+
