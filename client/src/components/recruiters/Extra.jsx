@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 
 const Extra=()=>{
     return(
-        <Box m="20px" display="flex">
+        <Box m="10px">
             <Typography variant="h4">Extra Curriculars</Typography>
         </Box>
     )

@@ -1,11 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
-import { SearchContext } from "../../contexts/SearchContext";
 import { AuthContext } from "../../contexts/AuthContext";
+import { Box } from "@mui/material";
 
 const Edit = () => {
-
     const [profileDetails, setProfileDetails] = useState({
         username: "",
         email: "",
@@ -19,7 +18,7 @@ const Edit = () => {
     });
 
     const { user } = useContext(AuthContext);
-    const id=user._id;
+    const id=user ? user._id :"";
     const [newSkill, setNewSkill] = useState("");
 
     const handleChange = (e) => {
@@ -30,13 +29,15 @@ const Edit = () => {
                 ...prevDetails,
                 [name]: files[0],
             }));
-        } else if (type === "checkbox") {
+        } 
+        else if (type === "checkbox") {
             if (e.target.checked) {
                 setProfileDetails((prevDetails) => ({
                     ...prevDetails,
                     [name]: [...prevDetails[name], value],
                 }));
-            } else {
+            } 
+            else {
                 setProfileDetails((prevDetails) => ({
                     ...prevDetails,
                     [name]: prevDetails[name].filter(
@@ -44,7 +45,8 @@ const Edit = () => {
                     ),
                 }));
             }
-        } else {
+        } 
+        else {
             setProfileDetails((prevDetails) => ({
                 ...prevDetails,
                 [name]: value,
@@ -81,7 +83,8 @@ const Edit = () => {
         Object.entries(profileDetails).forEach(([key, value]) => {
             if (value !== null && typeof value !== "object") {
                 formData.append(key, value);
-            } else if (Array.isArray(value)) {
+            } 
+            else if (Array.isArray(value)) {
                 value.forEach((item) => formData.append(key, item));
             }
         });
@@ -92,25 +95,23 @@ const Edit = () => {
         try {
             const res = await axios.put(
                 `/api/students/StudentProfile/${id}`,
-                formData,
-                {
+                formData,{
                     headers: {
                         "Content-Type": "multipart/form-data",
                     },
                 }
 
             );
-
-
             console.log(res.data); // Log the response data for troubleshooting
             // Reset the form or perform any other necessary actions
-        } catch (err) {
+        } 
+        catch (err) {
             console.log(err.response); // Log the error response for troubleshooting
         }
     };
 
     return (
-        <div className="container col-md-7">
+        <Box className="container col-md-7">
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mt-2">
                     <Form.Label>Name</Form.Label>
@@ -165,7 +166,7 @@ const Edit = () => {
                 <Form.Group controlId="skills">
                     <Form.Label>Skills</Form.Label>
                     {profileDetails.skills.map((skill, index) => (
-                        <div
+                        <Box
                             key={index}
                             className="d-flex align-items-center mb-2"
                         >
@@ -182,7 +183,7 @@ const Edit = () => {
                             >
                                 Remove
                             </Button>
-                        </div>
+                        </Box>
                     ))}
                     <div className="d-flex align-items-center">
                         <Form.Control
@@ -225,7 +226,7 @@ const Edit = () => {
                     Submit
                 </Button>
             </Form>
-        </div>
+        </Box>
     );
 };
 

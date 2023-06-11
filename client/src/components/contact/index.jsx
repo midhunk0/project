@@ -1,10 +1,10 @@
 import React from "react";
 import { Box } from "@mui/material";
 
-const Contact = () => {
-    return (
-        <Box>
-            <Box margin="10px">
+const Contact=()=>{
+    return(
+        <Box margin="10px">
+            <Box>
                 <img
                     src={`../../../assets/contactpage.jpg`}
                     alt="contact"
@@ -39,7 +39,7 @@ const Contact = () => {
                 />
             </Box>
 
-            <Box margin="10px">
+            <Box>
                 <iframe
                     title="map"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.5435155344594!2d76.90342787472107!3d8.543618141499643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05beb808396e3f%3A0xbdb296f9c4101374!2sCGPU!5e0!3m2!1sen!2sin!4v1685858611286!5m2!1sen!2sin"

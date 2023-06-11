@@ -3,10 +3,10 @@ import { Box, Typography } from "@mui/material";
 
 const AdminDashboard=()=>{
     return (
-        <Box width="100%" margin="30px" border="1px lightgrey solid">
-            <Typography variant="h4" m="10px">Admin Name:</Typography>
-            <Typography variant="h4" m="10px">Admin Email:</Typography>
-            <Typography variant="h4" m="10px">Admin Contact:</Typography>
+        <Box width="100%" margin="10px" border="1px solid gray" padding="10px">
+            <Typography variant="h4" >Admin Name:</Typography>
+            <Typography variant="h4" >Admin Email:</Typography>
+            <Typography variant="h4" >Admin Contact:</Typography>
         </Box>
     );
 };

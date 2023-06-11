@@ -1,18 +1,8 @@
 import React, { useState } from "react";
-import { Box, Button, TextField, Typography, styled } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useNavigate, Link } from "react-router-dom";
 import { tokens } from "../../theme";
-
-const CssTextField = styled(TextField)({
-    '& label.Mui-focused': {
-        color: '#A0AAB4',
-    },
-    '& .MuiOutlinedInput-root': {
-        '&.Mui-focused fieldset': {
-            borderColor: '#6F7E8C',
-        },
-    },
-});
+import CssTextField from "../global/CssTextField";
 
 const RecruiterLogin=()=>{
     const [username, setUsername]=useState("");
@@ -49,7 +39,9 @@ const RecruiterLogin=()=>{
                 flexDirection="column"
                 gap="10px"
             >
-                <Typography variant="h5" marginTop="10px" marginBottom="30px">Login</Typography>
+                <Typography variant="h5" marginTop="10px" marginBottom="30px">
+                    Login
+                </Typography>
                 <CssTextField required value={username} onChange={handleUsername} label="Enter your name"/>
                 <CssTextField required value={password} onChange={handlePassword} label="Password" type="password"/>
                 <Button variant="contained" sx={{background:colors.gray[100],'&:hover':{background:colors.gray[100]}}} onClick={handleLogin}>Sign In</Button>

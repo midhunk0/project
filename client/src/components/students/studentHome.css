@@ -5,40 +5,38 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-  }
+}
   
-  .item {
+.item {
     display: flex;
     align-items: center;
     gap: 20px;
-  }
+}
   
-  .itemImg {
+.itemImg {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-  }
+}
   
-  .details {
+.details {
     display: flex;
     flex-direction: column;
-  }
+}
   
-  .itemTitle {
+.itemTitle {
     font-size: 24px;
     font-weight: bold;
-  }
+}
   
-  .detailItem {
+.detailItem {
     margin-top: 10px;
-  }
+}
   
-  .itemKey {
+.itemKey {
     font-weight: bold;
-  }
+}
   
-  .itemValue {
+.itemValue {
     margin-left: 5px;
-  }
-  
-  
+}

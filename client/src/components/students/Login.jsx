@@ -1,21 +1,13 @@
 import React, { useState } from "react";
-import { Box, Button, TextField, Typography, styled } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useContext } from "react";
 import { SearchContext } from "../../contexts/SearchContext";
 import { tokens } from "../../theme";
+import CssTextField from "../global/CssTextField";
 
-const CssTextField = styled(TextField)({
-    "& label.Mui-focused": {
-        color: "#A0AAB4",
-    },
-    "& .MuiOutlinedInput-root": {
-        "&.Mui-focused fieldset": {
-            borderColor: "#6F7E8C",
-        },
-    },
-});
+
 const colors=tokens();
 const Login = () => {
     const [credentials, setCredentials] = useState({
@@ -43,7 +35,8 @@ const Login = () => {
             dispatch({ type: "NEW_SEARCH", payload: {id} })
              // Log the response data for troubleshooting
             navigate("/student/home",{state:{id}});
-        } catch (err) {
+        } 
+        catch (err) {
             console.log(err.response); // Log the error response for troubleshooting
         }
     };
