@@ -14,7 +14,6 @@ import Achivement from "./components/recruiters/Achivement";
 import RecruiterInternship from "./components/recruiters/Internship";
 import RecruiterPlacement from "./components/recruiters/Placement";
 import Portal from "./components/recruiters/Portal";
-import Login from "./components/global/Login";
 import Edit from "./components/students/Edit";
 import StudentHome from "./components/students/StudentHome";
 import International from "./components/students/International";
@@ -29,6 +28,10 @@ import Students from "./pages/Admin/Students";
 import Recruiters from "./pages/Admin/Recruiters";
 import Admin from "./pages/Admin";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
+import Login from "./components/global/Login";
+// import RecruiterLogin from "./components/recruiters/Login";
+// import RecruiterHome from "./components/recruiters/RecruiterHome";
+// import StudentLogin from "./components/students/Login";
 
 const App = () => {
   return (

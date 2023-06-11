@@ -3,7 +3,6 @@ import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { SearchContext } from "../../contexts/SearchContext";
 
-
 const Edit = () => {
 
     const [profileDetails, setProfileDetails] = useState({

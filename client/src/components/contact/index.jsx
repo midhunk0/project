@@ -1,11 +1,10 @@
 import React from "react";
 import { Box } from "@mui/material";
-import { AlignVerticalCenter } from "@mui/icons-material";
 
 const Contact = () => {
     return (
         <Box>
-            <Box margin="30px">
+            <Box margin="10px">
                 <img
                     src={`../../../assets/contactpage.jpg`}
                     alt="contact"
@@ -40,7 +39,7 @@ const Contact = () => {
                 />
             </Box>
 
-            <Box margin="30px">
+            <Box margin="10px">
                 <iframe
                     title="map"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.5435155344594!2d76.90342787472107!3d8.543618141499643!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05beb808396e3f%3A0xbdb296f9c4101374!2sCGPU!5e0!3m2!1sen!2sin!4v1685858611286!5m2!1sen!2sin"
@@ -48,7 +47,7 @@ const Contact = () => {
                     height="450"
                     style={{ border: "0" }}
                     allowFullScreen
-                    // loading="lazy"
+                    loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
             </Box>
@@ -57,12 +56,11 @@ const Contact = () => {
                 className="row"
                 display="flex"
                 justifyContent="space-around"
-                margin="30px"
+                margin="10px"
             >
                 <Box
                     className="col-lg-5 col-md-5 col-sm-10"
                     padding="0px"
-                    style={{ borderRadius: "50%" }}
                 >
                     <img
                         src="../../../assets/contactaddress.jpg"
@@ -79,7 +77,6 @@ const Contact = () => {
                     style={{
                         backgroundColor: "#20313e",
                         borderRadius: "30%",
-                        width: "20px",
                         padding: "10px",
                     }}
                 >
@@ -90,7 +87,6 @@ const Contact = () => {
                         style={{
                             color: "white",
                             textAlign: "center",
-                            borderRadius: "30%",
                         }}
                     >
                         Career Guidance and Placement Unit (CGPU) <br />
@@ -106,12 +102,13 @@ const Contact = () => {
                 className="row"
                 display="flex"
                 justifyContent="space-around"
-                margin="30px"
+                margin="10px"
             >
                 <Box
                     className="col-lg-5 col-md-5 col-sm-10"
-                    style={{ backgroundColor: "#20313e", borderRadius: "30%" }}
+                    style={{ backgroundColor: "#20313e" }}
                     padding="10px"
+                    borderRadius="30%"
                 >
                     <h1 style={{ color: "white", textAlign: "center" }}>
                         CONTACT PERSON
@@ -126,27 +123,27 @@ const Contact = () => {
                         Phone Office : 04712515682
                     </p>
                 </Box>
-                <Box className="col-lg-5 col-md-5 col-sm-10" padding="0px">
+                <Box className="col-lg-5 col-md-5 col-sm-10" padding="0px" >
                     <img
                         src="../../../assets/sunilkumarsir.jpg"
                         alt="address"
                         style={{
                             width: "100%",
                             height: "15rem",
-                            borderRadius: "30%",
+                            borderRadius:"30%"
                         }}
                     />
                 </Box>
             </Box>
 
-            <div className="bottomContainer">
-                <div className="top-text">
+            <Box className="bottomContainer">
+                <Box className="top-text">
                     <h1 style={{ marginTop: "80px", textAlign: "center" }}>
                         FEEL FREE TO REACH US!
                     </h1>
-                </div>
-                <div className="bottom-text-divider"></div>
-            </div>
+                </Box>
+                <Box className="bottom-text-divider"></Box>
+            </Box>
         </Box>
     );
 };
