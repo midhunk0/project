@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useContext } from "react";
 import { SearchContext } from "../../contexts/SearchContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const CssTextField = styled(TextField)({
     "& label.Mui-focused": {
@@ -23,7 +24,8 @@ const Login = () => {
     });
     const navigate = useNavigate();
 
-    const {dispatch}=useContext(SearchContext);
+    // const {dispatch}=useContext(SearchContext);
+    const {user,loading,error,dispatch}=useContext(AuthContext);
 
     const handleChange = (e) => {
         setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -31,19 +33,21 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        dispatch({type:"LOGIN_START"})
 
         try {
             const res = await axios.post(
                 "http://localhost:8080/api/students/studentLogin",
                 credentials
             );
-            const id=res.data.student._id;
-            console.log(id);
-            dispatch({ type: "NEW_SEARCH", payload: {id} })
+            // const id=res.data.student._id;
+            // console.log(id);
+            dispatch({type:"LOGIN_SUCCESS",payload:res.data.student})
+            // dispatch({ type: "NEW_SEARCH", payload: {id} })
              // Log the response data for troubleshooting
-            navigate("/student/home",{state:{id}});
+            navigate("/student/home");
         } catch (err) {
-            console.log(err.response); // Log the error response for troubleshooting
+            dispatch({type:"LOGIN_FAILURE",payload:err.response.data}) // Log the error response for troubleshooting
         }
     };
 

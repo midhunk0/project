@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { SearchContext } from "../../contexts/SearchContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Edit = () => {
 
@@ -17,7 +18,8 @@ const Edit = () => {
         cv: null,
     });
 
-    const { id } = useContext(SearchContext);
+    const { user } = useContext(AuthContext);
+    const id=user._id;
     const [newSkill, setNewSkill] = useState("");
 
     const handleChange = (e) => {

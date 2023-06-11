@@ -14,6 +14,7 @@ import axios from "axios";
 import useFetch from "../../hooks/useFetch";
 import { useContext } from "react";
 import { SearchContext } from "../../contexts/SearchContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const CssTextField = styled(TextField)({
     "& label.Mui-focused": {
@@ -31,13 +32,13 @@ const StudentHome = () => {
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [flag, setFlag] = useState(false);
     const [passwordUpdated, setPasswordUpdated] = useState(false);
-    const {id}=useContext(SearchContext);
+    const {user}=useContext(AuthContext);
+    const id=user._id;
 
 
 
     const dataStudent = useFetch(`/api/students/StudentProfile/${id}`);
     const student = dataStudent.data;
-    console.log(student)
 
     useEffect(() => {
         // Check if the password has been updated
