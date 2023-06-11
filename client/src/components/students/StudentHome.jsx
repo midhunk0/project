@@ -215,19 +215,11 @@ const StudentHome = () => {
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [flag, setFlag] = useState(false);
     const [passwordUpdated, setPasswordUpdated] = useState(false);
-<<<<<<< Updated upstream
     const {user}=useContext(AuthContext);
     const id=user._id;
-=======
-    const { id } = useContext(SearchContext) || {};
->>>>>>> Stashed changes
 
     const dataStudent = useFetch(`/api/students/StudentProfile/${id}`) || { data: null };
     const student = dataStudent.data;
-<<<<<<< Updated upstream
-=======
-    console.log(student);
->>>>>>> Stashed changes
 
     useEffect(() => {
         // Check if the password has been updated

@@ -1,0 +1,20 @@
+.box-container {
+    margin-top:10px;
+    height: 250px; /* Adjust the height as needed */
+  overflow: hidden;
+    perspective: 1000px;
+    padding: 20px;
+  }
+  
+  .box-text {
+    position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) ;
+  width: 90%;
+  padding: 30px;
+  background-color: #ffffff; /* Adjust the background color as needed */
+  box-shadow: 0 0 20px rgba(251, 89, 25, 0.2); /* Adjust the box shadow as needed */
+  color: #000000; /* Adjust the text color as needed */
+  }
+  

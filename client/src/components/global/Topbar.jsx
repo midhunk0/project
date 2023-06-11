@@ -15,9 +15,13 @@ const Item = ({ title, to, selected, setSelected }) => {
     textDecoration: "none",
     color: isActive ? "#fff" : "inherit",
     backgroundColor: isActive ? colors.gray[100] : "inherit",
+    borderRadius: "5px",
     "&:hover": {
-      backgroundColor: isActive ? "#000" : "#f5f5f5",
+      backgroundColor: isActive ? "#000" : "grey",
     },
+    // "&.selected": {
+    //   backgroundColor: "#20313e",
+    // },
   };
 
   return (
@@ -118,3 +122,5 @@ const Topbar = () => {
 };
 
 export default Topbar;
+
+
