@@ -47,12 +47,8 @@ const getMenuItems = (selected, setSelected) => {
   const menuItems = [
     { title: "Profile", to: "/student/home" },
     { title: "Resume", to: "/student/Resume" },
-    { title: "Internship Experience", to: "/student/internship" },
     { title: "Placements", to: "/student/placement" },
     { title: "Notifications", to: "/student/notification" },
-    { title: "Preparations", to: "/student/preparation" },
-    { title: "Graduate Study Cell", to: "/student/studycell" },
-    { title: "International Opportunities", to: "/student/international" },
     { title: "Edit Profile", to: "/student/edit" },
     { title: "Logout", to: "/student/login" },
   ];
