@@ -1,12 +1,12 @@
 import React from "react";
-import { Box, Typography,useMediaQuery } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import { tokens } from "../../theme";
 import { Container } from "react-bootstrap";
 import "./index.css";
 
 const Home = () => {
   const colors = tokens();
-  const isSmallScreen = useMediaQuery('(max-width: 600px)');
+  const isSmallScreen = useMediaQuery("(max-width: 600px)");
 
   return (
     <Box margin="10px">
@@ -187,23 +187,44 @@ const Home = () => {
           </Typography>
         </Box>
         <hr style={{ border: "1px groove", width: "25%" }} />
-        <Container fluid className="box-container" style={{ height: '400px' }}>
-        <Box className="box-text">
-          The Career Guidance and Placement Unit (CGPU) was started in this college as a voluntary organization in January 1984. The Placement Officer who is assisted by student representatives from all the departments heads this unit. The Principal of the institution and all other faculty members have extended their wholehearted support to the functioning of the unit. The unit is spread over an area of over 3500 sq.ft. It can accommodate 500 students at a time for written test. It has an amphitheatre for Pre-Placement Talk. The unit is equipped with a PA system, OHP, TV, VCR and an LCD projector. Other facilities include air-conditioned rooms for group discussions and interviews.
-          The objectives of the unit are: 
-          To place final year students in respectable organizations through campus recruitment. 
-          To provide industrial training to students during their course of study. 
-          To organize lectures, seminars, group discussions, mock interviews etc. for career guidance, entrepreneurship and personality development. 
-          To provide information and assistance to students regarding. Job opportunities in India and abroad.
-          Opportunities for self-employment. 
-          Opportunities for higher studies in India and abroad. 
-          Competitive examinations like GRE, GMAT, TOEFL, GATE, CAT etc. 
-          During the past few years, the campus is being regularly visited by almost all leading companies in India and on the average, the unit provides employment to over 350 students out of 450 every year. The Career Guidance and Placement Unit (CGPU) sends invitation letters, along with the Placement Programme containing the Job Announcement Form, to selected organisations. On receiving the reply, CGPU forwards the details of the eligible students to the company. A mutually convenient date is fixed for the campus visit. State-of-the-art facilities, for conducting the recruitment is provided by the unit. The recruitment process is completed in the campus itself. Offer letters, complete in all respects, are sent to the CGPU to follow the set norms.
-        </Box>
-      </Container>
-    </Box>
+        <Container fluid className="box-container" style={{ height: "400px" }}>
+          <Box className="box-text">
+            The Career Guidance and Placement Unit (CGPU) was started in this
+            college as a voluntary organization in January 1984. The Placement
+            Officer who is assisted by student representatives from all the
+            departments heads this unit. The Principal of the institution and
+            all other faculty members have extended their wholehearted support
+            to the functioning of the unit. The unit is spread over an area of
+            over 3500 sq.ft. It can accommodate 500 students at a time for
+            written test. It has an amphitheatre for Pre-Placement Talk. The
+            unit is equipped with a PA system, OHP, TV, VCR and an LCD
+            projector. Other facilities include air-conditioned rooms for group
+            discussions and interviews. The objectives of the unit are: To place
+            final year students in respectable organizations through campus
+            recruitment. To provide industrial training to students during their
+            course of study. To organize lectures, seminars, group discussions,
+            mock interviews etc. for career guidance, entrepreneurship and
+            personality development. To provide information and assistance to
+            students regarding. Job opportunities in India and abroad.
+            Opportunities for self-employment. Opportunities for higher studies
+            in India and abroad. Competitive examinations like GRE, GMAT, TOEFL,
+            GATE, CAT etc. During the past few years, the campus is being
+            regularly visited by almost all leading companies in India and on
+            the average, the unit provides employment to over 350 students out
+            of 450 every year. The Career Guidance and Placement Unit (CGPU)
+            sends invitation letters, along with the Placement Programme
+            containing the Job Announcement Form, to selected organisations. On
+            receiving the reply, CGPU forwards the details of the eligible
+            students to the company. A mutually convenient date is fixed for the
+            campus visit. State-of-the-art facilities, for conducting the
+            recruitment is provided by the unit. The recruitment process is
+            completed in the campus itself. Offer letters, complete in all
+            respects, are sent to the CGPU to follow the set norms.
+          </Box>
+        </Container>
+      </Box>
 
-    <Box margin="30px">
+      <Box margin="30px">
         <Box display="flex" justifyContent="center">
           <Typography variant="h2" color={colors.primary[300]}>
             Placement
@@ -218,23 +239,11 @@ const Home = () => {
           </Typography>
         </Box>
         <hr style={{ border: "1px groove", width: "25%" }} />
+      </Box>
+
+      <div class="container">
         
-    </Box>
-
-    {/* <div class="container">
-        <div class="ag-timeline-block">
-            <section class="ag-section">
-                <div class="ag-format-container">
-                    <div class="js-timeline_line ag-timeline" style={{top:"0px";bottom:140px}}>
-                    <div class="js-timeline_line-progress ag-timeline_line-progress" style="height: 540px;"></div>
-                    </div>
-                    <div class="ag-timeline_list">
-
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div> */}
+      </div>
     </Box>
   );
 };
