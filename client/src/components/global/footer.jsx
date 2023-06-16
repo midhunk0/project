@@ -28,14 +28,12 @@ const Footer = () => {
                     <h5 style={{ color: "white" }}>Contact Us</h5>
                     <p style={{ color: "white" }}>
                         Career Guidance and Placement Unit(CGPU)
+                        <br />College of Engineering,
+                        <br />Thiruvananthapuram - 695016
+                        <br/>Kerala, South India
+                        <br/>Email: placement@cet.ac.in
+                        <br/>Phone: 0471-2595152
                     </p>
-                    <p style={{ color: "white" }}>College of Engineering,</p>
-                    <p style={{ color: "white" }}>
-                        Thiruvananthapuram - 695016
-                    </p>
-                    <p style={{ color: "white" }}>Kerala, South India</p>
-                    <p style={{ color: "white" }}>Email: placement@cet.ac.in</p>
-                    <p style={{ color: "white" }}>Phone: 0471-2595152</p>
                 </Box>
 
                 <Box className="col-md-2 ml-5">

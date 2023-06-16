@@ -13,11 +13,11 @@ const PlacementHistoryPage = () => {
   };
 
   const cardStyle = {
-    transition: 'transform 0.3s ease',
+    transition: "transform 0.3s ease",
   };
 
   const cardHoverStyle = {
-    transform: 'scale(1.05)',
+    transform: "scale(1.05)",
   };
 
   const placementHistory = [
@@ -66,7 +66,7 @@ const PlacementHistoryPage = () => {
     <Container>
       <h1>Current Placement</h1>
       <br></br>
-      <Card className="shadow-sm" >
+      <Card className="shadow-sm">
         <Card.Body>
           <Card.Title className="text-primary">
             {currentPlacement.company}
@@ -80,8 +80,12 @@ const PlacementHistoryPage = () => {
             <strong>Salary:</strong> {currentPlacement.salary}
           </Card.Text>
           <div>
-              <FontAwesomeIcon icon={faAward} className="text-warning" size="2x" />
-            </div>
+            <FontAwesomeIcon
+              icon={faAward}
+              className="text-warning"
+              size="2x"
+            />
+          </div>
         </Card.Body>
       </Card>
       <Confetti
