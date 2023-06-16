@@ -7,16 +7,22 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { tokens } from "../../theme";
 import CssTextField from "../global/CssTextField";
 
-
-const colors=tokens();
+const colors = tokens();
 const Login = () => {
+    const containerStyle = {
+        background: "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7mwGjHrDvCQaN20jbRUENNhfmo6rlp_qzITHf1wZeVCdhwL8nQiiJrCrg54JRF_G_yTY&usqp=CAU')",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+       opacity:0.7,
+    };
+
     const [credentials, setCredentials] = useState({
         studentCollegeID: "",
         password: "",
     });
     const navigate = useNavigate();
 
-    const { user,loading, error, dispatch } = useContext(AuthContext)
+    const { user, loading, error, dispatch } = useContext(AuthContext);
 
     const handleChange = (e) => {
         setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -24,19 +30,18 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch({type:"LOGIN_START"})
+        dispatch({ type: "LOGIN_START" });
 
         try {
             const res = await axios.post(
                 "http://localhost:8080/api/students/studentLogin",
                 credentials
             );
-            dispatch({type:"LOGIN_SUCCESS",payload:res.data.student})
-            
-             // Log the response data for troubleshooting
+            dispatch({ type: "LOGIN_SUCCESS", payload: res.data.student });
+
+            // Log the response data for troubleshooting
             navigate("/student/home");
-        } 
-        catch (err) {
+        } catch (err) {
             console.log(err.response); // Log the error response for troubleshooting
         }
     };
@@ -48,7 +53,7 @@ const Login = () => {
             display="flex"
             alignItems="center"
             justifyContent="center"
-            bgcolor="whitesmoke"
+            style={containerStyle}
         >
             <Box
                 bgcolor="white"
@@ -58,6 +63,7 @@ const Login = () => {
                 alignItems="center"
                 flexDirection="column"
                 gap="10px"
+                className="card"
             >
                 <Typography variant="h5" marginTop="10px" marginBottom="30px">
                     Login
@@ -77,7 +83,10 @@ const Login = () => {
                 />
                 <Button
                     variant="contained"
-                    sx={{background:colors.gray[100],'&:hover':{background:colors.gray[100]}}}
+                    sx={{
+                        background: colors.gray[100],
+                        "&:hover": { background: colors.gray[100] },
+                    }}
                     onClick={handleSubmit}
                 >
                     Sign In
