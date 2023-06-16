@@ -1,12 +1,12 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 
-const Preperation=()=>{
+const Preparation=()=>{
     return(
         <Box m="10px">
-            <Typography variant="h4">Preperation</Typography>
+            <Typography variant="h4">Preparation</Typography>
         </Box>
     )
 }
 
-export default Preperation;
+export default Preparation;

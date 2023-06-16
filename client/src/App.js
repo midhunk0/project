@@ -18,8 +18,8 @@ import Edit from "./components/students/Edit";
 import StudentHome from "./components/students/StudentHome";
 import International from "./components/students/International";
 import Notification from "./components/students/Notification";
-import Preperation from "./components/students/Preperation";
-import Skill from "./components/students/Skill";
+import Preperation from "./components/students/Preparation";
+import Resume from "./components/students/Resume";
 import StudyCell from "./components/students/StudyCell";
 import StudentInternship from "./components/students/Internship";
 import StudentPlacement from "./components/students/Placement";
@@ -53,7 +53,7 @@ const App = () => {
           <Route path="portal" element={<Portal />} />
         </Route>
         <Route path="student/login" element={<StudentLogin />} />
-        <Route path="student" element={<Student/>}>
+        <Route path="student" element={<Student />}>
           <Route path="home" element={<StudentHome />} />
           <Route path="edit" element={<Edit />} />
           <Route path="international" element={<International />} />
@@ -61,7 +61,7 @@ const App = () => {
           <Route path="notification" element={<Notification />} />
           <Route path="placement" element={<StudentPlacement />} />
           <Route path="preperation" element={<Preperation />} />
-          <Route path="skill" element={<Skill />} />
+          <Route path="resume" element={<Resume />} />
           <Route path="studycell" element={<StudyCell />} />
           <Route path="login" element={<StudentLogin />} />
         </Route>
