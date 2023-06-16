@@ -80,6 +80,7 @@ export const updateProfileStudentController = async (req, res) => {
     try {
         const studentID = req.params.id;
         const { username, email, phone, address, skills, department, backlogs, profilePicture, cv } = req.body;
+        console.log(studentID,req.body);
 
         // Find the student with the provided student ID
         await students.findByIdAndUpdate(studentID, {

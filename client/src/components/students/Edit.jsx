@@ -18,9 +18,9 @@ const Edit = () => {
     });
 
     const { user } = useContext(AuthContext);
-    console.log(user)
-    const id=user ? user._id :"";
-    console.log(id)
+
+    const id=user._id;
+    
     const [newSkill, setNewSkill] = useState("");
 
     const handleChange = (e) => {
@@ -79,6 +79,7 @@ const Edit = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
 
         const formData = new FormData();
 
@@ -90,21 +91,17 @@ const Edit = () => {
                 value.forEach((item) => formData.append(key, item));
             }
         });
-        console.log(profileDetails)
-        for (const pair of formData.entries()) {
-            console.log(pair[0], pair[1]); // Log each field and its value
-        }// This will still log an empty object, but the data is present
+        // console.log(profileDetails)
+        // console.log(id)
+        // for (const pair of formData.entries()) {
+        //     console.log(pair[0], pair[1]); // Log each field and its value
+        // }// This will still log an empty object, but the data is present
         try {
             const res = await axios.put(
                 `/api/students/StudentProfile/${id}`,
-                formData,{
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                }
-
+                profileDetails
             );
-            console.log(res.data); // Log the response data for troubleshooting
+           ; // Log the response data for troubleshooting
             // Reset the form or perform any other necessary actions
         } 
         catch (err) {
