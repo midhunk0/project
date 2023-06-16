@@ -5,19 +5,11 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { Box } from "@mui/material";
 
 const Edit = () => {
-    const [profileDetails, setProfileDetails] = useState({
-        username: "",
-        email: "",
-        phone: "",
-        address: "",
-        skills: [],
-        department: "",
-        backlogs: 0,
-        profilePicture: null,
-        cv: null,
-    });
-
     const { user } = useContext(AuthContext);
+    const [profileDetails, setProfileDetails] = useState(user);
+
+ 
+    
 
     const id=user._id;
     
@@ -101,8 +93,9 @@ const Edit = () => {
                 `/api/students/StudentProfile/${id}`,
                 profileDetails
             );
-           ; // Log the response data for troubleshooting
+            // Log the response data for troubleshooting
             // Reset the form or perform any other necessary actions
+            localStorage.setItem("user", JSON.stringify(profileDetails));
         } 
         catch (err) {
             console.log(err.response); // Log the error response for troubleshooting
