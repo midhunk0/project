@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Footer from "./components/global/Footer";
+import Footer from "./components/global/footer";
 import Topbar from "./components/global/Topbar";
 import Home from "./components/home";
 import Alumni from "./components/alumni";

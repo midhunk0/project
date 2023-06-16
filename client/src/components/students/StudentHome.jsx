@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import './studentHome.css'
+import "./studentHome.css";
 import {
     Box,
     Button,
@@ -20,8 +20,8 @@ const StudentHome = () => {
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [flag, setFlag] = useState(false);
     const [passwordUpdated, setPasswordUpdated] = useState(false);
-    const {user}=useContext(AuthContext);
-    const id=user._id;
+    const { user } = useContext(AuthContext);
+    const id = user._id;
 
     const dataStudent = useFetch(`/api/students/StudentProfile/${id}`);
     const student = dataStudent.data;
@@ -29,7 +29,7 @@ const StudentHome = () => {
     useEffect(() => {
         // Check if the password has been updated
         if (student && student.password === "") {
-            setFlag(true)
+            setFlag(true);
         }
     }, [student]);
 
@@ -41,10 +41,10 @@ const StudentHome = () => {
         e.preventDefault();
         try {
             await axios.put(
-                `http://localhost:8080/api/students/StudentPassword/${id}`,{
-                    newPassword: password
-                },
-
+                `http://localhost:8080/api/students/StudentPassword/${id}`,
+                {
+                    newPassword: password,
+                }
             );
             setSnackbarOpen(true);
             setPassword("");
@@ -60,7 +60,7 @@ const StudentHome = () => {
 
     return (
         <Box>
-            {flag ?
+            {flag ? (
                 <Box
                     height="91.5vh"
                     width="100%"
@@ -78,7 +78,11 @@ const StudentHome = () => {
                         flexDirection="column"
                         gap="10px"
                     >
-                        <Typography variant="h5" marginTop="10px" marginBottom="30px">
+                        <Typography
+                            variant="h5"
+                            marginTop="10px"
+                            marginBottom="30px"
+                        >
                             Update Password
                         </Typography>
                         <CssTextField
@@ -105,7 +109,8 @@ const StudentHome = () => {
                         onClose={handleCloseSnackbar}
                         message="Password updated successfully"
                     />
-                </Box> :
+                </Box>
+            ) : (
                 <Box>
                     <Box className="left">
                         <Box className="item">
@@ -115,14 +120,26 @@ const StudentHome = () => {
                                 className="itemImg"
                             />
                             <Box className="details">
-                                <h1 className="itemTitle">{student.username}</h1>
+                                <h1 className="itemTitle">
+                                    {student.username}
+                                </h1>
+                                <Box className="detailItem">
+                                    <span className="itemKey">College ID:</span>
+                                    <span className="itemValue">
+                                        {student.studentCollegeID}
+                                    </span>
+                                </Box>
                                 <Box className="detailItem">
                                     <span className="itemKey">Email:</span>
-                                    <span className="itemValue">{student.email}</span>
+                                    <span className="itemValue">
+                                        {student.email}
+                                    </span>
                                 </Box>
                                 <Box className="detailItem">
                                     <span className="itemKey">Phone:</span>
-                                    <span className="itemValue">+ {student.phone}</span>
+                                    <span className="itemValue">
+                                        + {student.phone}
+                                    </span>
                                 </Box>
                                 <Box className="detailItem">
                                     <span className="itemKey">Address:</span>
@@ -132,33 +149,41 @@ const StudentHome = () => {
                                 </Box>
                                 <Box className="detailItem">
                                     <span className="itemKey">Department:</span>
-                                    <span className="itemValue">{student.department}</span>
+                                    <span className="itemValue">
+                                        {student.department}
+                                    </span>
                                 </Box>
                                 <Box className="detailItem">
                                     <span className="itemKey">CGPA:</span>
-                                    <span className="itemValue">{student.cgpa}</span>
+                                    <span className="itemValue">
+                                        {student.cgpa}
+                                    </span>
                                 </Box>
                                 <Box className="detailItem">
                                     <span className="itemKey">backlogs:</span>
-                                    <span className="itemValue">{student.backlogs}</span>
+                                    <span className="itemValue">
+                                        {student.backlogs}
+                                    </span>
                                 </Box>
                                 <Box className="detailItem">
                                     <span className="itemKey">skills:</span>
-                                    {/* <span className="itemValue">
-                                        {student.skills.map((skill)=>{
-                                            return(
-                                                <div>
-                                                    {skill}
-                                                </div>
-                                            )
-                                        })}
-                                        </span> */}
+                                    <span className="itemValue">
+                                        {student &&
+                                            student.skills &&
+                                            student.skills.map(
+                                                (skill, index) => (
+                                                    <div key={index}>
+                                                        {skill}
+                                                    </div>
+                                                )
+                                            )}
+                                    </span>
                                 </Box>
                             </Box>
                         </Box>
                     </Box>
                 </Box>
-            }
+            )}
         </Box>
     );
 };

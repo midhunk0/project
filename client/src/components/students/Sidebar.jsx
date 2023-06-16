@@ -11,25 +11,34 @@ const colors = tokens();
 const Item = ({ title, to, selected, setSelected }) => {
     const isActive = selected === title;
 
+    const handleLogout = () => {
+        if (title === "Logout") {
+            localStorage.clear();
+        }
+    };
+
     const itemStyle = {
         textDecoration: "none",
         height: "50px",
         color: isActive ? "#fff" : "inherit",
         backgroundColor: isActive ? colors.gray[100] : "inherit",
         "&:hover": {
-        backgroundColor: isActive ? "#000" : "#f5f5f5",
+            backgroundColor: isActive ? "#000" : "#f5f5f5",
         },
     };
 
     return (
         <MenuItem
-        onClick={() => setSelected(title)}
-        selected={isActive}
-        component={Link}
-        to={to}
-        style={itemStyle}
+            onClick={() => {
+                setSelected(title);
+                handleLogout();
+            }}
+            selected={isActive}
+            component={Link}
+            to={to}
+            style={itemStyle}
         >
-        {title}
+            {title}
         </MenuItem>
     );
 };
@@ -50,11 +59,11 @@ const getMenuItems = (selected, setSelected) => {
 
     return menuItems.map((item) => (
         <Item
-        key={item.title}
-        title={item.title}
-        to={item.to}
-        selected={selected}
-        setSelected={setSelected}
+            key={item.title}
+            title={item.title}
+            to={item.to}
+            selected={selected}
+            setSelected={setSelected}
         />
     ));
 };
@@ -75,12 +84,9 @@ const StudentSidebar = () => {
 
     return (
         <FlexBetween>
-        {/* logo and name */}
             <Box sx={{ display: { xs: "none", md: "flex" }, height: "100vh" }}>
-                {/* topbar items */}
                 <Box display="flex">
                     <Sidebar>
-                        {/* user image and name*/}
                         <Box mb="25px">
                             <Box
                                 display="flex"
@@ -88,11 +94,15 @@ const StudentSidebar = () => {
                                 alignItems="center"
                             >
                                 <img
-                                alt="user-profile"
-                                width="100px"
-                                height="100px"
-                                src="../../assets/user.png"
-                                style={{ cursor: "pointer", borderRadius: "50%", margin: "10px" }}
+                                    alt="user-profile"
+                                    width="100px"
+                                    height="100px"
+                                    src="../../assets/user.png"
+                                    style={{
+                                        cursor: "pointer",
+                                        borderRadius: "50%",
+                                        margin: "10px",
+                                    }}
                                 />
                             </Box>
                             <Box textAlign="center">
@@ -100,19 +110,17 @@ const StudentSidebar = () => {
                                     variant="h2"
                                     sx={{
                                         m: "10px 0 0 0",
-                                        fontSize: "2rem"
+                                        fontSize: "2rem",
                                     }}
                                 >
                                     midhun
                                 </Typography>
                             </Box>
                         </Box>
-                        {/* menu items */}
                         <Box>{getMenuItems(selected, setSelected)}</Box>
                     </Sidebar>
                 </Box>
             </Box>
-            {/* hamburger menu */}
             <Box sx={{ display: { xs: "block", md: "none" } }}>
                 <IconButton
                     color="inherit"
@@ -135,6 +143,3 @@ const StudentSidebar = () => {
 };
 
 export default StudentSidebar;
-
-
-

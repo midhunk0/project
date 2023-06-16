@@ -8,11 +8,8 @@ const Edit = () => {
     const { user } = useContext(AuthContext);
     const [profileDetails, setProfileDetails] = useState(user);
 
- 
-    
+    const id = user._id;
 
-    const id=user._id;
-    
     const [newSkill, setNewSkill] = useState("");
 
     const handleChange = (e) => {
@@ -23,15 +20,13 @@ const Edit = () => {
                 ...prevDetails,
                 [name]: files[0],
             }));
-        } 
-        else if (type === "checkbox") {
+        } else if (type === "checkbox") {
             if (e.target.checked) {
                 setProfileDetails((prevDetails) => ({
                     ...prevDetails,
                     [name]: [...prevDetails[name], value],
                 }));
-            } 
-            else {
+            } else {
                 setProfileDetails((prevDetails) => ({
                     ...prevDetails,
                     [name]: prevDetails[name].filter(
@@ -39,8 +34,7 @@ const Edit = () => {
                     ),
                 }));
             }
-        } 
-        else {
+        } else {
             setProfileDetails((prevDetails) => ({
                 ...prevDetails,
                 [name]: value,
@@ -71,15 +65,13 @@ const Edit = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
 
         const formData = new FormData();
 
         Object.entries(profileDetails).forEach(([key, value]) => {
             if (value !== null && typeof value !== "object") {
                 formData.append(key, value);
-            } 
-            else if (Array.isArray(value)) {
+            } else if (Array.isArray(value)) {
                 value.forEach((item) => formData.append(key, item));
             }
         });
@@ -96,8 +88,7 @@ const Edit = () => {
             // Log the response data for troubleshooting
             // Reset the form or perform any other necessary actions
             localStorage.setItem("user", JSON.stringify(profileDetails));
-        } 
-        catch (err) {
+        } catch (err) {
             console.log(err.response); // Log the error response for troubleshooting
         }
     };
