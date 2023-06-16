@@ -48,6 +48,7 @@ const StudentHome = () => {
             );
             setSnackbarOpen(true);
             setPassword("");
+            setFlag(false)
             setPasswordUpdated(true);
         } catch (err) {
             console.log(err.response); // Log the error response for troubleshooting
@@ -59,7 +60,7 @@ const StudentHome = () => {
     };
 
     return (
-        <Box>
+        <Box className="home">
             {flag ? (
                 <Box
                     height="91.5vh"
@@ -111,7 +112,9 @@ const StudentHome = () => {
                     />
                 </Box>
             ) : (
-                <Box>
+                <div className="homepagecontainer">
+
+
                     <Box className="left">
                         <Box className="item">
                             <img
@@ -182,9 +185,11 @@ const StudentHome = () => {
                             </Box>
                         </Box>
                     </Box>
-                </Box>
+
+                </div>
             )}
         </Box>
+
     );
 };
 
