@@ -18,7 +18,9 @@ const Edit = () => {
     });
 
     const { user } = useContext(AuthContext);
+    console.log(user)
     const id=user ? user._id :"";
+    console.log(id)
     const [newSkill, setNewSkill] = useState("");
 
     const handleChange = (e) => {
