@@ -48,7 +48,7 @@ const StudentHome = () => {
             );
             setSnackbarOpen(true);
             setPassword("");
-            setFlag(false)
+            setFlag(false);
             setPasswordUpdated(true);
         } catch (err) {
             console.log(err.response); // Log the error response for troubleshooting
@@ -60,136 +60,132 @@ const StudentHome = () => {
     };
 
     return (
-        <Box className="home">
-            {flag ? (
-                <Box
-                    height="91.5vh"
-                    width="100%"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    bgcolor="whitesmoke"
-                >
+        <div
+            className="background  rounded "
+            style={{ width: "30rem", marginLeft: "20%" }}
+        >
+            <div className="container mt-5">
+                {flag ? (
                     <Box
-                        bgcolor="white"
-                        padding="20px 60px"
-                        borderRadius="10px"
+                        height="100vh"
                         display="flex"
                         alignItems="center"
-                        flexDirection="column"
-                        gap="10px"
+                        justifyContent="center"
                     >
-                        <Typography
-                            variant="h5"
-                            marginTop="10px"
-                            marginBottom="30px"
+                        <Box
+                            bgcolor="white"
+                            padding="20px 60px"
+                            borderRadius="10px"
+                            display="flex"
+                            alignItems="center"
+                            flexDirection="column"
+                            gap="10px"
                         >
-                            Update Password
-                        </Typography>
-                        <CssTextField
-                            required
-                            id="password"
-                            type="password"
-                            value={password}
-                            onChange={handleChange}
-                            label="New Password"
-                            disabled={passwordUpdated} // Disable the input if password is already updated
+                            <Typography
+                                variant="h5"
+                                marginTop="10px"
+                                marginBottom="30px"
+                            >
+                                Update Password
+                            </Typography>
+                            <CssTextField
+                                required
+                                id="password"
+                                type="password"
+                                value={password}
+                                onChange={handleChange}
+                                label="New Password"
+                                disabled={passwordUpdated} // Disable the input if password is already updated
+                            />
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={handleSubmit}
+                                disabled={passwordUpdated} // Disable the button if password is already updated
+                            >
+                                Update
+                            </Button>
+                        </Box>
+                        <Snackbar
+                            open={snackbarOpen}
+                            autoHideDuration={3000}
+                            onClose={handleCloseSnackbar}
+                            message="Password updated successfully"
                         />
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={handleSubmit}
-                            disabled={passwordUpdated} // Disable the button if password is already updated
-                        >
-                            Update
-                        </Button>
                     </Box>
-                    <Snackbar
-                        open={snackbarOpen}
-                        autoHideDuration={3000}
-                        onClose={handleCloseSnackbar}
-                        message="Password updated successfully"
-                    />
-                </Box>
-            ) : (
-                <div className="homepagecontainer">
-
-
-                    <Box className="left">
-                        <Box className="item">
+                ) : (
+                    <div
+                        className="card"
+                        style={{ maxWidth: "40rem", width: "100%" }}
+                    >
+                        <div className="item">
                             <img
                                 src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
                                 alt=""
                                 className="itemImg"
                             />
-                            <Box className="details">
+                            <div className="details">
                                 <h1 className="itemTitle">
                                     {student.username}
                                 </h1>
-                                <Box className="detailItem">
+                                <div className="detailItem">
                                     <span className="itemKey">College ID:</span>
                                     <span className="itemValue">
                                         {student.studentCollegeID}
                                     </span>
-                                </Box>
-                                <Box className="detailItem">
+                                </div>
+                                <div className="detailItem">
                                     <span className="itemKey">Email:</span>
                                     <span className="itemValue">
                                         {student.email}
                                     </span>
-                                </Box>
-                                <Box className="detailItem">
+                                </div>
+                                <div className="detailItem">
                                     <span className="itemKey">Phone:</span>
                                     <span className="itemValue">
-                                        + {student.phone}
+                                        +91 {student.phone}
                                     </span>
-                                </Box>
-                                <Box className="detailItem">
+                                </div>
+                                <div className="detailItem">
                                     <span className="itemKey">Address:</span>
                                     <span className="itemValue">
                                         {student.address}
                                     </span>
-                                </Box>
-                                <Box className="detailItem">
+                                </div>
+                                <div className="detailItem">
                                     <span className="itemKey">Department:</span>
                                     <span className="itemValue">
                                         {student.department}
                                     </span>
-                                </Box>
-                                <Box className="detailItem">
+                                </div>
+                                <div className="detailItem">
                                     <span className="itemKey">CGPA:</span>
                                     <span className="itemValue">
                                         {student.cgpa}
                                     </span>
-                                </Box>
-                                <Box className="detailItem">
-                                    <span className="itemKey">backlogs:</span>
+                                </div>
+                                <div className="detailItem">
+                                    <span className="itemKey">Backlogs:</span>
                                     <span className="itemValue">
                                         {student.backlogs}
                                     </span>
-                                </Box>
-                                <Box className="detailItem">
-                                    <span className="itemKey">skills:</span>
+                                </div>
+                                <div className="detailItem">
+                                    <span className="itemKey">Skills:</span>
                                     <span className="itemValue">
-                                        {student &&
-                                            student.skills &&
-                                            student.skills.map(
-                                                (skill, index) => (
-                                                    <div key={index}>
-                                                        {skill},&nbsp;
-                                                    </div>
-                                                )
-                                            )}
+                                        {student && student.skills && (
+                                            <div>
+                                                {student.skills.join(", ")}
+                                            </div>
+                                        )}
                                     </span>
-                                </Box>
-                            </Box>
-                        </Box>
-                    </Box>
-
-                </div>
-            )}
-        </Box>
-
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </div>
     );
 };
 
