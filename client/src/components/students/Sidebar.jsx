@@ -50,7 +50,7 @@ const getMenuItems = (selected, setSelected) => {
     { title: "Placements", to: "/student/placement" },
     { title: "Notifications", to: "/student/notification" },
     { title: "Edit Profile", to: "/student/edit" },
-    { title: "Logout", to: "/student/login" },
+    { title: "Logout", to: "/" },
   ];
 
   return menuItems.map((item) => (

@@ -176,7 +176,7 @@ const StudentHome = () => {
                                             student.skills.map(
                                                 (skill, index) => (
                                                     <div key={index}>
-                                                        {skill}
+                                                        {skill},&nbsp;
                                                     </div>
                                                 )
                                             )}
