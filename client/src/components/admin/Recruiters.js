@@ -6,32 +6,32 @@ const columns = [
     { 
         field: "id", 
         headerName: "ID",
-        width: 70 
+
     },
     { 
         field: "companyName", 
         headerName: "Name",
-        width: 130 
+ 
     },
     {
         field: "ceo",
         headerName: "CEO",
-        width: 130
+
     },
     {
         field: "vacancy",
         headerName: "No of vacancies",
-        width: 130
+
     },
     {
         field: "placed",
         headerName: "No of Placed",
-        width: 130
+
     },
     {
         field: "package",
         headerName: "Package",
-        widht: 100
+
     }
 ];
 
@@ -66,7 +66,7 @@ const Recruiter = () => {
                         paginationModel: { page: 0, pageSize: 5 }
                         },
                     }}
-                    //   checkboxSelection
+                      checkboxSelection
                     pageSizeOptions={[5, 10]}
                 />
             </Box>

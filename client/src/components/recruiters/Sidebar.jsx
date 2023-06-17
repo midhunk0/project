@@ -70,36 +70,36 @@ const RecruiterSidebar = () => {
     return (
         <FlexBetween>
         {/* logo and name */}
-        <Box sx={{ display: { xs: "none", md: "flex" }, height: "100vh" }}>
+        <Box sx={{ display: { xs: "none", md: "flex" } }}>
             {/* topbar items */}
             <Box display="flex">
             <Sidebar>
                 {/* user image and name*/}
                 <Box mb="25px">
-                <Box
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                >
-                    <img
-                    alt="user-profile"
-                    width="100px"
-                    height="100px"
-                    src="../../assets/user.png"
-                    style={{ cursor: "pointer", borderRadius: "50%", margin: "10px" }}
-                    />
-                </Box>
-                <Box textAlign="center">
-                    <Typography
-                    variant="h2"
-                    sx={{
-                        m: "10px 0 0 0",
-                        fontSize: "2rem"
-                    }}
+                    <Box
+                        display="flex"
+                        justifyContent="center"
+                        alignItems="center"
                     >
-                    midhun
-                    </Typography>
-                </Box>
+                        <img
+                        alt="user-profile"
+                        width="100px"
+                        height="100px"
+                        src="../../assets/user.png"
+                        style={{ cursor: "pointer", borderRadius: "50%", margin: "10px" }}
+                        />
+                    </Box>
+                    <Box textAlign="center">
+                        <Typography
+                        variant="h2"
+                        sx={{
+                            m: "10px 0 0 0",
+                            fontSize: "2rem"
+                        }}
+                        >
+                        Tim Cook
+                        </Typography>
+                    </Box>
                 </Box>
                 {/* menu items */}
                 <Box>{getMenuItems(selected, setSelected)}</Box>
@@ -107,19 +107,19 @@ const RecruiterSidebar = () => {
             </Box>
         </Box>
         {/* hamburger menu */}
-        <Box sx={{ display: { xs: "block", md: "none" } }}>
+        <Box sx={{ display: { xs: "block", md: "none" }, height:"100%", marginTop:"20px"}}>
             <IconButton
-            color="inherit"
-            aria-label="menu"
-            onClick={handleMenuToggle}
+                color="inherit"
+                onClick={handleMenuToggle}
+                style={{ outline: "none" }}
             >
-            <MenuIcon />
+                <MenuIcon />
             </IconButton>
             <Menu
-            anchorEl={anchorEl}
-            open={isMenuOpen}
-            onClose={handleMenuClose}
-            onClick={handleMenuClose}
+                anchorEl={anchorEl}
+                open={isMenuOpen}
+                onClose={handleMenuClose}
+                onClick={handleMenuClose}
             >
             {getMenuItems(selected, setSelected)}
             </Menu>

@@ -113,11 +113,11 @@ const StudentSidebar = () => {
           </Sidebar>
         </Box>
       </Box>
-      <Box sx={{ display: { xs: "block", md: "none" } }}>
+      <Box sx={{ display: { xs: "block", md: "none" }, height:"100%", marginTop:"20px" }}>
         <IconButton
           color="inherit"
-          aria-label="menu"
           onClick={handleMenuToggle}
+          style={{ outline: "none" }}
         >
           <MenuIcon />
         </IconButton>

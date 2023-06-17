@@ -20,58 +20,55 @@ import Notification from "./components/students/Notification";
 
 import Resume from "./components/students/Resume";
 import StudentPlacement from "./components/students/Placement";
-import Invitations from "./pages/Admin/Invitations";
-import Students from "./pages/Admin/Students";
-import Recruiters from "./pages/Admin/Recruiters";
-import Admin from "./pages/Admin";
-import AdminDashboard from "./pages/Admin/AdminDashboard";
+
 import RecruiterLogin from "./components/recruiters/Login";
 import RecruiterHome from "./components/recruiters/RecruiterHome";
 import StudentLogin from "./components/students/Login";
 import RecruiterRegister from "./components/recruiters/Register";
+import Admin from "./components/admin";
+import AdminDashboard from "./components/admin/AdminDashboard";
+import Invitations from "./components/admin/Invitations";
+import Students from "./components/admin/Students";
+import Recruiters from "./components/admin/Recruiters";
 
 const App = () => {
-  return (
-    <Router basename="">
-      <Topbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="alumni" element={<Alumni />} />
-        <Route path="contact" element={<Contact />}></Route>
-        <Route path="recruiter/login" element={<RecruiterLogin />} />
-        <Route path="recruiter/register" element={<RecruiterRegister />} />
-        <Route path="recruiter" element={<Recruiter />}>
-          <Route path="home" element={<RecruiterHome />} />
-          <Route path="extra" element={<Extra />} />
-          <Route path="achievement" element={<Achivement />} />
-          <Route path="internship" element={<RecruiterInternship />} />
-          <Route path="placement" element={<RecruiterPlacement />} />
-          <Route path="why" element={<Why />} />
-          <Route path="portal" element={<Portal />} />
-        </Route>
-        <Route path="student/login" element={<StudentLogin />} />
-        <Route path="student" element={<Student />}>
-          <Route path="home" element={<StudentHome />} />
-          <Route path="edit" element={<Edit />} />
-          
-          <Route path="notification" element={<Notification />} />
-          <Route path="placement" element={<StudentPlacement />} />
-          
-          <Route path="resume" element={<Resume />} />
-          
-          <Route path="login" element={<StudentLogin />} />
-        </Route>
-        <Route path="admin" element={<Admin />}>
-          <Route path="dashboard" element={<AdminDashboard />} />
-          <Route path="invitations" element={<Invitations />} />
-          <Route path="students" element={<Students />} />
-          <Route path="recruiters" element={<Recruiters />} />
-        </Route>
-      </Routes>
-      <Footer />
-      
-    </Router>
-  );
+    return (
+        <Router basename="">
+        <Topbar />
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="alumni" element={<Alumni />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="recruiter/login" element={<RecruiterLogin />} />
+            <Route path="recruiter/register" element={<RecruiterRegister />} />
+            <Route path="recruiter" element={<Recruiter />}>
+                <Route path="home" element={<RecruiterHome />} />
+                <Route path="extra" element={<Extra />} />
+                <Route path="achievement" element={<Achivement />} />
+                <Route path="internship" element={<RecruiterInternship />} />
+                <Route path="placement" element={<RecruiterPlacement />} />
+                <Route path="why" element={<Why />} />
+                <Route path="portal" element={<Portal />} />
+            </Route>
+            <Route path="student/login" element={<StudentLogin />} />
+            <Route path="student" element={<Student />}>
+                <Route path="home" element={<StudentHome />} />
+                <Route path="edit" element={<Edit />} />
+                <Route path="notification" element={<Notification />} />
+                <Route path="placement" element={<StudentPlacement />} />
+                <Route path="resume" element={<Resume />} />
+                <Route path="login" element={<StudentLogin />} />
+            </Route>
+            <Route path="admin" element={<Admin />}>
+                <Route path="dashboard" element={<AdminDashboard />} />
+                <Route path="invitations" element={<Invitations />} />
+                <Route path="students" element={<Students />} />
+                <Route path="recruiters" element={<Recruiters />} />
+            </Route>
+        </Routes>
+        <Footer />    
+        </Router>
+    );
 };
 
 export default App;

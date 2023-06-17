@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Sidebar } from "react-pro-sidebar";
 import { tokens } from "../../theme";
-import FlexBetween from "../../components/global/FlexBetween";
+import FlexBetween from "../global/FlexBetween";
 
 const colors = tokens();
 
@@ -108,11 +108,11 @@ const AdminSidebar = () => {
                 </Box>
             </Box>
             {/* hamburger menu */}
-            <Box sx={{ display: { xs: "block", md: "none" } }}>
+            <Box sx={{ display: { xs: "block", md: "none" }, height:"100%", marginTop:"20px" }}>
                 <IconButton
                     color="inherit"
-                    aria-label="menu"
                     onClick={handleMenuToggle}
+                    style={{ outline: "none" }}
                 >
                     <MenuIcon />
                 </IconButton>
