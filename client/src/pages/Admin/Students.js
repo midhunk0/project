@@ -39,7 +39,7 @@ const rows = [
 
 const Student=()=> {
     return (
-        <Box display="column" margin="20px">
+        <Box display="column" margin="10px">
             <Typography variant="h4" marginBottom="10px">Student Details</Typography>
             <Box
                 sx={{

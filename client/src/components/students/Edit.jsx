@@ -81,9 +81,15 @@ const Edit = () => {
         //     console.log(pair[0], pair[1]); // Log each field and its value
         // }// This will still log an empty object, but the data is present
         try {
+            console.log("HERER",id);
             const res = await axios.put(
-                `/api/students/StudentProfile/${id}`,
-                profileDetails
+                `http://localhost:8080/api/students/StudentProfile/${id}`,
+                formData,{
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+
             );
             // Log the response data for troubleshooting
             // Reset the form or perform any other necessary actions
