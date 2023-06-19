@@ -1,15 +1,14 @@
 import React from "react";
-import { Box, Typography, useMediaQuery } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { tokens } from "../../theme";
 import { Container } from "react-bootstrap";
 import "./index.css";
 
 const Home = () => {
     const colors = tokens();
-    const isMobile = useMediaQuery("(max-width: 600px)");
 
     return (
-        <Box margin="20px" width={isMobile ? "105%" : "auto"}>
+        <Box margin="10px" width="auto">
             <Box>
                 <Box
                     id="carouselExampleIndicators"

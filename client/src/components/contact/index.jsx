@@ -1,52 +1,26 @@
 import React from "react";
-import { Box, useMediaQuery } from "@mui/material";
+import { Box } from "@mui/material";
 import Card from "react-bootstrap/Card";
 
-import { Container, Row, Col, Image } from "react-bootstrap";
+import { Container, Image } from "react-bootstrap";
 
 const Contact = () => {
-    const isMobile = useMediaQuery("(max-width: 600px)");
-    const contactCardStyle = {
-        maxWidth: "400px",
-        margin: "0 auto",
-        padding: "20px",
-        border: "1px solid #ccc",
-        borderRadius: "8px",
-    };
 
     const containerStyle = {
         background:
-            "url('https://media.istockphoto.com/id/1410532577/photo/abstract-watercolor-paper-texture-white-canvas-background.jpg?s=612x612&w=0&k=20&c=n7pnMBPG8BZKro7GYm_3yz5RezNTnw3V8fv5ZWgYYEQ=')",
+            "url('../../../assets/abstract-watercolor-paper.jpg')",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
     };
     const cardStyle = {
         background:
-            "url('https://media.istockphoto.com/id/1203011577/vector/newspaper-with-old-grunge-vintage-unreadable-paper-texture-background.jpg?s=612x612&w=0&k=20&c=b16KyYgiKLgpjf1Z18HDLjD4z3QfDB31e3tVgk-GoYk=')",
+            "url('../../../assets/newspaper-with-old-grunge.jpg')",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
     };
-    const addressImageContainerStyle = {
-        display: "flex",
-        alignItems: "center",
-        marginBottom: "20px", // Adjust the bottom margin
-    };
-
-    const addressImageStyle = {
-        width: "100px",
-        marginRight: "20px",
-        marginBottom: "20px",
-    };
-
-    const responsiveContainerStyle = {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "flex-start",
-        flexWrap: "wrap",
-    };
 
     return (
-        <Box margin="10px" width={isMobile ? "108%" : "auto"}>
+        <Box margin="10px" width="auto">
             <Box>
                 <img
                     src={`../../../assets/contactpage.jpg`}
