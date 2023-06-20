@@ -8,53 +8,19 @@ import FlexBetween from "./FlexBetween";
 
 const colors = tokens();
 
-const DropdownMenu = ({ anchorEl, handleClose }) => {
-    const menuItems = [
-        { title: "Profile", to: "/student/profile" },
-        { title: "Settings", to: "/student/settings" },
-        { title: "Login", to: "/student/login" },
-    ];
-
-    return (
-        <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-            anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-            // anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-            // transformOrigin={{ vertical: "top", horizontal: "left" }}
-        >
-            {menuItems.map((item) => (
-                <MenuItem key={item.title} component={Link} to={item.to} onClick={handleClose}>
-                    {item.title}
-                </MenuItem>
-            ))}
-        </Menu>
-    );
-};
-
-const Item = ({ title, to, selected, setSelected, handleDropdown }) => {
+const Item = ({ title, to, selected, setSelected }) => {
     const isActive = selected === title;
 
     const itemStyle = {
         textDecoration: "none",
         color: isActive ? colors.gray[900] : "inherit",
         backgroundColor: isActive ? colors.gray[100] : "inherit",
-        borderRadius: "5px"
     };
 
     return (
         <MenuItem
             onClick={() => {
                 setSelected(title);
-                handleDropdown();
             }}
             selected={isActive}
             component={Link}
@@ -66,10 +32,10 @@ const Item = ({ title, to, selected, setSelected, handleDropdown }) => {
     );
 };
 
-const getMenuItems = (selected, setSelected, handleDropdown) => {
+const getMenuItems = (selected, setSelected) => {
     const menuItems = [
         { title: "Home", to: "/" },
-        { title: "Student" },
+        { title: "Student", to: "/student/login" },
         { title: "Recruiter", to: "/recruiter/login" },
         { title: "Alumni", to: "/alumni" },
         { title: "Contact", to: "/contact" },
@@ -82,27 +48,23 @@ const getMenuItems = (selected, setSelected, handleDropdown) => {
             to={item.to}
             selected={selected}
             setSelected={setSelected}
-            handleDropdown={handleDropdown}
         />
     ));
 };
 
 const Topbar = () => {
-    const [selected, setSelected] = useState("Home");
+    const [selected, setSelected] = useState("home");
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleMenuToggle = (event) => {
         setAnchorEl(event.currentTarget);
+        setIsMenuOpen(true);
     };
 
     const handleMenuClose = () => {
+        setIsMenuOpen(false);
         setAnchorEl(null);
-    };
-
-    const handleDropdown = () => {
-        if (selected === "Student") {
-            setAnchorEl((prevAnchorEl) => !prevAnchorEl);
-        }
     };
 
     return (
@@ -111,7 +73,7 @@ const Topbar = () => {
             <FlexBetween gap="10px" marginLeft="10px">
                 <Link
                     to="/"
-                    onClick={() => setSelected("Home")}
+                    onClick={() => setSelected("home")}
                     style={{
                         color: "inherit",
                         textDecoration: "inherit"
@@ -129,7 +91,7 @@ const Topbar = () => {
             {/* topbar items */}
             <Box sx={{ display: { xs: "none", md: "flex" }, marginRight: "10px" }}>
                 <FlexBetween gap="10px">
-                    {getMenuItems(selected, setSelected, handleDropdown)}
+                    {getMenuItems(selected, setSelected)}
                 </FlexBetween>
             </Box>
 
@@ -138,9 +100,14 @@ const Topbar = () => {
                 <IconButton color="inherit" aria-label="menu" onClick={handleMenuToggle}>
                     <MenuIcon />
                 </IconButton>
-                {selected === "Student" && (
-                    <DropdownMenu anchorEl={anchorEl} handleClose={handleMenuClose} />
-                )}
+                <Menu
+                    anchorEl={anchorEl}
+                    open={isMenuOpen}
+                    onClose={handleMenuClose}
+                    onClick={handleMenuClose}
+                >
+                    {getMenuItems(selected, setSelected)}
+                </Menu>
             </Box>
         </FlexBetween>
     );

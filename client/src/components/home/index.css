@@ -16,7 +16,7 @@
   .overview-card{
     color: #20313e;
     font-size: 20px;
-    width: 400px;
+    width: 800px;
   }
   
   .card1 {
@@ -91,7 +91,7 @@
   }
   
   .cover.item-a {
-    background-image: url('https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?auto=format&fit=crop&w=600&q=80');
+    background-image: url('../../../assets/gold_pattern.jpg');
   }
   
   .cover.item-b {

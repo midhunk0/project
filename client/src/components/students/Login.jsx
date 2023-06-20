@@ -10,10 +10,10 @@ import CssTextField from "../global/CssTextField";
 const colors = tokens();
 const Login = () => {
     const containerStyle = {
-        background: "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7mwGjHrDvCQaN20jbRUENNhfmo6rlp_qzITHf1wZeVCdhwL8nQiiJrCrg54JRF_G_yTY&usqp=CAU')",
+        background: "url(../../../assets/loginBg.jpeg)",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-       opacity:0.7,
+        opacity:0.7,
     };
 
     const [credentials, setCredentials] = useState({

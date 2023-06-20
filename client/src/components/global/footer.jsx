@@ -1,12 +1,11 @@
-import { Box, useMediaQuery } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
 
 const Footer = () => {
-    const isMobile = useMediaQuery("(max-width:  600px)");
 
     const footerStyle = {
         backgroundColor: "#20313e",
-        width: isMobile ? "115%" : "auto",
+        width:"auto",
         margin: 0,
         padding: "20px",
         boxSizing: "border-box",

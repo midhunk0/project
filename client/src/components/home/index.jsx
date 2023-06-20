@@ -1,109 +1,118 @@
 import React from "react";
-import { Box, Typography, useMediaQuery } from "@mui/material";
+import { Box, Typography,useMediaQuery } from "@mui/material";
 import { tokens } from "../../theme";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import "./index.css";
 
-
 const Home = () => {
-  const colors = tokens();
-  const isMobile = useMediaQuery("(max-width: 600px)");
+    const colors = tokens();
+    const isMobile = useMediaQuery("(max-width: 600px)");
 
-  return (
-    <Box margin="20px" width={isMobile ? "105%" : "auto"}>
-      <Box>
-        <Box
-          id="carouselExampleIndicators"
-          className="carousel slide"
-          data-ride="carousel"
-        >
-          <ol className="carousel-indicators">
-            <li
-              data-target="#carouselExampleIndicators"
-              data-slide-to="0"
-              className="active"
-            ></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-          </ol>
-          <Box className="carousel-inner">
-            <Box className="carousel-item active">
-              <img
-                className="d-block w-100"
-                src={`../../../assets/cet_front.jpg`}
-                style={{
-                  background: "cover",
-                  width: "100%",
-                  maxHeight: "650px",
-                }}
-                alt="First slide"
-              />
+    return (
+        <Box margin="10px" width="auto">
+            <Box>
+                <Box
+                    id="carouselExampleIndicators"
+                    className="carousel slide"
+                    data-ride="carousel"
+                >
+                    <ol className="carousel-indicators">
+                        <li
+                            data-target="#carouselExampleIndicators"
+                            data-slide-to="0"
+                            className="active"
+                        ></li>
+                        <li
+                            data-target="#carouselExampleIndicators"
+                            data-slide-to="1"
+                        ></li>
+                        <li
+                            data-target="#carouselExampleIndicators"
+                            data-slide-to="2"
+                        ></li>
+                        <li
+                            data-target="#carouselExampleIndicators"
+                            data-slide-to="3"
+                        ></li>
+                    </ol>
+                    <Box className="carousel-inner">
+                        <Box className="carousel-item active">
+                            <img
+                                className="d-block w-100"
+                                src={`../../../assets/cet_front.jpg`}
+                                style={{
+                                    background: "cover",
+                                    width: "100%",
+                                    maxHeight: "650px",
+                                }}
+                                alt="First slide"
+                            />
+                        </Box>
+                        <Box className="carousel-item">
+                            <img
+                                className="d-block w-100"
+                                src={`../../../assets/cet_gate.jpg`}
+                                style={{
+                                    background: "cover",
+                                    width: "100%",
+                                    maxHeight: "650px",
+                                }}
+                                alt="Second slide"
+                            />
+                        </Box>
+                        <Box className="carousel-item">
+                            <img
+                                className="d-block w-100"
+                                src={`../../../assets/cet_sideview.jpg`}
+                                style={{
+                                    background: "cover",
+                                    width: "100%",
+                                    maxHeight: "650px",
+                                }}
+                                alt="Third slide"
+                            />
+                        </Box>
+                        <Box className="carousel-item">
+                            <img
+                                className="d-block w-100"
+                                src={`../../../assets/cet_plaque.jpg`}
+                                style={{
+                                    background: "cover",
+                                    width: "100%",
+                                    maxHeight: "650px",
+                                }}
+                                alt="Fourth slide"
+                            />
+                        </Box>
+                    </Box>
+                    <a
+                        className="carousel-control-prev"
+                        href="#carouselExampleIndicators"
+                        role="button"
+                        data-slide="prev"
+                    >
+                        <span
+                            className="carousel-control-prev-icon"
+                            aria-hidden="true"
+                        ></span>
+                        <span className="sr-only">Previous</span>
+                    </a>
+                    <a
+                        className="carousel-control-next"
+                        href="#carouselExampleIndicators"
+                        role="button"
+                        data-slide="next"
+                    >
+                        <span
+                            className="carousel-control-next-icon"
+                            aria-hidden="true"
+                        ></span>
+                        <span className="sr-only">Next</span>
+                    </a>
+                </Box>
             </Box>
-            <Box className="carousel-item">
-              <img
-                className="d-block w-100"
-                src={`../../../assets/cet_gate.jpg`}
-                style={{
-                  background: "cover",
-                  width: "100%",
-                  maxHeight: "650px",
-                }}
-                alt="Second slide"
-              />
-            </Box>
-            <Box className="carousel-item">
-              <img
-                className="d-block w-100"
-                src={`../../../assets/cet_sideview.jpg`}
-                style={{
-                  background: "cover",
-                  width: "100%",
-                  maxHeight: "650px",
-                }}
-                alt="Third slide"
-              />
-            </Box>
-            <Box className="carousel-item">
-              <img
-                className="d-block w-100"
-                src={`../../../assets/cet_plaque.jpg`}
-                style={{
-                  background: "cover",
-                  width: "100%",
-                  maxHeight: "650px",
-                }}
-                alt="Fourth slide"
-              />
-            </Box>
-          </Box>
-          <a
-            className="carousel-control-prev"
-            href="#carouselExampleIndicators"
-            role="button"
-            data-slide="prev"
-          >
-            <span
-              className="carousel-control-prev-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="sr-only">Previous</span>
-          </a>
-          <a
-            className="carousel-control-next"
-            href="#carouselExampleIndicators"
-            role="button"
-            data-slide="next"
-          >
-            <span
-              className="carousel-control-next-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="sr-only">Next</span>
-          </a>
-        </Box>
-      </Box>
 
+            
       <Container fluid>
         <div className="section1">
           <h2 className="main-heading">Overview of Our Institution</h2>
@@ -373,8 +382,9 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </Box>
-  );
+           
+        </Box>
+    );
 };
 
 export default Home;
