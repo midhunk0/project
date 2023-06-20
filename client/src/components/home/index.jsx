@@ -244,77 +244,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div class="container">
-              <div class="row">
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="card1">
-                    <div class="cover item-a">
-                      <h1 className="year_heading">2016</h1>
-
-                      <div class="card-back">
-                        <a href="#">Click me!</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="card1">
-                    <div class="cover item-b">
-                      <h1 className="year_heading">2015</h1>
-                      <div class="card-back">
-                        <a href="#">Click me!</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="card1">
-                    <div class="cover item-c">
-                      <h1 className="year_heading">2014</h1>
-                      <div class="card-back">
-                        <a href="#">click me!</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="container">
-              <div class="row">
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="card1">
-                    <div class="cover item-a">
-                      <h1 className="year_heading">2013</h1>
-
-                      <div class="card-back">
-                        <a href="#">Click me!</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="card1">
-                    <div class="cover item-b">
-                      <h1 className="year_heading">2012</h1>
-                      <div class="card-back">
-                        <a href="#">Click me!</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="card1">
-                    <div class="cover item-c">
-                      <h1 className="year_heading">2011</h1>
-                      <div class="card-back">
-                        <a href="#">click me!</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
           </section>
         </div>
 

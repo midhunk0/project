@@ -91,15 +91,15 @@
   }
   
   .cover.item-a {
-    background-image: url('../../../assets/gold_pattern.jpg');
+    background-image: url('https://images.unsplash.com/photo-1583829893112-58e651ff8528?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80');
   }
   
   .cover.item-b {
-    background-image: url('https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=600&q=80');
+    background-image: url('https://images.unsplash.com/photo-1583829893112-58e651ff8528?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80');
   }
   
   .cover.item-c {
-    background-image: url('https://images.unsplash.com/photo-1525945518069-b924046d1385?auto=format&fit=crop&w=600&q=80');
+    background-image: url('https://images.unsplash.com/photo-1583829893112-58e651ff8528?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80');
   }
   
   .cover h1 {
