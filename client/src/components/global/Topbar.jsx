@@ -8,109 +8,150 @@ import FlexBetween from "./FlexBetween";
 
 const colors = tokens();
 
-const Item = ({ title, to, selected, setSelected }) => {
-    const isActive = selected === title;
+const DropdownMenu = ({ title, items, selected, setSelected }) => {
+  const isActive = selected === title;
 
-    const itemStyle = {
-        textDecoration: "none",
-        color: isActive ? colors.gray[900] : "inherit",
-        backgroundColor: isActive ? colors.gray[100] : "inherit",
-    };
+  const itemStyle = {
+    textDecoration: "none",
+    color: isActive ? colors.gray[900] : "inherit",
+    backgroundColor: isActive ? colors.gray[100] : "inherit",
+  };
 
-    return (
-        <MenuItem
-            onClick={() => {
-                setSelected(title);
-            }}
-            selected={isActive}
-            component={Link}
-            to={to}
+  return (
+    <li className="nav-item dropdown">
+      <a
+        className="nav-link dropdown-toggle"
+        href="#"
+        id={`${title.toLowerCase()}-dropdown`}
+        role="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        {title}
+      </a>
+      <div
+        className="dropdown-menu"
+        aria-labelledby={`${title.toLowerCase()}-dropdown`}
+      >
+        {items.map((item) => (
+          <a
+            className="dropdown-item"
+            href={item.to}
+            onClick={() => setSelected(item.title)}
             style={itemStyle}
-        >
-            {title}
-        </MenuItem>
-    );
-};
-
-const getMenuItems = (selected, setSelected) => {
-    const menuItems = [
-        { title: "Home", to: "/" },
-        { title: "Student", to: "/student/login" },
-        { title: "Recruiter", to: "/recruiter/login" },
-        { title: "Alumni", to: "/alumni" },
-        { title: "Contact", to: "/contact" },
-    ];
-
-    return menuItems.map((item) => (
-        <Item
             key={item.title}
-            title={item.title}
-            to={item.to}
-            selected={selected}
-            setSelected={setSelected}
-        />
-    ));
+          >
+            {item.title}
+          </a>
+        ))}
+      </div>
+    </li>
+  );
 };
 
 const Topbar = () => {
-    const [selected, setSelected] = useState("home");
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [anchorEl, setAnchorEl] = useState(null);
+  const [selected, setSelected] = useState("home");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
-    const handleMenuToggle = (event) => {
-        setAnchorEl(event.currentTarget);
-        setIsMenuOpen(true);
-    };
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
-    const handleMenuClose = () => {
-        setIsMenuOpen(false);
-        setAnchorEl(null);
-    };
+  const handleMenuClose = () => {
+    setIsMenuOpen(false);
+  };
 
-    return (
-        <FlexBetween p="0.5rem 0rem">
-            {/* logo and name */}
-            <FlexBetween gap="10px" marginLeft="10px">
+  const menuItems = [
+    { title: "Home", to: "/" },
+    {
+      title: "Student",
+      items: [
+        { title: "Student Login", to: "/student/login" },
+        { title: "Placement Training", to: "/placement-training" },
+        { title: "Placement Rules & Regulations", to: "/placement-rules_&_regulations" },
+        { title: "Placement Experience", to: "/placement-experience" },
+
+      ],
+    },
+    {
+      title: "Recruiter",
+      items: [
+        { title: "Recruiter Login", to: "/recruiter/login" },
+        { title: "Why Recruit?", to: "/why_recruit?" },
+        { title: "Achievements", to: "/Achievements" },
+        { title: "Recruiter's Policy", to: "/recruiter_policy" },
+        { title: "Recruiter's Portal Guide", to: "/recruiter-guide" },
+      ],
+    },
+    {
+      title: "Alumni",
+      items: [
+      ],
+    },
+    { title: "Contact", to: "/contact" },
+  ];
+
+  return (
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <Link
+        to="/"
+        onClick={() => setSelected("home")}
+        className="navbar-brand"
+        style={{ color: "inherit", textDecoration: "inherit" }}
+      >
+        <Box display="flex" alignItems="center">
+          <PixIcon sx={{ fontSize: "28px" }} />
+          <Typography variant="h4" fontSize="16px" marginLeft="10px">
+            PMS
+          </Typography>
+        </Box>
+      </Link>
+      <IconButton
+        className="navbar-toggler"
+        onClick={handleMenuToggle}
+      >
+        <MenuIcon />
+      </IconButton>
+
+      <div
+        className={`collapse navbar-collapse${isMenuOpen ? " show" : ""}`}
+        id="navbarSupportedContent"
+      >
+        <ul className="navbar-nav ml-auto">
+          {menuItems.map((item) =>
+            item.items ? (
+              <DropdownMenu
+                key={item.title}
+                title={item.title}
+                items={item.items}
+                selected={selected}
+                setSelected={setSelected}
+              />
+            ) : (
+              <li
+                className={`nav-item${selected === item.title ? " active" : ""}`}
+                key={item.title}
+              >
                 <Link
-                    to="/"
-                    onClick={() => setSelected("home")}
-                    style={{
-                        color: "inherit",
-                        textDecoration: "inherit"
-                    }}
+                  className="nav-link"
+                  to={item.to}
+                  onClick={() => setSelected(item.title)}
+                  style={{ color: "inherit", textDecoration: "inherit" }}
                 >
-                    <Box display="flex" alignItems="center">
-                        <PixIcon sx={{ fontSize: "28px" }} />
-                        <Typography variant="h4" fontSize="16px" marginLeft="10px">
-                            PMS
-                        </Typography>
-                    </Box>
+                  {item.title}
+                  {selected === item.title && (
+                    <span className="sr-only">(current)</span>
+                  )}
                 </Link>
-            </FlexBetween>
-
-            {/* topbar items */}
-            <Box sx={{ display: { xs: "none", md: "flex" }, marginRight: "10px" }}>
-                <FlexBetween gap="10px">
-                    {getMenuItems(selected, setSelected)}
-                </FlexBetween>
-            </Box>
-
-            {/* hamburger menu */}
-            <Box sx={{ display: { xs: "block", md: "none" }, marginRight: "10px" }}>
-                <IconButton color="inherit" aria-label="menu" onClick={handleMenuToggle}>
-                    <MenuIcon />
-                </IconButton>
-                <Menu
-                    anchorEl={anchorEl}
-                    open={isMenuOpen}
-                    onClose={handleMenuClose}
-                    onClick={handleMenuClose}
-                >
-                    {getMenuItems(selected, setSelected)}
-                </Menu>
-            </Box>
-        </FlexBetween>
-    );
+              </li>
+            )
+          )}
+        </ul>
+      </div>
+    </nav>
+  );
 };
 
 export default Topbar;

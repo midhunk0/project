@@ -1,22 +1,52 @@
 import React from "react";
 import { Box } from "@mui/material";
 import Card from "react-bootstrap/Card";
-
 import { Container, Image } from "react-bootstrap";
 
 const Contact = () => {
-
     const containerStyle = {
-        background:
-            "url('../../../assets/abstract-watercolor-paper.jpg')",
+        background: "url('../../../assets/abstract-watercolor-paper.jpg')",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
     };
+
     const cardStyle = {
-        background:
-            "url('../../../assets/newspaper-with-old-grunge.jpg')",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
+        position: "relative",
+        overflow: "hidden",
+        transition: "transform 0.5s",
+        transformStyle: "preserve-3d",
+        perspective: "1000px",
+        transform: "rotateX(0)",
+    };
+
+    const cardHoverStyle = {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        background: "rgba(0, 0, 0, 0.5)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        transform: "translateY(100%)",
+        transition: "transform 0.5s",
+    };
+
+    const cardHoverText = {
+        color: "#fff",
+        fontSize: "18px",
+        textAlign: "center",
+    };
+
+    const handleCardHover = (e) => {
+        e.currentTarget.querySelector(".card-hover").style.transform =
+            "translateY(0)";
+    };
+
+    const handleCardLeave = (e) => {
+        e.currentTarget.querySelector(".card-hover").style.transform =
+            "translateY(100%)";
     };
 
     return (
@@ -69,7 +99,8 @@ const Contact = () => {
                 ></iframe>
             </Box>
 
-            <br /><br />
+            <br />
+            <br />
             <h1 className="display-10 mb-4 ml-2">Address</h1>
             <Container fluid className="py-5 " style={containerStyle}>
                 <div className="row">
@@ -84,43 +115,88 @@ const Contact = () => {
                     </div>
 
                     <div className="col-md-7 ml-5">
-                        <Card style={cardStyle}>
+                        <Card
+                            style={cardStyle}
+                            onMouseEnter={handleCardHover}
+                            onMouseLeave={handleCardLeave}
+                        >
                             <Card.Body>
-                                <Card.Title>
+                                <Card.Title style={{ fontSize: "30px" }}>
+                                    <br />
                                     Career Guidance and Placement Unit (CGPU)
+                                    <br />
                                 </Card.Title>
-                                <Card.Text>
-                                    <p>College of Engineering,</p>
-                                    <p>Thiruvananthapuram - 695016</p>
-                                    <p>KERALA, South India.</p>
-                                    <p>Phone: 0471 - 2595152, 2515682</p>
-                                </Card.Text>
+
+                                <div
+                                    className="card-hover"
+                                    style={cardHoverStyle}
+                                >
+                                    <p style={cardHoverText}>
+                                        <Card.Text>
+                                            <br />
+                                            <p>College of Engineering,</p>
+                                            <p>Thiruvananthapuram - 695016</p>
+                                            <p>KERALA, South India.</p>
+                                            <p>
+                                                Phone: 0471 - 2595152, 2515682
+                                            </p>
+                                        </Card.Text>
+                                    </p>
+                                </div>
                             </Card.Body>
                         </Card>
                     </div>
                 </div>
-            </Container><br /><br />
+            </Container>
+            <br />
+            <br />
 
             <h1 className="display-10 mb-4 ml-2">Contact Person</h1>
 
             <Container fluid className="py-5" style={containerStyle}>
                 <div className="row">
                     <div className="col-md-1 mr-2"></div>
-                    <div className="col-md-7 mb-5 ">
-                        <Card style={cardStyle}>
+                    <div className="col-md-7 mb-5">
+                        <Card
+                            style={cardStyle}
+                            onMouseEnter={handleCardHover}
+                            onMouseLeave={handleCardLeave}
+                        >
                             <Card.Body>
-                                <Card.Title>Dr. K. Sunil Kumar</Card.Title>
-                                <Card.Text>
-                                    <p>Training and Placement Officer</p>
-                                    <p>College of Engineering Trivandrum, </p>
-                                    <p>Thiruvananthapuram - 695 016.</p>
-                                    <p>Mobile: 9946844277</p>
-                                    <p>Phone Office : 04712515682</p>
-                                </Card.Text>
+                            <Card.Title className="text-center" style={{ fontSize: "35px" }}>
+                                    <br />
+                                    
+                                    Placement Officer <br />
+                                    CET
+                                    <br /><br />
+                                </Card.Title>
+                                <div
+                                    className="card-hover"
+                                    style={cardHoverStyle}
+                                >
+                                    <p style={cardHoverText}>
+                                        <br />
+                                        <Card.Title>
+                                            Dr. K. Sunil Kumar
+                                        </Card.Title>
+                                        <Card.Text>
+                                            <p>
+                                                Training and Placement Officer
+                                            </p>
+                                            <p>
+                                                College of Engineering
+                                                Trivandrum,{" "}
+                                            </p>
+                                            <p>Thiruvananthapuram - 695 016.</p>
+                                            <p>Mobile: 9946844277</p>
+                                            <p>Phone Office: 04712515682</p>
+                                        </Card.Text>
+                                    </p>
+                                </div>
                             </Card.Body>
                         </Card>
                     </div>
-                    <div className="col-md-3 ">
+                    <div className="col-md-3">
                         <div className="text-center">
                             <Image
                                 src="../../../assets/sunilkumarsir.jpg"
@@ -144,4 +220,5 @@ const Contact = () => {
         </Box>
     );
 };
+
 export default Contact;
