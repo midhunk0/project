@@ -5,10 +5,16 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { Box } from "@mui/material";
 
 const Edit = () => {
-    const { user } = useContext(AuthContext);
-    const [profileDetails, setProfileDetails] = useState(user);
+    // const { user } = useContext(AuthContext);
+      
+    
 
-    const id = user._id;
+    const userdata=JSON.parse(localStorage.getItem("user"))
+    const [profileDetails, setProfileDetails] = useState(userdata);
+    console.log(profileDetails)
+    
+    
+    const id = userdata._id;
 
     const [newSkill, setNewSkill] = useState("");
 
@@ -75,22 +81,14 @@ const Edit = () => {
                 value.forEach((item) => formData.append(key, item));
             }
         });
-        // console.log(profileDetails)
+        console.log(profileDetails)
         // console.log(id)
         // for (const pair of formData.entries()) {
         //     console.log(pair[0], pair[1]); // Log each field and its value
         // }// This will still log an empty object, but the data is present
         try {
-            console.log("HERER",id);
             const res = await axios.put(
-                `http://localhost:8080/api/students/StudentProfile/${id}`,
-                formData,{
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                }
-
-            );
+                `http://localhost:8080/api/students/StudentProfile/${id}`,profileDetails);
             // Log the response data for troubleshooting
             // Reset the form or perform any other necessary actions
             localStorage.setItem("user", JSON.stringify(profileDetails));
