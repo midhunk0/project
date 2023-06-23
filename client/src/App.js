@@ -39,7 +39,7 @@ import RecruiterHome from "./components/recruiters/RecruiterHome";
 const App = () => {
     return (
         <Router basename="">
-            <Topbar />
+            <Topbar/>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="alumni" element={<Alumni />} />
