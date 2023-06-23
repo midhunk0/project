@@ -3,7 +3,7 @@ import students from "../models/studentModel.js";
 export const registerStudentController = async (req, res, next) => {
     try {
         const { studentCollegeID, cgpa } = req.body;
-        console.log(studentCollegeID, cgpa)
+        console.log(studentCollegeID, cgpa);
         // Check if the student with the provided student ID already exists
         const existingStudent = await students.findOne({ studentCollegeID });
         if (existingStudent) {
@@ -24,7 +24,7 @@ export const registerStudentController = async (req, res, next) => {
             backlogs: 0,
             profilePicture: "",
             cv: "",
-            isAdmin: false
+            isAdmin: false,
         });
 
         // Save the student to the database
@@ -79,19 +79,28 @@ export const getProfileStudentController = async (req, res) => {
 export const updateProfileStudentController = async (req, res) => {
     try {
         const studentID = req.params.id;
-        const { username, email, phone, address, skills, department, backlogs, profilePicture, cv } = req.body;
-        console.log(studentID,req.body);
+        const {
+            username,
+            email,
+            phone,
+            address,
+            skills,
+            department,
+            backlogs,
+            profilePicture,
+            cv,
+        } = req.body;
+        console.log(studentID, req.body);
 
         // Find the student with the provided student ID
         await students.findByIdAndUpdate(studentID, {
-            username : username,
-            email : email,
-            phone : phone,
-            address : address,
-            skills:skills,
-            department:department,
-            backlogs:backlogs,
-
+            username: username,
+            email: email,
+            phone: phone,
+            address: address,
+            skills: skills,
+            department: department,
+            backlogs: backlogs,
         });
 
         // if (!student) {
@@ -101,7 +110,6 @@ export const updateProfileStudentController = async (req, res) => {
         // Update the student profile
 
         // Save the updated student profile
-        
 
         res.status(200).json({
             message: "Profile updated successfully",

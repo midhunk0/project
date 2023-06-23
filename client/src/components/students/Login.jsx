@@ -13,7 +13,7 @@ const Login = () => {
         background: "url(../../../assets/loginBg.jpeg)",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        opacity:0.7,
+        opacity: 0.7,
     };
 
     const [credentials, setCredentials] = useState({
@@ -34,13 +34,19 @@ const Login = () => {
 
         try {
             const res = await axios.post(
-                "http://localhost:8080/api/students/studentLogin", 
+                "http://localhost:8080/api/students/studentLogin",
                 credentials
             );
             dispatch({ type: "LOGIN_SUCCESS", payload: res.data.student });
 
-            // Log the response data for troubleshooting
-            navigate("/student/home");
+            // Check if the logged-in user is an admin
+            if (res.data.student.isAdmin) {
+                // Handle admin login - redirect to the admin dashboard
+                navigate("/admin/dashboard");
+            } else {
+                // Handle student login - redirect to the student dashboard
+                navigate("/student/home");
+            }
         } catch (err) {
             console.log(err.response); // Log the error response for troubleshooting
         }
