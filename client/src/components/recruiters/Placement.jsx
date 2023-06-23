@@ -1,23 +1,9 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { Table } from "react-bootstrap";
 
-const columns=[
-    {
-        field: "id",
-        headerName: "Sl No"
-    },
-    {
-        field: "company",
-        headerName: "Company"
-    },    
-    {
-        field: "placements",
-        headerName: "Placemnts"
-    },
-]
 
-const rows=[
+const placements=[
     {id: 1, company: "Apple", placements: 10},
     {id: 2, company: "Google", placements: 24},
     {id: 3, company: "Meta", placements: 8},
@@ -41,17 +27,24 @@ const RecruiterPlacement=()=>{
                     },
                 }}
             >
-                <DataGrid
-                    rows={rows}
-                    columns={columns}
-                    initialState={{
-                        pagination: {
-                        paginationModel: { page: 0, pageSize: 5 }
-                        },
-                    }}
-                      checkboxSelection
-                    pageSizeOptions={[5, 10]}
-                />
+            <Table striped bordered hover responsive >
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Company</th>
+                    <th>Placements</th>
+                </tr>
+                </thead>
+                <tbody>
+                {placements.map((placement, index) => (
+                    <tr key={placement.id}>
+                    <td>{index + 1}</td>
+                    <td>{placement.company}</td>
+                    <td>{placement.placements}</td>
+                    </tr>
+                ))}
+                </tbody>
+            </Table>
             </Box>
         </Box>
     )

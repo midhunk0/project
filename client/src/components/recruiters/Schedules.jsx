@@ -1,12 +1,12 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 
-const Achivement=()=>{
+const Schedules=()=>{
     return(
         <Box m="10px">
-            <Typography variant="h4">Achivements</Typography>
+            <Typography variant="h4">Upcoming Events</Typography>
         </Box>
     )
 }
 
-export default Achivement;
+export default Schedules;

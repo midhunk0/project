@@ -36,19 +36,18 @@ const RecruiterRegister = () => {
     );
 
     return (
-        <Box padding="20px 60px" display="flex" flexDirection="column" gap="20px">
-
+        <Box padding="20px 60px" display="flex" flexDirection="column" gap="20px" margin="20px" border="1px solid gray" borderRadius="5px" sx={{boxShadow:"1px 2px 9px gray"}} >
             <Typography variant="h4" marginBottom="20px">
                 Register
             </Typography>
 
-            <Box display="grid" gridTemplateColumns={{ xs: "1fr", sm: "1fr 1fr", md: "1fr 1fr 1fr" }} gap="20px">
+            <Box display="grid" gridTemplateColumns={{ xs: "1fr", sm: "1fr 1fr", md: "1fr 1fr 1fr" }} gap="20px" >
                 {renderTextField("Company Name")}
                 {renderTextField("Nature of Business (IT, R&D, etc)")}
                 {renderTextField("Home Page")}
             </Box>
 
-            <Box marginTop="30px">
+            <Box marginTop="30px" border="1px solid gray" borderRadius="5px" padding="15px">
                 <Typography variant="h6" marginBottom="20px">
                     Contact Information
                 </Typography>
@@ -63,7 +62,7 @@ const RecruiterRegister = () => {
                 </Box>
             </Box>
 
-            <Box marginTop="30px">
+            <Box marginTop="30px" border="1px solid gray" borderRadius="5px" padding="15px">
                 <Typography variant="h6" marginBottom="20px">
                     Eligibility Criteria
                 </Typography>
@@ -76,7 +75,7 @@ const RecruiterRegister = () => {
                 </Box>
             </Box>
 
-            <Box marginTop="30px">
+            <Box marginTop="30px" border="1px solid gray" borderRadius="5px" padding="15px">
                 {renderCheckboxes("Branches Eligible for Placement", [
                     "B.Tech, Civil Engineering",
                     "B.Tech, Architecture",
@@ -92,7 +91,7 @@ const RecruiterRegister = () => {
                 ])}
             </Box>
 
-            <Box marginTop="30px">
+            <Box marginTop="30px" border="1px solid gray" borderRadius="5px" padding="15px">
                 <Typography variant="h6" marginBottom="20px">
                     Pay Package
                 </Typography>
@@ -103,7 +102,7 @@ const RecruiterRegister = () => {
                 </Box>
             </Box>
 
-            <Box marginTop="30px">
+            <Box marginTop="30px" border="1px solid gray" borderRadius="5px" padding="15px">
                 <Typography variant="h6" marginBottom="20px">
                     Proposed Campus Recruitment Schedule
                 </Typography>
@@ -113,7 +112,7 @@ const RecruiterRegister = () => {
                 </Box>
             </Box>
 
-            <Box marginTop="30px">
+            <Box marginTop="30px" border="1px solid gray" borderRadius="5px" padding="15px">
                 <Typography variant="h6" marginBottom="20px">
                     Selection Procedure Schedule
                 </Typography>

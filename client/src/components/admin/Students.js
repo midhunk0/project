@@ -1,34 +1,6 @@
 import * as React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
 import { Box, Typography } from '@mui/material';
-
-const columns = [
-    { 
-        field: "id", 
-        headerName: "ID", 
-        width: 70 
-    },
-    { 
-        field: "name", 
-        headerName: "Name", 
-        width: 130 
-    },
-    {
-        field: "collegeId",
-        headerName: "College Id",
-        width: 130
-    },
-    {
-        field: "currentSem",
-        headerName: "Current Semester",
-        width: 130
-    },
-    {
-        field: "currentCgpa",
-        headerName: "Current CGPA",
-        width: 130
-    }
-];
+import { Table } from 'react-bootstrap';
 
 const rows = [
     { id: 1, name: "midhun", collegeId: "tve20cs069", currentSem: 6, currentCgpa: 7.9 },
@@ -51,17 +23,28 @@ const Student=()=> {
                     },
                 }}
             >
-                <DataGrid
-                    rows={rows}
-                    columns={columns}
-                    initialState={{
-                        pagination: {
-                            paginationModel: { page: 0, pageSize: 5 },
-                        },
-                    }}
-                    pageSizeOptions={[5, 10]}
-                    // checkboxSelection
-                />
+            <Table striped bordered hover responsive>
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>College ID</th>
+                    <th>Current CGPA</th>
+                    <th>Current Semester</th>
+                </tr>
+                </thead>
+                <tbody>
+                {rows.map((row, index) => (
+                    <tr key={row.id}>
+                    <td>{index + 1}</td>
+                    <td>{row.name}</td>
+                    <td>{row.collegeId}</td>
+                    <td>{row.currentSem}</td>
+                    <td>{row.currentCgpa}</td>
+                    </tr>
+                ))}
+                </tbody>
+            </Table>
             </Box>
         </Box>
     );

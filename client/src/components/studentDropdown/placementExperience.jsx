@@ -2,7 +2,9 @@ import React from 'react'
 
 const placementExperience = () => {
   return (
-    <div><h1>placementExperience</h1></div>
+    <div style={{height:"100vh", margin:"10px"}}>
+        <h1>Placement Experience</h1>
+    </div>
   )
 }
 

@@ -35,12 +35,10 @@ const Item = ({ title, to, selected, setSelected }) => {
 const getMenuItems = (selected, setSelected) => {
     const menuItems = [
         { title: "Home", to: "/recruiter/home" },
-        { title: "Why Recruit?", to: "/recruiter/why" },
-        { title: "Achievements", to: "/recruiter/achievement" },
-        { title: "Recruiter's Portal", to: "/recruiter/portal" },
-        { title: "Extra Curriculars", to: "/recruiter/extra" },
-        { title: "Internships", to: "/recruiter/internship" },
-        { title: "Placement Records", to: "/recruiter/placement" },
+        { title: "Request to Admin", to: "/recruiter/request" },
+        { title: "Schedules", to: "/recruiter/schedules" },
+        { title: "Matched students", to: "/recruiter/matched" },
+        { title: "Edit profile", to: "/recruiter/edit" },
         { title: "Logout", to: "/recruiter/login" },
     ];
   
@@ -70,7 +68,7 @@ const RecruiterSidebar = () => {
     return (
         <FlexBetween>
         {/* logo and name */}
-        <Box sx={{ display: { xs: "none", md: "flex" } }}>
+        <Box sx={{ display: { xs: "none", md: "flex" }, height: "100vh" }}>
             {/* topbar items */}
             <Box display="flex">
             <Sidebar>

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Box, Typography } from '@mui/material';
+import { Table } from 'react-bootstrap';
 
 const columns = [
     { 
@@ -58,17 +59,30 @@ const Recruiter = () => {
                 },
                 }}
             >
-                <DataGrid
-                    rows={rows}
-                    columns={columns}
-                    initialState={{
-                        pagination: {
-                        paginationModel: { page: 0, pageSize: 5 }
-                        },
-                    }}
-                      checkboxSelection
-                    pageSizeOptions={[5, 10]}
-                />
+            <Table striped bordered hover responsive>
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Company Name</th>
+                    <th>CEO</th>
+                    <th>Vacancy</th>
+                    <th>Placed</th>
+                    <th>Package</th>
+                </tr>
+                </thead>
+                <tbody>
+                {rows.map((row, index) => (
+                    <tr key={row.id}>
+                    <td>{index + 1}</td>
+                    <td>{row.companyName}</td>
+                    <td>{row.ceo}</td>
+                    <td>{row.vacancy}</td>
+                    <td>{row.placed}</td>
+                    <td>{row.package}</td>
+                    </tr>
+                ))}
+                </tbody>
+            </Table>
             </Box>
         </Box>
     );
