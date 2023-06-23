@@ -1,20 +1,25 @@
 import React, { useState } from "react";
-import { Box, Typography, IconButton, Menu, MenuItem } from "@mui/material";
+import { Box, Typography, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
-import PixIcon from "@mui/icons-material/Pix";
-import { tokens } from "../../theme";
 import MenuIcon from "@mui/icons-material/Menu";
-import FlexBetween from "./FlexBetween";
+import "./TopBar.css";
 
-const colors = tokens();
+const colors = {
+  gray: {
+    900: "#333333",
+  },
+};
 
 const DropdownMenu = ({ title, items, selected, setSelected }) => {
+  const [hoveredItem, setHoveredItem] = useState(null);
   const isActive = selected === title;
 
-  const itemStyle = {
-    textDecoration: "none",
-    color: isActive ? colors.gray[900] : "inherit",
-    backgroundColor: isActive ? colors.gray[100] : "inherit",
+  const handleMouseEnter = (itemTitle) => {
+    setHoveredItem(itemTitle);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredItem(null);
   };
 
   return (
@@ -34,17 +39,32 @@ const DropdownMenu = ({ title, items, selected, setSelected }) => {
         className="dropdown-menu"
         aria-labelledby={`${title.toLowerCase()}-dropdown`}
       >
-        {items.map((item) => (
-          <a
-            className="dropdown-item"
-            href={item.to}
-            onClick={() => setSelected(item.title)}
-            style={itemStyle}
-            key={item.title}
-          >
-            {item.title}
-          </a>
-        ))}
+        {items.map((item) => {
+          const itemStyle = {
+            textDecoration: "none",
+            color: isActive ? colors.gray[900] : "inherit",
+            backgroundColor:
+              hoveredItem === null
+                ? "inherit"
+                : hoveredItem === item.title
+                ? "#5DADE2"
+                : "inherit",
+          };
+
+          return (
+            <a
+              className="dropdown-item"
+              href={item.to}
+              onClick={() => setSelected(item.title)}
+              onMouseEnter={() => handleMouseEnter(item.title)}
+              onMouseLeave={handleMouseLeave}
+              style={itemStyle}
+              key={item.title}
+            >
+              {item.title}
+            </a>
+          );
+        })}
       </div>
     </li>
   );
@@ -53,14 +73,9 @@ const DropdownMenu = ({ title, items, selected, setSelected }) => {
 const Topbar = () => {
   const [selected, setSelected] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
-  };
-
-  const handleMenuClose = () => {
-    setIsMenuOpen(false);
   };
 
   const menuItems = [
@@ -70,9 +85,11 @@ const Topbar = () => {
       items: [
         { title: "Student Login", to: "/student/login" },
         { title: "Placement Training", to: "/placement-training" },
-        { title: "Placement Rules & Regulations", to: "/placement-rules_&_regulations" },
+        {
+          title: "Placement Rules & Regulations",
+          to: "/placement-rules_&_regulations",
+        },
         { title: "Placement Experience", to: "/placement-experience" },
-
       ],
     },
     {
@@ -87,14 +104,13 @@ const Topbar = () => {
     },
     {
       title: "Alumni",
-      items: [
-      ],
+      items: [],
     },
     { title: "Contact", to: "/contact" },
   ];
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-custom">
       <Link
         to="/"
         onClick={() => setSelected("home")}
@@ -102,16 +118,13 @@ const Topbar = () => {
         style={{ color: "inherit", textDecoration: "inherit" }}
       >
         <Box display="flex" alignItems="center">
-          <PixIcon sx={{ fontSize: "28px" }} />
+          <img src="../../../assets/cet_logo.png" alt="Logo" />
           <Typography variant="h4" fontSize="16px" marginLeft="10px">
             PMS
           </Typography>
         </Box>
       </Link>
-      <IconButton
-        className="navbar-toggler"
-        onClick={handleMenuToggle}
-      >
+      <IconButton className="navbar-toggler" onClick={handleMenuToggle}>
         <MenuIcon />
       </IconButton>
 
@@ -131,7 +144,9 @@ const Topbar = () => {
               />
             ) : (
               <li
-                className={`nav-item${selected === item.title ? " active" : ""}`}
+                className={`nav-item${
+                  selected === item.title ? " active" : ""
+                }`}
                 key={item.title}
               >
                 <Link
