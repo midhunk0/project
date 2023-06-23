@@ -119,7 +119,7 @@ const Topbar = () => {
       >
         <Box display="flex" alignItems="center">
           <img src="../../../assets/cet_logo.png" alt="Logo" />
-          <Typography variant="h4" fontSize="16px" marginLeft="10px">
+          <Typography variant="h4" fontSize="16px" marginLeft="10px" style={{ fontFamily: "Arial", fontWeight: "bold" }}>
             PMS
           </Typography>
         </Box>
@@ -153,7 +153,7 @@ const Topbar = () => {
                   className="nav-link"
                   to={item.to}
                   onClick={() => setSelected(item.title)}
-                  style={{ color: "inherit", textDecoration: "inherit" }}
+                  style={{ color: "inherit", textDecoration: "inherit",}}
                 >
                   {item.title}
                   {selected === item.title && (
