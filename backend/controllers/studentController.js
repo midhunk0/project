@@ -1,8 +1,11 @@
 import students from "../models/studentModel.js";
+import bcrypt from "bcryptjs";
 
 export const registerStudentController = async (req, res, next) => {
     try {
         const { studentCollegeID, cgpa } = req.body;
+        const salt = bcrypt.genSaltSync(10);
+        const hashedPassword = await bcrypt.hash("", salt);
         console.log(studentCollegeID, cgpa);
         // Check if the student with the provided student ID already exists
         const existingStudent = await students.findOne({ studentCollegeID });
@@ -13,7 +16,7 @@ export const registerStudentController = async (req, res, next) => {
         // Create a new student instance
         const student = new students({
             username: "",
-            password: "",
+            password: hashedPassword,
             email: "",
             studentCollegeID: req.body.studentCollegeID,
             phone: "",
@@ -48,9 +51,15 @@ export const loginStudentController = async (req, res) => {
         }
 
         // Check if the provided password is correct
-        if (password !== student.password) {
+        // if (password !== student.password) {
+        //     return res.status(401).json({ error: "Invalid password" });
+        // }
+        const isPasswordCorrect = await bcrypt.compare(
+            password,
+            student.password
+        );
+        if (!isPasswordCorrect)
             return res.status(401).json({ error: "Invalid password" });
-        }
 
         res.status(200).json({ message: "Login successful", student });
     } catch (error) {
@@ -137,10 +146,15 @@ export const uploadExcelStudentController = async (req, res) => {
 export const changePasswordStudentController = async (req, res, next) => {
     try {
         const studentID = req.params.id;
+        const salt = bcrypt.genSaltSync(10);
         const { newPassword } = req.body;
+        const hash = bcrypt.hashSync(newPassword, salt);
 
-        await students.findByIdAndUpdate(studentID, { password: newPassword });
-        // Find the student with the provided student ID
+        await students.findByIdAndUpdate(studentID, { password: hash });
+        // const { newPassword } = req.body;
+
+        // await students.findByIdAndUpdate(studentID, { password: newPassword });
+        // // Find the student with the provided student ID
         // const student = await students.findById(studentID);
         // if (!student) {
         //     return res.status(404).json({ error: "Student not found" });
