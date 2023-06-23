@@ -14,24 +14,49 @@ import useFetch from "../../hooks/useFetch";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import CssTextField from "../global/CssTextField";
+import { faBullseye } from "@fortawesome/free-solid-svg-icons";
 
 const StudentHome = () => {
     const [password, setPassword] = useState("");
-    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarOpen, setSnackbarOpen] = useState(true);
     const [flag, setFlag] = useState(false);
     const [passwordUpdated, setPasswordUpdated] = useState(false);
     const { user } = useContext(AuthContext);
     const id = user._id;
 
+    function hashString(str) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(str);
+        return crypto.subtle.digest('SHA-256', data)
+            .then(hashBuffer => {
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+                return hashHex;
+            });
+    }
+
+
+
+
     const dataStudent = useFetch(`/api/students/StudentProfile/${id}`);
     const student = dataStudent.data;
-
-    useEffect(() => {
-        // Check if the password has been updated
-        if (student && student.password === "") {
+    const hashedPassword = student.password;
+    hashString('').then(emptyPasswordHash => {
+        console.log(hashedPassword)
+        console.log(emptyPasswordHash)
+        // Compare the hashed password with the hashed representation of an empty string
+        if (hashedPassword === "") {
             setFlag(true);
         }
-    }, [student]);
+    });
+
+    
+    // useEffect(() => {
+    //     // Check if the password has been updated
+    //     if (student && student.password === "") {
+    //         setFlag(true);
+    //     }
+    // }, [student]);
 
     const handleChange = (e) => {
         setPassword(e.target.value);
