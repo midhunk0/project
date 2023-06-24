@@ -1,4 +1,4 @@
-import Recruiter from "../models/recruiterModel.js"
+import Recruiter from "../models/recruiterModel.js";
 
 export const registerRecruiterController = async (req, res, next) => {
     try {
@@ -46,22 +46,20 @@ export const registerRecruiterController = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
-}
+};
 
 export const loginRecruiterController = async (req, res) => {
     try {
-        const recruiter = await Recruiter.findOne({ companyName: req.body.companyName });
+        const recruiter = await Recruiter.findOne({ email: req.body.email });
         if (!recruiter) {
-            return next(createError(404, "no recruiter with this name"))
+            return next(createError(404, "no recruiter with this email"));
         }
         if (req.body.password !== recruiter.password) {
             return res.status(401).json({ error: "Invalid password" });
         }
 
         res.status(200).json({ message: "Login successful", recruiter });
-    } catch (error) {
-
-    }
+    } catch (error) {}
 };
 
 export const changePasswordStudentController = async (req, res, next) => {
@@ -69,7 +67,9 @@ export const changePasswordStudentController = async (req, res, next) => {
         const recruiterID = req.params.id;
         const { newPassword } = req.body;
 
-        await Recruiter.findByIdAndUpdate(recruiterID, { password: newPassword });
+        await Recruiter.findByIdAndUpdate(recruiterID, {
+            password: newPassword,
+        });
 
         res.status(200).json({ message: "Password changed successfully" });
     } catch (err) {
@@ -99,12 +99,7 @@ export const getProfileRecruiterController = async (req, res) => {
 export const updateProfileRecruiterController = async (req, res) => {
     try {
         const recruiterID = req.params.id;
-        const {
-            designation,
-            fax,
-            telephoneNo,
-            email,
-        } = req.body;
+        const { designation, fax, telephoneNo, email } = req.body;
         console.log(recruiterID, req.body);
 
         // Find the student with the provided student ID
@@ -112,7 +107,7 @@ export const updateProfileRecruiterController = async (req, res) => {
             designation: designation,
             email: email,
             telephoneNo: telephoneNo,
-            fax:fax
+            fax: fax,
         });
 
         // Update the student profile

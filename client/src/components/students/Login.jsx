@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { tokens } from "../../theme";
 import CssTextField from "../global/CssTextField";
+import toast, { Toaster } from "react-hot-toast";
 
 const colors = tokens();
 const Login = () => {
@@ -13,7 +14,6 @@ const Login = () => {
         background: "url(../../../assets/loginBg.jpeg)",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        
     };
 
     const [credentials, setCredentials] = useState({
@@ -41,14 +41,21 @@ const Login = () => {
 
             // Check if the logged-in user is an admin
             if (res.data.student.isAdmin) {
+                toast.success("Admin Logged in Successfully!");
                 // Handle admin login - redirect to the admin dashboard
-                navigate("/admin/dashboard");
+                setTimeout(() => {
+                    navigate("/admin/dashboard");
+                }, 2000); // Delay for 2 seconds (2000 milliseconds)
             } else {
+                toast.success("Student Logged in Successfully!");
                 // Handle student login - redirect to the student dashboard
-                navigate("/student/home");
+                setTimeout(() => {
+                    navigate("/student/home");
+                }, 2000); // Delay for 2 seconds (2000 milliseconds)
             }
         } catch (err) {
-            console.log(err.response); // Log the error response for troubleshooting
+            console.log(err.response);
+            toast.error("Incorrect credentials!"); // Log the error response for troubleshooting
         }
     };
 
@@ -98,6 +105,7 @@ const Login = () => {
                     Sign In
                 </Button>
             </Box>
+            <Toaster position="bottom-center" /> {/* Add the toast container */}
         </Box>
     );
 };
