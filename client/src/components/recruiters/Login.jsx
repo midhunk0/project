@@ -2,19 +2,20 @@ import React, { useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { useNavigate, Link } from "react-router-dom"; 
+import { useNavigate, Link } from "react-router-dom";
 import { tokens } from "../../theme";
 import CssTextField from "../global/CssTextField";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
-const RecruiterLogin=()=>{
+const RecruiterLogin = () => {
     const [credentials, setCredentials] = useState({
         email: "",
         password: "",
     });
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const { user, loading, error, dispatch } = useContext(AuthContext);
-    const colors=tokens();
+    const colors = tokens();
     // const handleUsername=(e)=>{
     //     setUsername(e.target.value);
     // }
@@ -24,7 +25,7 @@ const RecruiterLogin=()=>{
     const handleChange = (e) => {
         setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
     };
-    const handleLogin=async(e)=>{
+    const handleLogin = async (e) => {
         e.preventDefault();
         dispatch({ type: "LOGIN_START" });
 
@@ -34,13 +35,18 @@ const RecruiterLogin=()=>{
                 credentials
             );
             dispatch({ type: "LOGIN_SUCCESS", payload: res.data.recruiter });
-            navigate("/recruiter/home");
+            toast.success("Recruiter Logged in Successfully!");
+            setTimeout(() => {
+                navigate("/recruiter/home");
+            }, 2000);
         } catch (err) {
-            console.log(err.response); // Log the error response for troubleshooting
+            console.log(err.response);
+            toast.error("Invalid Credentials!");
+            // Log the error response for troubleshooting
         }
-    }
-    return(
-        <Box 
+    };
+    return (
+        <Box
             height="91.5vh"
             width="100%"
             display="flex"
@@ -60,20 +66,42 @@ const RecruiterLogin=()=>{
                 <Typography variant="h5" marginTop="10px" marginBottom="30px">
                     Login
                 </Typography>
-                <CssTextField required id="email" onChange={handleChange} label="Enter your email"/>
-                <CssTextField required id="password" onChange={handleChange} label="Password" type="password"/>
-                <Button variant="contained" sx={{background:colors.gray[100],'&:hover':{background:colors.gray[100]}}} onClick={handleLogin}>Sign In</Button>
+                <CssTextField
+                    required
+                    id="email"
+                    onChange={handleChange}
+                    label="Enter your email"
+                />
+                <CssTextField
+                    required
+                    id="password"
+                    onChange={handleChange}
+                    label="Password"
+                    type="password"
+                />
+                <Button
+                    variant="contained"
+                    sx={{
+                        background: colors.gray[100],
+                        "&:hover": { background: colors.gray[100] },
+                    }}
+                    onClick={handleLogin}
+                >
+                    Sign In
+                </Button>
                 <Typography variant="h6">
                     Don't have an account?{" "}
-                    <Link to="/recruiter/register" style={{ textDecoration:"none" }}>
+                    <Link
+                        to="/recruiter/register"
+                        style={{ textDecoration: "none" }}
+                    >
                         Register
                     </Link>
-                </Typography>            
+                </Typography>
             </Box>
+            <Toaster position="bottom-center" />
         </Box>
-    )
-}
+    );
+};
 
 export default RecruiterLogin;
-
-
