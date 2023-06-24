@@ -74,7 +74,7 @@ const AdminSidebar = () => {
     return (
         <FlexBetween>
             {/* logo and name */}
-            <Box sx={{ display: { xs: "none", md: "flex" }, height: "100vh" }}>
+            <Box sx={{ display: { xs: "none", md: "flex" }, height: "100%" }}>
                 {/* topbar items */}
                 <Box display="flex">
                     <Sidebar>

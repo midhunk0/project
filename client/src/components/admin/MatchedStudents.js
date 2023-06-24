@@ -1,91 +1,157 @@
-import * as React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
-import { Box, Typography } from '@mui/material';
-import { Table } from 'react-bootstrap';
-
-const columns = [
-    { 
-        field: "id", 
-        headerName: "ID",
-
-    },
-    { 
-        field: "companyName", 
-        headerName: "Name",
- 
-    },
-    {
-        field: "ceo",
-        headerName: "CEO",
-
-    },
-    {
-        field: "vacancy",
-        headerName: "No of vacancies",
-
-    },
-    {
-        field: "placed",
-        headerName: "No of Placed",
-
-    },
-    {
-        field: "package",
-        headerName: "Package",
-
-    }
-];
-
-const rows = [
-    { id: 1, companyName: "Apple", ceo: "Tim Cook", vacancy: 23, placed: 10, package: 1000000 },
-    { id: 2, companyName: "Google", ceo: "Sundar Pichai", vacancy: 65, placed: 24, package: 700000 },
-    { id: 3, companyName: "Meta", ceo: "Mark Zuckerberg", vacancy: 16, placed: 8, package: 2500000 },
-    { id: 4, companyName: "Space X", ceo: "Elon Musk", vacancy: 45, placed: 37, package: 800000 },
-    { id: 5, companyName: "Microsoft", ceo: "Satya Nadella", vacancy: 51, placed: 26, package: 300000 },
-    { id: 6, companyName: "Amazon", ceo: "Andy Jassy", vacancy: 35, placed: 26, package: 1500000 },
-];
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const MatchedStudents = () => {
-    return (
-        <Box margin="10px">
-            <Typography variant="h4" marginBottom="10px">Recruiter Details</Typography>
-            <Box
-                sx={{
-                '& .MuiTablePagination-selectLabel': {
-                    marginTop: '16px',
-                },
-                '& .MuiTablePagination-displayedRows': {
-                    marginTop: '16px',
-                },
-                }}
-            >
-            <Table striped bordered hover responsive>
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Company Name</th>
-                    <th>CEO</th>
-                    <th>Vacancy</th>
-                    <th>Placed</th>
-                    <th>Package</th>
-                </tr>
-                </thead>
-                <tbody>
-                {rows.map((row, index) => (
-                    <tr key={row.id}>
-                    <td>{index + 1}</td>
-                    <td>{row.companyName}</td>
-                    <td>{row.ceo}</td>
-                    <td>{row.vacancy}</td>
-                    <td>{row.placed}</td>
-                    <td>{row.package}</td>
-                    </tr>
-                ))}
-                </tbody>
-            </Table>
-            </Box>
-        </Box>
+    const [companies, setCompanies] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
+
+    useEffect(() => {
+        // Fetch the list of companies from the backend API
+        const fetchCompanies = async () => {
+            try {
+                const response = await axios.get(
+                    "http://localhost:8080/api/recruiters/companies"
+                );
+                setCompanies(response.data);
+            } catch (error) {
+                console.error("Failed to fetch companies:", error);
+            }
+        };
+
+        fetchCompanies();
+    }, []);
+
+    const handleSearch = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const filteredCompanies = companies.filter((company) =>
+        company.companyName.toLowerCase().includes(searchTerm.toLowerCase())
     );
-}
+
+    return (
+        <div className="container">
+            <div className="row mb-4">
+                <div className="col">
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Search by company name"
+                        value={searchTerm}
+                        onChange={handleSearch}
+                    />
+                </div>
+            </div>
+            <div className="row">
+                {filteredCompanies.map((company) => (
+                    <div className="col-md-12 mb-4" key={company._id}>
+                        <CompanyRow company={company} />
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+const CompanyRow = ({ company }) => {
+    const [showStudents, setShowStudents] = useState(false);
+    const [matchedStudents, setMatchedStudents] = useState([]);
+
+    const handleViewStudents = async () => {
+        // Fetch the matched students for the company from the backend API
+        try {
+            const response = await axios.get(
+                `http://localhost:8080/api/recruiters/companies/${company._id}`
+            );
+            const studentIds = response.data.matchedStudents[0].studentIds;
+            const students = await Promise.all(
+                studentIds.map(async (studentId) => {
+                    const studentResponse = await axios.get(
+                        `http://localhost:8080/api/recruiters/students/${studentId.studentId}`
+                    );
+                    return studentResponse.data;
+                })
+            );
+            setMatchedStudents(students);
+            setShowStudents(true);
+        } catch (error) {
+            console.error("Failed to fetch matched students:", error);
+        }
+    };
+
+    const handleClose = () => {
+        setShowStudents(false);
+    };
+
+    const handleSendNotification = () => {
+        // Logic to send notification to the list of students
+        // You can implement your own logic here
+        console.log("Sending notification to students...");
+    };
+
+    return (
+        <div className="card custom-card-width" style={{ maxWidth: "100%" }}>
+            <div className="card-body">
+                <h3 className="card-title">{company.companyName}</h3>
+                <p className="card-text">{company.natureOfBusiness}</p>
+                {company.payPackage && (
+                    <p className="card-text">
+                        Package: {company.payPackage.grossSalary}
+                    </p>
+                )}
+                {!showStudents && (
+                    <button
+                        className="btn btn-primary"
+                        onClick={handleViewStudents}
+                    >
+                        View Matched Students
+                    </button>
+                )}
+                {showStudents && (
+                    <div>
+                        <div className="table-responsive">
+                            <table className="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Username</th>
+                                        <th>Email</th>
+                                        <th>CGPA</th>
+                                        <th>Skills</th>
+                                        <th>Department</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {matchedStudents.map((student) => (
+                                        <tr key={student._id}>
+                                            <td>{student.username}</td>
+                                            <td>{student.email}</td>
+                                            <td>{student.cgpa}</td>
+                                            <td>{student.skills.join(", ")}</td>
+                                            <td>{student.department}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="d-flex justify-content-between">
+                            <button
+                                className="btn btn-primary"
+                                onClick={handleSendNotification}
+                            >
+                                Send Notification
+                            </button>
+                            <button
+                                className="btn btn-secondary"
+                                onClick={handleClose}
+                            >
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+};
 
 export default MatchedStudents;
