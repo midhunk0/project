@@ -1,47 +1,76 @@
 import React, { useContext } from "react";
 import { useState } from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, styled } from "@mui/material";
 import { tokens } from "../../theme";
 import axios from "axios";
 import { AuthContext } from "../../contexts/AuthContext";
 
+const StyledBox = styled(Box)(({ theme }) => ({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center", // Align center vertically
+  width: "100%", // Occupy full width of parent container
+  padding: theme.spacing(2),
+  perspective: "1000px", // Add perspective for 3D effect
+}));
+
+const ContentBox = styled(Box)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  border: `1px solid ${theme.palette.grey[300]}`,
+  borderRadius: theme.spacing(1),
+  padding: theme.spacing(2),
+  backgroundColor: theme.palette.grey[100],
+  boxShadow: `${theme.spacing(1)} ${theme.spacing(1)} ${theme.spacing(3)} rgba(0, 0, 0, 0.1)`, // Add a 3D shadow effect
+  transform: "rotateX(2deg)", // Rotate the component slightly on the X-axis for a 3D effect
+  transition: "transform 0.3s ease-in-out", // Add transition for smooth animation
+  "&:hover": {
+    transform: "rotateX(0deg)", // Reset rotation on hover
+  },
+}));
+
 const Request = () => {
+  const [action, setAction] = useState(false);
+  const { user } = useContext(AuthContext);
+  const id = user._id;
 
-    const [action, setAction] = useState(false);
-    const { user } = useContext(AuthContext);
-    const id = user._id;
-    console.log(id)
-
-    const handleRequest = async (e) => {
-        setAction(true);
-        e.preventDefault();
-        try {
-            await axios.put(`http://localhost:8080/api/recruiters/recruiterRequest/${id}`,
-                {
-                    action: action
-                });
-        } catch (err) {
-            console.log(err);
-        }
+  const handleRequest = async (e) => {
+    setAction(true);
+    e.preventDefault();
+    try {
+      await axios.put(`http://localhost:8080/api/recruiters/recruiterRequest/${id}`, {
+        action: action,
+      });
+    } catch (err) {
+      console.log(err);
     }
-    const colors = tokens();
-    return (
-        <Box display="flex" justifyContent="center" width="100%">
-            <Box marginTop="30px" height="70px" display="flex" border="1px solid gray" borderRadius="5px">
-                <Typography variant="h5" padding="10px">Do you want to send a requst to admin</Typography>
-                <Button onClick={handleRequest}
-                    variant="contained"
-                    sx={{
-                        background: colors.gray[100],
-                        "&:hover": { background: colors.gray[100] },
-                        margin: "10px"
-                    }}
-                >
-                    Request
-                </Button>
-            </Box>
-        </Box>
-    )
-}
+  };
+
+  const colors = tokens();
+
+  return (
+    <StyledBox>
+      <ContentBox style={{display:"flex",flexDirection:"column"}}>
+        <Typography variant="h5" marginRight={2}>
+        Are you ready to submit your request to the administrator?
+        </Typography>
+        <Button
+        style={{top:"120px"}}
+          onClick={handleRequest}
+          variant="contained"
+          sx={{
+            backgroundColor: colors.primary,
+            color: colors.white,
+            "&:hover": {
+              backgroundColor: colors.primaryDark,
+            },
+          }}
+        >
+          Request
+        </Button>
+      </ContentBox>
+    </StyledBox>
+  );
+};
 
 export default Request;

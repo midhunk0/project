@@ -23,9 +23,9 @@ const RecruiterRegister = () => {
     const colors = tokens();
     const id = recruiterDetails._id;
 
-    useEffect(() => {
-        setRecruiterDetails(userdata);
-    }, [userdata]);
+    // useEffect(() => {
+    //     setRecruiterDetails(userdata);
+    // }, [userdata]);
 
     const handleChange = (e) => {
         setRecruiterDetails((prevData) => ({
@@ -57,6 +57,7 @@ const RecruiterRegister = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            console.log(recruiterDetails);
             const res = await axios.put(
                 `http://localhost:8080/api/recruiters/recruiterProfile/${id}`,
                 recruiterDetails
@@ -123,9 +124,7 @@ const RecruiterRegister = () => {
                                 value={option}
                                 checked={
                                     recruiterDetails.branchesEligible &&
-                                    recruiterDetails.branchesEligible.includes(
-                                        option
-                                    )
+                                    recruiterDetails.branchesEligible.includes(option)
                                 }
                                 onChange={handleCheckboxChange}
                             />
@@ -164,10 +163,7 @@ const RecruiterRegister = () => {
                 gap="20px"
             >
                 {renderTextField("companyName", "Company Name")}
-                {renderTextField(
-                    "natureOfBusiness",
-                    "Nature of Business (IT, R&D, etc)"
-                )}
+                {renderTextField("natureOfBusiness", "Nature of Business (IT, R&D, etc)")}
                 {renderTextField("homePage", "Home Page")}
             </Box>
 
@@ -194,12 +190,7 @@ const RecruiterRegister = () => {
                     {renderTextField("fax", "Fax")}
                     {renderTextField("telephoneNo", "Telephone No")}
                     {renderTextField("email", "Email ID")}
-                    {renderTextField(
-                        "jobDescription",
-                        "Job Description",
-                        true,
-                        "textarea"
-                    )}
+                    {renderTextField("jobDescription", "Job Description", true, "textarea")}
                     {renderTextField("address", "Address", true, "textarea")}
                 </Box>
             </Box>
@@ -222,26 +213,11 @@ const RecruiterRegister = () => {
                     }}
                     gap="20px"
                 >
-                    {renderTextField(
-                        "tenthGradeCutoff",
-                        "10th Grade / SSLC Cut off (Percentage)"
-                    )}
-                    {renderTextField(
-                        "twelfthGradeCutoff",
-                        "12th Grade / PUC Cut off (Percentage)"
-                    )}
-                    {renderTextField(
-                        "btechCutoff",
-                        "B.Tech Cut off (Percentage)"
-                    )}
-                    {renderTextField(
-                        "maxClearedBacklogs",
-                        "Max Cleared Backlogs"
-                    )}
-                    {renderTextField(
-                        "maxNonClearedBacklogs",
-                        "Max Non Cleared Backlogs"
-                    )}
+                    {renderTextField("tenthGradeCutoff", "10th Grade / SSLC Cut off (Percentage)")}
+                    {renderTextField("twelfthGradeCutoff", "12th Grade / PUC Cut off (Percentage)")}
+                    {renderTextField("btechCutoff", "B.Tech Cut off (Percentage)")}
+                    {renderTextField("maxClearedBacklogs", "Max Cleared Backlogs")}
+                    {renderTextField("maxNonClearedBacklogs", "Max Non Cleared Backlogs")}
                     {renderCheckboxes("branchesEligible", "Branches Eligible", [
                         "Computer Science",
                         "Information Technology",
@@ -259,7 +235,7 @@ const RecruiterRegister = () => {
                 padding="15px"
             >
                 <Typography variant="h6" marginBottom="20px">
-                    Pay Package
+                    Hiring Details
                 </Typography>
                 <Box
                     display="grid"
@@ -270,113 +246,29 @@ const RecruiterRegister = () => {
                     }}
                     gap="20px"
                 >
-                    {renderTextField(
-                        "payPackage.grossSalary",
-                        "Gross Salary (in INR)"
-                    )}
-                    {renderRadioGroup("payPackage.bond", "Bond", ["Yes", "No"])}
-                    {renderTextField("payPackage.bondYears", "Bond Years")}
+                    {renderRadioGroup("employmentType", "Employment Type", [
+                        "Full-Time",
+                        "Part-Time",
+                        "Internship",
+                    ])}
+                    {renderTextField("minSalaryPackage", "Min Salary Package (in LPA)")}
+                    {renderTextField("jobLocation", "Job Location")}
                 </Box>
             </Box>
 
-            <Box
-                marginTop="30px"
-                border="1px solid gray"
-                borderRadius="5px"
-                padding="15px"
-            >
-                <Typography variant="h6" marginBottom="20px">
-                    Recruitment Schedule
-                </Typography>
-                <Box
-                    display="grid"
-                    gridTemplateColumns={{
-                        xs: "1fr",
-                        sm: "1fr 1fr",
-                        md: "1fr 1fr 1fr",
-                    }}
-                    gap="20px"
-                >
-                    {renderTextField(
-                        "recruitmentSchedule.recruitmentTechnique",
-                        "Recruitment Technique"
-                    )}
-                    {renderTextField(
-                        "recruitmentSchedule.preferredDates",
-                        "Preferred Dates"
-                    )}
-                </Box>
-            </Box>
-
-            <Box
-                marginTop="30px"
-                border="1px solid gray"
-                borderRadius="5px"
-                padding="15px"
-            >
-                <Typography variant="h6" marginBottom="20px">
-                    Selection Procedure
-                </Typography>
-                <Box
-                    display="grid"
-                    gridTemplateColumns={{
-                        xs: "1fr",
-                        sm: "1fr 1fr",
-                        md: "1fr 1fr 1fr",
-                    }}
-                    gap="20px"
-                >
-                    {renderRadioGroup(
-                        "selectionProcedure.onlineExam",
-                        "Online Exam",
-                        ["Yes", "No"]
-                    )}
-                    {renderRadioGroup(
-                        "selectionProcedure.aptitudeTest",
-                        "Aptitude Test",
-                        ["Yes", "No"]
-                    )}
-                    {renderRadioGroup(
-                        "selectionProcedure.technicalTest",
-                        "Technical Test",
-                        ["Yes", "No"]
-                    )}
-                    {renderRadioGroup(
-                        "selectionProcedure.groupDiscussion",
-                        "Group Discussion",
-                        ["Yes", "No"]
-                    )}
-                    {renderRadioGroup(
-                        "selectionProcedure.interview",
-                        "Interview",
-                        ["Yes", "No"]
-                    )}
-                </Box>
-            </Box>
-
-            <Button
-                variant="contained"
-                size="large"
-                type="submit"
-                sx={{
-                    backgroundColor: colors.primary,
-                    color: colors.white,
-                    alignSelf: "flex-end",
-                }}
-                onClick={handleSubmit}
-            >
-                Save Changes
-            </Button>
-
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Box display="flex" justifyContent="space-between">
                 <Button
-                    variant="contained"
-                    size="large"
-                    sx={{ alignSelf: "flex-end", marginTop: "10px" }}
+                    component={Link}
+                    to="/recruiter/dashboard"
+                    variant="outlined"
+                    color="secondary"
                 >
-                    Cancel
+                    Back
                 </Button>
-            </Link>
+                <Button variant="contained" color="primary" onClick={handleSubmit}>
+                    Save Changes
+                </Button>
+            </Box>
         </Box>
     );
 };
