@@ -70,7 +70,6 @@ const RecruiterSidebar = () => {
         {/* logo and name */}
         <Box sx={{ display: { xs: "none", md: "flex" }, height: "100vh" }}>
             {/* topbar items */}
-            <Box display="flex">
             <Sidebar>
                 {/* user image and name*/}
                 <Box mb="25px">
@@ -102,7 +101,6 @@ const RecruiterSidebar = () => {
                 {/* menu items */}
                 <Box>{getMenuItems(selected, setSelected)}</Box>
             </Sidebar>
-            </Box>
         </Box>
         {/* hamburger menu */}
         <Box sx={{ display: { xs: "block", md: "none" }, height:"100%", marginTop:"20px"}}>
