@@ -3,27 +3,28 @@ import mongoose from "mongoose";
 const recruiterSchema = new mongoose.Schema({
     companyName: {
         type: String,
-        default:"",
+        default: "",
         required: true,
+        unique: true,
     },
-    password:{
-        type:String,
-        default:""
+    password: {
+        type: String,
+        default: "",
     },
     natureOfBusiness: {
         type: String,
-        default:""
+        default: "",
         // required: true,
     },
     homePage: String,
     contactPerson: {
         type: String,
-        default:""
+        default: "",
         // required: true,
     },
     designation: {
         type: String,
-        default:""
+        default: "",
         // required: true,
     },
     fax: String,
@@ -37,12 +38,12 @@ const recruiterSchema = new mongoose.Schema({
     },
     jobDescription: {
         type: String,
-        default:""
+        default: "",
         // required: true,
     },
     address: {
         type: String,
-        default:""
+        default: "",
         // required: true,
     },
     eligibilityCriteria: {
