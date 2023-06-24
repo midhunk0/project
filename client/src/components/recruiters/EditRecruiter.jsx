@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     Box,
     Button,
@@ -17,42 +17,18 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
 const RecruiterRegister = () => {
-    const colors = tokens();
+    const userdata = JSON.parse(localStorage.getItem("user"));
+    const [recruiterDetails, setRecruiterDetails] = useState(userdata || {});
 
-    const [formData, setFormData] = useState({
-        companyName: "",
-        natureOfBusiness: "",
-        homePage: "",
-        contactPerson: "",
-        designation: "",
-        fax: "",
-        telephoneNo: "",
-        email: "",
-        jobDescription: "",
-        address: "",
-        tenthGradeCutoff: "",
-        twelfthGradeCutoff: "",
-        btechCutoff: "",
-        maxClearedBacklogs: "",
-        maxNonClearedBacklogs: "",
-        branchesEligible: [],
-        grossSalary: "",
-        bond: "",
-        bondYears: "",
-        recruitmentTechnique: "",
-        preferredDates: "",
-        onlineExam: "",
-        aptitudeTest: "",
-        technicalTest: "",
-        groupDiscussion: "",
-        technicalInterview: "",
-        personalInterview: "",
-        branchOrientedInterview: "",
-        totalRounds: "",
-    });
+    const colors = tokens();
+    const id = recruiterDetails._id;
+
+    useEffect(() => {
+        setRecruiterDetails(userdata);
+    }, [userdata]);
 
     const handleChange = (e) => {
-        setFormData((prevData) => ({
+        setRecruiterDetails((prevData) => ({
             ...prevData,
             [e.target.name]: e.target.value,
         }));
@@ -60,7 +36,7 @@ const RecruiterRegister = () => {
 
     const handleCheckboxChange = (e) => {
         const { value, checked } = e.target;
-        setFormData((prevData) => {
+        setRecruiterDetails((prevData) => {
             if (checked) {
                 return {
                     ...prevData,
@@ -81,43 +57,13 @@ const RecruiterRegister = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(
-                "http://localhost:8080/api/recruiters/recruiterRegister",
-                formData
+            const res = await axios.put(
+                `http://localhost:8080/api/recruiters/recruiterProfile/${id}`,
+                recruiterDetails
             );
-            toast.success("Recruiter registered successfully!");
+            toast.success("Recruiter profile updated successfully!");
+            localStorage.setItem("user", JSON.stringify(recruiterDetails));
             // Reset the form
-            setFormData({
-                companyName: "",
-                natureOfBusiness: "",
-                homePage: "",
-                contactPerson: "",
-                designation: "",
-                fax: "",
-                telephoneNo: "",
-                email: "",
-                jobDescription: "",
-                address: "",
-                tenthGradeCutoff: "",
-                twelfthGradeCutoff: "",
-                btechCutoff: "",
-                maxClearedBacklogs: "",
-                maxNonClearedBacklogs: "",
-                branchesEligible: [],
-                grossSalary: "",
-                bond: "",
-                bondYears: "",
-                recruitmentTechnique: "",
-                preferredDates: "",
-                onlineExam: "",
-                aptitudeTest: "",
-                technicalTest: "",
-                groupDiscussion: "",
-                technicalInterview: "",
-                personalInterview: "",
-                branchOrientedInterview: "",
-                totalRounds: "",
-            });
         } catch (err) {
             console.log(err.response);
             toast.error("Registration failed!");
@@ -130,7 +76,7 @@ const RecruiterRegister = () => {
             required={required}
             label={label}
             type={type}
-            value={formData[name]}
+            value={recruiterDetails[name] || ""}
             onChange={handleChange}
         />
     );
@@ -145,7 +91,7 @@ const RecruiterRegister = () => {
             <FormLabel sx={{ m: 1 }}>{label}</FormLabel>
             <RadioGroup
                 name={name}
-                value={formData[name]}
+                value={recruiterDetails[name] || ""}
                 onChange={handleChange}
                 sx={{ flexDirection: "row", gap: 1, m: 1 }}
             >
@@ -175,9 +121,12 @@ const RecruiterRegister = () => {
                             <Checkbox
                                 name={name}
                                 value={option}
-                                checked={formData.branchesEligible.includes(
-                                    option
-                                )}
+                                checked={
+                                    recruiterDetails.branchesEligible &&
+                                    recruiterDetails.branchesEligible.includes(
+                                        option
+                                    )
+                                }
                                 onChange={handleCheckboxChange}
                             />
                         }
@@ -310,7 +259,7 @@ const RecruiterRegister = () => {
                 padding="15px"
             >
                 <Typography variant="h6" marginBottom="20px">
-                    Recruitment Details
+                    Pay Package
                 </Typography>
                 <Box
                     display="grid"
@@ -322,79 +271,112 @@ const RecruiterRegister = () => {
                     gap="20px"
                 >
                     {renderTextField(
-                        "grossSalary",
-                        "Gross Salary per Annum (INR)"
+                        "payPackage.grossSalary",
+                        "Gross Salary (in INR)"
                     )}
-                    {renderTextField("bond", "Bond", false)}
-                    {renderTextField("bondYears", "Bond Years", false)}
-                    {renderRadioGroup(
-                        "recruitmentTechnique",
-                        "Recruitment Technique",
-                        [
-                            "Online Exam",
-                            "Aptitude Test",
-                            "Technical Test",
-                            "Group Discussion",
-                            "Technical Interview",
-                            "Personal Interview",
-                            "Branch Oriented Interview",
-                        ]
+                    {renderRadioGroup("payPackage.bond", "Bond", ["Yes", "No"])}
+                    {renderTextField("payPackage.bondYears", "Bond Years")}
+                </Box>
+            </Box>
+
+            <Box
+                marginTop="30px"
+                border="1px solid gray"
+                borderRadius="5px"
+                padding="15px"
+            >
+                <Typography variant="h6" marginBottom="20px">
+                    Recruitment Schedule
+                </Typography>
+                <Box
+                    display="grid"
+                    gridTemplateColumns={{
+                        xs: "1fr",
+                        sm: "1fr 1fr",
+                        md: "1fr 1fr 1fr",
+                    }}
+                    gap="20px"
+                >
+                    {renderTextField(
+                        "recruitmentSchedule.recruitmentTechnique",
+                        "Recruitment Technique"
                     )}
                     {renderTextField(
-                        "preferredDates",
-                        "Preferred Dates for Recruitment"
+                        "recruitmentSchedule.preferredDates",
+                        "Preferred Dates"
                     )}
-                    {renderRadioGroup("onlineExam", "Online Exam", [
-                        "Yes",
-                        "No",
-                    ])}
-                    {renderRadioGroup("aptitudeTest", "Aptitude Test", [
-                        "Yes",
-                        "No",
-                    ])}
-                    {renderRadioGroup("technicalTest", "Technical Test", [
-                        "Yes",
-                        "No",
-                    ])}
-                    {renderRadioGroup("groupDiscussion", "Group Discussion", [
-                        "Yes",
-                        "No",
-                    ])}
+                </Box>
+            </Box>
+
+            <Box
+                marginTop="30px"
+                border="1px solid gray"
+                borderRadius="5px"
+                padding="15px"
+            >
+                <Typography variant="h6" marginBottom="20px">
+                    Selection Procedure
+                </Typography>
+                <Box
+                    display="grid"
+                    gridTemplateColumns={{
+                        xs: "1fr",
+                        sm: "1fr 1fr",
+                        md: "1fr 1fr 1fr",
+                    }}
+                    gap="20px"
+                >
                     {renderRadioGroup(
-                        "technicalInterview",
-                        "Technical Interview",
+                        "selectionProcedure.onlineExam",
+                        "Online Exam",
                         ["Yes", "No"]
                     )}
                     {renderRadioGroup(
-                        "personalInterview",
-                        "Personal Interview",
+                        "selectionProcedure.aptitudeTest",
+                        "Aptitude Test",
                         ["Yes", "No"]
                     )}
                     {renderRadioGroup(
-                        "branchOrientedInterview",
-                        "Branch Oriented Interview",
+                        "selectionProcedure.technicalTest",
+                        "Technical Test",
                         ["Yes", "No"]
                     )}
-                    {renderTextField("totalRounds", "Total Rounds")}
+                    {renderRadioGroup(
+                        "selectionProcedure.groupDiscussion",
+                        "Group Discussion",
+                        ["Yes", "No"]
+                    )}
+                    {renderRadioGroup(
+                        "selectionProcedure.interview",
+                        "Interview",
+                        ["Yes", "No"]
+                    )}
                 </Box>
             </Box>
 
             <Button
                 variant="contained"
+                size="large"
                 type="submit"
-                onClick={handleSubmit}
                 sx={{
-                    marginTop: "30px",
-                    backgroundColor: colors.secondary,
+                    backgroundColor: colors.primary,
                     color: colors.white,
+                    alignSelf: "flex-end",
                 }}
+                onClick={handleSubmit}
             >
-                Register
+                Save Changes
             </Button>
 
-            <Typography variant="body1" marginTop="20px" textAlign="center">
-                Already registered? <Link to="/login">Login</Link>
-            </Typography>
+            <Link to="/" style={{ textDecoration: "none" }}>
+                <Button
+                    variant="contained"
+                    size="large"
+                    sx={{ alignSelf: "flex-end", marginTop: "10px" }}
+                >
+                    Cancel
+                </Button>
+            </Link>
         </Box>
     );
 };
