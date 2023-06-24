@@ -1,30 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Box, Button, Typography } from "@mui/material";
-import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
+import { AuthContext } from "../../contexts/AuthContext";
 import { tokens } from "../../theme";
 import CssTextField from "../global/CssTextField";
-import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+
+const colors = tokens();
 
 const RecruiterLogin = () => {
     const [credentials, setCredentials] = useState({
         email: "",
         password: "",
     });
+
     const navigate = useNavigate();
     const { user, loading, error, dispatch } = useContext(AuthContext);
-    const colors = tokens();
-    // const handleUsername=(e)=>{
-    //     setUsername(e.target.value);
-    // }
-    // const handlePassword=(e)=>{
-    //     setPassword(e.target.value);
-    // }
+
     const handleChange = (e) => {
         setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
     };
+
     const handleLogin = async (e) => {
         e.preventDefault();
         dispatch({ type: "LOGIN_START" });
@@ -44,9 +41,9 @@ const RecruiterLogin = () => {
         } catch (err) {
             console.log(err.response);
             toast.error("Invalid Credentials!");
-            // Log the error response for troubleshooting
         }
     };
+
     return (
         <Box
             height="91.5vh"

@@ -82,9 +82,16 @@ const RecruiterSidebar = () => {
         setIsMenuOpen(false);
     };
     return (
-        <FlexBetween>
+        <FlexBetween >
             {/* logo and name */}
-            <Box sx={{ display: { xs: "none", md: "flex" }, height: "100vh" }}>
+            <Box
+                sx={{
+                    display: { xs: "none", md: "flex" },
+                    height: "100%",
+                    
+                   
+                }}
+            >
                 {/* topbar items */}
                 <Sidebar>
                     {/* user image and name*/}
