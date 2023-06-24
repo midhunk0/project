@@ -1,7 +1,73 @@
-import React from "react";
+
+import React, { useState, useEffect } from "react";
+
+import {
+    Box,
+    Button,
+    TextField,
+    Typography,
+    styled,
+    Snackbar,
+} from "@mui/material";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import useFetch from "../../hooks/useFetch";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import CssTextField from "../global/CssTextField";
 
 const RecruiterHome=()=>{
+
+    const [password, setPassword] = useState("");
+    const [snackbarOpen, setSnackbarOpen] = useState(true);
+    const [flag, setFlag] = useState(false); 
+    const [passwordUpdated, setPasswordUpdated] = useState(false);
+    const { user } = useContext(AuthContext);
+    const id = user._id;
+
+
+
+    const dataRecruiter = useFetch(`/api/students/StudentProfile/${id}`);
+    const recruiter = dataRecruiter.data;
+
+    
+    useEffect(() => {
+        // Check if the password has been updated
+        if ( recruiter&&recruiter.password === "") {
+            setFlag(true);
+        }
+    }, [recruiter]);
+
+    const handleChange = (e) => {
+        setPassword(e.target.value);
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.put(
+                `http://localhost:8080/api/recruiters/recruiterPassword/${id}`,
+                {
+                    newPassword: password,
+                }
+            );
+            setSnackbarOpen(true);
+            setPassword("");
+            setFlag(false);
+            setPasswordUpdated(true);
+        } catch (err) {
+            console.log(err.response); // Log the error response for troubleshooting
+        }
+    };
+
+    const handleCloseSnackbar = () => {
+        setSnackbarOpen(true);
+    };
+
+
     return(
+
+        
         <div style={{ 
                 margin: "20px", 
                 width: "100%",
@@ -16,10 +82,6 @@ const RecruiterHome=()=>{
                     width: "100%",
                     borderTopLeftRadius: "5px",
                     borderTopRightRadius: "5px"
-                    // maxWidth: "100%",
-                    // height: "200px",
-                    // objectFit: "cover",
-                    // objectPosition: "center",
                 }}
             />
             <div 

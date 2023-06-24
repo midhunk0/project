@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const recruiterSchema = new mongoose.Schema({
     companyName: {
         type: String,
+        default:"",
         required: true,
     },
     password:{
@@ -11,21 +12,24 @@ const recruiterSchema = new mongoose.Schema({
     },
     natureOfBusiness: {
         type: String,
-        required: true,
+        default:""
+        // required: true,
     },
     homePage: String,
     contactPerson: {
         type: String,
-        required: true,
+        default:""
+        // required: true,
     },
     designation: {
         type: String,
-        required: true,
+        default:""
+        // required: true,
     },
     fax: String,
     telephoneNo: {
         type: String,
-        required: true,
+        // required: true,
     },
     email: {
         type: String,
@@ -33,11 +37,13 @@ const recruiterSchema = new mongoose.Schema({
     },
     jobDescription: {
         type: String,
-        required: true,
+        default:""
+        // required: true,
     },
     address: {
         type: String,
-        required: true,
+        default:""
+        // required: true,
     },
     eligibilityCriteria: {
         tenthGradeCutoff: {

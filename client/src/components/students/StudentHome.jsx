@@ -19,7 +19,7 @@ import { faBullseye } from "@fortawesome/free-solid-svg-icons";
 const StudentHome = () => {
     const [password, setPassword] = useState("");
     const [snackbarOpen, setSnackbarOpen] = useState(true);
-    const [flag, setFlag] = useState(false);
+    const [flag, setFlag] = useState(false); 
     const [passwordUpdated, setPasswordUpdated] = useState(false);
     const { user } = useContext(AuthContext);
     const id = user._id;
