@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { Box, Typography, IconButton, Menu, MenuItem } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
-import PixIcon from "@mui/icons-material/Pix";
 import { tokens } from "../../theme";
 import MenuIcon from "@mui/icons-material/Menu";
-import FlexBetween from "./FlexBetween";
 
 const colors = tokens();
 
