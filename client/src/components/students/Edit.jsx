@@ -12,7 +12,7 @@ const Edit = () => {
     const userdata=JSON.parse(localStorage.getItem("user"))
     const [profileDetails, setProfileDetails] = useState(userdata);
     console.log(profileDetails)
-    
+     
     
     const id = userdata._id;
 

@@ -24,31 +24,10 @@ const StudentHome = () => {
     const { user } = useContext(AuthContext);
     const id = user._id;
 
-    // function hashString(str) {
-    //     const encoder = new TextEncoder();
-    //     const data = encoder.encode(str);
-    //     return crypto.subtle.digest('SHA-256', data)
-    //         .then(hashBuffer => {
-    //             const hashArray = Array.from(new Uint8Array(hashBuffer));
-    //             const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
-    //             return hashHex;
-    //         });
-    // }
-
-
 
 
     const dataStudent = useFetch(`/api/students/StudentProfile/${id}`);
     const student = dataStudent.data;
-    // const hashedPassword = student.password;
-    // hashString('').then(emptyPasswordHash => {
-    //     console.log(hashedPassword)
-    //     console.log(emptyPasswordHash)
-    //     // Compare the hashed password with the hashed representation of an empty string
-    //     if (hashedPassword === "") {
-    //         setFlag(true);
-    //     }
-    // });
 
     
     useEffect(() => {

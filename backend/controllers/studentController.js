@@ -4,8 +4,6 @@ import bcrypt from "bcryptjs";
 export const registerStudentController = async (req, res, next) => {
     try {
         const { studentCollegeID, cgpa } = req.body;
-        // const salt = bcrypt.genSaltSync(10);
-        // const hashedPassword = await bcrypt.hash("", salt);
         console.log(studentCollegeID, cgpa);
         // Check if the student with the provided student ID already exists
         const existingStudent = await students.findOne({ studentCollegeID });

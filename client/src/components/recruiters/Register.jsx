@@ -22,6 +22,10 @@ const RecruiterRegister = () => {
         </Box>
     );
 
+    const handleSubmit=()=>{
+        
+    }
+
     const renderCheckboxes = (label, options) => (
         <Box>
             <Typography variant="h6" marginBottom="20px">
@@ -129,7 +133,7 @@ const RecruiterRegister = () => {
             </Box>
 
             <Box display="grid" gridTemplateColumns={{ xs: "1fr", sm: "1fr", md: "1fr 1fr" }} gap="20px" sx={{margin:"40px 0 40px 0"}}>
-                <Button
+                <Button onClick={handleSubmit}
                     variant="contained"
                     sx={{
                         background: colors.gray[100],

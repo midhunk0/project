@@ -44,7 +44,7 @@ const getMenuItems = (selected, setSelected) => {
   
     return menuItems.map((item) => (
         <Item
-            key={item.title}
+            key={item.title} 
             title={item.title}
             to={item.to}
             selected={selected}
