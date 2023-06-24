@@ -48,37 +48,37 @@ const recruiterSchema = new mongoose.Schema({
     eligibilityCriteria: {
         tenthGradeCutoff: {
             type: Number,
-            required: true,
+            // required: true,
         },
         twelfthGradeCutoff: {
             type: Number,
-            required: true,
+            // required: true,
         },
         btechCutoff: {
             type: Number,
-            required: true,
+            // required: true,
         },
         maxClearedBacklogs: {
             type: Number,
-            required: true,
+            // required: true,
         },
         maxNonClearedBacklogs: {
             type: Number,
-            required: true,
+            // required: true,
         },
     },
     branchesEligible: {
         type: [String],
-        required: true,
+        // required: true,
     },
     payPackage: {
         grossSalary: {
             type: Number,
-            required: true,
+            // required: true,
         },
         bond: {
             type: String,
-            required: true,
+            // required: true,
             enum: ["Yes", "No"],
         },
         bondYears: Number,
@@ -86,53 +86,53 @@ const recruiterSchema = new mongoose.Schema({
     recruitmentSchedule: {
         recruitmentTechnique: {
             type: String,
-            required: true,
+            // required: true,
             enum: ["On Campus", "Off Campus"],
         },
         preferredDates: {
             type: String,
-            required: true,
+            // required: true,
         },
     },
     selectionProcedure: {
         onlineExam: {
             type: String,
-            required: true,
+            // required: true,
             enum: ["Yes", "No"],
         },
         aptitudeTest: {
             type: String,
-            required: true,
+            // required: true,
             enum: ["Yes", "No"],
         },
         technicalTest: {
             type: String,
-            required: true,
+            // required: true,
             enum: ["Yes", "No"],
         },
         groupDiscussion: {
             type: String,
-            required: true,
+            // required: true,
             enum: ["Yes", "No"],
         },
         technicalInterview: {
             type: String,
-            required: true,
+            // required: true,
             enum: ["Yes", "No"],
         },
         personalInterview: {
             type: String,
-            required: true,
+            // required: true,
             enum: ["Yes", "No"],
         },
         branchOrientedInterview: {
             type: String,
-            required: true,
+            // required: true,
             enum: ["Yes", "No"],
         },
         totalRounds: {
             type: Number,
-            required: true,
+            // required: true,
         },
     },
 });

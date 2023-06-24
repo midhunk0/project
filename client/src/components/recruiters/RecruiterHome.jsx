@@ -16,11 +16,11 @@ import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import CssTextField from "../global/CssTextField";
 
-const RecruiterHome=()=>{
+const RecruiterHome = () => {
 
     const [password, setPassword] = useState("");
     const [snackbarOpen, setSnackbarOpen] = useState(true);
-    const [flag, setFlag] = useState(false); 
+    const [flag, setFlag] = useState(false);
     const [passwordUpdated, setPasswordUpdated] = useState(false);
     const { user } = useContext(AuthContext);
     const id = user._id;
@@ -30,10 +30,10 @@ const RecruiterHome=()=>{
     const dataRecruiter = useFetch(`/api/students/StudentProfile/${id}`);
     const recruiter = dataRecruiter.data;
 
-    
+
     useEffect(() => {
         // Check if the password has been updated
-        if ( recruiter&&recruiter.password === "") {
+        if (recruiter && recruiter.password === "") {
             setFlag(true);
         }
     }, [recruiter]);
@@ -65,15 +65,15 @@ const RecruiterHome=()=>{
     };
 
 
-    return(
+    return (
 
-        
-        <div style={{ 
-                margin: "20px", 
-                width: "100%",
-                borderRadius: "5px",
-                boxShadow: "1px 2px 9px gray",
-            }}
+
+        <div style={{
+            margin: "20px",
+            width: "100%",
+            borderRadius: "5px",
+            boxShadow: "1px 2px 9px gray",
+        }}
         >
             <img
                 src="../../assets/apple-bg.jpeg"
@@ -84,9 +84,7 @@ const RecruiterHome=()=>{
                     borderTopRightRadius: "5px"
                 }}
             />
-            <div 
-
-            >
+            <div>
                 <div>
                     <img
                         src="../../assets/apple-logo.jpeg"
@@ -107,9 +105,9 @@ const RecruiterHome=()=>{
                         Apple
                     </h1>
                     <p style={{
-                            marginLeft: "50px",
-                            color: "gray"
-                        }}
+                        marginLeft: "50px",
+                        color: "gray"
+                    }}
                     >Computers and Electronics Manufacturing Cupertino, California</p>
                 </div>
                 <div
@@ -119,17 +117,17 @@ const RecruiterHome=()=>{
                         margin: "0 20px 0 50px"
                     }}
                 >
-                    <div 
+                    <div
                         style={{
                             margin: "20px"
                         }}
                     >
                         <h2> New Notifications</h2>
-                        <ul style={{listStyleType: "none", marginLeft: "-20px"}}>
+                        <ul style={{ listStyleType: "none", marginLeft: "-20px" }}>
                             <li>
                                 <a
                                     href="matched"
-                                    style={{textDecoration: "none"}}
+                                    style={{ textDecoration: "none" }}
                                 >
                                     Matched Profiles
                                 </a>
@@ -137,7 +135,7 @@ const RecruiterHome=()=>{
                             <li>
                                 <a
                                     href="request"
-                                    style={{textDecoration: "none"}}
+                                    style={{ textDecoration: "none" }}
                                 >
                                     Request Accepted
                                 </a>
