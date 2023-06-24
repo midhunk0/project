@@ -27,7 +27,7 @@ const RecruiterHome = () => {
 
     const dataRecruiter = useFetch(`http://localhost:8080/api/recruiters/recruiterProfile/${id}`);
     const recruiter = dataRecruiter.data;
-    console.log(recruiter)
+    
 
     useEffect(() => {
         // Check if the password has been updated

@@ -59,7 +59,7 @@ export const loginRecruiterController = async (req, res) => {
         }
 
         res.status(200).json({ message: "Login successful", recruiter });
-    } catch (error) {}
+    } catch (error) { }
 };
 
 export const changePasswordStudentController = async (req, res, next) => {
@@ -120,5 +120,45 @@ export const updateProfileRecruiterController = async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "An error occurred" });
+    }
+};
+
+
+export const updateRecruitRequest = async (req, res) => {
+    const recruiterID = req.params.id;
+    const { action } = req.body;
+    console.log(recruiterID, action)
+
+    try {
+        // Find the recruiter by ID
+        const recruiter = await Recruiter.findById(recruiterID);
+
+        if (!recruiter) {
+            return res.status(404).json({ error: 'Recruiter not found' });
+        }
+
+
+
+        // Update the recruitRequest field based on the action
+        recruiter.recruitRequest = action;
+
+        // Save the updated recruiter
+        await recruiter.save();
+
+        res.json({ message: 'Recruit request updated successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Server error' });
+    }
+};
+
+
+export const getAllRecruiters = async (req, res) => {
+    try {
+        const recruiters = await Recruiter.find({ recruitRequest: true });
+        res.json(recruiters);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Server error' });
     }
 };

@@ -39,6 +39,9 @@ const getMenuItems = (selected, setSelected) => {
         { title: "Dashboard", to: "/admin/dashboard" },
         { title: "Invitations", to: "/admin/invitations" },
         { title: "Students", to: "/admin/students" },
+        { title: "Requested Company", to: "/admin/company" },
+        { title: "Matched Students", to: "/admin/matched" },
+        { title: "Accepted Students", to: "/admin/accepted" },
         { title: "Recruiters", to: "/admin/recruiters" },
         { title: "Logout", to: "/" },
     ];
@@ -51,7 +54,7 @@ const getMenuItems = (selected, setSelected) => {
             selected={selected}
             setSelected={setSelected}
         />
-  ));
+    ));
 };
 
 const AdminSidebar = () => {
@@ -98,7 +101,7 @@ const AdminSidebar = () => {
                                         fontSize: "2rem"
                                     }}
                                 >
-                                admin
+                                    admin
                                 </Typography>
                             </Box>
                         </Box>
@@ -108,7 +111,7 @@ const AdminSidebar = () => {
                 </Box>
             </Box>
             {/* hamburger menu */}
-            <Box sx={{ display: { xs: "block", md: "none" }, height:"100%", marginTop:"20px" }}>
+            <Box sx={{ display: { xs: "block", md: "none" }, height: "100%", marginTop: "20px" }}>
                 <IconButton
                     color="inherit"
                     onClick={handleMenuToggle}

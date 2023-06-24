@@ -24,8 +24,11 @@ import RecruiterRegister from "./components/recruiters/Register";
 import Admin from "./components/admin";
 import AdminDashboard from "./components/admin/AdminDashboard";
 import Invitations from "./components/admin/Invitations";
+import Company from "./components/admin/Company";
 import Students from "./components/admin/Students";
 import Recruiters from "./components/admin/Recruiters";
+import MatchedStudents from "./components/admin/MatchedStudents";
+import AcceptedStudents from "./components/admin/AcceptedStudents";
 import PlacementRules from "./components/studentDropdown/placementRules";
 import PlacementTraining from "./components/studentDropdown/placementTraining";
 import Internships from "./components/studentDropdown/internships";
@@ -73,6 +76,10 @@ const App = () => {
                 <Route path="admin" element={<Admin />}>
                     <Route path="dashboard" element={<AdminDashboard />} />
                     <Route path="invitations" element={<Invitations />} />
+                    <Route path="students" element={<Students />} />
+                    <Route path="matched" element={<MatchedStudents />} />
+                    <Route path="accepted" element={<AcceptedStudents />} />
+                    <Route path="company" element={<Company />} />
                     <Route path="students" element={<Students />} />
                     <Route path="recruiters" element={<Recruiters />} />
                 </Route>
