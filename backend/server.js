@@ -5,6 +5,7 @@ import morgan from "morgan";
 import bodyParser from "body-parser";
 import connectDB from "./config/db.js";
 import studentRoute from "./routes/studentRoute.js";
+import recruiterRoute from "./routes/recruiterRoute.js"
 import cors from "cors";
 // Configure env
 dotenv.config();
@@ -27,6 +28,7 @@ app.get("/", (req, res) => {
     });
 });
 app.use("/api/students", studentRoute);
+app.use("/api/recruiters",recruiterRoute);
 
 //to handle errors
 app.use((err, req, res, next) => {

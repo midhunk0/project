@@ -3,10 +3,13 @@ import { Box, Typography } from "@mui/material";
 
 const AdminDashboard=()=>{
     return (
-        <Box width="100%" margin="10px" border="1px solid gray" padding="10px">
-            <Typography variant="h4" >Admin Name:</Typography>
-            <Typography variant="h4" >Admin Email:</Typography>
-            <Typography variant="h4" >Admin Contact:</Typography>
+        <Box width="75%" margin="10px" border="1px solid gray" padding="10px" height="100%">
+            <Typography variant="h4" >Admin Name: Dr. K. Sunil Kumar</Typography>
+            <Typography variant="h5" >Training and Placement Officer <br/>
+
+College of Engineering Trivandrum
+                </Typography>
+            
         </Box>
     );
 };

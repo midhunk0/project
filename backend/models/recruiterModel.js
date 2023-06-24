@@ -5,6 +5,10 @@ const recruiterSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    password:{
+        type:String,
+        default:""
+    },
     natureOfBusiness: {
         type: String,
         required: true,

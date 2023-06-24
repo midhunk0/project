@@ -105,7 +105,7 @@ const StudentSidebar = () => {
                     fontSize: "2rem",
                   }}
                 >
-                  midhun
+                  Anwar A
                 </Typography>
               </Box>
             </Box>

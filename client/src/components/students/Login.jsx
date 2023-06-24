@@ -13,7 +13,7 @@ const Login = () => {
         background: "url(../../../assets/loginBg.jpeg)",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        opacity: 0.7,
+        
     };
 
     const [credentials, setCredentials] = useState({
