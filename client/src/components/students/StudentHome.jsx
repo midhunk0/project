@@ -26,7 +26,7 @@ const StudentHome = () => {
 
 
 
-    const dataStudent = useFetch(`/api/students/StudentProfile/${id}`);
+    const dataStudent = useFetch(`http://localhost:8080/api/students/StudentProfile/${id}`);
     const student = dataStudent.data;
 
     

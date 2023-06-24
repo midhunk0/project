@@ -39,6 +39,8 @@ const RecruiterLogin = () => {
             setTimeout(() => {
                 navigate("/recruiter/home");
             }, 2000);
+
+            console.log(user)
         } catch (err) {
             console.log(err.response);
             toast.error("Invalid Credentials!");
