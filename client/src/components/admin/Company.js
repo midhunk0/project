@@ -10,6 +10,7 @@ import {
   Paper,
   Typography,
   Box,
+  Button,
 } from '@mui/material';
 
 const AdminRecruiters = () => {
@@ -42,6 +43,7 @@ const AdminRecruiters = () => {
                 <TableCell>Email Address</TableCell>
                 <TableCell>Phone Number</TableCell>
                 <TableCell>Package</TableCell>
+                <TableCell>Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -50,6 +52,15 @@ const AdminRecruiters = () => {
                   <TableCell>{recruiter.companyName}</TableCell>
                   <TableCell>{recruiter.email}</TableCell>
                   <TableCell>{recruiter.telephoneNo}</TableCell>
+                  <TableCell>{recruiter.package}</TableCell>
+                  <TableCell>
+                    <Button variant="contained" color="primary">
+                      Accept
+                    </Button>
+                    <Button variant="contained" color="error">
+                      Reject
+                    </Button>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
