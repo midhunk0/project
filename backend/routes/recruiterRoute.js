@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { registerRecruiterController, loginRecruiterController, changePasswordStudentController, updateRecruitRequest, updateProfileRecruiterController, getProfileRecruiterController, getAllRecruiters } from '../controllers/recruiterController.js';
+import { registerRecruiterController, loginRecruiterController, changePasswordStudentController, updateRecruitRequest, updateProfileRecruiterController, getProfileRecruiterController, getAllRecruiters, matchRequirements } from '../controllers/recruiterController.js';
 
 const router = express.Router();
 
@@ -10,5 +10,6 @@ router.get("/recruiterProfile/:id", getProfileRecruiterController);
 router.put("/recruiterProfile/:id", updateProfileRecruiterController);
 router.put("/recruiterRequest/:id", updateRecruitRequest);
 router.get("/getall",getAllRecruiters);
+router.post("/recruitermatch/:id",matchRequirements)
 router.put("/recruiterPassword/:id", changePasswordStudentController);
 export default router;

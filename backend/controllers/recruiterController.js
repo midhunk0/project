@@ -1,5 +1,8 @@
 import Recruiter from "../models/recruiterModel.js";
 
+import MatchedStudents from "../models/matchedModel.js";
+import students from "../models/studentModel.js";
+
 export const registerRecruiterController = async (req, res, next) => {
     try {
         const {
@@ -162,3 +165,45 @@ export const getAllRecruiters = async (req, res) => {
         res.status(500).json({ error: 'Server error' });
     }
 };
+
+
+
+
+export const matchRequirements = async (req,res) => {
+    try {
+        // Fetch all recruiters
+        const recruiterID = req.params.id;
+        const recruiter = await Recruiter.findById(recruiterID);
+
+        // Iterate over each recruiter
+
+        const matchedStudents = [];
+
+        // Fetch all students
+        const studentdata = await students.find();
+
+        // Iterate over each student
+        for (const student of studentdata) {
+            // Check if the student matches the recruiter's requirements
+            if (student.cgpa >= recruiter.eligibilityCriteria.btechCutoff) {
+                matchedStudents.push(student._id);
+            }
+        }
+        console.log(matchedStudents,recruiterID)
+
+        // Create/update the matched schema for the current recruiter
+        await MatchedStudents.create({
+            recruiterId: recruiterID,
+            studentIds: matchedStudents,
+            
+          });
+
+
+        console.log("Matching completed successfully!");
+    } catch (error) {
+        console.error("Matching failed:", error);
+    }
+};
+
+// Call the function to initiate the matching process
+
