@@ -4,6 +4,8 @@ import { Box, Button, Typography, styled } from "@mui/material";
 import { tokens } from "../../theme";
 import axios from "axios";
 import { AuthContext } from "../../contexts/AuthContext";
+import toast, { Toaster } from "react-hot-toast";
+
 
 const StyledBox = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -42,6 +44,7 @@ const Request = () => {
       await axios.put(`http://localhost:8080/api/recruiters/recruiterRequest/${id}`, {
         action: action,
       });
+      toast.success("Request sent successfully")
     } catch (err) {
       console.log(err);
     }
@@ -70,6 +73,7 @@ const Request = () => {
           Request
         </Button>
       </ContentBox>
+      <Toaster position="bottom-center" />
     </StyledBox>
   );
 };

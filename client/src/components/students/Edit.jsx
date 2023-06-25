@@ -3,17 +3,15 @@ import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Box } from "@mui/material";
+import toast, { Toaster } from "react-hot-toast";
 
 const Edit = () => {
     // const { user } = useContext(AuthContext);
-      
-    
 
-    const userdata=JSON.parse(localStorage.getItem("user"))
+    const userdata = JSON.parse(localStorage.getItem("user"));
     const [profileDetails, setProfileDetails] = useState(userdata);
-    console.log(profileDetails)
-     
-    
+    console.log(profileDetails);
+
     const id = userdata._id;
 
     const [newSkill, setNewSkill] = useState("");
@@ -81,14 +79,18 @@ const Edit = () => {
                 value.forEach((item) => formData.append(key, item));
             }
         });
-        console.log(profileDetails)
+        console.log(profileDetails);
         // console.log(id)
         // for (const pair of formData.entries()) {
         //     console.log(pair[0], pair[1]); // Log each field and its value
         // }// This will still log an empty object, but the data is present
         try {
             const res = await axios.put(
-                `http://localhost:8080/api/students/StudentProfile/${id}`,profileDetails);
+                `http://localhost:8080/api/students/StudentProfile/${id}`,
+                profileDetails
+            );
+
+            toast.success("Profile updated..");
             // Log the response data for troubleshooting
             // Reset the form or perform any other necessary actions
             localStorage.setItem("user", JSON.stringify(profileDetails));
@@ -213,6 +215,7 @@ const Edit = () => {
                     Submit
                 </Button>
             </Form>
+            <Toaster position="top-center" />
         </Box>
     );
 };

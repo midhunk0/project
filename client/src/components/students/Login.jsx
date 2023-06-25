@@ -45,13 +45,13 @@ const Login = () => {
                 // Handle admin login - redirect to the admin dashboard
                 setTimeout(() => {
                     navigate("/admin/dashboard");
-                }, 2000); // Delay for 2 seconds (2000 milliseconds)
+                }, 1000); // Delay for 2 seconds (2000 milliseconds)
             } else {
                 toast.success("Student Logged in Successfully!");
                 // Handle student login - redirect to the student dashboard
                 setTimeout(() => {
                     navigate("/student/home");
-                }, 2000); // Delay for 2 seconds (2000 milliseconds)
+                }, 1000); // Delay for 2 seconds (2000 milliseconds)
             }
         } catch (err) {
             console.log(err.response);

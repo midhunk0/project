@@ -123,11 +123,11 @@ const StudentHome = () => {
                         style={{ maxWidth: "40rem", width: "100%" }}
                     >
                         <div className="item">
-                            <img
+                            {/* <img
                                 src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
                                 alt=""
                                 className="itemImg"
-                            />
+                            /> */}
                             <div className="details">
                                 <h1 className="itemTitle">
                                     {student.username}

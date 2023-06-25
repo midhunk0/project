@@ -88,7 +88,7 @@ const StudentSidebar = () => {
 
     return (
         <FlexBetween>
-            <Box sx={{ display: { xs: "none", md: "flex" }, height: "100vh" }}>
+            <Box sx={{ display: { xs: "none", md: "flex" }, height: "100%" }}>
                 <Box display="flex">
                     <Sidebar>
                         <Box mb="25px">
@@ -117,7 +117,7 @@ const StudentSidebar = () => {
                                         fontSize: "2rem",
                                     }}
                                 >
-                                    Anwar A
+                                    Student
                                 </Typography>
                             </Box>
                         </Box>

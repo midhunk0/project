@@ -10,6 +10,13 @@ import toast, { Toaster } from "react-hot-toast";
 const colors = tokens();
 
 const RecruiterLogin = () => {
+
+
+    const containerStyle = {
+        background: "url(../../../assets/loginBg.jpeg)",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+    };
     const [credentials, setCredentials] = useState({
         email: "",
         password: "",
@@ -35,7 +42,7 @@ const RecruiterLogin = () => {
             toast.success("Recruiter Logged in Successfully!");
             setTimeout(() => {
                 navigate("/recruiter/home");
-            }, 2000);
+            }, 1000);
 
             console.log(user)
         } catch (err) {
@@ -52,6 +59,7 @@ const RecruiterLogin = () => {
             alignItems="center"
             justifyContent="center"
             bgcolor="whitesmoke"
+            style={containerStyle}
         >
             <Box
                 bgcolor="white"

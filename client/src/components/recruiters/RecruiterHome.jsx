@@ -23,11 +23,12 @@ const RecruiterHome = () => {
     const { user } = useContext(AuthContext);
     const id = user._id;
 
-    console.log(id)
+    console.log(id);
 
-    const dataRecruiter = useFetch(`http://localhost:8080/api/recruiters/recruiterProfile/${id}`);
+    const dataRecruiter = useFetch(
+        `http://localhost:8080/api/recruiters/recruiterProfile/${id}`
+    );
     const recruiter = dataRecruiter.data;
-    
 
     useEffect(() => {
         // Check if the password has been updated
@@ -43,9 +44,12 @@ const RecruiterHome = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:8080/api/recruiters/recruiterPassword/${id}`, {
-                newPassword: password,
-            });
+            await axios.put(
+                `http://localhost:8080/api/recruiters/recruiterPassword/${id}`,
+                {
+                    newPassword: password,
+                }
+            );
             setSnackbarOpen(true);
             setPassword("");
             setFlag(false);
@@ -60,7 +64,6 @@ const RecruiterHome = () => {
     };
 
     return flag ? (
-
         <Box
             height="100vh"
             display="flex"
@@ -76,11 +79,7 @@ const RecruiterHome = () => {
                 flexDirection="column"
                 gap="10px"
             >
-                <Typography
-                    variant="h5"
-                    marginTop="10px"
-                    marginBottom="30px"
-                >
+                <Typography variant="h5" marginTop="10px" marginBottom="30px">
                     Update Password
                 </Typography>
                 <CssTextField
@@ -108,11 +107,7 @@ const RecruiterHome = () => {
                 message="Password updated successfully"
             />
         </Box>
-
-
     ) : (
-
-
         <div
             style={{
                 margin: "20px",
@@ -131,7 +126,7 @@ const RecruiterHome = () => {
                 }}
             />
             <div>
-                <div>
+                {/* <div>
                     <img
                         src="../../assets/apple-logo.jpeg"
                         alt="apple"
@@ -142,22 +137,27 @@ const RecruiterHome = () => {
                             transform: "translate(50px, -50px)",
                         }}
                     />
-                </div>
+                </div> */}
                 <div>
                     <h1
                         style={{
                             marginLeft: "50px",
                         }}
                     >
-                        Apple
+                        {user.companyName}
                     </h1>
+                    <h6
+                        style={{
+                            marginLeft: "50px",
+                        }}
+                    > {user.contactPerson}</h6>
                     <p
                         style={{
                             marginLeft: "50px",
                             color: "gray",
                         }}
                     >
-                        Computers and Electronics Manufacturing Cupertino, California
+                        {user.address}
                     </p>
                 </div>
                 <div
@@ -165,23 +165,28 @@ const RecruiterHome = () => {
                         border: "1px solid gray",
                         borderRadius: "5px",
                         margin: "0 20px 0 50px",
+                        marginBottom: "30px",
                     }}
                 >
                     <div
+                        className=""
                         style={{
                             margin: "20px",
                         }}
                     >
                         <h2> New Notifications</h2>
-                        <ul style={{ listStyleType: "none", marginLeft: "-20px" }}>
+                        <ul
+                            style={{
+                                listStyleType: "none",
+                                marginLeft: "-20px",
+                            }}
+                        >
                             <li>
-                                <a href="matched" style={{ textDecoration: "none" }}>
+                                <a
+                                    href="matched"
+                                    style={{ textDecoration: "none" }}
+                                >
                                     Matched Profiles
-                                </a>
-                            </li>
-                            <li>
-                                <a href="request" style={{ textDecoration: "none" }}>
-                                    Request Accepted
                                 </a>
                             </li>
                         </ul>

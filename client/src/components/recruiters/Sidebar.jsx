@@ -121,7 +121,7 @@ const RecruiterSidebar = () => {
                                     fontSize: "2rem",
                                 }}
                             >
-                                Tim Cook
+                                Recruiter
                             </Typography>
                         </Box>
                     </Box>
