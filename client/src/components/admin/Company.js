@@ -11,10 +11,16 @@ import {
   Typography,
   Box,
   Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
 } from '@mui/material';
 
 const AdminRecruiters = () => {
   const [recruiters, setRecruiters] = useState([]);
+  const [selectedRecruiter, setSelectedRecruiter] = useState(null);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     const fetchRecruiters = async () => {
@@ -29,10 +35,30 @@ const AdminRecruiters = () => {
     fetchRecruiters();
   }, []);
 
+  const handleAccept = (recruiter) => {
+    setSelectedRecruiter(recruiter);
+    setOpenModal(true);
+  };
+
+  const handleSaveChanges = async () => {
+    try {
+      await axios.post(`http://localhost:8080/api/recruiters/recruitermatch/${selectedRecruiter._id}`);
+      console.log('Matching completed successfully!');
+      setOpenModal(false);
+      // You can add any further actions or state updates here
+    } catch (error) {
+      console.error('Matching failed:', error);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+
   return (
-    <Box display="flex" justifyContent="center" alignItems="center">
-      <Box maxWidth="800px" width="100%">
-        <Typography variant="h4" align="center" mb={3}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <Box maxWidth="800px" width="100%" p={4} bgcolor="white" boxShadow={3} borderRadius={8}>
+        <Typography variant="h4" align="center" gutterBottom>
           Recruiters List
         </Typography>
         <TableContainer component={Paper}>
@@ -54,12 +80,19 @@ const AdminRecruiters = () => {
                   <TableCell>{recruiter.telephoneNo}</TableCell>
                   <TableCell>{recruiter.package}</TableCell>
                   <TableCell>
-                    <Button variant="contained" color="primary">
-                      Accept
-                    </Button>
-                    <Button variant="contained" color="error">
-                      Reject
-                    </Button>
+                    <Box display="flex">
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        style={{ marginRight: '8px' }}
+                        onClick={() => handleAccept(recruiter)}
+                      >
+                        Accept
+                      </Button>
+                      <Button variant="contained" color="error">
+                        Reject
+                      </Button>
+                    </Box>
                   </TableCell>
                 </TableRow>
               ))}
@@ -67,7 +100,24 @@ const AdminRecruiters = () => {
           </Table>
         </TableContainer>
       </Box>
-    </Box>
+
+      <Dialog open={openModal} onClose={handleCloseModal}>
+        <DialogTitle>Confirm Match</DialogTitle>
+        <DialogContent>
+          <Typography variant="body1">
+            Are you sure you want to match requirements for "{selectedRecruiter?.companyName}"?
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseModal} color="secondary">
+            Cancel
+          </Button>
+          <Button onClick={handleSaveChanges} color="primary">
+            Save Changes
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
   );
 };
 

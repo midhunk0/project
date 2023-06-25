@@ -36,6 +36,7 @@ const Request = () => {
 
   const handleRequest = async (e) => {
     setAction(true);
+    console.log(action)
     e.preventDefault();
     try {
       await axios.put(`http://localhost:8080/api/recruiters/recruiterRequest/${id}`, {
