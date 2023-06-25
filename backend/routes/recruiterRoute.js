@@ -12,6 +12,8 @@ import {
     getCompaniesWithMatchedStudents,
     getCompanyWithMatchedStudents,
     getStudentById,
+    postNotificationController,
+    getNotificationController
 } from "../controllers/recruiterController.js";
 
 const router = express.Router();
@@ -28,4 +30,10 @@ router.get("/companies", getCompaniesWithMatchedStudents);
 router.get("/companies/:id", getCompanyWithMatchedStudents);
 router.get("/students/:id", getStudentById);
 router.put("/recruiterPassword/:id", changePasswordStudentController);
+router.post("/notifications", postNotificationController);
+// Route for fetching notifications
+router.get('/notifications', getNotificationController);
+// Route for fetching a company by recruiter ID
+
+
 export default router;

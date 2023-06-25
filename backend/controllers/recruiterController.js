@@ -281,6 +281,34 @@ export const getCompanyWithMatchedStudents = async (req, res) => {
     }
 };
 
-    
-    // Dummy function to simulate sending a notification
-    
+export const postNotificationController = async (req, res) => {
+    try {
+        const { recruiterId, isNotification, studentIds } = req.body;
+
+        // Update the existing notification document
+        const notification = await MatchedStudents.findOneAndUpdate(
+            { recruiterId }, // Find the document based on the recruiterId
+            { isNotification, studentIds }, // Update the isNotification and studentIds fields
+            { new: true, upsert: true } // Set 'new' to true to return the updated document and 'upsert' to true to create a new document if it doesn't exist
+        );
+
+        // You can perform additional actions here, such as sending notifications to students
+
+        res.status(200).json(notification);
+    } catch (error) {
+        console.error("Failed to update notification:", error);
+        res.status(500).json({ message: "Failed to update notification" });
+    }
+};
+
+export const getNotificationController = async (req, res) => {
+    try {
+        const notifications = await MatchedStudents.find();
+        res.status(200).json(notifications);
+    } catch (error) {
+        console.error("Failed to fetch notifications:", error);
+        res.status(500).json({ message: "Failed to fetch notifications" });
+    }
+};
+
+// Dummy function to simulate sending a notification

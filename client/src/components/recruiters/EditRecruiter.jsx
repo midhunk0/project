@@ -124,7 +124,9 @@ const RecruiterRegister = () => {
                                 value={option}
                                 checked={
                                     recruiterDetails.branchesEligible &&
-                                    recruiterDetails.branchesEligible.includes(option)
+                                    recruiterDetails.branchesEligible.includes(
+                                        option
+                                    )
                                 }
                                 onChange={handleCheckboxChange}
                             />
@@ -163,7 +165,10 @@ const RecruiterRegister = () => {
                 gap="20px"
             >
                 {renderTextField("companyName", "Company Name")}
-                {renderTextField("natureOfBusiness", "Nature of Business (IT, R&D, etc)")}
+                {renderTextField(
+                    "natureOfBusiness",
+                    "Nature of Business (IT, R&D, etc)"
+                )}
                 {renderTextField("homePage", "Home Page")}
             </Box>
 
@@ -190,7 +195,12 @@ const RecruiterRegister = () => {
                     {renderTextField("fax", "Fax")}
                     {renderTextField("telephoneNo", "Telephone No")}
                     {renderTextField("email", "Email ID")}
-                    {renderTextField("jobDescription", "Job Description", true, "textarea")}
+                    {renderTextField(
+                        "jobDescription",
+                        "Job Description",
+                        true,
+                        "textarea"
+                    )}
                     {renderTextField("address", "Address", true, "textarea")}
                 </Box>
             </Box>
@@ -213,11 +223,26 @@ const RecruiterRegister = () => {
                     }}
                     gap="20px"
                 >
-                    {renderTextField("tenthGradeCutoff", "10th Grade / SSLC Cut off (Percentage)")}
-                    {renderTextField("twelfthGradeCutoff", "12th Grade / PUC Cut off (Percentage)")}
-                    {renderTextField("btechCutoff", "B.Tech Cut off (Percentage)")}
-                    {renderTextField("maxClearedBacklogs", "Max Cleared Backlogs")}
-                    {renderTextField("maxNonClearedBacklogs", "Max Non Cleared Backlogs")}
+                    {renderTextField(
+                        "tenthGradeCutoff",
+                        "10th Grade / SSLC Cut off (Percentage)"
+                    )}
+                    {renderTextField(
+                        "twelfthGradeCutoff",
+                        "12th Grade / PUC Cut off (Percentage)"
+                    )}
+                    {renderTextField(
+                        "btechCutoff",
+                        "B.Tech Cut off (Percentage)"
+                    )}
+                    {renderTextField(
+                        "maxClearedBacklogs",
+                        "Max Cleared Backlogs"
+                    )}
+                    {renderTextField(
+                        "maxNonClearedBacklogs",
+                        "Max Non Cleared Backlogs"
+                    )}
                     {renderCheckboxes("branchesEligible", "Branches Eligible", [
                         "Computer Science",
                         "Information Technology",
@@ -251,7 +276,10 @@ const RecruiterRegister = () => {
                         "Part-Time",
                         "Internship",
                     ])}
-                    {renderTextField("minSalaryPackage", "Min Salary Package (in LPA)")}
+                    {renderTextField(
+                        "minSalaryPackage",
+                        "Min Salary Package (in LPA)"
+                    )}
                     {renderTextField("jobLocation", "Job Location")}
                 </Box>
             </Box>
@@ -259,13 +287,17 @@ const RecruiterRegister = () => {
             <Box display="flex" justifyContent="space-between">
                 <Button
                     component={Link}
-                    to="/recruiter/dashboard"
+                    to="/recruiter/home"
                     variant="outlined"
                     color="secondary"
                 >
                     Back
                 </Button>
-                <Button variant="contained" color="primary" onClick={handleSubmit}>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleSubmit}
+                >
                     Save Changes
                 </Button>
             </Box>
