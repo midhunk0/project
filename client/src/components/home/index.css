@@ -1,189 +1,296 @@
 .main-heading {
-    font-weight: bold;
-    text-align: center;
-    color: #20313e;
-    margin-top: 50px;
+  font-weight: bold;
+  text-align: center;
+  color: #20313e;
+  margin-top: 50px;
+}
+
+.section1 {
+  margin-bottom: 60px;
+  text-align: justify;
+}
+
+.overview-card {
+  color: #20313e;
+  font-size: 20px;
+  width: 800px;
+}
+
+.card1 {
+  position: relative;
+  height: 200px;
+  width: 100%;
+  margin: 10px 0;
+  transition: ease all 2.3s;
+  perspective: 1200px;
+}
+
+.card1:hover .cover {
+  transform: rotateX(0deg) rotateY(-180deg);
+}
+
+.card1:hover .cover:before {
+  transform: translateZ(30px);
+}
+
+.card1:hover .cover:after {
+  background-color: black;
+}
+
+.card1:hover .cover h1 {
+  transform: translateZ(100px);
+}
+
+.card1:hover .cover .price {
+  transform: translateZ(60px);
+}
+
+.card1:hover .cover a {
+  transform: translateZ(-60px) rotatey(-180deg);
+}
+
+.cover {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: ease all 2.3s;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.cover:before {
+  content: "";
+  position: absolute;
+  border: 5px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  z-index: 2;
+  transition: ease all 2.3s;
+  transform-style: preserve-3d;
+  transform: translateZ(0px);
+}
+
+.cover:after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 2;
+  transition: ease all 1.3s;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.cover.item-a {
+  background-image: url("https://images.unsplash.com/photo-1583829893112-58e651ff8528?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80");
+}
+
+.cover.item-b {
+  background-image: url("https://images.unsplash.com/photo-1583829893112-58e651ff8528?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80");
+}
+
+.cover.item-c {
+  background-image: url("https://images.unsplash.com/photo-1583829893112-58e651ff8528?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80");
+}
+
+.cover h1 {
+  font-weight: 600;
+  position: absolute;
+  bottom: 55px;
+  left: 50px;
+  color: white;
+  transform-style: preserve-3d;
+  transition: ease all 2.3s;
+  z-index: 3;
+  font-size: 3em;
+  transform: translateZ(0px);
+}
+
+.card-back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: #0b0f08;
+  transform-style: preserve-3d;
+  transition: ease all 2.3s;
+  transform: translateZ(-1px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-back a {
+  transform-style: preserve-3d;
+  transition: ease transform 2.3s, ease background 0.5s;
+  transform: translateZ(-1px) rotatey(-180deg);
+  background: transparent;
+  border: 1px solid white;
+  font-weight: 200;
+  font-size: 1.3em;
+  color: white;
+  padding: 14px 32px;
+  outline: none;
+  text-decoration: none;
+}
+
+.card-back a:hover {
+  background-color: white;
+  color: #0b0f08;
+}
+
+.carousel-container-2 {
+  background: radial-gradient(circle, #ffffff, #334e63);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  width: 60%;
+  align-items: center;
+  margin: 0 auto;
+
+  .carousel-item p2 {
+    font-family: "Garamond", Arial, sans-serif;
+    /* Replace "Montserrat" with the desired font name */
+    /* Add fallback fonts in case the primary font is not available */
   }
 
- 
- .section1 {
-    margin-bottom: 60px;
-    text-align: justify;
-
-  } 
-
-  .overview-card{
-    color: #20313e;
-    font-size: 20px;
-    width: 800px;
-  }
-  
-  .card1 {
-    position: relative;
-    height: 200px;
-    width: 100%;
-    margin: 10px 0;
-    transition: ease all 2.3s;
-    perspective: 1200px;
-  }
-  
-  .card1:hover .cover {
-    transform: rotateX(0deg) rotateY(-180deg);
-  }
-  
-  .card1:hover .cover:before {
-    transform: translateZ(30px);
-  }
-  
-  .card1:hover .cover:after {
-    background-color: black;
-  }
-  
-  .card1:hover .cover h1 {
-    transform: translateZ(100px);
-  }
-  
-  .card1:hover .cover .price {
-    transform: translateZ(60px);
-  }
-  
-  .card1:hover .cover a {
-    transform: translateZ(-60px) rotatey(-180deg);
-  }
-  
-  .cover {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    transform-style: preserve-3d;
-    transition: ease all 2.3s;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-  }
-  
-  .cover:before {
-    content: '';
-    position: absolute;
-    border: 5px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
-    z-index: 2;
-    transition: ease all 2.3s;
-    transform-style: preserve-3d;
-    transform: translateZ(0px);
-  }
-  
-  .cover:after {
-    content: '';
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    z-index: 2;
-    transition: ease all 1.3s;
-    background: rgba(0, 0, 0, 0.4);
-  }
-  
-  .cover.item-a {
-    background-image: url('https://images.unsplash.com/photo-1583829893112-58e651ff8528?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80');
-  }
-  
-  .cover.item-b {
-    background-image: url('https://images.unsplash.com/photo-1583829893112-58e651ff8528?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80');
-  }
-  
-  .cover.item-c {
-    background-image: url('https://images.unsplash.com/photo-1583829893112-58e651ff8528?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80');
-  }
-  
-  .cover h1 {
-    font-weight: 600;
-    position: absolute;
-    bottom: 55px;
-    left: 50px;
-    color: white;
-    transform-style: preserve-3d;
-    transition: ease all 2.3s;
-    z-index: 3;
-    font-size: 3em;
-    transform: translateZ(0px);
-  }
-  
-  .card-back {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background: #0b0f08;
-    transform-style: preserve-3d;
-    transition: ease all 2.3s;
-    transform: translateZ(-1px);
+  .carousel-control-prev,
+  .carousel-control-next {
+    /* Styles for the second carousel */
+    width: 3rem;
+    height: 3rem;
+    background-color: rgba(217, 228, 230, 0.5);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  
-  .card-back a {
-    transform-style: preserve-3d;
-    transition: ease transform 2.3s, ease background 0.5s;
-    transform: translateZ(-1px) rotatey(-180deg);
-    background: transparent;
-    border: 1px solid white;
-    font-weight: 200;
-    font-size: 1.3em;
-    color: white;
-    padding: 14px 32px;
-    outline: none;
-    text-decoration: none;
-  }
-  
-  .card-back a:hover {
-    background-color: white;
-    color: #0b0f08;
-  }
-  
-  
-  .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-  }
-  
-  .btn-primary:hover {
-    background-color: #0069d9;
-    border-color: #0062cc;
-  }
-  
-  
-
-  .recruiters-container {
-    display: flex;
-    overflow: hidden;
-  }
-  
-  .recruiter-logo {
-    animation: moveLeftToRight 10s linear infinite;
-    margin-right: 20px;
-  }
-  
-  @keyframes moveLeftToRight {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(100%);
-    }
-  }
-  
-  .recruiter-logo img {
-    height: 100px;
-    width: auto;
+    transition: background-color 0.3s ease;
   }
 
+  .carousel-control-prev:hover,
+  .carousel-control-next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
 
-  
-  
-  
+  .carousel-indicators {
+    bottom: -30px;
+  }
+
+  .carousel-indicators li {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    margin: 0 6px;
+    cursor: pointer;
+  }
+
+  .carousel-indicators .active {
+    background-color: #fff;
+  }
+
+  .text-warning {
+    color: #1780d1 !important;
+  }
+
+  .text-uppercase {
+    text-transform: uppercase;
+  }
+
+  .bg-dark {
+    background-color: #15424d !important;
+  }
+
+  .text-center {
+    text-align: center !important;
+  }
+
+  .mt-4 {
+    margin-top: 1.5rem !important;
+  }
+
+  .mb-0 {
+    margin-bottom: 0 !important;
+  }
+
+  .m-0 {
+    margin: 0 !important;
+  }
+
+  .pt-3 {
+    padding-top: 1rem !important;
+  }
+
+  .w-100 {
+    width: 100% !important;
+  }
+
+  .d-block {
+    display: block !important;
+  }
+
+  .font-weight-bold {
+    font-weight: bold !important;
+  }
+
+  .text-secondary {
+    color: #6c757d !important;
+  }
+
+  .fa-heart,
+  .fa-coffee {
+    font-size: 1.2rem;
+    margin-right: 5px;
+  }
+
+  .fa-heart {
+    color: #dc3545;
+  }
+
+  .fa-coffee {
+    color: #6c757d;
+  }
+}
+
+.carousel-testimonial-img {
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.carousel-testimonial-img img {
+  width: 100%;
+  height: 100%;
+}
+
+.recruiters-container {
+  display: flex;
+  overflow: hidden;
+}
+
+.recruiter-logo {
+  animation: moveLeftToRight 10s linear infinite;
+  margin-right: 20px;
+}
+
+@keyframes moveLeftToRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.recruiter-logo img {
+  height: 100px;
+  width: auto;
+}
