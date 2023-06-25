@@ -197,3 +197,18 @@ export const addProfileDetailsStudentController = async (req, res) => {
         res.status(500).json({ error: "An error occurred" });
     }
 };
+
+
+export const getallStudentsController = async (req, res) => {
+    try {
+      // Fetch all students from the database
+      const fetchedStudents = await students.find();
+  
+      // Send the students as the response
+      res.json(fetchedStudents);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "An error occurred while retrieving students." });
+    }
+  };
+  

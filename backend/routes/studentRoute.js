@@ -7,6 +7,7 @@ import {
     updateProfileStudentController,
     changePasswordStudentController,
     addProfileDetailsStudentController,
+    getallStudentsController
 } from "../controllers/studentController.js";
 
 const router = express.Router();
@@ -24,6 +25,7 @@ router.get("/StudentProfile/:id", getProfileStudentController);
 router.put("/StudentProfile/:id", updateProfileStudentController);
 // Route for changing password
 router.put("/StudentPassword/:id", changePasswordStudentController);
+router.get("/get-all-students",getallStudentsController);
 
 // Route for adding other profile details
 router.put("/StudentProfile/details/:id", addProfileDetailsStudentController);
