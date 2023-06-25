@@ -21,6 +21,7 @@ router.post("/recruiterLogin", loginRecruiterController);
 router.get("/recruiterProfile/:id", getProfileRecruiterController);
 router.put("/recruiterProfile/:id", updateProfileRecruiterController);
 router.put("/recruiterRequest/:id", updateRecruitRequest);
+// router.post("/students/:studentId/notifications",requestController)
 router.get("/getall", getAllRecruiters);
 router.post("/recruitermatch/:id", matchRequirements);
 router.get("/companies", getCompaniesWithMatchedStudents);

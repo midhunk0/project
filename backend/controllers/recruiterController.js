@@ -280,3 +280,7 @@ export const getCompanyWithMatchedStudents = async (req, res) => {
         });
     }
 };
+
+    
+    // Dummy function to simulate sending a notification
+    

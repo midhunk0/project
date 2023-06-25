@@ -5,6 +5,11 @@ const matchedSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+
+    isNotification:{
+        type:Boolean,
+        default:false
+    },
     studentIds: [
         {
             studentId: {
@@ -14,7 +19,7 @@ const matchedSchema = new mongoose.Schema({
             accepted: {
                 type: Boolean,
                 required: true,
-                default: true,
+                default: false,
             },
         },
     ],
