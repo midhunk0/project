@@ -71,7 +71,7 @@ const RecruiterLogin = () => {
                 gap="10px"
             >
                 <Typography variant="h5" marginTop="10px" marginBottom="30px">
-                    Login
+                    Recruiter Login
                 </Typography>
                 <CssTextField
                     required

@@ -79,7 +79,7 @@ const Login = () => {
                 className="card"
             >
                 <Typography variant="h5" marginTop="10px" marginBottom="30px">
-                    Login
+                    Student Login
                 </Typography>
                 <CssTextField
                     required
