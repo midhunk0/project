@@ -93,7 +93,8 @@ const AdminRecruiters = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                height: "100vh",
+                height: "100%",
+                margin: "20px",
             }}
         >
             <Box
@@ -105,7 +106,7 @@ const AdminRecruiters = () => {
                 borderRadius={8}
             >
                 <Typography variant="h4" align="center" gutterBottom>
-                    Recruiters List
+                    Requested Recruiters List
                 </Typography>
                 <TableContainer component={Paper}>
                     <Table>
