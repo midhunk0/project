@@ -184,6 +184,66 @@ const Edit = () => {
                 </Form.Group>
 
                 <Form.Group className="mt-2">
+                    <Form.Label>Blood Group</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="bloodGroup"
+                        value={profileDetails.bloodGroup}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+
+                <Form.Group className="mt-2">
+                    <Form.Label>Aadhar</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="aadhar"
+                        value={profileDetails.aadhar}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+
+                <Form.Group className="mt-2">
+                    <Form.Label>Nationality</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="nationality"
+                        value={profileDetails.nationality}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+
+                <Form.Group className="mt-2">
+                    <Form.Label>Religion</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="religion"
+                        value={profileDetails.religion}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+
+                <Form.Group className="mt-2">
+                    <Form.Label>Category</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="category"
+                        value={profileDetails.category}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+
+                <Form.Group className="mt-2">
+                    <Form.Label>Mother Tongue</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="motherTongue"
+                        value={profileDetails.motherTongue}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+
+                <Form.Group className="mt-2">
                     <Form.Label>Department</Form.Label>
                     <Form.Control
                         type="text"
