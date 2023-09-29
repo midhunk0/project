@@ -393,7 +393,7 @@ const RecruiterRegister = () => {
             </Button>
 
             <Typography variant="body1" marginTop="20px" textAlign="center">
-                Already registered? <Link to="/login">Login</Link>
+                Already registered? <Link to="/recruiter/login">Login</Link>
             </Typography>
         </Box>
     );

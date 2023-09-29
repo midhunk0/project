@@ -103,54 +103,62 @@ const Home = () => {
         </Box>
       </Box>
 
-      <Container fluid>
-        <div className="section1">
-          {isMobile ? (
-            <Typography>
-              <h4 className="main-heading" style={{ fontSize: "48px" }}>
-                Overview of Our Institution
-              </h4>
-            </Typography>
-          ) : (
-            <Typography>
-              <h2 className="main-heading" style={{ fontSize: "78px" }}>
-                Overview of Our Institution
-              </h2>
-            </Typography>
-          )}
-          <hr
-            style={{
-              border: "1px groove",
-              width: isMobile ? "50%" : "25%",
-            }}
-          />
-          <br />
-          <Card
-            className="overview-card mx-auto "
-            style={{ maxWidth: "70rem" }}
-          >
-            <Card.Body>
-              <Card.Text>
-                The College of Engineering, Trivandrum was established in 1939
-                as the first Engineering College in the then Travancore State.
-                The first classes were started on 3rd July 1939 during the reign
-                of the Travancore King, Sri Chithira Thirunal Balarama Varma,
-                and as the head of the then Travancore state, he deserves his
-                share of credit in the establishment of the college. Initially,
-                the College was housed in the former office and bungalow of the
-                Chief Engineer (present PMG Office). Maj T.H. Mathewman, a
-                Britisher, was the first Principal. Started as a constituent
-                College of Travancore University, the College had an initial
-                intake of 21 students each for Degree and Diploma courses in
-                Civil, Mechanical, and Electrical branches. With the
-                establishment of the Directorate of Technical Education in the
-                late fifties, the College administration came under the control
-                of the Government of Kerala. The College was shifted to the
-                present sprawling 125 acres in 1960.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </div>
+            <Container fluid>
+                <div className="section1">
+                    {isMobile ? (
+                        <Typography>
+                            <h4
+                                className="main-heading"
+                                style={{ fontSize: "48px" }}
+                            >
+                                Overview of Our Institution
+                            </h4>
+                        </Typography>
+                    ) : (
+                        <Typography>
+                            <h2
+                                className="main-heading"
+                                style={{ fontSize: "78px" }}
+                            >
+                                Overview of Our Institution
+                            </h2>
+                        </Typography>
+                    )}
+                    <hr
+                        style={{
+                            border: "1px groove",
+                            width: isMobile ? "50%" : "25%",
+                        }}
+                    />
+                    <br />
+                    <Card className="overview-card mx-auto">
+                        <Card.Body>
+                            <Card.Text>
+                                The College of Engineering, Trivandrum was
+                                established in 1939 as the first Engineering
+                                College in the then Travancore State. The first
+                                classes were started on 3rd July 1939 during the
+                                reign of the Travancore King, Sri Chithira
+                                Thirunal Balarama Varma, and as the head of the
+                                then Travancore state, he deserves his share of
+                                credit in the establishment of the college.
+                                Initially, the College was housed in the former
+                                office and bungalow of the Chief Engineer
+                                (present PMG Office). Maj T.H. Mathewman, a
+                                Britisher, was the first Principal. Started as a
+                                constituent College of Travancore University,
+                                the College had an initial intake of 21 students
+                                each for Degree and Diploma courses in Civil,
+                                Mechanical, and Electrical branches. With the
+                                establishment of the Directorate of Technical
+                                Education in the late fifties, the College
+                                administration came under the control of the
+                                Government of Kerala. The College was shifted to
+                                the present sprawling 125 acres in 1960.
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </div>
 
         <div className="section">
           {isMobile ? (
@@ -174,25 +182,30 @@ const Home = () => {
           />
           <br />
 
-          <Card className="overview-card mx-auto" style={{ maxWidth: "70rem" }}>
-            <Card.Body>
-              <Card.Text>
-                The Career Guidance and Placement Unit (CGPU) was started in
-                this college as a voluntary organization in January 1984. The
-                Placement Officer who is assisted by student representatives
-                from all the departments heads this unit. The Principal of the
-                institution and all other faculty members have extended their
-                wholehearted support to the functioning of the unit. The unit is
-                purely dedicated to assist the students to get placements in
-                leading companies. The unit takes immense effort to invite
-                companies for campus recruitment and to make the best
-                arrangements for the campus interviews. It is our pleasure to
-                acknowledge that the career of a few thousands of graduates of
-                this institution has been started in the campus interview.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </div>
+                    <Card className="overview-card mx-auto">
+                        <Card.Body>
+                            <Card.Text>
+                                The Career Guidance and Placement Unit (CGPU)
+                                was started in this college as a voluntary
+                                organization in January 1984. The Placement
+                                Officer who is assisted by student
+                                representatives from all the departments heads
+                                this unit. The Principal of the institution and
+                                all other faculty members have extended their
+                                wholehearted support to the functioning of the
+                                unit. The unit is purely dedicated to assist the
+                                students to get placements in leading companies.
+                                The unit takes immense effort to invite
+                                companies for campus recruitment and to make the
+                                best arrangements for the campus interviews. It
+                                is our pleasure to acknowledge that the career
+                                of a few thousands of graduates of this
+                                institution has been started in the campus
+                                interview.
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </div>
 
         <div className="section">
           {isMobile ? (

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useContext, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
@@ -128,6 +129,46 @@ const Edit = () => {
                         type="text"
                         name="phone"
                         value={profileDetails.phone}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+
+                <Form.Group className="mt-2">
+                    <Form.Label>Gender</Form.Label>
+                    <Form.Check
+                        inline
+                        type="radio"
+                        label="Male"
+                        name="radioGroup"
+                        id="radio1"
+                        onChange={handleChange}
+                    />
+
+                    <Form.Check
+                        inline
+                        type="radio"
+                        label="Female"
+                        name="radioGroup"
+                        id="radio2"
+                        onChange={handleChange}
+                    />
+
+                    <Form.Check
+                        inline
+                        type="radio"
+                        label="Others"
+                        name="radioGroup"
+                        id="radio3"
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+
+                <Form.Group className="mt-2">
+                    <Form.Label>Date of Birth</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="dob"
+                        value={profileDetails.dob}
                         onChange={handleChange}
                     />
                 </Form.Group>
