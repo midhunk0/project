@@ -252,6 +252,15 @@ const Edit = () => {
                         onChange={handleChange}
                     />
                 </Form.Group>
+                <Form.Group className="mt-2">
+                    <Form.Label>Staff Advisor</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="staffadvisor"
+                        value={profileDetails.staffadvisor}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
 
                 <Form.Group controlId="skills">
                     <Form.Label>Skills</Form.Label>

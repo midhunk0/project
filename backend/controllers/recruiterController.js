@@ -156,7 +156,7 @@ export const updateProfileRecruiterController = async (req, res) => {
 export const updateRecruitRequest = async (req, res) => {
     const recruiterID = req.params.id;
     const { action } = req.body;
-    console.log(recruiterID, action);
+    console.log(recruiterID);
 
     try {
         // Find the recruiter by ID

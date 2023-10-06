@@ -7,6 +7,7 @@ import connectDB from "./config/db.js";
 import studentRoute from "./routes/studentRoute.js";
 import recruiterRoute from "./routes/recruiterRoute.js"
 import matchedRoute from "./routes/matchedRoute.js"
+import facultyRoute from "./routes/facultyRoute.js"
 import cors from "cors";
 // Configure env
 dotenv.config();
@@ -31,6 +32,7 @@ app.get("/", (req, res) => {
 app.use("/api/students", studentRoute);
 app.use("/api/recruiters",recruiterRoute);
 app.use("/api/matched",matchedRoute);
+app.use("/api/faculty",facultyRoute)
 
 //to handle errors
 app.use((err, req, res, next) => {

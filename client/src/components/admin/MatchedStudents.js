@@ -55,7 +55,7 @@ const MatchedStudents = () => {
 
 const CompanyRow = ({ company }) => {
     const [showStudents, setShowStudents] = useState(false);
-    const [matchedStudents, setMatchedStudents] = useState([]);
+    const [MatchedStudents,setMatchedStudents]=useState([]);
     const [studid, setStudid] = useState([]);
 
     const handleViewStudents = async () => {
@@ -66,15 +66,16 @@ const CompanyRow = ({ company }) => {
             );
             const studentIds = response.data.matchedStudents[0].studentIds;
             setStudid(studentIds);
-            const students = await Promise.all(
-                studentIds.map(async (studentId) => {
-                    const studentResponse = await axios.get(
-                        `http://localhost:8080/api/recruiters/students/${studentId.studentId}`
-                    );
-                    return studentResponse.data;
-                })
-            );
-            setMatchedStudents(students);
+            // const students = await Promise.all(
+            //     studentIds.map(async (studentId) => {
+            //         const studentResponse = await axios.get(
+            //             `http://localhost:8080/api/recruiters/students/${studentId.studentId}`
+            //         );
+            //         return studentResponse.data;
+            //     })
+            // );
+            const {data}=await axios.get("http://localhost:8080/api/students/get-all-students")
+            setMatchedStudents(data)
             setShowStudents(true);
         } catch (error) {
             console.error("Failed to fetch matched students:", error);
@@ -139,7 +140,7 @@ const CompanyRow = ({ company }) => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {matchedStudents.map((student) => (
+                                    {MatchedStudents.map((student) => (
                                         <tr key={student._id}>
                                             <td>{student.username}</td>
                                             <td>{student.email}</td>
