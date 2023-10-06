@@ -257,7 +257,7 @@ const Edit = () => {
                     <Form.Control
                         type="text"
                         name="staffadvisor"
-                        value={profileDetails.staffadvisor}
+                        value={profileDetails.faculty}
                         onChange={handleChange}
                     />
                 </Form.Group>
