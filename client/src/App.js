@@ -37,6 +37,8 @@ import Achievements from "./components/RecruiterDropDown/Achievements";
 import Policy from "./components/RecruiterDropDown/policy";
 import Guide from "./components/RecruiterDropDown/guide";
 import RecruiterHome from "./components/recruiters/RecruiterHome";
+import AdminChat from "./components/admin/AdminChat";
+import RecruiterChat from "./components/recruiters/RecruiterChat";
 
 const App = () => {
     return (
@@ -59,6 +61,7 @@ const App = () => {
                     <Route path="matched" element={<Matched />}/>
                     <Route path="edit" element={<EditRecruiter />}/>
                     <Route path="placement" element={<RecruiterPlacement />} />
+                    <Route path="chat" element={<RecruiterChat/>}/>
                 </Route>
                 <Route path="/placement-training" element={<PlacementTraining />}/>
                 <Route path="/placement-rules_&_regulations" element={<PlacementRules />}/>
@@ -80,6 +83,7 @@ const App = () => {
                     <Route path="accepted" element={<AcceptedStudents />} />
                     <Route path="company" element={<Company />} />
                     <Route path="students" element={<Students />} />
+                    <Route path="chat" element={<AdminChat/>}/>
                 </Route>
             </Routes>
             <Footer />

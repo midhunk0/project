@@ -40,6 +40,7 @@ const getMenuItems = (selected, setSelected) => {
         { title: "Invitations", to: "/admin/invitations" },
         { title: "Students", to: "/admin/students" },
         { title: "Requested Company", to: "/admin/company" },
+        { title: "Chats", to:"/admin/chat"},
         { title: "Matched Students", to: "/admin/matched" },
         { title: "Accepted Students", to: "/admin/accepted" },
         { title: "Logout", to: "/" },

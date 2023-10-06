@@ -17,6 +17,8 @@
         "axios": "^1.4.0",
         "react": "^18.2.0",
         "react-bootstrap": "^2.7.4",
+        "react-chat-engine-advanced": "^0.1.28",
+        "react-chat-engine-pretty": "^0.1.8",
         "react-dom": "^18.2.0",
         "react-font": "^1.2.1",
         "react-hot-toast": "^2.4.1",
