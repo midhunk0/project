@@ -27,6 +27,11 @@ const studentSchema = new mongoose.Schema({
     dob: {
         type: String,
     },
+    faculty:{
+        type:String,
+        default:""
+        
+    },
     bloodGroup: {
         type: String
     },
@@ -73,6 +78,7 @@ const studentSchema = new mongoose.Schema({
     admittedProgram: {
         type: String,
     },
+    
     department: {
         type: String,
         // required: true,
