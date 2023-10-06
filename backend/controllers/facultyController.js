@@ -27,3 +27,26 @@ export const registerfacultyController = async (req, res, next) => {
         // res.status(500).json({ error: "An error occurred" });
     }
 };
+
+
+export const loginfacultyController = async (req, res) => {
+    try {
+        const { facultyID, password } = req.body;
+
+        // Check if the student with the provided student ID exists
+        const faculty = await Faculty.findOne({ facultyID });
+        if (!faculty) {
+            return res.status(404).json({ error: "faculty not found" });
+        }
+
+        // Check if the provided password is correct
+        if (password !== faculty.password) {
+            return res.status(401).json({ error: "Invalid password" });
+        }
+        
+        res.status(200).json({ message: "Login successful", faculty });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "An error occurred" });
+    }
+};
