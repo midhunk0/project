@@ -1,3 +1,4 @@
+// @ts-nocheck
 import jwt from "jsonwebtoken"
 import bcrypt from "bcryptjs"
 import studentModel from "../models/studentModel";
@@ -19,8 +20,6 @@ export const register = async (req, res, next) => {
         next(err)
     }
 }
-
-
 
 
 export const login = async (req, res, next) => {

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
+import { Sidebar } from "react-pro-sidebar";
 import { Box, Typography, IconButton, Menu, MenuItem } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
-import FlexBetween from "../global/FlexBetween";
-import { Sidebar } from "react-pro-sidebar";
 import { tokens } from "../../theme";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
+import FlexBetween from "../global/FlexBetween";
 
 const colors = tokens();
 const Item = ({ title, to, selected, setSelected }) => {
@@ -17,7 +17,7 @@ const Item = ({ title, to, selected, setSelected }) => {
             localStorage.clear();
             toast.success("Logged out Successfully!");
             setTimeout(() => {
-                navigate("/recruiter/login");
+                navigate("/faculty/login");
             }, 1500);
         }
     };
@@ -49,12 +49,7 @@ const Item = ({ title, to, selected, setSelected }) => {
 
 const getMenuItems = (selected, setSelected) => {
     const menuItems = [
-        { title: "Home", to: "/recruiter/home" },
-        { title: "Request to Admin", to: "/recruiter/request" },
-        { title: "Chat", to: "/recruiter/chat"},
-        { title: "Schedules", to: "/recruiter/schedules" },
-        { title: "Matched students", to: "/recruiter/matched" },
-        { title: "Edit profile", to: "/recruiter/edit" },
+        { title: "Home", to: "/faculty/home" },
         { title: "Logout" },
     ];
 
@@ -68,7 +63,8 @@ const getMenuItems = (selected, setSelected) => {
         />
     ));
 };
-const RecruiterSidebar = () => {
+
+const FacultySidebar = () => {
     const [selected, setSelected] = useState();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -82,17 +78,14 @@ const RecruiterSidebar = () => {
         setIsMenuOpen(false);
     };
     return (
-        <FlexBetween >
-            {/* logo and name */}
+        <FlexBetween>
             <Box
                 sx={{
                     display: { xs: "none", md: "flex" },
                     height: "100%",
                 }}
             >
-                {/* topbar items */}
                 <Sidebar>
-                    {/* user image and name*/}
                     <Box mb="25px">
                         <Box
                             display="flex"
@@ -119,15 +112,13 @@ const RecruiterSidebar = () => {
                                     fontSize: "2rem",
                                 }}
                             >
-                                Recruiter
+                                Faculty
                             </Typography>
                         </Box>
                     </Box>
-                    {/* menu items */}
                     <Box>{getMenuItems(selected, setSelected)}</Box>
                 </Sidebar>
             </Box>
-            {/* hamburger menu */}
             <Box
                 sx={{
                     display: { xs: "block", md: "none" },
@@ -153,6 +144,6 @@ const RecruiterSidebar = () => {
             </Box>
         </FlexBetween>
     );
-};
+}
 
-export default RecruiterSidebar;
+export default FacultySidebar;

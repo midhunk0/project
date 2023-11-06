@@ -244,6 +244,76 @@ const Edit = () => {
                 </Form.Group>
 
                 <Form.Group className="mt-2">
+                    <Form.Label>Plus Two Mark</Form.Label>
+                    <Form.Control
+                        type="number"
+                        name="plus2"
+                        value={profileDetails.plus2}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+
+                <Form.Group className="mt-2">
+                    <Form.Label>Keam Rank</Form.Label>
+                    <Form.Control
+                        type="number"
+                        name="rank"
+                        value={profileDetails.rank}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+
+                <Form.Group className="mt-2">
+                    <Form.Label>Admission Qouta</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="admissionQouta"
+                        value={profileDetails.admissionQouta}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+
+                <Form.Group className="mt-2">
+                    <Form.Label>Admission Number</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="admissionNumber"
+                        value={profileDetails.admissionNumber}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+
+                <Form.Group className="mt-2">
+                    <Form.Label>Admitted Scheme</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="admittedScheme"
+                        value={profileDetails.admittedScheme}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+
+                <Form.Group className="mt-2">
+                    <Form.Label>Admitted Program</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="admittedProgram"
+                        value={profileDetails.admittedProgram}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+
+                <Form.Group className="mt-2">
+                    <Form.Label>Admitted Type</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="admittedType"
+                        value={profileDetails.admittedType}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+
+                <Form.Group className="mt-2">
                     <Form.Label>Department</Form.Label>
                     <Form.Control
                         type="text"
@@ -299,6 +369,16 @@ const Edit = () => {
                             Add
                         </Button>
                     </div>
+                </Form.Group>
+
+                <Form.Group className="mt-2">
+                    <Form.Label>CGPA</Form.Label>
+                    <Form.Control
+                        type="number"
+                        name="cgpa"
+                        value={profileDetails.cgpa}
+                        onChange={handleChange}
+                    />
                 </Form.Group>
 
                 <Form.Group className="mt-2">

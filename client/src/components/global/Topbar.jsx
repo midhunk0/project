@@ -76,6 +76,10 @@ const Topbar = () => {
             ],
         },
         {
+            title: "Faculty",
+            to: "/faculty/login"
+        },
+        {
             title: "Recruiter",
             items: [
                 { title: "Recruiter Login", to: "/recruiter/login" },

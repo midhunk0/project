@@ -1,7 +1,8 @@
+// @ts-nocheck
 import Recruiter from "../models/recruiterModel.js";
-
 import MatchedStudents from "../models/matchedModel.js";
 import students from "../models/studentModel.js";
+import { createError } from "../utils/error.js";
 
 export const registerRecruiterController = async (req, res, next) => {
     try {

@@ -1,3 +1,4 @@
+// @ts-nocheck
 //admin access
 import students from "../models/studentModel.js";
 export const authAdminMiddleware = async (req, res, next) => {

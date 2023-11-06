@@ -14,8 +14,8 @@ export const registerfacultyController = async (req, res, next) => {
         // Create a new student instance
         const faculty = new Faculty({
             username: req.body.name,
-            password: "",
             email: "",
+            password: "",
             facultyID: req.body.facultyID,
         });
 

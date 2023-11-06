@@ -39,6 +39,10 @@ import Guide from "./components/RecruiterDropDown/guide";
 import RecruiterHome from "./components/recruiters/RecruiterHome";
 import AdminChat from "./components/admin/AdminChat";
 import RecruiterChat from "./components/recruiters/RecruiterChat";
+import Faculty from "./components/faculty";
+import FacultyLogin from "./components/faculty/Login";
+import FacultyHome from "./components/faculty/FacultyHome";
+import FacultyEdit from "./components/faculty/FacultyEdit";
 
 const App = () => {
     return (
@@ -62,6 +66,11 @@ const App = () => {
                     <Route path="edit" element={<EditRecruiter />}/>
                     <Route path="placement" element={<RecruiterPlacement />} />
                     <Route path="chat" element={<RecruiterChat/>}/>
+                </Route>
+                <Route path="faculty/login" element={<FacultyLogin/>} />
+                <Route path="faculty" element={<Faculty/>}>
+                    <Route path="home" element={<FacultyHome/>}/>
+                    <Route path="edit" element={<FacultyEdit/>} />
                 </Route>
                 <Route path="/placement-training" element={<PlacementTraining />}/>
                 <Route path="/placement-rules_&_regulations" element={<PlacementRules />}/>
