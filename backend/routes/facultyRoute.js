@@ -1,9 +1,11 @@
 import express from "express";
-import { getStudentsByFaculty, loginfacultyController, registerfacultyController } from "../controllers/facultyController.js";
+import { editFacultyProfile, getStudentsByFaculty, loginfacultyController, registerfacultyController } from "../controllers/facultyController.js";
 const router=express.Router();
 
-router.post("/facultyRegister",registerfacultyController);
-router.post("/facultyLogin",loginfacultyController);
-router.get("/facultystudent",getStudentsByFaculty);
+router.post("/facultyRegister", registerfacultyController);
+router.post("/facultyLogin", loginfacultyController);
+router.get("/facultystudent", getStudentsByFaculty);
+router.get("/facultyProfile:id", editFacultyProfile);
+router.put("/facultyEdit/:id", editFacultyProfile);
 
 export default router;

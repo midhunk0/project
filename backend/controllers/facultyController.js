@@ -59,7 +59,7 @@ export const loginfacultyController = async (req, res) => {
 
 // Your controller function
 export const getStudentsByFaculty = async (req, res) => {
-  const { faculty } = req.body; // Assuming facultyName is in the URL parameters
+  const faculty = req.query.faculty; // Assuming facultyName is in the URL parameters
 
   try {
     // Query the database to find students with the specified faculty name
@@ -76,4 +76,47 @@ export const getStudentsByFaculty = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
+}
+
+export const getFacultyProfile = async (req, res) => {
+    try{
+        const facultyID = req.params.id;
+        const faculty = await Faculty.findById(facultyID);
+        if(!faculty){
+            return res.status(404).json({
+                error: "Faculty not found"
+            })
+        }
+        res.status(200).json(faculty);
+    }
+    catch(error){
+        res.status(500).json({
+            error: "an error occured"
+        })
+    }
+}
+
+export const editFacultyProfile = async (req, res) => {
+    try{
+        const facultyID = req.params.id;
+        const {
+            username,
+            email, 
+            password
+        } = req.body;
+        await Faculty.findByIdAndUpdate(facultyID, {
+            username: username,
+            email: email,
+            password: password
+        })
+        res.status(200).json({
+            message: "Profile updated successfully"
+        })
+    }
+    catch(error){
+        res.status(500).json({
+            error: "An error occured while updating profile"
+        })
+    }
+
 }

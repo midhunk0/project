@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useEffect } from "react";
 import {
     Box,
@@ -67,7 +68,7 @@ const RecruiterRegister = () => {
             // Reset the form
         } catch (err) {
             console.log(err.response);
-            toast.error("Registration failed!");
+            toast.error("Updation failed!");
         }
     };
 

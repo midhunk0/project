@@ -1,13 +1,11 @@
 // @ts-nocheck
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
-import { AuthContext } from "../../contexts/AuthContext";
 import { Box } from "@mui/material";
 import toast, { Toaster } from "react-hot-toast";
 
 const Edit = () => {
-    // const { user } = useContext(AuthContext);
 
     const userdata = JSON.parse(localStorage.getItem("user"));
     const [profileDetails, setProfileDetails] = useState(userdata);

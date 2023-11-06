@@ -38,7 +38,7 @@ const Login = () => {
                 "http://localhost:8080/api/faculty/facultyLogin",
                 credentials
             );
-            dispatch({ type: "LOGIN_SUCCESS", payload: res.data.student });
+            dispatch({ type: "LOGIN_SUCCESS", payload: res.data.faculty });
 
                     navigate("/faculty/home");
         } catch (err) {
