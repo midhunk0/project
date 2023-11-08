@@ -19,6 +19,7 @@ import Resume from "./components/students/Resume";
 import StudentPlacement from "./components/students/Placement";
 import RecruiterLogin from "./components/recruiters/Login";
 import Request from "./components/recruiters/Request";
+import Jointform from "./components/recruiters/Jointform";
 import StudentLogin from "./components/students/Login";
 import RecruiterRegister from "./components/recruiters/Register";
 import Admin from "./components/admin";
@@ -62,6 +63,7 @@ const App = () => {
                     <Route path="home" element={<RecruiterHome/>}/>
                     <Route path="request" element={<Request />} />
                     <Route path="schedules" element={<Schedules />} />
+                    <Route path="form" element={<Jointform />} />
                     <Route path="matched" element={<Matched />}/>
                     <Route path="edit" element={<EditRecruiter />}/>
                     <Route path="placement" element={<RecruiterPlacement />} />

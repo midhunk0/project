@@ -23,6 +23,7 @@ const RecruiterRegister = () => {
     const [formData, setFormData] = useState({
         companyName: "",
         natureOfBusiness: "",
+        category: "",
         homePage: "",
         contactPerson: "",
         designation: "",
@@ -79,6 +80,14 @@ const RecruiterRegister = () => {
         });
     };
 
+    // const [selectedCategory, setSelectedCategory] = useState('');
+
+    // const categoryOptions = ['Private', 'General', 'NGO', 'PSV'];
+
+    // const handleCategoryChange = (e) => {
+    //     setSelectedCategory(e.target.value);
+    // };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -91,6 +100,7 @@ const RecruiterRegister = () => {
             setFormData({
                 companyName: "",
                 natureOfBusiness: "",
+                category: "",
                 homePage: "",
                 contactPerson: "",
                 designation: "",
@@ -163,6 +173,82 @@ const RecruiterRegister = () => {
         </Box>
     );
 
+    const renderTable = () => (
+        <Box marginTop="30px">
+
+
+<style>
+                {`
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 20px;
+                }
+                
+                th, td {
+                    border: 1px solid #ddd;
+                    padding: 8px;
+                    text-align: left;
+                }
+                
+                th {
+                    background-color: #f2f2f2;
+                }
+                
+                /* Style for the checkbox in the table */
+                table input[type="checkbox"] {
+                    width: 20px;
+                    height: 20px;
+                    cursor: pointer;
+                }
+                
+                /* Style for the checked checkbox */
+                table input[type="checkbox"]:checked {
+                    background-color: #4caf50;
+                    border: 1px solid #4caf50;
+                    color: white;
+                }
+                
+                /* Style for the disabled checkbox (No status) */
+                table input[type="checkbox"]:disabled {
+                    background-color: #ddd;
+                    cursor: not-allowed;
+                }
+                `}
+            </style>
+
+
+            
+            <Typography variant="h6" marginBottom="20px">
+                Recruitment Status Table
+            </Typography>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sl No</th>
+                        <th>Dept</th>
+                        <th>Programme</th>
+                        <th>Code</th>
+                        <th>Yes/No</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {/* Replace the sample data with your actual data */}
+                    <tr>
+                        <td>1</td>
+                        <td>Applied Electronics</td>
+                        <td>B.Tech</td>
+                        <td>AE</td>
+                        <td>
+                            <Checkbox onChange={handleCheckboxChange} />
+                        </td>
+                    </tr>
+                    {/* Add more rows as needed */}
+                </tbody>
+            </table>
+        </Box>
+    )
+
     const renderCheckboxes = (name, label, options) => (
         <Box>
             <Typography variant="h6" marginBottom="20px">
@@ -220,6 +306,8 @@ const RecruiterRegister = () => {
                     "natureOfBusiness",
                     "Nature of Business (IT, R&D, etc)"
                 )}
+
+                {renderTextField("category", "Category ( private, gen, NGO, PSV )")}
                 {renderTextField("homePage", "Home Page")}
             </Box>
 
@@ -396,6 +484,8 @@ const RecruiterRegister = () => {
             <Typography variant="body1" marginTop="20px" textAlign="center">
                 Already registered? <Link to="/recruiter/login">Login</Link>
             </Typography>
+
+            {renderTable()}
         </Box>
     );
 };

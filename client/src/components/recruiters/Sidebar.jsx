@@ -52,6 +52,7 @@ const getMenuItems = (selected, setSelected) => {
         { title: "Home", to: "/recruiter/home" },
         { title: "Request to Admin", to: "/recruiter/request" },
         { title: "Chat", to: "/recruiter/chat"},
+        { title: "JAF", to: "/recruiter/form"},
         { title: "Schedules", to: "/recruiter/schedules" },
         { title: "Matched students", to: "/recruiter/matched" },
         { title: "Edit profile", to: "/recruiter/edit" },
