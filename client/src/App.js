@@ -46,62 +46,7 @@ import FacultyHome from "./components/faculty/FacultyHome";
 import FacultyEdit from "./components/faculty/FacultyEdit";
 
 const App = () => {
-<<<<<<< HEAD
-    return (
-        <Router basename="">
-            <Topbar/>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="alumni" element={<Alumni />} />
-                <Route path="contact" element={<Contact />} />
-                <Route path="/why_recruit?" element={<WhyRecruit />} />
-                <Route path="/Achievements" element={<Achievements />} />
-                <Route path="/recruiter_policy" element={<Policy/>} />
-                <Route path="/recruiter-guide" element={<Guide />} />
-                <Route path="recruiter/login" element={<RecruiterLogin />} />
-                <Route path="recruiter/register" element={<RecruiterRegister />}/>
-                <Route path="recruiter" element={<Recruiter />}>
-                    <Route path="home" element={<RecruiterHome/>}/>
-                    <Route path="request" element={<Request />} />
-                    <Route path="schedules" element={<Schedules />} />
-                    <Route path="form" element={<Jointform />} />
-                    <Route path="matched" element={<Matched />}/>
-                    <Route path="edit" element={<EditRecruiter />}/>
-                    <Route path="placement" element={<RecruiterPlacement />} />
-                    <Route path="chat" element={<RecruiterChat/>}/>
-                </Route>
-                <Route path="faculty/login" element={<FacultyLogin/>} />
-                <Route path="faculty" element={<Faculty/>}>
-                    <Route path="home" element={<FacultyHome/>}/>
-                    <Route path="edit" element={<FacultyEdit/>} />
-                </Route>
-                <Route path="/placement-training" element={<PlacementTraining />}/>
-                <Route path="/placement-rules_&_regulations" element={<PlacementRules />}/>
-                <Route path="/internships" element={<Internships />} />
-                <Route path="/placement-experience" element={<PlacementExperience />}/>
-                <Route path="student/login" element={<StudentLogin />} />
-                <Route path="student" element={<Student />}>
-                    <Route path="home" element={<StudentHome />} />
-                    <Route path="edit" element={<Edit />} />
-                    <Route path="notification" element={<Notification />} />
-                    <Route path="placement" element={<StudentPlacement />} />
-                    <Route path="resume" element={<Resume />} />
-                </Route>
-                <Route path="admin" element={<Admin />}>
-                    <Route path="dashboard" element={<AdminDashboard />} />
-                    <Route path="invitations" element={<Invitations />} />
-                    <Route path="students" element={<Students />} />
-                    <Route path="matched" element={<MatchedStudents />} />
-                    <Route path="accepted" element={<AcceptedStudents />} />
-                    <Route path="company" element={<Company />} />
-                    <Route path="students" element={<Students />} />
-                    <Route path="chat" element={<AdminChat/>}/>
-                </Route>
-            </Routes>
-            <Footer />
-        </Router>
-    );
-=======
+
   return (
     <Router basename="">
       <Topbar />
@@ -158,7 +103,7 @@ const App = () => {
       <Footer />
     </Router>
   );
->>>>>>> 017fd22c49e4996642ebd15f32a1ba4e5aa49f92
+
 };
 
 export default App;
