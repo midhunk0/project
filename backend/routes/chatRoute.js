@@ -1,9 +1,15 @@
-import React from 'react'
+import express from "express";
+const router=express.Router();
+const chatModel = require("../models/chatModel");
 
-const chatRoute = () => {
-  return (
-    <div>chatRoute</div>
-  )
-}
+//new chat
+router.post("/",(req,res) => {
+    const newChat = new chatModel({
+        members: [req.body.senderId,req.body.recieverId],
+    })
+})
 
-export default chatRoute
+//get chat of a user
+
+
+export default router;
