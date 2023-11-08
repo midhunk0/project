@@ -32,7 +32,8 @@ app.get("/", (req, res) => {
 app.use("/api/students", studentRoute);
 app.use("/api/recruiters",recruiterRoute);
 app.use("/api/matched",matchedRoute);
-app.use("/api/faculty",facultyRoute)
+app.use("/api/faculty",facultyRoute);
+
 
 //to handle errors
 app.use((err, req, res, next) => {
