@@ -46,7 +46,7 @@ import FacultyHome from "./components/faculty/FacultyHome";
 import FacultyEdit from "./components/faculty/FacultyEdit";
 
 const App = () => {
-<<<<<<< HEAD
+
     return (
         <Router basename="">
             <Topbar/>
@@ -95,13 +95,13 @@ const App = () => {
                     <Route path="accepted" element={<AcceptedStudents />} />
                     <Route path="company" element={<Company />} />
                     <Route path="students" element={<Students />} />
-                    <Route path="chat" element={<AdminChat/>}/>
+                    <Route path="chat" element={<AdminMessenger/>}/>
                 </Route>
             </Routes>
             <Footer />
         </Router>
     );
-=======
+
   return (
     <Router basename="">
       <Topbar />
@@ -158,7 +158,7 @@ const App = () => {
       <Footer />
     </Router>
   );
->>>>>>> 017fd22c49e4996642ebd15f32a1ba4e5aa49f92
+
 };
 
 export default App;
