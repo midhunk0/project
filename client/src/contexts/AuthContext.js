@@ -1,11 +1,21 @@
 // @ts-nocheck
 import React, { createContext, useEffect, useReducer } from "react";
 
-const INITIAL_STATE = {
-  user: JSON.parse(localStorage.getItem("user")) || null,
-  loading: false,
-  error: null
-};
+const loadUserFromLocalStorage = () => {
+    try {
+      const storedUser = localStorage.getItem("user");
+      return storedUser ? JSON.parse(storedUser) : null;
+    } catch (error) {
+      console.error("Error parsing user data from localStorage:", error);
+      return null;
+    }
+  };
+  
+  const INITIAL_STATE = {
+    user: loadUserFromLocalStorage(),
+    loading: false,
+    error: null
+  };
 
 export const AuthContext = createContext(INITIAL_STATE);
 
@@ -45,8 +55,18 @@ export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
   
   useEffect(() => {
+    // Check if the user data in local storage is valid
+    const storedUser = loadUserFromLocalStorage();
+    if (storedUser !== null) {
+      dispatch({ type: "LOGIN_SUCCESS", payload: storedUser });
+    }
+  }, []);
+  
+
+  useEffect(() => {
+    // Update local storage when user changes
     localStorage.setItem("user", JSON.stringify(state.user));
-  }, [state.user]);
+  }, [state.user])
 
   return (
     <AuthContext.Provider

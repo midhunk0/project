@@ -44,65 +44,73 @@ import Faculty from "./components/faculty";
 import FacultyLogin from "./components/faculty/Login";
 import FacultyHome from "./components/faculty/FacultyHome";
 import FacultyEdit from "./components/faculty/FacultyEdit";
+import StudentRep from "./components/studentRep";
+import StudentRepLogin from "./components/studentRep/Login";
+import StudentRepHome from "./components/studentRep/Home";
+import StudentRepEdit from "./components/studentRep/Edit";
 
 const App = () => {
 
-  return (
-    <Router basename="">
-      <Topbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="alumni" element={<Alumni />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="/why_recruit?" element={<WhyRecruit />} />
-        <Route path="/Achievements" element={<Achievements />} />
-        <Route path="/recruiter_policy" element={<Policy />} />
-        <Route path="/recruiter-guide" element={<Guide />} />
-        <Route path="recruiter/login" element={<RecruiterLogin />} />
-        <Route path="recruiter/register" element={<RecruiterRegister />} />
-        <Route path="recruiter" element={<Recruiter />}>
-          <Route path="home" element={<RecruiterHome />} />
-          <Route path="request" element={<Request />} />
-          <Route path="schedules" element={<Schedules />} />
-          <Route path="matched" element={<Matched />} />
-          <Route path="edit" element={<EditRecruiter />} />
-          <Route path="placement" element={<RecruiterPlacement />} />
-          <Route path="chat" element={<RecruiterChat />} />
-        </Route>
-        <Route path="faculty/login" element={<FacultyLogin />} />
-        <Route path="faculty" element={<Faculty />}>
-          <Route path="home" element={<FacultyHome />} />
-          <Route path="edit" element={<FacultyEdit />} />
-        </Route>
-        <Route path="/placement-training" element={<PlacementTraining />} />
-        <Route
-          path="/placement-rules_&_regulations"
-          element={<PlacementRules />}
-        />
-        <Route path="/internships" element={<Internships />} />
-        <Route path="/placement-experience" element={<PlacementExperience />} />
-        <Route path="student/login" element={<StudentLogin />} />
-        <Route path="student" element={<Student />}>
-          <Route path="home" element={<StudentHome />} />
-          <Route path="edit" element={<Edit />} />
-          <Route path="notification" element={<Notification />} />
-          <Route path="placement" element={<StudentPlacement />} />
-          <Route path="resume" element={<Resume />} />
-        </Route>
-        <Route path="admin" element={<Admin />}>
-          <Route path="dashboard" element={<AdminDashboard />} />
-          <Route path="invitations" element={<Invitations />} />
-          <Route path="students" element={<Students />} />
-          <Route path="matched" element={<MatchedStudents />} />
-          <Route path="accepted" element={<AcceptedStudents />} />
-          <Route path="company" element={<Company />} />
-          <Route path="students" element={<Students />} />
-          <Route path="chat" element={<AdminMessenger />} />
-        </Route>
-      </Routes>
-      <Footer />
-    </Router>
-  );
+    return (
+        <Router basename="">
+            <Topbar />
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="alumni" element={<Alumni />} />
+                <Route path="contact" element={<Contact />} />
+                <Route path="/why_recruit?" element={<WhyRecruit />} />
+                <Route path="/Achievements" element={<Achievements />} />
+                <Route path="/recruiter_policy" element={<Policy />} />
+                <Route path="/recruiter-guide" element={<Guide />} />
+                <Route path="recruiter/login" element={<RecruiterLogin />} />
+                <Route path="recruiter/register" element={<RecruiterRegister />} />
+                <Route path="recruiter" element={<Recruiter />}>
+                    <Route path="home" element={<RecruiterHome />} />
+                    <Route path="request" element={<Request />} />
+                    <Route path="schedules" element={<Schedules />} />
+                    <Route path="matched" element={<Matched />} />
+                    <Route path="edit" element={<EditRecruiter />} />
+                    <Route path="placement" element={<RecruiterPlacement />} />
+                    <Route path="chat" element={<RecruiterChat />} />
+                </Route>
+                <Route path="faculty/login" element={<FacultyLogin />} />
+                    <Route path="faculty" element={<Faculty />}>
+                    <Route path="home" element={<FacultyHome />} />
+                    <Route path="edit" element={<FacultyEdit />} />
+                </Route>
+                <Route path="/placement-training" element={<PlacementTraining />} />
+                <Route path="/placement-rules_&_regulations" element={<PlacementRules />} />
+                <Route path="/internships" element={<Internships />} />
+                <Route path="/placement-experience" element={<PlacementExperience />} />
+                <Route path="student/login" element={<StudentLogin />} />
+                <Route path="student" element={<Student />}>
+                    <Route path="home" element={<StudentHome />} />
+                    <Route path="edit" element={<Edit />} />
+                    <Route path="notification" element={<Notification />} />
+                    <Route path="placement" element={<StudentPlacement />} />
+                    <Route path="resume" element={<Resume />} />
+                </Route>
+
+                <Route path="studentRep/login" element={<StudentRepLogin />} />
+                <Route path="studentRep" element={<StudentRep />}>
+                    <Route path="home" element={<StudentRepHome />} />
+                    <Route path="edit" element={<StudentRepEdit />} />
+                </Route>
+
+                <Route path="admin" element={<Admin />}>
+                    <Route path="dashboard" element={<AdminDashboard />} />
+                    <Route path="invitations" element={<Invitations />} />
+                    <Route path="students" element={<Students />} />
+                    <Route path="matched" element={<MatchedStudents />} />
+                    <Route path="accepted" element={<AcceptedStudents />} />
+                    <Route path="company" element={<Company />} />
+                    <Route path="students" element={<Students />} />
+                    <Route path="chat" element={<AdminMessenger />} />
+                </Route>
+            </Routes>
+            <Footer />
+        </Router>
+    );
 
 };
 

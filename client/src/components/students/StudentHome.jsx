@@ -4,18 +4,14 @@ import "./studentHome.css";
 import {
     Box,
     Button,
-    TextField,
     Typography,
-    styled,
     Snackbar,
 } from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import useFetch from "../../hooks/useFetch";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import CssTextField from "../global/CssTextField";
-import { faBullseye } from "@fortawesome/free-solid-svg-icons";
 
 const StudentHome = () => {
     const [password, setPassword] = useState("");
@@ -61,7 +57,7 @@ const StudentHome = () => {
     };
 
     const handleCloseSnackbar = () => {
-        setSnackbarOpen(true);
+        setSnackbarOpen(false);
     };
 
     return (

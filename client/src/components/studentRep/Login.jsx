@@ -1,54 +1,49 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Button, Typography } from "@mui/material";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { tokens } from "../../theme";
 import CssTextField from "../global/CssTextField";
 import toast, { Toaster } from "react-hot-toast";
 
 const colors = tokens();
-
-const RecruiterLogin = () => {
-
-
+const Login = () => {
     const containerStyle = {
         background: "url(../../../assets/loginBg.jpeg)",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
     };
+
     const [credentials, setCredentials] = useState({
-        email: "",
+        repCollegeId: "",
         password: "",
     });
-
     const navigate = useNavigate();
+
     const { user, loading, error, dispatch } = useContext(AuthContext);
 
     const handleChange = (e) => {
         setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
     };
 
-    const handleLogin = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         dispatch({ type: "LOGIN_START" });
 
         try {
             const res = await axios.post(
-                "http://localhost:8080/api/recruiters/recruiterLogin",
+                "http://localhost:8080/api/studentRep/studentRepLogin",
                 credentials
             );
-            dispatch({ type: "LOGIN_SUCCESS", payload: res.data.recruiter });
-            toast.success("Recruiter Logged in Successfully!");
-            setTimeout(() => {
-                navigate("/recruiter/home");
-            }, 1000);
+            dispatch({ type: "LOGIN_SUCCESS", payload: res.data.studentRep});
 
-            console.log(user)
+                    navigate("/studentRep/home");
         } catch (err) {
             console.log(err.response);
-            toast.error("Invalid Credentials!");
+            toast.error("Incorrect credentials!"); // Log the error response for troubleshooting
         }
     };
 
@@ -59,7 +54,6 @@ const RecruiterLogin = () => {
             display="flex"
             alignItems="center"
             justifyContent="center"
-            bgcolor="whitesmoke"
             style={containerStyle}
         >
             <Box
@@ -70,22 +64,23 @@ const RecruiterLogin = () => {
                 alignItems="center"
                 flexDirection="column"
                 gap="10px"
+                className="card"
             >
                 <Typography variant="h5" marginTop="10px" marginBottom="30px">
-                    Recruiter Login
+                    Student Rep Login
                 </Typography>
                 <CssTextField
                     required
-                    id="email"
+                    id="repCollegeId"
                     onChange={handleChange}
-                    label="Enter your email"
+                    label="Enter your collegeID"
                 />
                 <CssTextField
                     required
                     id="password"
+                    type="password"
                     onChange={handleChange}
                     label="Password"
-                    type="password"
                 />
                 <Button
                     variant="contained"
@@ -93,23 +88,14 @@ const RecruiterLogin = () => {
                         background: colors.gray[100],
                         "&:hover": { background: colors.gray[100] },
                     }}
-                    onClick={handleLogin}
+                    onClick={handleSubmit}
                 >
                     Sign In
                 </Button>
-                <Typography variant="h6">
-                    Don't have an account?{" "}
-                    <Link
-                        to="/recruiter/register"
-                        style={{ textDecoration: "none" }}
-                    >
-                        Register
-                    </Link>
-                </Typography>
             </Box>
-            <Toaster position="bottom-center" />
+            <Toaster position="bottom-center" /> {/* Add the toast container */}
         </Box>
     );
 };
 
-export default RecruiterLogin;
+export default Login;

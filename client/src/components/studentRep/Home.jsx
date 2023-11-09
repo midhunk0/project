@@ -6,15 +6,17 @@ import axios from "axios";
 
 const FacultyHome = () => {
     const { user } = useContext(AuthContext);
-    const facName = user.username;
-    const [students, setStudents] = useState([]);
+    const repId = user._id;
+    console.log(repId)
+    const [studentsByRep, setStudentsByRep] = useState([]);
 
     const fetchData = async () => {
         try {
             const response = await axios.get(
-                `http://localhost:8080/api/faculty/facultystudent/?faculty=${facName}`
+                `http://localhost:8080/api/studentRep/studentRepStudents?studentRep=${repId}`
             );
-            setStudents(response.data.student); // Assuming response.data.student is an array of students
+            console.log(response);
+            setStudentsByRep(response.data.students); // Assuming response.data.student is an array of students
         } catch (error) {
             console.error(error);
         }
@@ -35,12 +37,19 @@ const FacultyHome = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {students.map((student) => (
+                {studentsByRep && studentsByRep.length > 0 ? (
+                    studentsByRep.map((student) => (
                         <tr key={student._id}>
                             <td style={{ border: '1px solid #dddddd', padding: '8px' }}>{student.username}</td>
                             <td style={{ border: '1px solid #dddddd', padding: '8px' }}>{student.studentCollegeID}</td>
                         </tr>
-                    ))}
+                    ))
+                ) : (
+                    <tr>
+                        <td colSpan="2" style={{ textAlign: 'center' }}>No students found</td>
+                    </tr>
+                )}
+
                 </tbody>
             </table>
         </div>
