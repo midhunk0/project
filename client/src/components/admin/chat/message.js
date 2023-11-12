@@ -1,28 +1,42 @@
-import "./message.css";
+import React, { useEffect, useState } from "react";
+import "./Message.css";
 
-const message = ({own}) => {
+const Message = ({ message, own }) => {
+  const [timeAgo, setTimeAgo] = useState(null);
+
+  useEffect(() => {
+    const calculateTimeAgo = (timestamp) => {
+      const currentTime = new Date();
+      const messageTime = new Date(timestamp);
+      const timeDifference = currentTime - messageTime;
+      const hoursAgo = Math.floor(timeDifference / (1000 * 60 * 60));
+      return hoursAgo === 1 ? "1 hour ago" : `${hoursAgo} hours ago`;
+    };
+
+    setTimeAgo(calculateTimeAgo(message.createdAt));
+
+    // Update the time every minute to keep it accurate
+    const interval = setInterval(() => {
+      setTimeAgo(calculateTimeAgo(message.createdAt));
+    }, 60000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(interval);
+  }, [message.createdAt]);
+
   return (
     <div className={own ? "message own" : "message"}>
       <div className="messageTop">
         <img
           className="messageImg"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUQIlzA34k6wJFdlStpzdI-IM3YYvUduKgx-teD160EpEGUrZZGTB6g8BGngoNtf1qbLE&usqp=CAU"
+          src="https://static.vecteezy.com/system/resources/thumbnails/010/260/479/small/default-avatar-profile-icon-of-social-media-user-in-clipart-style-vector.jpg"
           alt=""
         />
-        <p className="messageText">
-          Lorem ipsum dolor sit amet. Aut culpa repellat aut sint facere aut
-          galisum facere ea provident repellat et perspiciatis provident. Non
-          dolores optio qui ipsam atque ab voluptatem internos et velit
-          consequuntur et magni nulla. Et laboriosam tempora est pariatur animi
-          id odio quasi qui quibusdam dignissimos vel quibusdam impedit qui fuga
-          quidem. Eos veritatis commodi ut officiis soluta et galisum sapiente
-          eum quibusdam nisi.
-        </p>
-        
+        <p className="messageText">{message.text}</p>
       </div>
-      <div className="messageBottom">1 hour ago</div>
+      <div className="messageBottom">{timeAgo}</div>
     </div>
   );
 };
 
-export default message;
+export default Message;

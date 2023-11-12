@@ -13,7 +13,8 @@ import {
     getCompanyWithMatchedStudents,
     getStudentById,
     postNotificationController,
-    getNotificationController
+    getNotificationController,
+    getRecruiterById
 } from "../controllers/recruiterController.js";
 
 const router = express.Router();
@@ -25,10 +26,11 @@ router.put("/recruiterProfile/:id", updateProfileRecruiterController);
 router.put("/recruiterRequest/:id", updateRecruitRequest);
 // router.post("/students/:studentId/notifications",requestController)
 router.get("/getall", getAllRecruiters);
+router.get("/getRecruiterById/:id",getRecruiterById);
 router.post("/recruitermatch/:id", matchRequirements);
 router.get("/companies", getCompaniesWithMatchedStudents);
 router.get("/companies/:id", getCompanyWithMatchedStudents);
-router.get("/students/:id", getStudentById);
+router.get("/students/:id", getStudentById); 
 router.put("/recruiterPassword/:id", changePasswordStudentController);
 router.post("/notifications", postNotificationController);
 // Route for fetching notifications
