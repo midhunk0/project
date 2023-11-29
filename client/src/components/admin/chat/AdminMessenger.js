@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import "./AdminMessenger.css";
 import Conversation from "./Conversation";
-import Message from "./Message";
+import Message from "./Message.js";
 import { AuthContext } from "../../../contexts/AuthContext";
 import axios from "axios";
-import {io} from 'socket.io-client'
+import { io } from "socket.io-client";
 
 const AdminMessenger = () => {
   const [conversations, setConversations] = useState([]);
@@ -12,14 +12,13 @@ const AdminMessenger = () => {
   const [messages, setMessages] = useState([]);
   const [newmessage, setNewMessage] = useState("");
   const scrollRef = useRef();
-  const [socket,setSocket] = useState(null);
+  const [socket, setSocket] = useState(null);
 
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    setSocket(io("ws://localhost:8900"))
-  },[])
-
+    setSocket(io("ws://localhost:8900"));
+  }, []);
 
   useEffect(() => {
     const getConversations = async () => {
@@ -28,7 +27,6 @@ const AdminMessenger = () => {
           `http://localhost:8080/api/students/conversations/${user._id}`
         );
         setConversations(res.data);
-        console.log(res.data);
       } catch (err) {
         console.log(err);
       }
@@ -71,8 +69,12 @@ const AdminMessenger = () => {
   };
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({behavior:"smooth"});
-  },[messages])
+    scrollRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+      inline: "nearest",
+    });
+  }, [messages]);
 
   return (
     <>

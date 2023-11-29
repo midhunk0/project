@@ -51,7 +51,7 @@ const getMenuItems = (selected, setSelected) => {
     const menuItems = [
         { title: "Home", to: "/recruiter/home" },
         { title: "Request to Admin", to: "/recruiter/request" },
-        { title: "Chat", to: "/recruiter/chat"},
+        { title: "Chat with Admin", to: "/recruiter/chat"},
         { title: "JAF", to: "/recruiter/form"},
         { title: "Schedules", to: "/recruiter/schedules" },
         { title: "Matched students", to: "/recruiter/matched" },

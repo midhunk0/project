@@ -1,0 +1,38 @@
+.recruiterMessage{
+  display:flex;
+ flex-direction: column;
+ margin-top: 20px;
+}
+
+.recruiterMessageTop{
+  display: flex;
+}
+
+.recruiterMessageText {
+padding: 10px;
+border-radius: 20px;
+background-color: #1877f2;
+color: white;
+max-width: 300px;
+}
+
+.recruiterMessageBottom {
+font-size: 12px;
+}
+
+.recruiterMessageImg {
+border-radius: 50%;
+width: 50px;
+height: 50px;
+margin-right: 20px;
+object-fit: cover;
+}
+
+.recruiterMessage.own{
+  align-items: flex-end;
+}
+
+.recruiterMessage.own .recruiterMessageText{
+  background-color: lightgray;
+  color: black;
+}
