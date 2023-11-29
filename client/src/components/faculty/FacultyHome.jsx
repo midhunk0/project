@@ -32,6 +32,7 @@ const FacultyHome = () => {
                     <tr>
                         <th style={{ border: '1px solid #dddddd', padding: '8px', backgroundColor: '#f2f2f2' }}>Student Name</th>
                         <th style={{ border: '1px solid #dddddd', padding: '8px', backgroundColor: '#f2f2f2' }}>Student ID</th>
+                        <th style={{ border: '1px solid #dddddd', padding: '8px', backgroundColor: '#f2f2f2' }}>View Full Profile</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +40,9 @@ const FacultyHome = () => {
                         <tr key={student._id}>
                             <td style={{ border: '1px solid #dddddd', padding: '8px' }}>{student.username}</td>
                             <td style={{ border: '1px solid #dddddd', padding: '8px' }}>{student.studentCollegeID}</td>
+                            <td style={{ border: '1px solid #dddddd', padding: '8px' }}>
+            <button >Check</button>
+        </td>
                         </tr>
                     ))}
                 </tbody>

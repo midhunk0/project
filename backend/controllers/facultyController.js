@@ -5,7 +5,7 @@ export const registerfacultyController = async (req, res, next) => {
     try {
         const { facultyID, name } = req.body;
         console.log(facultyID, name);
-        // Check if the student with the provided student ID already exists
+        // Check if the FACULTY with the provided student ID already exists
         const existingfaculty = await Faculty.findOne({ facultyID });
         if (existingfaculty) {
             return res.status(409).json({ error: "faculty already exists" });
