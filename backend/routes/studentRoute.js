@@ -9,6 +9,7 @@ import {
     addProfileDetailsStudentController,
     getallStudentsController
 } from "../controllers/studentController.js";
+import { conversationController } from "../controllers/conversationController.js";
 
 const router = express.Router();
 
@@ -29,5 +30,8 @@ router.get("/get-all-students",getallStudentsController);
 
 // Route for adding other profile details
 router.put("/StudentProfile/details/:id", addProfileDetailsStudentController);
+
+//router for admin conversations
+router.post("/conversation",conversationController);
 
 export default router;
