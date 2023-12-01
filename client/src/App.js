@@ -38,6 +38,7 @@ import Achievements from "./components/RecruiterDropDown/Achievements";
 import Policy from "./components/RecruiterDropDown/policy";
 import Guide from "./components/RecruiterDropDown/guide";
 import RecruiterHome from "./components/recruiters/RecruiterHome";
+import Jointform from "./components/recruiters/Jointform";
 import AdminMessenger from "./components/admin/chat/AdminMessenger";
 import RecruiterMessenger from "./components/recruiters/chat/RecruiterMessenger";
 import Faculty from "./components/faculty";
@@ -74,6 +75,7 @@ const App = () => {
           <Route path="edit" element={<EditRecruiter />} />
           <Route path="placement" element={<RecruiterPlacement />} />
           <Route path="chat" element={<RecruiterMessenger />} />
+          <Route path="form" element={<Jointform />} />
         </Route>
         <Route path="faculty/login" element={<FacultyLogin />} />
         <Route path="faculty" element={<Faculty />}>

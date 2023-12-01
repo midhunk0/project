@@ -9,6 +9,7 @@ import recruiterRoute from "./routes/recruiterRoute.js"
 import matchedRoute from "./routes/matchedRoute.js"
 import facultyRoute from "./routes/facultyRoute.js"
 import studentRepRoute from "./routes/studentRepRoute.js"
+import jafRoute from "./routes/jafRoute.js";
 import cors from "cors";
 // Configure env
 dotenv.config();
@@ -31,10 +32,11 @@ app.get("/", (req, res) => {
     });
 });
 app.use("/api/students", studentRoute);
-app.use("/api/recruiters",recruiterRoute);
-app.use("/api/matched",matchedRoute);
-app.use("/api/faculty",facultyRoute);
+app.use("/api/recruiters", recruiterRoute);
+app.use("/api/matched", matchedRoute);
+app.use("/api/faculty", facultyRoute);
 app.use("/api/studentRep", studentRepRoute);
+app.use("/api/jaf", jafRoute);
 
 //to handle errors
 app.use((err, req, res, next) => {
