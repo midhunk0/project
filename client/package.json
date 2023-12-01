@@ -22,6 +22,7 @@
         "react-dom": "^18.2.0",
         "react-font": "^1.2.1",
         "react-hot-toast": "^2.4.1",
+        "react-modal": "^3.16.1",
         "react-pro-sidebar": "^1.1.0-alpha.1",
         "react-router-dom": "^6.11.2",
         "socket.io-client": "^4.7.2",

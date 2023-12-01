@@ -1,13 +1,21 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-// @ts-nocheck
+
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import axios from "axios";
+import StudentProfileModal from "./StudentProfileModal"; 
 
 const FacultyHome = () => {
     const { user } = useContext(AuthContext);
     const facName = user.username;
     const [students, setStudents] = useState([]);
+    
+    const [selectedStudent, setSelectedStudent] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleViewProfile = (student) => {
+        setSelectedStudent(student);
+        setIsModalOpen(true);
+    };
 
     const fetchData = async () => {
         try {
@@ -25,8 +33,8 @@ const FacultyHome = () => {
     }, []);
 
     return (
-        <div>
-            <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Welcome, {user.username}</h1>
+        <div style={{ padding: "30px" }}>
+            <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Welcome, {user.username} !</h1>
             <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '20px' }}>
                 <thead>
                     <tr>
@@ -41,12 +49,21 @@ const FacultyHome = () => {
                             <td style={{ border: '1px solid #dddddd', padding: '8px' }}>{student.username}</td>
                             <td style={{ border: '1px solid #dddddd', padding: '8px' }}>{student.studentCollegeID}</td>
                             <td style={{ border: '1px solid #dddddd', padding: '8px' }}>
-            <button >Check</button>
+            <button onClick={() => handleViewProfile(student)}>View</button>
         </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+
+             {/* Display the modal */}
+             {selectedStudent && (
+                <StudentProfileModal
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                    student={selectedStudent}
+                />
+            )}
         </div>
     );
 };
