@@ -39,11 +39,16 @@ import Policy from "./components/RecruiterDropDown/policy";
 import Guide from "./components/RecruiterDropDown/guide";
 import RecruiterHome from "./components/recruiters/RecruiterHome";
 import AdminMessenger from "./components/admin/chat/AdminMessenger";
-import RecruiterChat from "./components/recruiters/RecruiterChat";
+import RecruiterMessenger from "./components/recruiters/chat/RecruiterMessenger";
 import Faculty from "./components/faculty";
 import FacultyLogin from "./components/faculty/Login";
 import FacultyHome from "./components/faculty/FacultyHome";
 import FacultyEdit from "./components/faculty/FacultyEdit";
+import StudentRep from "./components/studentRep";
+import StudentRepLogin from "./components/studentRep/Login";
+import StudentRepHome from "./components/studentRep/Home";
+import StudentRepEdit from "./components/studentRep/Edit";
+import Conversation from "./components/recruiters/chat/Conversation";
 
 const App = () => {
 
@@ -68,7 +73,7 @@ const App = () => {
           <Route path="matched" element={<Matched />} />
           <Route path="edit" element={<EditRecruiter />} />
           <Route path="placement" element={<RecruiterPlacement />} />
-          <Route path="chat" element={<RecruiterChat />} />
+          <Route path="chat" element={<RecruiterMessenger />} />
         </Route>
         <Route path="faculty/login" element={<FacultyLogin />} />
         <Route path="faculty" element={<Faculty />}>

@@ -1,148 +1,121 @@
-// Import necessary libraries and components
+
+
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import {
-    Box,
-    Button,
-    Typography,
-} from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, Button, Typography } from "@mui/material";
+import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 import { tokens } from "../../theme";
 import CssTextField from "../global/CssTextField";
-import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
-// Main component
+const colors = tokens();
+
 const RecruiterRegister = () => {
-    // Define the initial state for form data
-    const [formData, setFormData] = useState({
+  const styles = {
+    container: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      height: "91.5vh",
+      width: "100%",
+      backgroundColor: "whitesmoke",
+    },
+    formContainer: {
+      backgroundColor: "white",
+      padding: "20px 60px",
+      borderRadius: "10px",
+      display: "flex",
+      alignItems: "center",
+      flexDirection: "column",
+      gap: "10px",
+    },
+    heading: {
+      variant: "h5",
+      marginTop: "10px",
+      marginBottom: "30px",
+    },
+    textField: {
+      width: "100%",
+    },
+    button: {
+      background: colors.gray[100],
+      "&:hover": { background: colors.gray[100] },
+    },
+    registerLink: {
+      variant: "h6",
+    },
+  };
+
+  const [formData, setFormData] = useState({
+    companyName: "",
+    email: "",
+  });
+
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setFormData((prevData) => ({ ...prevData, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post(
+        "http://localhost:8080/api/recruiters/recruiterRegister",
+        formData
+      );
+      toast.success("Recruiter registered successfully!");
+      setFormData({
         companyName: "",
         email: "",
+      });
+    } catch (err) {
+      console.log(err.response);
+      toast.error("Registration failed!");
+    }
+  };
 
-    });
-
-    // Define the colors variable using the tokens function
-    const colors = tokens(); // Make sure you have a theme file with a tokens function
-
-    // Handle regular input changes
-    const handleChange = (e) => {
-        setFormData((prevData) => ({
-            ...prevData,
-            [e.target.name]: e.target.value,
-        }));
-    };
-
-    // Handle checkbox changes in the table
-
-
-    // Handle form submission
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            // Filter only checked rows
-            
-
-            // Send data to the server
-            const res = await axios.post(
-                "http://localhost:8080/api/recruiters/recruiterRegister",
-                {
-                    ...formData,
-                }
-            );
-            toast.success("Recruiter registered successfully!");
-
-            // Reset the form
-            setFormData({
-                companyName: "",
-                email: "",
-
-            });
-        } catch (err) {
-            console.log(err.response);
-            toast.error("Registration failed!");
-        }
-    };
-
-    // Render text input fields
-    const renderTextField = (name, label, required = true, type = "text") => (
+  return (
+    <Box sx={styles.container}>
+      <Box sx={styles.formContainer}>
+        <Typography sx={styles.heading}>Register</Typography>
         <CssTextField
-            name={name}
-            required={required}
-            label={label}
-            type={type}
-            value={formData[name]}
-            onChange={handleChange}
+          name="companyName"
+          required
+          label="Company Name"
+          type="text"
+          value={formData.companyName}
+          onChange={handleChange}
+          sx={styles.textField}
         />
-    );
-
-
-    // Main return block
-    return (
-        <Box
-            padding="20px 60px"
-            display="flex"
-            flexDirection="column"
-            gap="20px"
-            margin="20px"
-            border="1px solid gray"
-            borderRadius="5px"
-            sx={{ boxShadow: "1px 2px 9px gray" }}
+        <CssTextField
+          name="email"
+          required
+          label="Email ID"
+          type="email"
+          value={formData.email}
+          onChange={handleChange}
+          sx={styles.textField}
+        />
+        <Button
+          variant="contained"
+          sx={styles.button}
+          onClick={handleSubmit}
         >
-            <Toaster />
-            <Typography variant="h4" marginBottom="20px">
-                Register
-            </Typography>
-
-            <Box
-                display="grid"
-                gridTemplateColumns={{
-                    xs: "1fr",
-                    sm: "1fr 1fr",
-                    md: "1fr 1fr 1fr",
-                }}
-                gap="20px"
-            >
-                {renderTextField("companyName", "Company Name")}
-            </Box>
-
-            <Box
-                display="grid"
-                gridTemplateColumns={{
-                    xs: "1fr",
-                    sm: "1fr 1fr",
-                    md: "1fr 1fr 1fr",
-                }}
-                gap="20px"
-            >
-                {renderTextField("email", "Email ID")}
-            </Box>
-
-
-
-
-            {/* Submit button */}
-            <Button
-                variant="contained"
-                type="submit"
-                onClick={handleSubmit}
-                sx={{
-                    marginTop: "30px",
-                    backgroundColor: colors.secondary,
-                    color: colors.white,
-                }}
-            >
-                Register
-            </Button>
-
-            {/* Login link */}
-            <Typography variant="body1" marginTop="20px" textAlign="center">
-                Already registered? <Link to="/recruiter/login">Login</Link>
-            </Typography>
-
-            {/* Render the recruitment status table */}
-
-        </Box>
-    );
+          Register
+        </Button>
+        <Typography sx={styles.registerLink}>
+          Already registered?{" "}
+          <Link to="/recruiter/login" style={{ textDecoration: "none" }}>
+            Login
+          </Link>
+        </Typography>
+      </Box>
+      <Toaster position="bottom-center" />
+    </Box>
+  );
 };
 
-// Export the component
 export default RecruiterRegister;

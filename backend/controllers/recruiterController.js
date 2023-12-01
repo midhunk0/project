@@ -17,27 +17,27 @@ export const registerRecruiterController = async (req, res, next) => {
             email,
         });
 
-        // Save the recruiter to the database
-        await recruiter.save();
+    // Save the recruiter to the database
+    await recruiter.save();
 
-        res.status(201).json({ message: "Recruiter registered successfully" });
-    } catch (error) {
-        next(error);
-    }
+    res.status(201).json({ message: "Recruiter registered successfully" });
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const loginRecruiterController = async (req, res) => {
-    try {
-        const recruiter = await Recruiter.findOne({ email: req.body.email });
-        if (!recruiter) {
-            return next(createError(404, "no recruiter with this email"));
-        }
-        if (req.body.password !== recruiter.password) {
-            return res.status(401).json({ error: "Invalid password" });
-        }
+  try {
+    const recruiter = await Recruiter.findOne({ email: req.body.email });
+    if (!recruiter) {
+      return next(createError(404, "no recruiter with this email"));
+    }
+    if (req.body.password !== recruiter.password) {
+      return res.status(401).json({ error: "Invalid password" });
+    }
 
-        res.status(200).json({ message: "Login successful", recruiter });
-    } catch (error) {}
+    res.status(200).json({ message: "Login successful", recruiter });
+  } catch (error) {}
 };
 
 export const changePasswordRecruiterController = async (req, res, next) => {
@@ -45,21 +45,21 @@ export const changePasswordRecruiterController = async (req, res, next) => {
         const recruiterID = req.params.id;
         const { newPassword } = req.body;
 
-        await Recruiter.findByIdAndUpdate(recruiterID, {
-            password: newPassword,
-        });
+    await Recruiter.findByIdAndUpdate(recruiterID, {
+      password: newPassword,
+    });
 
-        res.status(200).json({ message: "Password changed successfully" });
-    } catch (err) {
-        console.log(err);
-        next(err);
-        // res.status(500).json({ error: "An error occurred" });
-    }
+    res.status(200).json({ message: "Password changed successfully" });
+  } catch (err) {
+    console.log(err);
+    next(err);
+    // res.status(500).json({ error: "An error occurred" });
+  }
 };
 
 export const getProfileRecruiterController = async (req, res) => {
-    try {
-        const recruiterID = req.params.id;
+  try {
+    const recruiterID = req.params.id;
 
         // Find the student with the provided student ID
         const recruiter = await Recruiter.findById(recruiterID);
@@ -72,6 +72,8 @@ export const getProfileRecruiterController = async (req, res) => {
         console.error(error);
         res.status(500).json({ error: "An error occurred" });
     }
+
+ 
 };
 
 export const updateProfileRecruiterController = async (req, res) => {
@@ -89,17 +91,17 @@ export const updateProfileRecruiterController = async (req, res) => {
             email: email,
         });
 
-        // Update the student profile
+    // Update the student profile
 
-        // Save the updated student profile
+    // Save the updated student profile
 
-        res.status(200).json({
-            message: "Profile updated successfully",
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "An error occurred" });
-    }
+    res.status(200).json({
+      message: "Profile updated successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 };
 
 // export const updateRecruitRequest = async (req, res) => {

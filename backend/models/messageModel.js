@@ -1,11 +1,11 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const MessageSchema = new mongoose.Schema(
   {
     chatId: {
       type: String,
     },
-    senderId: {
+    sender: {
       type: String,
     },
     text: {

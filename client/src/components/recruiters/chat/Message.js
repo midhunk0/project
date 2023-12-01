@@ -1,5 +1,6 @@
+// RecruiterMessage.js
 import React, { useEffect, useState } from "react";
-import "./message.css";
+import "./Message.css";
 
 const Message = ({ message, own }) => {
   const [timeAgo, setTimeAgo] = useState(null);
@@ -25,16 +26,16 @@ const Message = ({ message, own }) => {
   }, [message.createdAt]);
 
   return (
-    <div className={own ? "message own" : "message"}>
-      <div className="messageTop">
+    <div className={own ? "recruiterMessage own" : "recruiterMessage"}>
+      <div className="recruiterMessageTop">
         <img
-          className="messageImg"
+          className="recruiterMessageImg"
           src="https://static.vecteezy.com/system/resources/thumbnails/010/260/479/small/default-avatar-profile-icon-of-social-media-user-in-clipart-style-vector.jpg"
           alt=""
         />
-        <p className="messageText">{message.text}</p>
+        <p className="recruiterMessageText">{message.text}</p>
       </div>
-      <div className="messageBottom">{timeAgo}</div>
+      <div className="recruiterMessageBottom">{timeAgo}</div>
     </div>
   );
 };

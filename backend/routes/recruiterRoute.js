@@ -9,6 +9,12 @@ import {
     
 } from "../controllers/recruiterController.js";
 
+import {
+  addMessageController,
+  getConvController,
+  getMessageController,
+} from "../controllers/conversationController.js";
+
 const router = express.Router();
 
 router.post("/recruiterRegister", registerRecruiterController);
@@ -27,6 +33,8 @@ router.put("/recruiterPassword/:id", changePasswordRecruiterController);
 // Route for fetching notifications
 // router.get('/notifications', getNotificationController);
 // Route for fetching a company by recruiter ID
-
+router.post("/messages", addMessageController);
+router.get("/messages/:chatId", getMessageController);
+router.get("/conversations/:userId", getConvController);
 
 export default router;

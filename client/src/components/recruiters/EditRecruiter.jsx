@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
     Box,
     Button,
@@ -12,7 +12,6 @@ import {
     Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import { tokens } from "../../theme";
 import CssTextField from "../global/CssTextField";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
@@ -21,12 +20,7 @@ const RecruiterRegister = () => {
     const userdata = JSON.parse(localStorage.getItem("user"));
     const [recruiterDetails, setRecruiterDetails] = useState(userdata || {});
 
-    const colors = tokens();
     const id = recruiterDetails._id;
-
-    // useEffect(() => {
-    //     setRecruiterDetails(userdata);
-    // }, [userdata]);
 
     const handleChange = (e) => {
         setRecruiterDetails((prevData) => ({
