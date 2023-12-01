@@ -6,6 +6,7 @@ import StudentProfileModal from "./StudentProfileModal";
 
 const FacultyHome = () => {
     const { user } = useContext(AuthContext);
+    console.log(user);
     const facName = user.username;
     const [students, setStudents] = useState([]);
     

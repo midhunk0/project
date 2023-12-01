@@ -4,7 +4,7 @@ import Conversation from "./Conversation";
 import Message from "./Message.js";
 import { AuthContext } from "../../../contexts/AuthContext";
 import axios from "axios";
-import { io } from "socket.io-client";
+
 
 const AdminMessenger = () => {
   const [conversations, setConversations] = useState([]);
@@ -16,9 +16,7 @@ const AdminMessenger = () => {
 
   const { user } = useContext(AuthContext);
 
-  useEffect(() => {
-    setSocket(io("ws://localhost:8900"));
-  }, []);
+
 
   useEffect(() => {
     const getConversations = async () => {
