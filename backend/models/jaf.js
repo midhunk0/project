@@ -135,7 +135,7 @@ const jafSchema = new mongoose.Schema({
         },
     },
     recruiter_id: {
-        type: string,
+        type: String,
         required: true,
     },
 });
