@@ -91,7 +91,9 @@ const Jointform = () => {
         e.preventDefault();
         try {
             // Filter only checked rows
-            const checkedRows = formData.tableData.filter((row) => row.isChecked);
+            const checkedRows = formData.tableData.filter(
+                (row) => row.isChecked
+            );
 
             // Send data to the server
             const res = await axios.post(
@@ -101,7 +103,7 @@ const Jointform = () => {
                     tableData: checkedRows,
                 }
             );
-            toast.success("Recruiter registered successfully!");
+            toast.success("Job Application Form sends successfully!");
 
             // Reset the form
             setFormData({
@@ -227,7 +229,7 @@ const Jointform = () => {
         >
             <Toaster />
             <Typography variant="h4" marginBottom="20px">
-                Register
+                Job Application Form
             </Typography>
 
             <Box
@@ -245,7 +247,10 @@ const Jointform = () => {
                     "Nature of Business (IT, R&D, etc)"
                 )}
 
-                {renderTextField("category", "Category ( private, gen, NGO, PSV )")}
+                {renderTextField(
+                    "category",
+                    "Category ( private, gen, NGO, PSV )"
+                )}
                 {renderTextField("homePage", "Home Page")}
             </Box>
 
@@ -354,7 +359,7 @@ const Jointform = () => {
                     )}
                     {renderTextField("bond", "Bond", false)}
                     {renderTextField("bondYears", "Bond Years", false)}
-                    {renderRadioGroup(
+                    {renderCheckboxes(
                         "recruitmentTechnique",
                         "Recruitment Technique",
                         [
@@ -420,11 +425,6 @@ const Jointform = () => {
                 Send
             </Button>
 
-            {/* Login link */}
-            <Typography variant="body1" marginTop="20px" textAlign="center">
-                Already registered? <Link to="/recruiter/login">Login</Link>
-            </Typography>
-
             {/* Render the recruitment status table */}
             {/* {renderTable()} */}
         </Box>
@@ -433,5 +433,3 @@ const Jointform = () => {
 
 // Export the component
 export default Jointform;
-
-
