@@ -13,10 +13,9 @@ const facultySchema = new mongoose.Schema({
         type:String,
         default:""
     },
-    facultyID: {
-        type: String,
-        required: true,
-        unique: true,
+    department:{
+        type:String,
+        default:""
     },
     
 },{ timestamps: true });

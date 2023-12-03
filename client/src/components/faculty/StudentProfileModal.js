@@ -1,6 +1,7 @@
-// StudentProfileModal.js
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
+
+import "./StudentProfileModal.css";
 
 const customStyles = {
   overlay: {
@@ -24,6 +25,12 @@ const StudentProfileModal = ({
   onVerify,
   onSubmit,
 }) => {
+  const [isToggled, setToggled] = useState(false);
+
+  const handleToggle = () => {
+    setToggled(!isToggled);
+  };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -199,38 +206,20 @@ const StudentProfileModal = ({
           </tr>
         </tbody>
       </table>
+      <div className="toggle-container">
+        <button
+          className={`toggle-button ${
+            isToggled ? "toggle-verified" : "toggle-edit-enabled"
+          }`}
+          onClick={handleToggle}
+        >
+          {isToggled ? "Verified" : "Edit enabled"}
+        </button>
+        <p>Click to: {isToggled ? "Enable Student Edit!" : "Verify Student!"}</p>
+      </div>
       <button
-        onClick={onVerify}
+        onClick={onClose}
         style={{
-          width: "70px",
-          height: "40px",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-          backgroundColor: "teal",
-          color: "white",
-          margin: "20px",
-        }}
-      >
-        Verify
-      </button>
-
-      <button
-        onClick={onSubmit}
-        style={{
-          width: "70px",
-          height: "40px",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-          backgroundColor: "green",
-          color: "white",
-          margin: "20px"
-        }}
-      >
-        Edit
-      </button>
-      <button onClick={onClose} style={{
           width: "70px",
           height: "40px",
           border: "none",
@@ -239,8 +228,10 @@ const StudentProfileModal = ({
           backgroundColor: "red",
           color: "white",
           margin: "20px",
-          
-        }}>Close</button>
+        }}
+      >
+        Close
+      </button>
     </Modal>
   );
 };

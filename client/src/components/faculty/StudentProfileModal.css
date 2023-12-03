@@ -1,0 +1,28 @@
+/* Your CSS file or style block */
+
+/* Container styling */
+.toggle-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Button styling */
+.toggle-button {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+/* Styles for the "Verified" state */
+.toggle-verified {
+  background-color: #0eea6a;
+}
+
+/* Styles for the "Edit enabled" state */
+.toggle-edit-enabled {
+  background-color: #de2b18;
+}

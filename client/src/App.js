@@ -50,6 +50,7 @@ import StudentRepLogin from "./components/studentRep/Login";
 import StudentRepHome from "./components/studentRep/Home";
 import StudentRepEdit from "./components/studentRep/Edit";
 import Conversation from "./components/recruiters/chat/Conversation";
+import FacultyRegister from "./components/faculty/Register";
 
 const App = () => {
 
@@ -78,6 +79,7 @@ const App = () => {
           <Route path="form" element={<Jointform />} />
         </Route>
         <Route path="faculty/login" element={<FacultyLogin />} />
+        <Route path="faculty/register" element={<FacultyRegister />} />
         <Route path="faculty" element={<Faculty />}>
           <Route path="home" element={<FacultyHome />} />
           <Route path="edit" element={<FacultyEdit />} />

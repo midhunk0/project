@@ -4,7 +4,7 @@ const router=express.Router();
 
 router.post("/facultyRegister", registerfacultyController);
 router.post("/facultyLogin", loginfacultyController);
-router.get("/facultystudent", getStudentsByFaculty);
+router.get("/facultystudent/:dept", getStudentsByFaculty);
 router.get("/facultyProfile:id", editFacultyProfile);
 router.put("/facultyEdit/:id", editFacultyProfile);
 

@@ -4,12 +4,13 @@ import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import CssTextField from '../global/CssTextField';
 import { Box } from '@mui/system';
-import { Typography, Button } from '@mui/material';
+import { Typography, Button,FormControl,Select,MenuItem,InputLabel } from '@mui/material';
 
 const FacultyEdit = () => {
     const facultyData = JSON.parse(localStorage.getItem("user"));
     const [facultyDetails, setFacultyDetails] = useState(facultyData || {})
     const id = facultyDetails._id;
+    const departments = ['CSE', 'EEE', 'IE', 'EC','AE','ME','CIVIL'];
 
     const handleChange = (e) => {
         setFacultyDetails((prevData) => ({
@@ -72,6 +73,24 @@ const FacultyEdit = () => {
                 {renderTextField("username", "User Name")}
                 {renderTextField("email","Email")}
                 {renderTextField("password", "Password")}
+
+                <FormControl fullWidth>
+                    <InputLabel id="department-label">Department</InputLabel>
+                    <Select
+                        labelId="department-label"
+                        id="department"
+                        name="department"
+                        value={facultyDetails.department || ""}
+                        onChange={handleChange}
+                    >
+                        <MenuItem value="" disabled>Select Department</MenuItem>
+                        {departments.map((department, index) => (
+                            <MenuItem key={index} value={department}>
+                                {department}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
             </Box>
             <Box display="flex" justifyContent="space-between">
                 <Button
@@ -87,3 +106,5 @@ const FacultyEdit = () => {
 }
 
 export default FacultyEdit
+
+

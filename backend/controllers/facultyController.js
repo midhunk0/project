@@ -1,122 +1,93 @@
-import Faculty from "../models/facultyModel.js"
+import Faculty from "../models/facultyModel.js";
 import students from "../models/studentModel.js";
 
 export const registerfacultyController = async (req, res, next) => {
-    try {
-        const { facultyID, name } = req.body;
-        console.log(facultyID, name);
-        // Check if the FACULTY with the provided student ID already exists
-        const existingfaculty = await Faculty.findOne({ facultyID });
-        if (existingfaculty) {
-            return res.status(409).json({ error: "faculty already exists" });
-        }
+  try {
+    const { username, password } = req.body;
 
-        // Create a new student instance
-        const faculty = new Faculty({
-            username: req.body.name,
-            email: "",
-            password: "",
-            facultyID: req.body.facultyID,
-        });
+    // Create a new recruiter instance
+    const faculty = new Faculty({
+      username,
+      password,
+    });
 
-        // Save the student to the database
-        await faculty.save();
+    // Save the recruiter to the database
+    await faculty.save();
 
-        res.status(201).json({ message: "Faculty registered successfully" });
-    } catch (error) {
-        next(error);
-        // res.status(500).json({ error: "An error occurred" });
-    }
+    res.status(201).json({ message: "Recruiter registered successfully" });
+  } catch (error) {
+    next(error);
+  }
 };
-
-
 export const loginfacultyController = async (req, res) => {
-    try {
-        const { facultyID, password } = req.body;
-
-        // Check if the student with the provided student ID exists
-        const faculty = await Faculty.findOne({ facultyID });
-        if (!faculty) {
-            return res.status(404).json({ error: "faculty not found" });
-        }
-
-        // Check if the provided password is correct
-        if (password !== faculty.password) {
-            return res.status(401).json({ error: "Invalid password" });
-        }
-        
-        res.status(200).json({ message: "Login successful", faculty });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "An error occurred" });
+  try {
+    const faculty = await Faculty.findOne({ username: req.body.username });
+    if (!faculty) {
+      return next(createError(404, "no faculty with this email"));
     }
+    if (req.body.password !== faculty.password) {
+      return res.status(401).json({ error: "Invalid password" });
+    }
+
+    res.status(200).json({ message: "Login successful", faculty });
+  } catch (error) {}
 };
 
-
-
-// Assuming you have a 'Student' model defined using Mongoose
-
-
-// Your controller function
 export const getStudentsByFaculty = async (req, res) => {
-  const faculty = req.query.faculty; // Assuming facultyName is in the URL parameters
+  const department = req.params.dept; // Assuming facultyName is in the URL parameters
 
   try {
     // Query the database to find students with the specified faculty name
-    const student = await students.find({ faculty: faculty });
+    const student = await students.find({ department: department });
 
     // Check if any students were found
     if (student.length === 0) {
-      return res.status(404).json({ message: 'No students found for the given faculty.' });
+      return res
+        .status(404)
+        .json({ message: "No students found for the given faculty." });
     }
 
     // Send the list of students as a response
     res.status(200).json({ student });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(500).json({ message: "Internal Server Error" });
   }
-}
+};
 
 export const getFacultyProfile = async (req, res) => {
-    try{
-        const facultyID = req.params.id;
-        const faculty = await Faculty.findById(facultyID);
-        if(!faculty){
-            return res.status(404).json({
-                error: "Faculty not found"
-            })
-        }
-        res.status(200).json(faculty);
+  try {
+    const facultyID = req.params.id;
+    const faculty = await Faculty.findById(facultyID);
+    if (!faculty) {
+      return res.status(404).json({
+        error: "Faculty not found",
+      });
     }
-    catch(error){
-        res.status(500).json({
-            error: "an error occured"
-        })
-    }
-}
+    res.status(200).json(faculty);
+  } catch (error) {
+    res.status(500).json({
+      error: "an error occured",
+    });
+  }
+};
 
 export const editFacultyProfile = async (req, res) => {
-    try{
-        const facultyID = req.params.id;
-        const {
-            username,
-            email, 
-            password
-        } = req.body;
-        await Faculty.findByIdAndUpdate(facultyID, {
-            username: username,
-            email: email,
-            password: password
-        })
-        res.status(200).json({
-            message: "Profile updated successfully"
-        })
-    }
-    catch(error){
-        res.status(500).json({
-            error: "An error occured while updating profile"
-        })
-    }
-
-}
+  try {
+    const facultyID = req.params.id;
+    const { username, email, password, department } = req.body;
+    await Faculty.findByIdAndUpdate(facultyID, {
+      username: username,
+      email: email,
+      password: password,
+      department: department,
+    });
+    res.status(200).json({
+      message: "Profile updated successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: "An error occured while updating profile",
+    });
+  }
+};

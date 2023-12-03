@@ -110,6 +110,10 @@ const studentSchema = new mongoose.Schema({
     isAdmin:{
         type:Boolean,
         default:false
+    },
+    isVerified:{
+        type:Boolean,
+        default:false
     }
 },{ timestamps: true });
 

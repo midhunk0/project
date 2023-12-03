@@ -15,6 +15,8 @@ const Edit = () => {
 
     const [newSkill, setNewSkill] = useState("");
 
+    const departments = ['CSE', 'EEE', 'IE', 'EC','AE','ME','CIVIL'];
+
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
 
@@ -312,14 +314,21 @@ const Edit = () => {
                 </Form.Group>
 
                 <Form.Group className="mt-2">
-                    <Form.Label>Department</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="department"
-                        value={profileDetails.department}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+      <Form.Label>Department</Form.Label>
+      <Form.Control
+        as="select"
+        name="department"
+        value={profileDetails.department}
+        onChange={handleChange}
+      >
+        <option value="" disabled>Select Department</option>
+        {departments.map((department, index) => (
+          <option key={index} value={department}>
+            {department}
+          </option>
+        ))}
+      </Form.Control>
+    </Form.Group>
                 <Form.Group className="mt-2">
                     <Form.Label>Staff Advisor</Form.Label>
                     <Form.Control
