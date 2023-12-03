@@ -4,18 +4,19 @@ import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { Box } from "@mui/material";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Edit = () => {
-
-    const userdata = JSON.parse(localStorage.getItem("user"));
+    const storedUserData = localStorage.getItem("user");
+    const userdata = storedUserData ? JSON.parse(storedUserData) : null;
     const [profileDetails, setProfileDetails] = useState(userdata);
     console.log(profileDetails);
-
-    const id = userdata._id;
+    const navigate = useNavigate();
+    const id = userdata?._id;
 
     const [newSkill, setNewSkill] = useState("");
 
-    const departments = ['CSE', 'EEE', 'IE', 'EC','AE','ME','CIVIL'];
+    const departments = ["CSE", "EEE", "IE", "EC", "AE", "ME", "CIVIL"];
 
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
@@ -99,322 +100,334 @@ const Edit = () => {
             console.log(err.response); // Log the error response for troubleshooting
         }
     };
+    if (!userdata || userdata.isVerified) {
+        return (
+            <div>
+                <h1>
+                    You are not allowed to edit your profile because you are
+                    verified.
+                </h1>
+            </div>
+        );
+    } else {
+        return (
+            <Box className="container col-md-7">
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group className="mt-2">
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="username"
+                            value={profileDetails.username}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-    return (
-        <Box className="container col-md-7">
-            <Form onSubmit={handleSubmit}>
-                <Form.Group className="mt-2">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="username"
-                        value={profileDetails.username}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                    <Form.Group className="mt-2">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control
+                            type="email"
+                            name="email"
+                            value={profileDetails.email}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-                <Form.Group className="mt-2">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                        type="email"
-                        name="email"
-                        value={profileDetails.email}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                    <Form.Group className="mt-2">
+                        <Form.Label>Phone</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="phone"
+                            value={profileDetails.phone}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-                <Form.Group className="mt-2">
-                    <Form.Label>Phone</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="phone"
-                        value={profileDetails.phone}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                    <Form.Group className="mt-2">
+                        <Form.Label>Gender</Form.Label>
+                        <Form.Check
+                            inline
+                            type="radio"
+                            label="Male"
+                            name="radioGroup"
+                            id="radio1"
+                            onChange={handleChange}
+                        />
 
-                <Form.Group className="mt-2">
-                    <Form.Label>Gender</Form.Label>
-                    <Form.Check
-                        inline
-                        type="radio"
-                        label="Male"
-                        name="radioGroup"
-                        id="radio1"
-                        onChange={handleChange}
-                    />
+                        <Form.Check
+                            inline
+                            type="radio"
+                            label="Female"
+                            name="radioGroup"
+                            id="radio2"
+                            onChange={handleChange}
+                        />
 
-                    <Form.Check
-                        inline
-                        type="radio"
-                        label="Female"
-                        name="radioGroup"
-                        id="radio2"
-                        onChange={handleChange}
-                    />
+                        <Form.Check
+                            inline
+                            type="radio"
+                            label="Others"
+                            name="radioGroup"
+                            id="radio3"
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-                    <Form.Check
-                        inline
-                        type="radio"
-                        label="Others"
-                        name="radioGroup"
-                        id="radio3"
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                    <Form.Group className="mt-2">
+                        <Form.Label>Date of Birth</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="dob"
+                            value={profileDetails.dob}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-                <Form.Group className="mt-2">
-                    <Form.Label>Date of Birth</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="dob"
-                        value={profileDetails.dob}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                    <Form.Group className="mt-2">
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="address"
+                            value={profileDetails.address}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-                <Form.Group className="mt-2">
-                    <Form.Label>Address</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="address"
-                        value={profileDetails.address}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                    <Form.Group className="mt-2">
+                        <Form.Label>Blood Group</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="bloodGroup"
+                            value={profileDetails.bloodGroup}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-                <Form.Group className="mt-2">
-                    <Form.Label>Blood Group</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="bloodGroup"
-                        value={profileDetails.bloodGroup}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                    <Form.Group className="mt-2">
+                        <Form.Label>Aadhar</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="aadhar"
+                            value={profileDetails.aadhar}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-                <Form.Group className="mt-2">
-                    <Form.Label>Aadhar</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="aadhar"
-                        value={profileDetails.aadhar}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                    <Form.Group className="mt-2">
+                        <Form.Label>Nationality</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="nationality"
+                            value={profileDetails.nationality}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-                <Form.Group className="mt-2">
-                    <Form.Label>Nationality</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="nationality"
-                        value={profileDetails.nationality}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                    <Form.Group className="mt-2">
+                        <Form.Label>Religion</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="religion"
+                            value={profileDetails.religion}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-                <Form.Group className="mt-2">
-                    <Form.Label>Religion</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="religion"
-                        value={profileDetails.religion}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                    <Form.Group className="mt-2">
+                        <Form.Label>Category</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="category"
+                            value={profileDetails.category}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-                <Form.Group className="mt-2">
-                    <Form.Label>Category</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="category"
-                        value={profileDetails.category}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                    <Form.Group className="mt-2">
+                        <Form.Label>Mother Tongue</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="motherTongue"
+                            value={profileDetails.motherTongue}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-                <Form.Group className="mt-2">
-                    <Form.Label>Mother Tongue</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="motherTongue"
-                        value={profileDetails.motherTongue}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                    <Form.Group className="mt-2">
+                        <Form.Label>Plus Two Mark</Form.Label>
+                        <Form.Control
+                            type="number"
+                            name="plus2"
+                            value={profileDetails.plus2}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-                <Form.Group className="mt-2">
-                    <Form.Label>Plus Two Mark</Form.Label>
-                    <Form.Control
-                        type="number"
-                        name="plus2"
-                        value={profileDetails.plus2}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                    <Form.Group className="mt-2">
+                        <Form.Label>Keam Rank</Form.Label>
+                        <Form.Control
+                            type="number"
+                            name="rank"
+                            value={profileDetails.rank}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-                <Form.Group className="mt-2">
-                    <Form.Label>Keam Rank</Form.Label>
-                    <Form.Control
-                        type="number"
-                        name="rank"
-                        value={profileDetails.rank}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                    <Form.Group className="mt-2">
+                        <Form.Label>Admission Qouta</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="admissionQouta"
+                            value={profileDetails.admissionQouta}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-                <Form.Group className="mt-2">
-                    <Form.Label>Admission Qouta</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="admissionQouta"
-                        value={profileDetails.admissionQouta}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                    <Form.Group className="mt-2">
+                        <Form.Label>Admission Number</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="admissionNumber"
+                            value={profileDetails.admissionNumber}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-                <Form.Group className="mt-2">
-                    <Form.Label>Admission Number</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="admissionNumber"
-                        value={profileDetails.admissionNumber}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                    <Form.Group className="mt-2">
+                        <Form.Label>Admitted Scheme</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="admittedScheme"
+                            value={profileDetails.admittedScheme}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-                <Form.Group className="mt-2">
-                    <Form.Label>Admitted Scheme</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="admittedScheme"
-                        value={profileDetails.admittedScheme}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                    <Form.Group className="mt-2">
+                        <Form.Label>Admitted Program</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="admittedProgram"
+                            value={profileDetails.admittedProgram}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-                <Form.Group className="mt-2">
-                    <Form.Label>Admitted Program</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="admittedProgram"
-                        value={profileDetails.admittedProgram}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                    <Form.Group className="mt-2">
+                        <Form.Label>Admitted Type</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="admittedType"
+                            value={profileDetails.admittedType}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-                <Form.Group className="mt-2">
-                    <Form.Label>Admitted Type</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="admittedType"
-                        value={profileDetails.admittedType}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
-
-                <Form.Group className="mt-2">
-      <Form.Label>Department</Form.Label>
-      <Form.Control
-        as="select"
-        name="department"
-        value={profileDetails.department}
-        onChange={handleChange}
-      >
-        <option value="" disabled>Select Department</option>
-        {departments.map((department, index) => (
-          <option key={index} value={department}>
-            {department}
-          </option>
-        ))}
-      </Form.Control>
-    </Form.Group>
-                <Form.Group className="mt-2">
-                    <Form.Label>Staff Advisor</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="staffadvisor"
-                        value={profileDetails.faculty}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
-
-                <Form.Group controlId="skills">
-                    <Form.Label>Skills</Form.Label>
-                    {profileDetails.skills.map((skill, index) => (
-                        <Box
-                            key={index}
-                            className="d-flex align-items-center mb-2"
+                    <Form.Group className="mt-2">
+                        <Form.Label>Department</Form.Label>
+                        <Form.Control
+                            as="select"
+                            name="department"
+                            value={profileDetails.department}
+                            onChange={handleChange}
                         >
+                            <option value="" disabled>
+                                Select Department
+                            </option>
+                            {departments.map((department, index) => (
+                                <option key={index} value={department}>
+                                    {department}
+                                </option>
+                            ))}
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group className="mt-2">
+                        <Form.Label>Staff Advisor</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="staffadvisor"
+                            value={profileDetails.faculty}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="skills">
+                        <Form.Label>Skills</Form.Label>
+                        {profileDetails.skills.map((skill, index) => (
+                            <Box
+                                key={index}
+                                className="d-flex align-items-center mb-2"
+                            >
+                                <Form.Control
+                                    type="text"
+                                    value={skill}
+                                    readOnly
+                                    className="me-2"
+                                />
+                                <Button
+                                    variant="danger"
+                                    size="sm"
+                                    onClick={() => handleRemoveSkill(index)}
+                                >
+                                    Remove
+                                </Button>
+                            </Box>
+                        ))}
+                        <div className="d-flex align-items-center">
                             <Form.Control
                                 type="text"
-                                value={skill}
-                                readOnly
+                                value={newSkill}
+                                onChange={(e) => setNewSkill(e.target.value)}
                                 className="me-2"
                             />
                             <Button
-                                variant="danger"
+                                variant="primary"
                                 size="sm"
-                                onClick={() => handleRemoveSkill(index)}
+                                onClick={handleAddSkill}
                             >
-                                Remove
+                                Add
                             </Button>
-                        </Box>
-                    ))}
-                    <div className="d-flex align-items-center">
+                        </div>
+                    </Form.Group>
+
+                    <Form.Group className="mt-2">
+                        <Form.Label>CGPA</Form.Label>
                         <Form.Control
-                            type="text"
-                            value={newSkill}
-                            onChange={(e) => setNewSkill(e.target.value)}
-                            className="me-2"
+                            type="number"
+                            name="cgpa"
+                            value={profileDetails.cgpa}
+                            onChange={handleChange}
                         />
-                        <Button
-                            variant="primary"
-                            size="sm"
-                            onClick={handleAddSkill}
-                        >
-                            Add
-                        </Button>
-                    </div>
-                </Form.Group>
+                    </Form.Group>
 
-                <Form.Group className="mt-2">
-                    <Form.Label>CGPA</Form.Label>
-                    <Form.Control
-                        type="number"
-                        name="cgpa"
-                        value={profileDetails.cgpa}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                    <Form.Group className="mt-2">
+                        <Form.Label>Profile Picture</Form.Label>
+                        <Form.Control
+                            type="file"
+                            name="profilePicture"
+                            accept="image/jpeg"
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-                <Form.Group className="mt-2">
-                    <Form.Label>Profile Picture</Form.Label>
-                    <Form.Control
-                        type="file"
-                        name="profilePicture"
-                        accept="image/jpeg"
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+                    <Form.Group className="mt-2">
+                        <Form.Label>CV</Form.Label>
+                        <Form.Control
+                            type="file"
+                            name="cv"
+                            accept="application/pdf"
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
 
-                <Form.Group className="mt-2">
-                    <Form.Label>CV</Form.Label>
-                    <Form.Control
-                        type="file"
-                        name="cv"
-                        accept="application/pdf"
-                        onChange={handleChange}
-                    />
-                </Form.Group>
-
-                <Button variant="primary mt-3 mb-3" type="submit">
-                    Submit
-                </Button>
-            </Form>
-            <Toaster position="top-center" />
-        </Box>
-    );
+                    <Button variant="primary mt-3 mb-3" type="submit">
+                        Submit
+                    </Button>
+                </Form>
+                <Toaster position="top-center" />
+            </Box>
+        );
+    }
 };
 
 export default Edit;

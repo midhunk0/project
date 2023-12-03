@@ -18,7 +18,7 @@ export const registerStudentController = async (req, res, next) => {
             email: "",
             studentCollegeID: req.body.studentCollegeID,
             phone: "",
-            faculty:"",
+            faculty: "",
             address: "",
             cgpa: req.body.cgpa,
             skills: [""],
@@ -27,6 +27,7 @@ export const registerStudentController = async (req, res, next) => {
             profilePicture: "",
             cv: "",
             isAdmin: false,
+            isVerified: false,
         });
 
         // Save the student to the database
@@ -117,6 +118,7 @@ export const updateProfileStudentController = async (req, res) => {
             profilePicture,
             cv,
             isAdmin,
+            isVerified,
         } = req.body;
         console.log(studentID, req.body);
 
@@ -128,7 +130,7 @@ export const updateProfileStudentController = async (req, res) => {
             studentCollegeID: studentCollegeID,
             gender: gender,
             dob: dob,
-            faculty:faculty,
+            faculty: faculty,
             bloodGroup: bloodGroup,
             aadhar: aadhar,
             phone: phone,
@@ -151,6 +153,7 @@ export const updateProfileStudentController = async (req, res) => {
             profilePicture: profilePicture,
             cv: cv,
             isAdmin: isAdmin,
+            isVerified: isVerified,
         });
 
         // Update the student profile
@@ -241,17 +244,17 @@ export const addProfileDetailsStudentController = async (req, res) => {
     }
 };
 
-
 export const getallStudentsController = async (req, res) => {
     try {
-      // Fetch all students from the database
-      const fetchedStudents = await students.find();
-  
-      // Send the students as the response
-      res.json(fetchedStudents);
+        // Fetch all students from the database
+        const fetchedStudents = await students.find();
+
+        // Send the students as the response
+        res.json(fetchedStudents);
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: "An error occurred while retrieving students." });
+        console.error(error);
+        res.status(500).json({
+            error: "An error occurred while retrieving students.",
+        });
     }
-  };
-  
+};
