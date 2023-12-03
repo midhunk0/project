@@ -11,7 +11,6 @@ import {
     RadioGroup,
     Typography,
 } from "@mui/material";
-import { Link } from "react-router-dom";
 import { tokens } from "../../theme";
 import CssTextField from "../global/CssTextField";
 import axios from "axios";
@@ -51,7 +50,25 @@ const Jointform = () => {
         personalInterview: "",
         branchOrientedInterview: "",
         totalRounds: "",
-        tableData: [], // Updated to include table data
+        tableData: [
+            {
+                label: "Computer Science",
+                value: "Computer Science",
+                isChecked: false,
+            },
+            {
+                label: "Electronics and Communication",
+                value: "Electronics and Communication",
+                isChecked: false,
+            },
+            { label: "Mechanical", value: "Mechanical", isChecked: false },
+            { label: "Civil", value: "Civil", isChecked: false },
+            {
+                label: "Electrical and Electronics",
+                value: "Electrical and Electronics",
+                isChecked: false,
+            },
+        ],
     });
 
     // Define the colors variable using the tokens function
@@ -66,18 +83,20 @@ const Jointform = () => {
     };
 
     // Handle checkbox changes in the table
-    const handleCheckboxChange = (e, row) => {
-        const { value, checked } = e.target;
+    const handleCheckboxChange = (e, rowIndex) => {
+        const { checked } = e.target;
         setFormData((prevData) => {
-            const updatedTableData = prevData.tableData.map((tableRow) => {
-                if (tableRow === row) {
-                    return {
-                        ...tableRow,
-                        isChecked: checked,
-                    };
+            const updatedTableData = prevData.tableData.map(
+                (tableRow, index) => {
+                    if (index === rowIndex) {
+                        return {
+                            ...tableRow,
+                            isChecked: checked,
+                        };
+                    }
+                    return tableRow;
                 }
-                return tableRow;
-            });
+            );
 
             return {
                 ...prevData,
@@ -103,7 +122,7 @@ const Jointform = () => {
                     tableData: checkedRows,
                 }
             );
-            toast.success("Job Application Form sends successfully!");
+            toast.success("Job Application Form sent successfully!");
 
             // Reset the form
             setFormData({
@@ -137,7 +156,10 @@ const Jointform = () => {
                 personalInterview: "",
                 branchOrientedInterview: "",
                 totalRounds: "",
-                tableData: [],
+                tableData: [
+                    { label: "Option 1", value: "option1", isChecked: false },
+                    { label: "Option 2", value: "option2", isChecked: false },
+                ],
             });
         } catch (err) {
             console.log(err.response);
@@ -155,6 +177,26 @@ const Jointform = () => {
             value={formData[name]}
             onChange={handleChange}
         />
+    );
+
+    // Render checkboxes for the table
+    const renderTableCheckboxes = () => (
+        <FormGroup>
+            {formData.tableData.map((row, index) => (
+                <FormControlLabel
+                    key={index}
+                    control={
+                        <Checkbox
+                            value={row.value}
+                            checked={row.isChecked || false}
+                            onChange={(e) => handleCheckboxChange(e, index)}
+                        />
+                    }
+                    label={row.label}
+                    sx={{ margin: 0 }}
+                />
+            ))}
+        </FormGroup>
     );
 
     // Render radio group
@@ -185,36 +227,6 @@ const Jointform = () => {
         </Box>
     );
 
-    // Render the recruitment status table
-
-    // Render checkboxes for branches
-    const renderCheckboxes = (name, label, options) => (
-        <Box>
-            <Typography variant="h6" marginBottom="20px">
-                {label}
-            </Typography>
-            <FormGroup>
-                {options.map((option) => (
-                    <FormControlLabel
-                        key={option}
-                        control={
-                            <Checkbox
-                                name={name}
-                                value={option}
-                                checked={formData.branchesEligible.includes(
-                                    option
-                                )}
-                                onChange={handleCheckboxChange}
-                            />
-                        }
-                        label={option}
-                        sx={{ margin: 0 }}
-                    />
-                ))}
-            </FormGroup>
-        </Box>
-    );
-
     // Main return block
     return (
         <Box
@@ -232,6 +244,7 @@ const Jointform = () => {
                 Job Application Form
             </Typography>
 
+            {/* Text input fields */}
             <Box
                 display="grid"
                 gridTemplateColumns={{
@@ -246,7 +259,6 @@ const Jointform = () => {
                     "natureOfBusiness",
                     "Nature of Business (IT, R&D, etc)"
                 )}
-
                 {renderTextField(
                     "category",
                     "Category ( private, gen, NGO, PSV )"
@@ -254,6 +266,7 @@ const Jointform = () => {
                 {renderTextField("homePage", "Home Page")}
             </Box>
 
+            {/* Contact Information */}
             <Box
                 marginTop="30px"
                 border="1px solid gray"
@@ -287,6 +300,7 @@ const Jointform = () => {
                 </Box>
             </Box>
 
+            {/* Eligibility Criteria */}
             <Box
                 marginTop="30px"
                 border="1px solid gray"
@@ -325,16 +339,16 @@ const Jointform = () => {
                         "maxNonClearedBacklogs",
                         "Max Non Cleared Backlogs"
                     )}
-                    {renderCheckboxes("branchesEligible", "Branches Eligible", [
-                        "Computer Science",
-                        "Information Technology",
-                        "Electronics and Communication",
-                        "Mechanical",
-                        "Civil",
-                    ])}
+                    <Box>
+                        <Typography variant="h6" marginBottom="20px">
+                            Branches Eligible
+                        </Typography>
+                        {renderTableCheckboxes()}
+                    </Box>
                 </Box>
             </Box>
 
+            {/* Recruitment Details */}
             <Box
                 marginTop="30px"
                 border="1px solid gray"
@@ -359,19 +373,7 @@ const Jointform = () => {
                     )}
                     {renderTextField("bond", "Bond", false)}
                     {renderTextField("bondYears", "Bond Years", false)}
-                    {renderCheckboxes(
-                        "recruitmentTechnique",
-                        "Recruitment Technique",
-                        [
-                            "Online Exam",
-                            "Aptitude Test",
-                            "Technical Test",
-                            "Group Discussion",
-                            "Technical Interview",
-                            "Personal Interview",
-                            "Branch Oriented Interview",
-                        ]
-                    )}
+                    
                     {renderTextField(
                         "preferredDates",
                         "Preferred Dates for Recruitment"
@@ -425,8 +427,7 @@ const Jointform = () => {
                 Send
             </Button>
 
-            {/* Render the recruitment status table */}
-            {/* {renderTable()} */}
+            {/* ... (other components) */}
         </Box>
     );
 };
