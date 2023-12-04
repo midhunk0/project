@@ -1,5 +1,3 @@
-
-
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
@@ -55,7 +53,10 @@ const RecruiterRegister = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData((prevData) => ({ ...prevData, [e.target.name]: e.target.value }));
+    setFormData((prevData) => ({
+      ...prevData,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -65,6 +66,18 @@ const RecruiterRegister = () => {
       const res = await axios.post(
         "http://localhost:8080/api/recruiters/recruiterRegister",
         formData
+      );
+      console.log(res.data);
+
+      // const recruiterId = res.data._id;
+
+      // Step 2: Create a new conversation between admin and recruiter
+      const conversationResponse = await axios.post(
+        "http://localhost:8080/api/students/conversations",
+        {
+          senderId: "6494405c573b71cfcda5f70e", // Replace with the actual admin user ID
+          receiverId: res.data._id,
+        }
       );
       toast.success("Recruiter registered successfully!");
       setFormData({
@@ -99,11 +112,7 @@ const RecruiterRegister = () => {
           onChange={handleChange}
           sx={styles.textField}
         />
-        <Button
-          variant="contained"
-          sx={styles.button}
-          onClick={handleSubmit}
-        >
+        <Button variant="contained" sx={styles.button} onClick={handleSubmit}>
           Register
         </Button>
         <Typography sx={styles.registerLink}>

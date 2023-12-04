@@ -1,12 +1,13 @@
 import express from "express";
 
 import {
-    registerRecruiterController,
-    loginRecruiterController,
-    changePasswordRecruiterController,
-    updateProfileRecruiterController,
-    getProfileRecruiterController,
-    
+  registerRecruiterController,
+  loginRecruiterController,
+  changePasswordRecruiterController,
+  updateProfileRecruiterController,
+  getProfileRecruiterController,
+  getAllRecruiters,
+  getRecruiterById,
 } from "../controllers/recruiterController.js";
 
 import {
@@ -36,5 +37,7 @@ router.put("/recruiterPassword/:id", changePasswordRecruiterController);
 router.post("/messages", addMessageController);
 router.get("/messages/:chatId", getMessageController);
 router.get("/conversations/:userId", getConvController);
+router.get("/getAllRecruiters", getAllRecruiters);
+router.get("/getRecruiterById/:recruiterId", getRecruiterById);
 
 export default router;

@@ -5,22 +5,19 @@ import students from "../models/studentModel.js";
 import { createError } from "../utils/error.js";
 
 export const registerRecruiterController = async (req, res, next) => {
-    try {
-        const {
-            companyName,
-            email,
-        } = req.body;
+  try {
+    const { companyName, email } = req.body;
 
-        // Create a new recruiter instance
-        const recruiter = new Recruiter({
-            companyName,
-            email,
-        });
+    // Create a new recruiter instance
+    const recruiter = new Recruiter({
+      companyName,
+      email,
+    });
 
     // Save the recruiter to the database
     await recruiter.save();
 
-    res.status(201).json({ message: "Recruiter registered successfully" });
+    res.status(201).json(recruiter);
   } catch (error) {
     next(error);
   }
@@ -41,9 +38,9 @@ export const loginRecruiterController = async (req, res) => {
 };
 
 export const changePasswordRecruiterController = async (req, res, next) => {
-    try {
-        const recruiterID = req.params.id;
-        const { newPassword } = req.body;
+  try {
+    const recruiterID = req.params.id;
+    const { newPassword } = req.body;
 
     await Recruiter.findByIdAndUpdate(recruiterID, {
       password: newPassword,
@@ -61,35 +58,30 @@ export const getProfileRecruiterController = async (req, res) => {
   try {
     const recruiterID = req.params.id;
 
-        // Find the student with the provided student ID
-        const recruiter = await Recruiter.findById(recruiterID);
-        if (!recruiter) {
-            return res.status(404).json({ error: "recruiter not found" });
-        }
-
-        res.status(200).json(recruiter);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "An error occurred" });
+    // Find the student with the provided student ID
+    const recruiter = await Recruiter.findById(recruiterID);
+    if (!recruiter) {
+      return res.status(404).json({ error: "recruiter not found" });
     }
 
- 
+    res.status(200).json(recruiter);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 };
 
 export const updateProfileRecruiterController = async (req, res) => {
-    try {
-        const recruiterID = req.params.id;
-        const {
-            companyName,
-            email,
-        } = req.body;
-        console.log(recruiterID, req.body);
+  try {
+    const recruiterID = req.params.id;
+    const { companyName, email } = req.body;
+    console.log(recruiterID, req.body);
 
-        // Find the student with the provided student ID
-        await Recruiter.findByIdAndUpdate(recruiterID, {
-            companyName: companyName,
-            email: email,
-        });
+    // Find the student with the provided student ID
+    await Recruiter.findByIdAndUpdate(recruiterID, {
+      companyName: companyName,
+      email: email,
+    });
 
     // Update the student profile
 
@@ -101,6 +93,37 @@ export const updateProfileRecruiterController = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "An error occurred" });
+  }
+};
+
+export const getAllRecruiters = async (req, res) => {
+  try {
+    const recruiters = await Recruiter.find();
+    res.status(200).json(recruiters);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+// Get recruiter by ID
+export const getRecruiterById = async (req, res) => {
+  const recruiterId = req.params.recruiterId;
+
+  try {
+    // Find the recruiter by ID in the database
+    const recruiter = await Recruiter.findById(recruiterId);
+
+    // Check if the recruiter with the specified ID exists
+    if (!recruiter) {
+      return res.status(404).json({ message: "Recruiter not found" });
+    }
+
+    // Return the recruiter data
+    res.status(200).json(recruiter);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
