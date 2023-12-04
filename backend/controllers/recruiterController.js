@@ -127,6 +127,17 @@ export const getRecruiterById = async (req, res) => {
   }
 };
 
+// Controller to get recruiters whose isJafSent is true
+export const getRecruitersSentJaf = async (req, res) => {
+  try {
+    const recruiters = await Recruiter.find({ isJafSent: true });
+    res.status(200).json(recruiters);
+  } catch (error) {
+    console.error("Error fetching recruiters:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 // export const updateRecruitRequest = async (req, res) => {
 //     const recruiterID = req.params.id;
 //     const { action } = req.body;

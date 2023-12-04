@@ -41,6 +41,7 @@ const getMenuItems = (selected, setSelected) => {
         { title: "Students", to: "/admin/students" },
         { title: "Requested Company", to: "/admin/company" },
         { title: "Chats", to:"/admin/chat"},
+        { title: "View JAF", to:"/admin/viewjaf"},
         { title: "Matched Students", to: "/admin/matched" },
         { title: "Accepted Students", to: "/admin/accepted" },
         { title: "Logout", to: "/" },

@@ -40,6 +40,7 @@ import Guide from "./components/RecruiterDropDown/guide";
 import RecruiterHome from "./components/recruiters/RecruiterHome";
 import Jointform from "./components/recruiters/Jointform";
 import AdminMessenger from "./components/admin/chat/AdminMessenger";
+import ViewJaf from "./components/admin/jaf/ViewJaf";
 import RecruiterMessenger from "./components/recruiters/chat/RecruiterMessenger";
 import Faculty from "./components/faculty";
 import FacultyLogin from "./components/faculty/Login";
@@ -51,6 +52,7 @@ import StudentRepHome from "./components/studentRep/Home";
 import StudentRepEdit from "./components/studentRep/Edit";
 import Conversation from "./components/recruiters/chat/Conversation";
 import FacultyRegister from "./components/faculty/Register";
+
 
 const App = () => {
 
@@ -108,6 +110,7 @@ const App = () => {
           <Route path="company" element={<Company />} />
           <Route path="students" element={<Students />} />
           <Route path="chat" element={<AdminMessenger />} />
+          <Route path="viewjaf" element={<ViewJaf />} />
         </Route>
       </Routes>
       <Footer />
