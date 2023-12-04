@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Message.css";
+import "./message.css";
 
 const Message = ({ message, own }) => {
   const [timeAgo, setTimeAgo] = useState(null);

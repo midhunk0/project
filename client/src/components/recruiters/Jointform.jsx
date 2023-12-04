@@ -36,7 +36,7 @@ const Jointform = () => {
         btechCutoff: "",
         maxClearedBacklogs: "",
         maxNonClearedBacklogs: "",
-        branchesEligible: [],
+
         grossSalary: "",
         bond: "",
         bondYears: "",
@@ -105,7 +105,6 @@ const Jointform = () => {
         });
     };
 
-    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -113,17 +112,15 @@ const Jointform = () => {
             const checkedRows = formData.tableData.filter(
                 (row) => row.isChecked
             );
-
             // Send data to the server
             const res = await axios.post(
-                "http://localhost:8080/api/recruiters/recruiterRegister",
+                "http://localhost:8080/api/jaf/jafPost",
                 {
                     ...formData,
                     tableData: checkedRows,
                 }
             );
             toast.success("Job Application Form sent successfully!");
-
             // Reset the form
             setFormData({
                 companyName: "",
@@ -142,7 +139,7 @@ const Jointform = () => {
                 btechCutoff: "",
                 maxClearedBacklogs: "",
                 maxNonClearedBacklogs: "",
-                branchesEligible: [],
+
                 grossSalary: "",
                 bond: "",
                 bondYears: "",
@@ -157,8 +154,27 @@ const Jointform = () => {
                 branchOrientedInterview: "",
                 totalRounds: "",
                 tableData: [
-                    { label: "Option 1", value: "option1", isChecked: false },
-                    { label: "Option 2", value: "option2", isChecked: false },
+                    {
+                        label: "Computer Science",
+                        value: "Computer Science",
+                        isChecked: false,
+                    },
+                    {
+                        label: "Electronics and Communication",
+                        value: "Electronics and Communication",
+                        isChecked: false,
+                    },
+                    {
+                        label: "Mechanical",
+                        value: "Mechanical",
+                        isChecked: false,
+                    },
+                    { label: "Civil", value: "Civil", isChecked: false },
+                    {
+                        label: "Electrical and Electronics",
+                        value: "Electrical and Electronics",
+                        isChecked: false,
+                    },
                 ],
             });
         } catch (err) {

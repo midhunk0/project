@@ -20,7 +20,7 @@ const Item = ({ title, to, selected, setSelected }) => {
             // Handle admin login - redirect to the admin dashboard
             setTimeout(() => {
                 navigate("/");
-            }, 100);
+            }, 500);
         }
     };
 

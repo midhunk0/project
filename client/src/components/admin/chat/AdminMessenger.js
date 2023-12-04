@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import "./AdminMessenger.css";
 import Conversation from "./Conversation";
-import Message from "./Message";
+import Message from "./message";
 import { AuthContext } from "../../../contexts/AuthContext";
 import axios from "axios";
 
