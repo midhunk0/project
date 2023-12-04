@@ -1,25 +1,27 @@
-.conversation{
+.recruiterMenu {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .recruiter {
     display: flex;
     align-items: center;
-    padding: 10px;
     cursor: pointer;
-    margin-top: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
   
+    &:hover {
+      background-color: #f5f5f5; /* Add your desired hover color */
+    }
+  
+    .companyName {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+  
+    /* Add more styling for additional information if needed */
   }
   
-  .conversation:hover{
-    background-color: rgb(238, 231, 231);
-  }
-
-  .conversationImage{
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    margin-right: 20px;
-    object-fit: cover;
-  }
-
-  .conversationName{
-    margin-top: 10px;
-    font-weight: 500; 
-  }

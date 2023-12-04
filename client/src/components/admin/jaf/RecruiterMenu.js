@@ -1,35 +1,24 @@
-import "./Conversation.css";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import "./RecruiterMenu.css"; // Make sure to import the CSS file
 
-const Conversation = ({ conversation, currentUser }) => {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const recruiterId = conversation.members.find((m) => m !== currentUser._id);
-
-    const getUser = async () => {
-      try {
-        const res = await axios.get(
-          `http://localhost:8080/api/recruiters/getRecruiterById/${recruiterId}`
-        );
-        console.log(recruiterId);
-        setUser(res.data);
-      } catch (error) {
-        console.log(error);
-        setUser(null);
-      }
-    };
-    getUser();
-  }, [currentUser, conversation]);
+const RecruiterMenu = ({ recruiters, onSelectRecruiter }) => {
   return (
-    <div className="conversation">
-      
-      <p className="conversationName">
-        {user ? user.companyName : "Loading..."}
-      </p>
+    <div className="recruiterMenu">
+      <h2>Recruiters</h2>
+      <div className="recruiterContainer">
+        {recruiters.map((recruiter) => (
+          <div key={recruiter._id} onClick={() => onSelectRecruiter(recruiter)}>
+            <div className="recruiter">
+              <div className="info">
+                <p className="companyName">{recruiter.companyName}</p>
+                {/* Add more information if needed */}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
 
-export default Conversation;
+export default RecruiterMenu;

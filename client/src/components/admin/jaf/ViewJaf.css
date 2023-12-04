@@ -1,69 +1,15 @@
-.messenger {
-  height: calc(100vh-70px);
+.viewJafContainer {
   display: flex;
-  width: 100%;
+  width: max-content;
 }
 
-.chatMenu {
-  flex: 3;
-  padding: 10px;
-  border-right: 1px solid;
+.recruiterMenu {
+  width: 200px;
+  background-color: #f0f0f0;
+  padding: 20px;
 }
 
-.chatBox {
-  flex: 9;
-  padding: 10px;
-}
-
-.chatMenuWrapper {
-  padding: 10px;
-}
-
-.chatBoxWrapper {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  justify-content: space-between;
-}
-
-.chatBoxTop {
-  max-height: 450px;
-  overflow-y: scroll;
-  padding-right: 10px;
-}
-
-.chatMenuInput {
-  width: 100%;
-  padding: 10px 0;
-  border: slateblue;
-  border-bottom: 1px solid;
-}
-
-.chatBoxBottom {
-  margin-top: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.chatMessageInput {
-  width: 80%;
-}
-
-.chatSubmitButton {
-  width: 70px;
-  height: 40px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: teal;
-  color: white;
-}
-
-.noConversationText {
-  position: absolute;
-  margin-top: 10%;
-  font-size: 50px;
-  color: gray;
-  cursor: default;
+.jafform {
+  flex: 1;
+  padding: 20px;
 }
