@@ -31,7 +31,7 @@ const jafSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true,
+
         check: false,
     },
     jobDescription: {

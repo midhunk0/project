@@ -1,8 +1,17 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+// @ts-nocheck
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
 const NotificationDashboard = () => {
     const [notifications, setNotifications] = useState([]);
+    const [expandedCardId, setExpandedCardId] = useState(null);
+
+    const toggleFullCard = (notificationId) => {
+        setExpandedCardId((prevId) =>
+            prevId === notificationId ? null : notificationId
+        );
+    };
 
     useEffect(() => {
         // Simulating fetching notifications from an API
@@ -49,18 +58,8 @@ const NotificationDashboard = () => {
         fetchNotifications();
     }, []);
 
-    const handleAccept = (id) => {
+    const handleApply = (id) => {
         // Logic to handle accepting a job opportunity
-        // Update the notification status or perform any necessary actions
-        // For example, you can remove the notification from the list
-        const updatedNotifications = notifications.filter(
-            (notification) => notification._id !== id
-        );
-        setNotifications(updatedNotifications);
-    };
-
-    const handleReject = (id) => {
-        // Logic to handle rejecting a job opportunity
         // Update the notification status or perform any necessary actions
         // For example, you can remove the notification from the list
         const updatedNotifications = notifications.filter(
@@ -78,18 +77,25 @@ const NotificationDashboard = () => {
                         <Row className="align-items-center">
                             <Col xs={12} md={8}>
                                 <Card.Subtitle className="mb-2 text-muted">
-                                    {notification.company.companyName}
+                                    <h4>{notification.company.companyName}</h4>
                                 </Card.Subtitle>
-                                <Card.Text>
-                                    Nature of Business:{" "}
-                                    {notification.company.natureOfBusiness}
-                                </Card.Text>
-                                <p>
-                                    Pay Package:{" "}
-                                    {notification.company.payPackage}
-                                </p>
+                                {expandedCardId === notification._id && (
+                                    <>
+                                        <Card.Text>
+                                            Nature of Business:{" "}
+                                            {
+                                                notification.company
+                                                    .natureOfBusiness
+                                            }
+                                        </Card.Text>
+                                        <p>
+                                            Pay Package:{" "}
+                                            {notification.company.payPackage}
+                                        </p>
+                                    </>
+                                )}
                             </Col>
-                            <Col
+                            <Row
                                 xs={12}
                                 md={4}
                                 className="text-md-right mt-3 mt-md-0"
@@ -98,20 +104,22 @@ const NotificationDashboard = () => {
                                     variant="success"
                                     className="mr-2"
                                     onClick={() =>
-                                        handleAccept(notification._id)
+                                        handleApply(notification._id)
                                     }
                                 >
-                                    Accept
+                                    Apply
                                 </Button>
                                 <Button
-                                    variant="danger"
+                                    variant="primary"
                                     onClick={() =>
-                                        handleReject(notification._id)
+                                        toggleFullCard(notification._id)
                                     }
                                 >
-                                    Reject
+                                    {expandedCardId === notification._id
+                                        ? "View Less"
+                                        : "View More"}
                                 </Button>
-                            </Col>
+                            </Row>
                         </Row>
                     </Card.Body>
                 </Card>

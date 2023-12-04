@@ -1,5 +1,6 @@
 // Import necessary libraries and components
 import React, { useState } from "react";
+
 import {
     Box,
     Button,
@@ -15,10 +16,12 @@ import { tokens } from "../../theme";
 import CssTextField from "../global/CssTextField";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { AuthContext } from "../../contexts/AuthContext";
 
 // Main component
 const Jointform = () => {
     // Define the initial state for form data
+    const userdata = JSON.parse(localStorage.getItem("user"));
     const [formData, setFormData] = useState({
         companyName: "",
         natureOfBusiness: "",
@@ -36,7 +39,7 @@ const Jointform = () => {
         btechCutoff: "",
         maxClearedBacklogs: "",
         maxNonClearedBacklogs: "",
-
+        recruiter_id: userdata._id,
         grossSalary: "",
         bond: "",
         bondYears: "",
@@ -74,12 +77,20 @@ const Jointform = () => {
     // Define the colors variable using the tokens function
     const colors = tokens(); // Make sure you have a theme file with a tokens function
 
-    // Handle regular input changes
     const handleChange = (e) => {
-        setFormData((prevData) => ({
-            ...prevData,
-            [e.target.name]: e.target.value,
-        }));
+        const { name, value, type } = e.target;
+
+        if (type === "radio") {
+            setFormData((prevData) => ({
+                ...prevData,
+                [name]: value === prevData[name] ? "" : value,
+            }));
+        } else {
+            setFormData((prevData) => ({
+                ...prevData,
+                [name]: value,
+            }));
+        }
     };
 
     // Handle checkbox changes in the table
@@ -215,20 +226,14 @@ const Jointform = () => {
         </FormGroup>
     );
 
-    // Render radio group
     const renderRadioGroup = (name, label, options) => (
-        <Box
-            display="flex"
-            justifyContent="space-between"
-            gap="20px"
-            style={{ alignItems: "center" }}
-        >
-            <FormLabel sx={{ m: 1 }}>{label}</FormLabel>
+        <Box>
+            <FormLabel>{label}</FormLabel>
             <RadioGroup
-                name={name}
+                name={name} // Unique name for each group
                 value={formData[name]}
-                onChange={handleChange}
-                sx={{ flexDirection: "row", gap: 1, m: 1 }}
+                onChange={(e) => handleChange(e)} // Updated handleChange function
+                sx={{ flexDirection: "row", gap: 1 }}
             >
                 {options.map((option) => (
                     <FormControlLabel
@@ -236,7 +241,6 @@ const Jointform = () => {
                         value={option}
                         control={<Radio />}
                         label={option}
-                        sx={{ m: 0 }}
                     />
                 ))}
             </RadioGroup>

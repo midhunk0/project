@@ -1,8 +1,10 @@
 import jaf from "../models/jaf.js";
 import Recruiter from "../models/recruiterModel.js";
+
 export const postJafController = async (req, res, next) => {
     try {
         const formData = req.body;
+
         const {
             companyName,
             natureOfBusiness,
@@ -19,50 +21,57 @@ export const postJafController = async (req, res, next) => {
             payPackage,
             recruitmentSchedule,
             selectionProcedure,
+            recruiter_id,
         } = formData;
 
         const newJaf = new jaf({
-            companyName: formData.companyName,
-            natureOfBusiness: formData.natureOfBusiness,
-            homePage: formData.homePage,
-            designation: formData.designation,
-            fax: formData.fax,
-            telephoneNo: formData.telephoneNo,
-            email: formData.email,
-            jobDescription: formData.jobDescription,
-            address: formData.address,
+            companyName,
+            natureOfBusiness,
+            homePage,
+            designation,
+            fax,
+            telephoneNo,
+            email,
+            jobDescription,
+            address,
             branchesEligible: formData.tableData.map((row) => row.label),
             eligibilityCriteria: {
-                tenthGradeCutoff: eligibilityCriteria.tenthGradeCutoff,
-                twelfthGradeCutoff: eligibilityCriteria.twelfthGradeCutoff,
-                btechCutoff: eligibilityCriteria.btechCutoff,
-                maxClearedBacklogs: eligibilityCriteria.maxClearedBacklogs,
+                tenthGradeCutoff: eligibilityCriteria?.tenthGradeCutoff || null,
+                twelfthGradeCutoff:
+                    eligibilityCriteria?.twelfthGradeCutoff || null,
+                btechCutoff: eligibilityCriteria?.btechCutoff || null,
+                maxClearedBacklogs:
+                    eligibilityCriteria?.maxClearedBacklogs || null,
                 maxNonClearedBacklogs:
-                    eligibilityCriteria.maxNonClearedBacklogs,
-
+                    eligibilityCriteria?.maxNonClearedBacklogs || null,
                 // Map other fields similarly
             },
             payPackage: {
-                grossSalary: payPackage.grossSalary,
-                bond: payPackage.bond,
-                bondYears: payPackage.bondYears,
+                grossSalary: payPackage?.grossSalary || null,
+                bond: payPackage?.bond || "No",
+                bondYears: payPackage?.bondYears || null,
                 // Map other fields similarly
             },
             recruitmentSchedule: {
-                recruitmentTechnique: recruitmentSchedule.recruitmentTechnique,
-                preferredDates: recruitmentSchedule.preferredDates,
+                recruitmentTechnique:
+                    recruitmentSchedule?.recruitmentTechnique || "On Campus",
+                preferredDates: recruitmentSchedule?.preferredDates || null,
             },
             selectionProcedure: {
-                onlineExam: selectionProcedure.onlineExam,
-                aptitudeTest: selectionProcedure.aptitudeTest,
-                technicalTest: selectionProcedure.technicalTest,
-                groupDiscussion: selectionProcedure.groupDiscussion,
-                technicalInterview: selectionProcedure.technicalInterview,
-                personalInterview: selectionProcedure.personalInterview,
+                onlineExam: selectionProcedure?.onlineExam || "Yes",
+                aptitudeTest: selectionProcedure?.aptitudeTest || "No",
+                technicalTest: selectionProcedure?.technicalTest || "No",
+                groupDiscussion: selectionProcedure?.groupDiscussion || "No",
+                technicalInterview:
+                    selectionProcedure?.technicalInterview || "Yes",
+                personalInterview:
+                    selectionProcedure?.personalInterview || "Yes",
                 branchOrientedInterview:
-                    selectionProcedure.branchOrientedInterview,
-                totalRounds: selectionProcedure.totalRounds,
+                    selectionProcedure?.branchOrientedInterview || "No",
+                totalRounds: selectionProcedure?.totalRounds || null,
+                // Map other fields similarly
             },
+
             recruiter_id: formData.recruiter_id,
         });
 
