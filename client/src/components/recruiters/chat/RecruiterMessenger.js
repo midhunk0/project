@@ -21,7 +21,6 @@ const RecruiterMessenger = () => {
         );
         setConversations(res.data);
         setCurrentChat(res.data[0]);
-        
       } catch (err) {
         console.log(err);
       }

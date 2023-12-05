@@ -13,6 +13,8 @@ const NotificationDashboard = () => {
         );
     };
 
+    // const companydata=useFetch()
+
     useEffect(() => {
         // Simulating fetching notifications from an API
         const fetchNotifications = () => {

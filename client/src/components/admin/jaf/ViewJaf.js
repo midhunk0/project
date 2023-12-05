@@ -31,12 +31,13 @@ const ViewJaf = () => {
   return (
     <>
       <div className="viewJafContainer">
-        
         <RecruiterMenu
           recruiters={recruiters}
           onSelectRecruiter={handleRecruiterSelect}
         />
-        {selectedRecruiter && <Jafform recruiter={selectedRecruiter} />}
+        {selectedRecruiter && (
+          <Jafform recruiter={selectedRecruiter} />
+        )}
       </div>
     </>
   );

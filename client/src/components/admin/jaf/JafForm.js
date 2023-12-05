@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import {
   Box,
   Button,
@@ -14,6 +15,7 @@ import {
 import { styled } from "@mui/system";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import useFetch from "../../../hooks/useFetch";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -87,6 +89,7 @@ export const tokens = () => ({
 
 export const themeSettings = () => {
   const colors = tokens();
+
   return {
     palette: {
       primary: {
@@ -135,7 +138,8 @@ export const themeSettings = () => {
   };
 };
 
-const Jointform = () => {
+const Jointform = ({ recruiter }) => {
+  const id = recruiter._id;
   const [formData, setFormData] = useState({
     companyName: "",
     natureOfBusiness: "",
@@ -189,7 +193,11 @@ const Jointform = () => {
   });
 
   const colors = tokens();
+  const [data, setData] = useState([]);
 
+  const jafdata = useFetch(`http://localhost:8080/api/jaf/jafGet/${id}`);
+  const backenddata = jafdata.data;
+  console.log(backenddata);
   const handleChange = (e) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -197,14 +205,14 @@ const Jointform = () => {
     }));
   };
 
-  const handleCheckboxChange = (e, rowIndex) => {
+  const handleCheckboxChange = (e, rowIndex, field) => {
     const { checked } = e.target;
     setFormData((prevData) => {
       const updatedTableData = prevData.tableData.map((tableRow, index) => {
         if (index === rowIndex) {
           return {
             ...tableRow,
-            isChecked: checked,
+            [field]: checked,
           };
         }
         return tableRow;
@@ -295,7 +303,7 @@ const Jointform = () => {
         required={required}
         label={label}
         type={type}
-        value={formData[name]}
+        value={backenddata[name]}
         onChange={handleChange}
       />
       <Checkbox
@@ -312,9 +320,8 @@ const Jointform = () => {
           <FormControlLabel
             control={
               <Checkbox
-                value={row.value}
                 checked={row.isChecked || false}
-                onChange={(e) => handleCheckboxChange(e, index)}
+                onChange={(e) => handleCheckboxChange(e, index, "isChecked")}
               />
             }
             label={row.label}
@@ -322,16 +329,14 @@ const Jointform = () => {
           />
           <Checkbox
             checked={row.send || false}
-            onChange={(e) =>
-              handleCheckboxChange(e, `tableData[${index}].send`)
-            }
+            onChange={(e) => handleCheckboxChange(e, index, "send")}
           />
         </div>
       ))}
     </FormGroup>
   );
 
-  const renderRadioGroup = (name, label, options) => (
+  const renderRadioGroup = (name, label, options = []) => (
     <div>
       <FormLabel sx={{ m: 1 }}>{label}</FormLabel>
       <RadioGroup
@@ -383,13 +388,10 @@ const Jointform = () => {
         }}
         gap="20px"
       >
-        {renderTextField("companyName", "Company Name")}
-        {renderTextField(
-          "natureOfBusiness",
-          "Nature of Business (IT, R&D, etc)"
-        )}
-        {renderTextField("category", "Category ( private, gen, NGO, PSV )")}
-        {renderTextField("homePage", "Home Page")}
+        {renderTextField("companyName", backenddata.companyName)}
+        {renderTextField("natureOfBusiness", backenddata.natureOfBusiness)}
+        {renderTextField("category", "category")}
+        {renderTextField("homePage", backenddata.homePage)}
       </Box>
 
       {/* Contact Information */}
@@ -412,17 +414,17 @@ const Jointform = () => {
           gap="20px"
         >
           {renderTextField("contactPerson", "Contact Person")}
-          {renderTextField("designation", "Designation")}
-          {renderTextField("fax", "Fax")}
-          {renderTextField("telephoneNo", "Telephone No")}
-          {renderTextField("email", "Email ID")}
+          {renderTextField("designation", backenddata.designation)}
+          {renderTextField("fax", backenddata.fax)}
+          {renderTextField("telephoneNo", backenddata.telephoneNo)}
+          {renderTextField("email", backenddata.email)}
           {renderTextField(
             "jobDescription",
-            "Job Description",
+            backenddata.jobDescription,
             true,
             "textarea"
           )}
-          {renderTextField("address", "Address", true, "textarea")}
+          {renderTextField("address", backenddata.address, true, "textarea")}
         </Box>
       </Box>
 
@@ -445,17 +447,11 @@ const Jointform = () => {
           }}
           gap="20px"
         >
-          {renderTextField(
-            "tenthGradeCutoff",
-            "10th Grade / SSLC Cut off (Percentage)"
-          )}
-          {renderTextField(
-            "twelfthGradeCutoff",
-            "12th Grade / PUC Cut off (Percentage)"
-          )}
-          {renderTextField("btechCutoff", "B.Tech Cut off (Percentage)")}
+          {renderTextField("tenthGradeCutoff", "10th Grade cutoff")}
+          {renderTextField("twelfthGradeCutoff", "12th grade cutoff")}
+          {renderTextField("btechCutoff", "btech CGPA")}
           {renderTextField("maxClearedBacklogs", "Max Cleared Backlogs")}
-          {renderTextField("maxNonClearedBacklogs", "Max Non Cleared Backlogs")}
+          {renderTextField("maxNonClearedBacklogs", "Max Noncleared Backlogs")}
           <Box>
             <Typography variant="h6" marginBottom="20px">
               Branches Eligible
@@ -484,13 +480,13 @@ const Jointform = () => {
           }}
           gap="20px"
         >
-          {renderTextField("grossSalary", "Gross Salary per Annum (INR)")}
-          {renderTextField("bond", "Bond", false)}
+          {renderTextField("grossSalary", "Gross Salary")}
+          {renderTextField("bond", "bond", false)}
           {renderTextField("bondYears", "Bond Years", false)}
 
-          {renderTextField("preferredDates", "Preferred Dates for Recruitment")}
+          {renderTextField("preferredDates", "Preferred Dates")}
           {renderRadioGroup("onlineExam", "Online Exam", ["Yes", "No"])}
-          {renderRadioGroup("aptitudeTest", "Aptitude Test", ["Yes", "No"])}
+          {renderRadioGroup("aptitudeTest", "Aptitude Exam", ["Yes", "No"])}
           {renderRadioGroup("technicalTest", "Technical Test", ["Yes", "No"])}
           {renderRadioGroup("groupDiscussion", "Group Discussion", [
             "Yes",
@@ -509,7 +505,7 @@ const Jointform = () => {
             "Branch Oriented Interview",
             ["Yes", "No"]
           )}
-          {renderTextField("totalRounds", "Total Rounds")}
+          {renderTextField("totalRounds", backenddata.totalRounds)}
         </Box>
       </Box>
 
