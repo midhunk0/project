@@ -299,8 +299,8 @@ const Jointform = ({ recruiter }) => {
   const renderTextField = (name, label, required = false, type = "text") => (
     <div>
       <Typography variant="body2" color="textSecondary" marginBottom="5px">
-      {label}
-    </Typography>
+        {name}
+      </Typography>
       <CssTextField
         name={name}
         required={required}
@@ -341,6 +341,9 @@ const Jointform = ({ recruiter }) => {
 
   const renderRadioGroup = (name, label, options = []) => (
     <div>
+      <Typography variant="body2" color="textSecondary" marginBottom="5px">
+        {name}
+      </Typography>
       <FormLabel sx={{ m: 1 }}>{label}</FormLabel>
       <RadioGroup
         name={name}
@@ -450,11 +453,11 @@ const Jointform = ({ recruiter }) => {
           }}
           gap="20px"
         >
-          {renderTextField("tenthGradeCutoff", backenddata.eligibilityCriteria.tenthGradeCutoff)}
-          {renderTextField("twelfthGradeCutoff",backenddata.eligibilityCriteria.twelfthGradeCutoff)}
-          {renderTextField("btechCutoff", backenddata.eligibilityCriteria.btechCutoff)}
-          {renderTextField("maxClearedBacklogs", backenddata.eligibilityCriteria.maxClearedBacklogs)}
-          {renderTextField("maxNonClearedBacklogs", backenddata.eligibilityCriteria.maxNonClearedBacklogs)}
+          {renderTextField("tenthGradeCutoff", backenddata?.eligibilityCriteria?.tenthGradeCutoff)}
+          {renderTextField("twelfthGradeCutoff", backenddata.eligibilityCriteria?.twelfthGradeCutoff)}
+          {renderTextField("btechCutoff", backenddata?.eligibilityCriteria?.btechCutoff)}
+          {renderTextField("maxClearedBacklogs", backenddata?.eligibilityCriteria?.maxClearedBacklogs)}
+          {renderTextField("maxNonClearedBacklogs", backenddata?.eligibilityCriteria?.maxNonClearedBacklogs)}
           <Box>
             <Typography variant="h6" marginBottom="20px">
               Branches Eligible
@@ -483,32 +486,25 @@ const Jointform = ({ recruiter }) => {
           }}
           gap="20px"
         >
-          {renderTextField("grossSalary", backenddata.payPackage.grossSalary)}
-          {renderTextField("bond", backenddata.payPackage.bond, false)}
-          {renderTextField("bondYears", backenddata.payPackage.bondYears, false)}
+          {renderTextField("grossSalary", backenddata?.payPackage?.grossSalary)}
+          {renderTextField("bond", backenddata?.payPackage?.bond, false)}
+          {renderTextField("bondYears", backenddata?.payPackage?.bondYears, false)}
 
-          {renderTextField("preferredDates", backenddata.recruitmentSchedule.preferredDates)}
-          {renderRadioGroup("onlineExam", backenddata.selectionProcedure.onlineExam, ["Yes", "No"])}
-          {renderRadioGroup("aptitudeTest", backenddata.selectionProcedure.aptitudeTest, ["Yes", "No"])}
-          {renderRadioGroup("technicalTest", backenddata.selectionProcedure.technicalTest, ["Yes", "No"])}
-          {renderRadioGroup("groupDiscussion", backenddata.selectionProcedure.groupDiscussion, [
-            "Yes",
-            "No",
-          ])}
-          {renderRadioGroup("technicalInterview", backenddata.selectionProcedure.technicalInterview, [
-            "Yes",
-            "No",
-          ])}
-          {renderRadioGroup("personalInterview", backenddata.selectionProcedure.personalInterview, [
-            "Yes",
-            "No",
-          ])}
+          {renderTextField("preferredDates", backenddata?.recruitmentSchedule?.preferredDates)}
+          {renderRadioGroup("onlineExam", backenddata?.selectionProcedure?.onlineExam)}
+          {renderRadioGroup("aptitudeTest", backenddata?.selectionProcedure?.aptitudeTest)}
+          {renderRadioGroup("technicalTest", backenddata?.selectionProcedure?.technicalTest)}
+          {renderRadioGroup("groupDiscussion", backenddata?.selectionProcedure?.groupDiscussion, 
+          )}
+          {renderRadioGroup("technicalInterview", backenddata?.selectionProcedure?.technicalInterview)}
+          {renderRadioGroup("personalInterview", backenddata?.selectionProcedure?.personalInterview
+            )}
           {renderRadioGroup(
             "branchOrientedInterview",
-            backenddata.selectionProcedure.branchOrientedInterview,
-            ["Yes", "No"]
+            backenddata?.selectionProcedure?.branchOrientedInterview,
+            
           )}
-          {renderTextField("totalRounds", backenddata.totalRounds)}
+          {renderTextField("totalRounds", backenddata?.selectionProcedure?.totalRounds)}
         </Box>
       </Box>
 
