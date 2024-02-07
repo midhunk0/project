@@ -296,8 +296,11 @@ const Jointform = ({ recruiter }) => {
     }
   };
 
-  const renderTextField = (name, label, required = true, type = "text") => (
+  const renderTextField = (name, label, required = false, type = "text") => (
     <div>
+      <Typography variant="body2" color="textSecondary" marginBottom="5px">
+      {label}
+    </Typography>
       <CssTextField
         name={name}
         required={required}
@@ -413,7 +416,7 @@ const Jointform = ({ recruiter }) => {
           }}
           gap="20px"
         >
-          {renderTextField("contactPerson", "Contact Person")}
+          {renderTextField("contactPerson", backenddata.contactPerson)}
           {renderTextField("designation", backenddata.designation)}
           {renderTextField("fax", backenddata.fax)}
           {renderTextField("telephoneNo", backenddata.telephoneNo)}
@@ -447,11 +450,11 @@ const Jointform = ({ recruiter }) => {
           }}
           gap="20px"
         >
-          {renderTextField("tenthGradeCutoff", "10th Grade cutoff")}
-          {renderTextField("twelfthGradeCutoff", "12th grade cutoff")}
-          {renderTextField("btechCutoff", "btech CGPA")}
-          {renderTextField("maxClearedBacklogs", "Max Cleared Backlogs")}
-          {renderTextField("maxNonClearedBacklogs", "Max Noncleared Backlogs")}
+          {renderTextField("tenthGradeCutoff", backenddata.eligibilityCriteria.tenthGradeCutoff)}
+          {renderTextField("twelfthGradeCutoff",backenddata.eligibilityCriteria.twelfthGradeCutoff)}
+          {renderTextField("btechCutoff", backenddata.eligibilityCriteria.btechCutoff)}
+          {renderTextField("maxClearedBacklogs", backenddata.eligibilityCriteria.maxClearedBacklogs)}
+          {renderTextField("maxNonClearedBacklogs", backenddata.eligibilityCriteria.maxNonClearedBacklogs)}
           <Box>
             <Typography variant="h6" marginBottom="20px">
               Branches Eligible
@@ -480,29 +483,29 @@ const Jointform = ({ recruiter }) => {
           }}
           gap="20px"
         >
-          {renderTextField("grossSalary", "Gross Salary")}
-          {renderTextField("bond", "bond", false)}
-          {renderTextField("bondYears", "Bond Years", false)}
+          {renderTextField("grossSalary", backenddata.payPackage.grossSalary)}
+          {renderTextField("bond", backenddata.payPackage.bond, false)}
+          {renderTextField("bondYears", backenddata.payPackage.bondYears, false)}
 
-          {renderTextField("preferredDates", "Preferred Dates")}
-          {renderRadioGroup("onlineExam", "Online Exam", ["Yes", "No"])}
-          {renderRadioGroup("aptitudeTest", "Aptitude Exam", ["Yes", "No"])}
-          {renderRadioGroup("technicalTest", "Technical Test", ["Yes", "No"])}
-          {renderRadioGroup("groupDiscussion", "Group Discussion", [
+          {renderTextField("preferredDates", backenddata.recruitmentSchedule.preferredDates)}
+          {renderRadioGroup("onlineExam", backenddata.selectionProcedure.onlineExam, ["Yes", "No"])}
+          {renderRadioGroup("aptitudeTest", backenddata.selectionProcedure.aptitudeTest, ["Yes", "No"])}
+          {renderRadioGroup("technicalTest", backenddata.selectionProcedure.technicalTest, ["Yes", "No"])}
+          {renderRadioGroup("groupDiscussion", backenddata.selectionProcedure.groupDiscussion, [
             "Yes",
             "No",
           ])}
-          {renderRadioGroup("technicalInterview", "Technical Interview", [
+          {renderRadioGroup("technicalInterview", backenddata.selectionProcedure.technicalInterview, [
             "Yes",
             "No",
           ])}
-          {renderRadioGroup("personalInterview", "Personal Interview", [
+          {renderRadioGroup("personalInterview", backenddata.selectionProcedure.personalInterview, [
             "Yes",
             "No",
           ])}
           {renderRadioGroup(
             "branchOrientedInterview",
-            "Branch Oriented Interview",
+            backenddata.selectionProcedure.branchOrientedInterview,
             ["Yes", "No"]
           )}
           {renderTextField("totalRounds", backenddata.totalRounds)}
