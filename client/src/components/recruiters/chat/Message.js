@@ -27,7 +27,7 @@
 // export default Message;
 
 import React, { useEffect, useState } from "react";
-import "./message.css";
+import "./Message.css";
 
 const Message = ({ message, own }) => {
   const [timeAgo, setTimeAgo] = useState(null);

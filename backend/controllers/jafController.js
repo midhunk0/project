@@ -24,6 +24,11 @@ export const postJafController = async (req, res, next) => {
       recruiter_id,
     } = formData;
 
+    let branchesEligibleData = [];
+    if (formData.tableData) {
+      branchesEligibleData = formData.tableData.map((row) => row.label);
+    }
+
     const newJaf = new jaf({
       companyName,
       natureOfBusiness,
@@ -31,40 +36,41 @@ export const postJafController = async (req, res, next) => {
       designation,
       fax,
       telephoneNo,
+      contactPerson,
       email,
       jobDescription,
       address,
-      branchesEligible: formData.tableData.map((row) => row.label),
+      branchesEligible: branchesEligibleData,
       eligibilityCriteria: {
-        tenthGradeCutoff: eligibilityCriteria?.tenthGradeCutoff || null,
-        twelfthGradeCutoff: eligibilityCriteria?.twelfthGradeCutoff || null,
-        btechCutoff: eligibilityCriteria?.btechCutoff || null,
-        maxClearedBacklogs: eligibilityCriteria?.maxClearedBacklogs || null,
+        tenthGradeCutoff: formData?.tenthGradeCutoff || null,
+        twelfthGradeCutoff: formData?.twelfthGradeCutoff || null,
+        btechCutoff: formData?.btechCutoff || null,
+        maxClearedBacklogs: formData?.maxClearedBacklogs || null,
         maxNonClearedBacklogs:
-          eligibilityCriteria?.maxNonClearedBacklogs || null,
+        formData?.maxNonClearedBacklogs || null,
         // Map other fields similarly
       },
       payPackage: {
-        grossSalary: payPackage?.grossSalary || null,
-        bond: payPackage?.bond || "No",
-        bondYears: payPackage?.bondYears || null,
+        grossSalary: formData?.grossSalary || null,
+        bond: formData?.bond || "No",
+        bondYears: formData?.bondYears || null,
         // Map other fields similarly
       },
       recruitmentSchedule: {
         recruitmentTechnique:
-          recruitmentSchedule?.recruitmentTechnique || "On Campus",
-        preferredDates: recruitmentSchedule?.preferredDates || null,
+        formData?.recruitmentTechnique || "On Campus",
+        preferredDates: formData?.preferredDates || null,
       },
       selectionProcedure: {
-        onlineExam: selectionProcedure?.onlineExam || "Yes",
-        aptitudeTest: selectionProcedure?.aptitudeTest || "No",
-        technicalTest: selectionProcedure?.technicalTest || "No",
-        groupDiscussion: selectionProcedure?.groupDiscussion || "No",
-        technicalInterview: selectionProcedure?.technicalInterview || "Yes",
-        personalInterview: selectionProcedure?.personalInterview || "Yes",
+        onlineExam: formData?.onlineExam || "Yes",
+        aptitudeTest: formData?.aptitudeTest || "No",
+        technicalTest: formData?.technicalTest || "No",
+        groupDiscussion: formData?.groupDiscussion || "No",
+        technicalInterview: formData?.technicalInterview || "Yes",
+        personalInterview: formData?.personalInterview || "Yes",
         branchOrientedInterview:
-          selectionProcedure?.branchOrientedInterview || "No",
-        totalRounds: selectionProcedure?.totalRounds || null,
+        formData?.branchOrientedInterview || "No",
+        totalRounds: formData?.totalRounds || null,
         // Map other fields similarly
       },
 

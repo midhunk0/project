@@ -123,6 +123,7 @@ const Jointform = () => {
             const checkedRows = formData.tableData.filter(
                 (row) => row.isChecked
             );
+            console.log(formData);
             // Send data to the server
             const res = await axios.post(
                 "http://localhost:8080/api/jaf/jafPost",
