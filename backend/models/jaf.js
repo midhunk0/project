@@ -2,136 +2,307 @@ import mongoose from "mongoose";
 
 const jafSchema = new mongoose.Schema({
     companyName: {
-        type: String,
-        default: "",
-        required: true,
-        check: false,
+        value: {
+            type: String,
+            default: "",
+            required: true,
+        },
+        check: {
+            type: Boolean,
+            default: false
+        }
     },
 
     natureOfBusiness: {
-        type: String,
-        default: "",
-        check: false,
+        value: {
+            type: String,
+            default: "",
+            required: true,
+        },
+        check: {
+            type: Boolean,
+            default: false
+        }
     },
     homePage: String,
     contactPerson: {
-        type: String,
-        default: "",
-        check: false,
+        value: {
+            type: String,
+            default: "",
+            required: true,
+        },
+        check: {
+            type: Boolean,
+            default: false
+        }
     },
     designation: {
-        type: String,
-        default: "",
-        check: false,
+        value: {
+            type: String,
+            default: "",
+            required: true,
+        },
+        check: {
+            type: Boolean,
+            default: false
+        }
     },
     fax: String,
     telephoneNo: {
-        type: String,
-        check: false,
+        value: {
+            type: String,
+            default: "",
+            required: true,
+        },
+        check: {
+            type: Boolean,
+            default: false
+        }
     },
     email: {
-        type: String,
+        value: {
+            type: String,
+            default: "",
 
-        check: false,
+        },
+        check: {
+            type: Boolean,
+            default: false
+        }
     },
     jobDescription: {
-        type: String,
-        default: "",
-        check: false,
+        value: {
+            type: String,
+            default: "",
+
+        },
+        check: {
+            type: Boolean,
+            default: false
+        }
     },
     address: {
-        type: String,
-        default: "",
-        check: false,
+        value: {
+            type: String,
+            default: "",
+        },
+        check: {
+            type: Boolean,
+            default: false
+        }
     },
     eligibilityCriteria: {
         tenthGradeCutoff: {
-            type: Number,
-            check: false,
+            value: {
+                type: Number,
+
+            },
+            check: {
+                type: Boolean,
+                default: false
+            }
         },
         twelfthGradeCutoff: {
-            type: Number,
-            check: false,
+            value: {
+                type: Number
+
+            },
+            check: {
+                type: Boolean,
+                default: false
+            }
         },
         btechCutoff: {
-            type: Number,
-            check: false,
+            value: {
+                type: Number,
+
+            },
+            check: {
+                type: Boolean,
+                default: false
+            }
         },
         maxClearedBacklogs: {
-            type: Number,
-            check: false,
+            value: {
+                type: Number,
+
+            },
+            check: {
+                type: Boolean,
+                default: false
+            }
         },
         maxNonClearedBacklogs: {
-            type: Number,
-            check: false,
+            value: {
+                type: Number
+
+            },
+            check: {
+                type: Boolean,
+                default: false
+            }
         },
     },
     branchesEligible: {
-        type: [String],
-        check: false,
+        values: {
+            type: [String]
+        },
+        check: {
+            type: Boolean,
+            default: false
+        },
     },
     payPackage: {
         grossSalary: {
-            type: Number,
-            check: false,
+            value: {
+                type: Number,
+            
+            },
+            check: {
+                type: Boolean,
+                default: false
+            }
         },
         bond: {
-            type: String,
-            check: false,
-            enum: ["Yes", "No"],
+            value: {
+                type: String,
+            
+            },
+            check: {
+                type: Boolean,
+                default: false
+            },
+            enum:["Yes","No"]
         },
-        bondYears: Number,
+        bondYears: {
+            value:{
+                type:Number,
+            },
+            check:{
+                type:Boolean,
+                default:false
+            }
+        },
     },
     recruitmentSchedule: {
         recruitmentTechnique: {
-            type: String,
-            check: false,
+            value: {
+                type: String,
+                default: "",
+            
+            },
+            check: {
+                type: Boolean,
+                default: false
+            },
             enum: ["On Campus", "Off Campus"],
         },
         preferredDates: {
-            type: String,
-            check: false,
+            value: {
+                type: String,
+                default: "",
+            
+            },
+            check: {
+                type: Boolean,
+                default: false
+            }
         },
     },
     selectionProcedure: {
         onlineExam: {
-            type: String,
-            check: false,
+            value: {
+                type: String,
+                default: "",
+            
+            },
+            check: {
+                type: Boolean,
+                default: false
+            },
             enum: ["Yes", "No"],
         },
         aptitudeTest: {
-            type: String,
-            check: false,
+            value: {
+                type: String,
+                default: "",
+            
+            },
+            check: {
+                type: Boolean,
+                default: false
+            },
             enum: ["Yes", "No"],
         },
         technicalTest: {
-            type: String,
-            check: false,
+            value: {
+                type: String,
+                default: "",
+            
+            },
+            check: {
+                type: Boolean,
+                default: false
+            },
             enum: ["Yes", "No"],
         },
         groupDiscussion: {
-            type: String,
-            check: false,
+            value: {
+                type: String,
+                default: "",
+            
+            },
+            check: {
+                type: Boolean,
+                default: false
+            },
             enum: ["Yes", "No"],
         },
         technicalInterview: {
-            type: String,
-            check: false,
+            value: {
+                type: String,
+                default: "",
+            
+            },
+            check: {
+                type: Boolean,
+                default: false
+            },
             enum: ["Yes", "No"],
         },
         personalInterview: {
-            type: String,
-            check: false,
+            value: {
+                type: String,
+                default: "",
+            
+            },
+            check: {
+                type: Boolean,
+                default: false
+            },
             enum: ["Yes", "No"],
         },
         branchOrientedInterview: {
-            type: String,
-            check: false,
+            value: {
+                type: String,
+                default: "",
+            
+            },
+            check: {
+                type: Boolean,
+                default: false
+            },
             enum: ["Yes", "No"],
         },
         totalRounds: {
-            type: Number,
-            check: false,
+            value: {
+                type: Number,
+            
+            },
+            check: {
+                type: Boolean,
+                default: false
+            }
         },
     },
     recruiter_id: {

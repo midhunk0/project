@@ -24,60 +24,144 @@ export const postJafController = async (req, res, next) => {
       recruiter_id,
     } = formData;
 
-    let branchesEligibleData = [];
+    let branchesEligibleDataValues = [];
     if (formData.tableData) {
-      branchesEligibleData = formData.tableData.map((row) => row.label);
+      branchesEligibleDataValues = formData.tableData.map((row) => row.label);
     }
-
     const newJaf = new jaf({
-      companyName,
-      natureOfBusiness,
+      companyName: {
+        value: formData.companyName || "",
+
+      },
+      natureOfBusiness: {
+        value: formData.natureOfBusiness  || "",
+
+      },
       homePage,
-      designation,
-      fax,
-      telephoneNo,
-      contactPerson,
-      email,
-      jobDescription,
-      address,
-      branchesEligible: branchesEligibleData,
+      contactPerson: {
+        value: formData.contactPerson || "",
+
+      },
+      designation: {
+        value: formData.designation || "",
+
+      },
+      fax: formData.fax,
+      telephoneNo: {
+        value: formData.telephoneNo || "",
+
+      },
+      email: {
+        value: formData.email || "",
+
+      },
+      jobDescription: {
+        value: formData.jobDescription || "",
+
+      },
+      address: {
+        value: formData.address || "",
+
+      },
+      branchesEligible: {
+        values: branchesEligibleDataValues
+      },
       eligibilityCriteria: {
-        tenthGradeCutoff: formData?.tenthGradeCutoff || null,
-        twelfthGradeCutoff: formData?.twelfthGradeCutoff || null,
-        btechCutoff: formData?.btechCutoff || null,
-        maxClearedBacklogs: formData?.maxClearedBacklogs || null,
-        maxNonClearedBacklogs:
-        formData?.maxNonClearedBacklogs || null,
+        tenthGradeCutoff: {
+          value: formData?.tenthGradeCutoff || null,
+
+        },
+
+        twelfthGradeCutoff: {
+          value: formData?.twelfthGradeCutoff || null,
+
+        },
+        btechCutoff: {
+          value: formData?.btechCutoff || null,
+
+        },
+        maxClearedBacklogs: {
+          value: formData?.maxClearedBacklogs || null,
+
+        },
+        maxNonClearedBacklogs: {
+          value: formData?.maxNonClearedBacklogs || null,
+
+        }
         // Map other fields similarly
       },
       payPackage: {
-        grossSalary: formData?.grossSalary || null,
-        bond: formData?.bond || "No",
-        bondYears: formData?.bondYears || null,
+        grossSalary: {
+          value: formData?.grossSalary || null,
+
+        },
+        bond: {
+          value: formData?.bond || "No",
+
+        },
+        bondYears: {
+          value: formData?.bondYears || null,
+
+        },
         // Map other fields similarly
       },
       recruitmentSchedule: {
         recruitmentTechnique:
-        formData?.recruitmentTechnique || "On Campus",
-        preferredDates: formData?.preferredDates || null,
+        {
+          value:
+            formData?.recruitmentTechnique || "On Campus",
+
+        },
+        preferredDates: {
+          value: formData?.preferredDates || null,
+
+        }
       },
       selectionProcedure: {
-        onlineExam: formData?.onlineExam || "Yes",
-        aptitudeTest: formData?.aptitudeTest || "No",
-        technicalTest: formData?.technicalTest || "No",
-        groupDiscussion: formData?.groupDiscussion || "No",
-        technicalInterview: formData?.technicalInterview || "Yes",
-        personalInterview: formData?.personalInterview || "Yes",
-        branchOrientedInterview:
-        formData?.branchOrientedInterview || "No",
-        totalRounds: formData?.totalRounds || null,
+        onlineExam: {
+          value: formData?.onlineExam || "Yes"
+
+        },
+        aptitudeTest: {
+          value: formData?.aptitudeTest || "No"
+
+        },
+
+        technicalTest:
+        {
+          value: formData?.technicalTest || "No"
+
+        },
+        groupDiscussion: {
+          value: formData?.groupDiscussion || "No"
+
+        },
+        technicalInterview: {
+          value: formData?.technicalInterview || "Yes"
+
+        },
+        personalInterview: {
+          value: formData?.personalInterview || "Yes"
+
+        },
+        branchOrientedInterview: {
+          value: formData?.branchOrientedInterview || "No"
+
+        },
+
+        totalRounds: {
+          value: formData?.totalRounds || null,
+
+        }
         // Map other fields similarly
       },
 
       recruiter_id: formData.recruiter_id,
     });
+    console.log(newJaf);
 
     const savedJAF = await newJaf.save();
+    res.status(201).json({ message: "JAF posted successfully"});
     await Recruiter.findByIdAndUpdate(formData.recruiter_id, {
       isJafSent: true,
     });
@@ -103,3 +187,27 @@ export const getJafController = async (req, res, next) => {
     res.status(500).json({ error: "An error occurred" });
   }
 };
+
+export const updateJafController = async (req, res, next) => {
+  try {
+    const jafid = req.params.id;
+    const { name, checked } = req.body;
+    console.log(name, checked);
+    const updatedJAF = await jaf.findByIdAndUpdate(
+      jafid,
+      { [`${name}.check`]: checked },
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedJAF) {
+      return res.status(404).json({ message: 'JAF not found' });
+    }
+
+    return res.status(200).json({ message: `Check field of ${name} updated successfully` });
+
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
+}

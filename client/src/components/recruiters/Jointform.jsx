@@ -77,6 +77,9 @@ const Jointform = () => {
     // Define the colors variable using the tokens function
     const colors = tokens(); // Make sure you have a theme file with a tokens function
 
+
+
+    
     const handleChange = (e) => {
         const { name, value, type } = e.target;
 
@@ -131,7 +134,7 @@ const Jointform = () => {
                     ...formData,
                     tableData: checkedRows,
                 }
-            );
+            )
             toast.success("Job Application Form sent successfully!");
             // Reset the form
             setFormData({
