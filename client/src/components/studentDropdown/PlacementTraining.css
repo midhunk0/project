@@ -1,0 +1,35 @@
+
+.placement-training-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+
+.square-card {
+  width: 250px;
+  height: 250px;
+  background-image: cover; /* Use cover for background-size */
+  background-position: center;
+  margin: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease-in-out, border 0.3s ease-in-out;
+  border: 2px solid #bdbdbd;
+
+}
+
+.square-card:hover {
+  transform: scale(1.1);
+  border: 2px solid #000000;
+}
+
+.card-content {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+}
+
+a {
+  text-decoration: none !important;
+}

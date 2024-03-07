@@ -1,120 +1,126 @@
 import mongoose from "mongoose";
 
-const studentSchema = new mongoose.Schema({
+const studentSchema = new mongoose.Schema(
+  {
     username: {
-        type: String,
-        // required: true,
-        default:""
+      type: String,
+      // required: true,
+      default: "",
     },
     email: {
-        type: String,
-        // required: true,
-        // unique: true,
-        default:""
+      type: String,
+      // required: true,
+      // unique: true,
+      default: "",
     },
-    password:{
-        type:String,
-        default:""
+    password: {
+      type: String,
+      default: "",
     },
     studentCollegeID: {
-        type: String,
-        required: true,
-        unique: true,
+      type: String,
+      required: true,
+      unique: true,
+    },
+    semester: {
+      type: Number,
+      default: 0,
     },
     gender: {
-        type: String,
+      type: String,
     },
     dob: {
-        type: String,
+      type: String,
     },
-    faculty:{
-        type:String,
-        default:""
-        
+    faculty: {
+      type: String,
+      default: "",
     },
     bloodGroup: {
-        type: String
+      type: String,
     },
     aadhar: {
-        type: String
+      type: String,
     },
     phone: {
-        type: String,
-        // required: true,
-        default:""
+      type: String,
+      // required: true,
+      default: "",
     },
     address: {
-        type: String,
-        // required: true,
-        default:""
+      type: String,
+      // required: true,
+      default: "",
     },
     nationality: {
-        type: String,
+      type: String,
     },
     religion: {
-        type: String,
+      type: String,
     },
     category: {
-        type: String,
+      type: String,
     },
     motherTongue: {
-        type: String,
+      type: String,
     },
     plus2: {
-        type: Number,
+      type: Number,
     },
     rank: {
-        type: Number,
+      type: Number,
     },
     admissionQouta: {
-        type: String,
+      type: String,
     },
     admissionNumber: {
-        type: String,
+      type: String,
     },
     admittedScheme: {
-        type: String,
+      type: String,
     },
     admittedProgram: {
-        type: String,
+      type: String,
     },
-    
+
     department: {
-        type: String,
-        // required: true,
-        default:""
+      type: String,
+      // required: true,
+      default: "",
     },
-    admittedType:{
-        type: String,
+    admittedType: {
+      type: String,
     },
     cgpa: {
-        type: Number,
-        required: true,
+      type: Number,
+      required: true,
     },
     skills: {
-        type: [String],
-        default: [],
+      type: [String],
+      default: [],
     },
     backlogs: {
-        type: Number,
-        default: 0,
+      type: Number,
+      default: 0,
     },
     profilePicture: {
-        type: String,
-        default:""
+      type: String,
+      default: "",
     },
     cv: {
-        type: String,
-        default:""
+      type: String,
+      default: "",
     },
-    isAdmin:{
-        type:Boolean,
-        default:false
+    isAdmin: {
+      type: Boolean,
+      default: false,
     },
-    isVerified:{
-        type:Boolean,
-        default:false
-    }
-},{ timestamps: true });
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  { timestamps: true }
+);
 
 export default mongoose.model("students", studentSchema);

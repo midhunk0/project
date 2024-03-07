@@ -52,11 +52,13 @@ import StudentRepHome from "./components/studentRep/Home";
 import StudentRepEdit from "./components/studentRep/Edit";
 import Conversation from "./components/recruiters/chat/Conversation";
 import FacultyRegister from "./components/faculty/Register";
+import Materials from "./components/studentDropdown/Materials";
 
+import StudentCredits from "./components/faculty/StudentCredits";
+import AppliedCompanies from "./components/students/AppliedCompanies";
+import ApplicationStatus from "./components/students/ApplicationStatus";
 
 const App = () => {
-
-
   return (
     <Router basename="">
       <Topbar />
@@ -84,9 +86,11 @@ const App = () => {
         <Route path="faculty/register" element={<FacultyRegister />} />
         <Route path="faculty" element={<Faculty />}>
           <Route path="home" element={<FacultyHome />} />
+          <Route path="studentcredits" element={<StudentCredits />} />
           <Route path="edit" element={<FacultyEdit />} />
         </Route>
-        <Route path="/placement-training" element={<PlacementTraining />} />
+        <Route path="placement-training" element={<PlacementTraining />} />
+        <Route path="placement-training/materials" element={<Materials />} />
         <Route
           path="/placement-rules_&_regulations"
           element={<PlacementRules />}
@@ -98,6 +102,8 @@ const App = () => {
           <Route path="home" element={<StudentHome />} />
           <Route path="edit" element={<Edit />} />
           <Route path="notification" element={<Notification />} />
+          <Route path="appliedCompanies" element={<AppliedCompanies/>} />
+          <Route path="applicationStatus" element={<ApplicationStatus/>} />
           <Route path="placement" element={<StudentPlacement />} />
           <Route path="resume" element={<Resume />} />
         </Route>
@@ -116,7 +122,6 @@ const App = () => {
       <Footer />
     </Router>
   );
-
 };
 
 export default App;

@@ -131,6 +131,16 @@ const Edit = () => {
           </Form.Group>
 
           <Form.Group className="mt-2">
+            <Form.Label>Semester</Form.Label>
+            <Form.Control
+              type="semester"
+              name="semester"
+              value={profileDetails.semester}
+              onChange={handleChange}
+            />
+          </Form.Group>
+
+          <Form.Group className="mt-2">
             <Form.Label>Phone</Form.Label>
             <Form.Control
               type="text"

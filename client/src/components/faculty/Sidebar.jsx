@@ -50,6 +50,7 @@ const Item = ({ title, to, selected, setSelected }) => {
 const getMenuItems = (selected, setSelected) => {
     const menuItems = [
         { title: "Home", to: "/faculty/home" },
+        { title: "Student Credits", to: "/faculty/studentcredits" },
         { title: "Edit", to: "/faculty/edit" },
         { title: "Logout" },
     ];

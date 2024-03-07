@@ -1,0 +1,25 @@
+.semcontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.square-card1 {
+  width: 150px;
+  height: 150px;
+  background-position: center;
+  border-radius: 40%;
+  margin: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease-in-out, border 0.3s ease-in-out;
+  border: 2px solid #bdbdbd;
+}
+
+.square-card1:hover {
+  transform: scale(1.1);
+  border: 2px solid #000000;
+}
+

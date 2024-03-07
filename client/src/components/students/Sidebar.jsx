@@ -56,6 +56,8 @@ const getMenuItems = (selected, setSelected) => {
         { title: "Resume", to: "/student/Resume" },
         { title: "Placements", to: "/student/placement" },
         { title: "Notifications", to: "/student/notification" },
+        { title: "Applied Companies", to: "/student/appliedcompanies" },
+        { title: "Talks & Sessions", to: "/student/talksandsessions" },
         { title: "Edit Profile", to: "/student/edit" },
         { title: "Logout" },
     ];
