@@ -8,6 +8,7 @@ export const postJafController = async (req, res, next) => {
     const {
       companyName,
       natureOfBusiness,
+      category,
       homePage,
       contactPerson,
       designation,
@@ -31,128 +32,102 @@ export const postJafController = async (req, res, next) => {
     const newJaf = new jaf({
       companyName: {
         value: formData.companyName || "",
-
       },
       natureOfBusiness: {
-        value: formData.natureOfBusiness  || "",
-
+        value: formData.natureOfBusiness || "",
+      },
+      category: {
+        value: formData.category || "",
       },
       homePage,
       contactPerson: {
         value: formData.contactPerson || "",
-
       },
       designation: {
         value: formData.designation || "",
-
       },
       fax: formData.fax,
       telephoneNo: {
         value: formData.telephoneNo || "",
-
       },
       email: {
         value: formData.email || "",
-
       },
       jobDescription: {
         value: formData.jobDescription || "",
-
       },
       address: {
         value: formData.address || "",
-
       },
       branchesEligible: {
-        values: branchesEligibleDataValues
+        values: branchesEligibleDataValues,
       },
       eligibilityCriteria: {
         tenthGradeCutoff: {
           value: formData?.tenthGradeCutoff || null,
-
         },
 
         twelfthGradeCutoff: {
           value: formData?.twelfthGradeCutoff || null,
-
         },
         btechCutoff: {
           value: formData?.btechCutoff || null,
-
         },
         maxClearedBacklogs: {
           value: formData?.maxClearedBacklogs || null,
-
         },
         maxNonClearedBacklogs: {
           value: formData?.maxNonClearedBacklogs || null,
-
-        }
+        },
         // Map other fields similarly
       },
       payPackage: {
         grossSalary: {
           value: formData?.grossSalary || null,
-
         },
         bond: {
           value: formData?.bond || "No",
-
         },
         bondYears: {
           value: formData?.bondYears || null,
-
         },
         // Map other fields similarly
       },
       recruitmentSchedule: {
-        recruitmentTechnique:
-        {
-          value:
-            formData?.recruitmentTechnique || "On Campus",
-
+        recruitmentTechnique: {
+          value: formData?.recruitmentTechnique || "On Campus",
         },
         preferredDates: {
           value: formData?.preferredDates || null,
-
-        }
+        },
       },
       selectionProcedure: {
         onlineExam: {
-          value: formData?.onlineExam || "Yes"
-
+          value: formData?.onlineExam || "Yes",
         },
         aptitudeTest: {
-          value: formData?.aptitudeTest || "No"
-
+          value: formData?.aptitudeTest || "No",
         },
 
-        technicalTest:
-        {
-          value: formData?.technicalTest || "No"
-
+        technicalTest: {
+          value: formData?.technicalTest || "No",
         },
         groupDiscussion: {
-          value: formData?.groupDiscussion || "No"
-
+          value: formData?.groupDiscussion || "No",
         },
         technicalInterview: {
-          value: formData?.technicalInterview || "Yes"
-
+          value: formData?.technicalInterview || "Yes",
         },
         personalInterview: {
-          value: formData?.personalInterview || "Yes"
-
+          value: formData?.personalInterview || "Yes",
         },
         branchOrientedInterview: {
-          value: formData?.branchOrientedInterview || "No"
-
+          value: formData?.branchOrientedInterview || "No",
         },
 
         totalRounds: {
           value: formData?.totalRounds || null,
-
-        }
+        },
         // Map other fields similarly
       },
 
@@ -161,7 +136,7 @@ export const postJafController = async (req, res, next) => {
     console.log(newJaf);
 
     const savedJAF = await newJaf.save();
-    res.status(201).json({ message: "JAF posted successfully"});
+    res.status(201).json({ message: "JAF posted successfully" });
     await Recruiter.findByIdAndUpdate(formData.recruiter_id, {
       isJafSent: true,
     });
@@ -200,14 +175,40 @@ export const updateJafController = async (req, res, next) => {
     );
 
     if (!updatedJAF) {
-      return res.status(404).json({ message: 'JAF not found' });
+      return res.status(404).json({ message: "JAF not found" });
     }
 
-    return res.status(200).json({ message: `Check field of ${name} updated successfully` });
-
-
+    return res
+      .status(200)
+      .json({ message: `Check field of ${name} updated successfully` });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "An error occurred" });
   }
-}
+};
+
+export const isAdminJafSent = async (req, res) => {
+  try {
+    const jafId = req.params.id;
+    const  adminjaf  = true;
+    console.log(jafId, adminjaf);
+    await jaf.findByIdAndUpdate(jafId, {
+      isAdminJafSent: adminjaf,
+    });
+
+    res.status(200).json({ message: "adminjaf changed successfully" });
+  } catch (err) {
+    next(err);
+  }
+};
+
+
+export const getAdminNotifications = async (req, res) => {
+  try {
+    const notifications = await jaf.find({ isAdminJafSent: true });
+    res.json(notifications);
+  } catch (error) {
+    next(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
