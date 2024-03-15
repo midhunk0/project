@@ -17,11 +17,26 @@ export const postJafController = async (req, res, next) => {
       email,
       jobDescription,
       address,
-      eligibilityCriteria,
       branchesEligible,
-      payPackage,
-      recruitmentSchedule,
-      selectionProcedure,
+      tenthGradeCutoff,
+      twelfthGradeCutoff,
+      btechCutoff,
+      maxClearedBacklogs,
+      maxNonClearedBacklogs,
+      grossSalary,
+      bond,
+      bondYears,
+      recruitmentTechnique,
+      preferredDates,
+      onlineExam,
+      aptitudeTest,
+      technicalTest,
+      groupDiscussion,
+      technicalInterview,
+      personalInterview,
+      branchOrientedInterview,
+      totalRounds,
+
       recruiter_id,
     } = formData;
 
@@ -39,14 +54,18 @@ export const postJafController = async (req, res, next) => {
       category: {
         value: formData.category || "",
       },
-      homePage,
+      homePage: {
+        value: formData.homePage || "",
+      },
       contactPerson: {
         value: formData.contactPerson || "",
       },
       designation: {
         value: formData.designation || "",
       },
-      fax: formData.fax,
+      fax: {
+        value: formData.fax || "",
+      },
       telephoneNo: {
         value: formData.telephoneNo || "",
       },
@@ -62,74 +81,70 @@ export const postJafController = async (req, res, next) => {
       branchesEligible: {
         values: branchesEligibleDataValues,
       },
-      eligibilityCriteria: {
-        tenthGradeCutoff: {
-          value: formData?.tenthGradeCutoff || null,
-        },
 
-        twelfthGradeCutoff: {
-          value: formData?.twelfthGradeCutoff || null,
-        },
-        btechCutoff: {
-          value: formData?.btechCutoff || null,
-        },
-        maxClearedBacklogs: {
-          value: formData?.maxClearedBacklogs || null,
-        },
-        maxNonClearedBacklogs: {
-          value: formData?.maxNonClearedBacklogs || null,
-        },
-        // Map other fields similarly
+      tenthGradeCutoff: {
+        value: formData?.tenthGradeCutoff || null,
       },
-      payPackage: {
-        grossSalary: {
-          value: formData?.grossSalary || null,
-        },
-        bond: {
-          value: formData?.bond || "No",
-        },
-        bondYears: {
-          value: formData?.bondYears || null,
-        },
-        // Map other fields similarly
-      },
-      recruitmentSchedule: {
-        recruitmentTechnique: {
-          value: formData?.recruitmentTechnique || "On Campus",
-        },
-        preferredDates: {
-          value: formData?.preferredDates || null,
-        },
-      },
-      selectionProcedure: {
-        onlineExam: {
-          value: formData?.onlineExam || "Yes",
-        },
-        aptitudeTest: {
-          value: formData?.aptitudeTest || "No",
-        },
 
-        technicalTest: {
-          value: formData?.technicalTest || "No",
-        },
-        groupDiscussion: {
-          value: formData?.groupDiscussion || "No",
-        },
-        technicalInterview: {
-          value: formData?.technicalInterview || "Yes",
-        },
-        personalInterview: {
-          value: formData?.personalInterview || "Yes",
-        },
-        branchOrientedInterview: {
-          value: formData?.branchOrientedInterview || "No",
-        },
-
-        totalRounds: {
-          value: formData?.totalRounds || null,
-        },
-        // Map other fields similarly
+      twelfthGradeCutoff: {
+        value: formData?.twelfthGradeCutoff || null,
       },
+      btechCutoff: {
+        value: formData?.btechCutoff || null,
+      },
+      maxClearedBacklogs: {
+        value: formData?.maxClearedBacklogs || null,
+      },
+      maxNonClearedBacklogs: {
+        value: formData?.maxNonClearedBacklogs || null,
+      },
+      // Map other fields similarly
+
+      grossSalary: {
+        value: formData?.grossSalary || null,
+      },
+      bond: {
+        value: formData?.bond || "No",
+      },
+      bondYears: {
+        value: formData?.bondYears || null,
+      },
+      // Map other fields similarly
+
+      recruitmentTechnique: {
+        value: formData?.recruitmentTechnique || "On Campus",
+      },
+      preferredDates: {
+        value: formData?.preferredDates || null,
+      },
+
+      onlineExam: {
+        value: formData?.onlineExam || "Yes",
+      },
+      aptitudeTest: {
+        value: formData?.aptitudeTest || "No",
+      },
+
+      technicalTest: {
+        value: formData?.technicalTest || "No",
+      },
+      groupDiscussion: {
+        value: formData?.groupDiscussion || "No",
+      },
+      technicalInterview: {
+        value: formData?.technicalInterview || "Yes",
+      },
+      personalInterview: {
+        value: formData?.personalInterview || "Yes",
+      },
+      branchOrientedInterview: {
+        value: formData?.branchOrientedInterview || "No",
+      },
+
+      totalRounds: {
+        value: formData?.totalRounds || null,
+      },
+      // Map other fields similarly
 
       recruiter_id: formData.recruiter_id,
     });
@@ -190,7 +205,7 @@ export const updateJafController = async (req, res, next) => {
 export const isAdminJafSent = async (req, res) => {
   try {
     const jafId = req.params.id;
-    const  adminjaf  = true;
+    const adminjaf = true;
     console.log(jafId, adminjaf);
     await jaf.findByIdAndUpdate(jafId, {
       isAdminJafSent: adminjaf,
@@ -202,13 +217,12 @@ export const isAdminJafSent = async (req, res) => {
   }
 };
 
-
 export const getAdminNotifications = async (req, res) => {
   try {
     const notifications = await jaf.find({ isAdminJafSent: true });
     res.json(notifications);
   } catch (error) {
     next(error);
-    res.status(500).json({ message: 'Internal server error' });
+    res.status(500).json({ message: "Internal server error" });
   }
 };

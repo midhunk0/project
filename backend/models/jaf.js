@@ -39,7 +39,16 @@ const jafSchema = new mongoose.Schema({
       default: false,
     },
   },
-  homePage: String,
+  fax: {
+    value: {
+      type: String,
+      default: "",
+    },
+    check: {
+      type: Boolean,
+      default: false,
+    },
+  },
   contactPerson: {
     value: {
       type: String,
@@ -62,7 +71,16 @@ const jafSchema = new mongoose.Schema({
       default: false,
     },
   },
-  fax: String,
+  homePage: {
+    value: {
+      type: String,
+      default: "",
+    },
+    check: {
+      type: Boolean,
+      default: false,
+    },
+  },
   telephoneNo: {
     value: {
       type: String,
@@ -104,53 +122,54 @@ const jafSchema = new mongoose.Schema({
       default: false,
     },
   },
-  eligibilityCriteria: {
-    tenthGradeCutoff: {
-      value: {
-        type: Number,
-      },
-      check: {
-        type: Boolean,
-        default: false,
-      },
+  //eligibilityCriteria
+
+  tenthGradeCutoff: {
+    value: {
+      type: Number,
     },
-    twelfthGradeCutoff: {
-      value: {
-        type: Number,
-      },
-      check: {
-        type: Boolean,
-        default: false,
-      },
-    },
-    btechCutoff: {
-      value: {
-        type: Number,
-      },
-      check: {
-        type: Boolean,
-        default: false,
-      },
-    },
-    maxClearedBacklogs: {
-      value: {
-        type: Number,
-      },
-      check: {
-        type: Boolean,
-        default: false,
-      },
-    },
-    maxNonClearedBacklogs: {
-      value: {
-        type: Number,
-      },
-      check: {
-        type: Boolean,
-        default: false,
-      },
+    check: {
+      type: Boolean,
+      default: false,
     },
   },
+  twelfthGradeCutoff: {
+    value: {
+      type: Number,
+    },
+    check: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  btechCutoff: {
+    value: {
+      type: Number,
+    },
+    check: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  maxClearedBacklogs: {
+    value: {
+      type: Number,
+    },
+    check: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  maxNonClearedBacklogs: {
+    value: {
+      type: Number,
+    },
+    check: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
   branchesEligible: {
     values: {
       type: [String],
@@ -160,147 +179,147 @@ const jafSchema = new mongoose.Schema({
       default: false,
     },
   },
-  payPackage: {
-    grossSalary: {
-      value: {
-        type: Number,
-      },
-      check: {
-        type: Boolean,
-        default: false,
-      },
+  //payPackage
+  grossSalary: {
+    value: {
+      type: Number,
     },
-    bond: {
-      value: {
-        type: String,
-      },
-      check: {
-        type: Boolean,
-        default: false,
-      },
-      enum: ["Yes", "No"],
-    },
-    bondYears: {
-      value: {
-        type: Number,
-      },
-      check: {
-        type: Boolean,
-        default: false,
-      },
+    check: {
+      type: Boolean,
+      default: false,
     },
   },
-  recruitmentSchedule: {
-    recruitmentTechnique: {
-      value: {
-        type: String,
-        default: "",
-      },
-      check: {
-        type: Boolean,
-        default: false,
-      },
-      enum: ["On Campus", "Off Campus"],
+  bond: {
+    value: {
+      type: String,
     },
-    preferredDates: {
-      value: {
-        type: String,
-        default: "",
-      },
-      check: {
-        type: Boolean,
-        default: false,
-      },
+    check: {
+      type: Boolean,
+      default: false,
+    },
+    enum: ["Yes", "No"],
+  },
+  bondYears: {
+    value: {
+      type: Number,
+    },
+    check: {
+      type: Boolean,
+      default: false,
     },
   },
-  selectionProcedure: {
-    onlineExam: {
-      value: {
-        type: String,
-        default: "",
-      },
-      check: {
-        type: Boolean,
-        default: false,
-      },
-      enum: ["Yes", "No"],
+
+  //recruitmentSchedule:
+  recruitmentTechnique: {
+    value: {
+      type: String,
+      default: "",
     },
-    aptitudeTest: {
-      value: {
-        type: String,
-        default: "",
-      },
-      check: {
-        type: Boolean,
-        default: false,
-      },
-      enum: ["Yes", "No"],
+    check: {
+      type: Boolean,
+      default: false,
     },
-    technicalTest: {
-      value: {
-        type: String,
-        default: "",
-      },
-      check: {
-        type: Boolean,
-        default: false,
-      },
-      enum: ["Yes", "No"],
+    enum: ["On Campus", "Off Campus"],
+  },
+  preferredDates: {
+    value: {
+      type: String,
+      default: "",
     },
-    groupDiscussion: {
-      value: {
-        type: String,
-        default: "",
-      },
-      check: {
-        type: Boolean,
-        default: false,
-      },
-      enum: ["Yes", "No"],
-    },
-    technicalInterview: {
-      value: {
-        type: String,
-        default: "",
-      },
-      check: {
-        type: Boolean,
-        default: false,
-      },
-      enum: ["Yes", "No"],
-    },
-    personalInterview: {
-      value: {
-        type: String,
-        default: "",
-      },
-      check: {
-        type: Boolean,
-        default: false,
-      },
-      enum: ["Yes", "No"],
-    },
-    branchOrientedInterview: {
-      value: {
-        type: String,
-        default: "",
-      },
-      check: {
-        type: Boolean,
-        default: false,
-      },
-      enum: ["Yes", "No"],
-    },
-    totalRounds: {
-      value: {
-        type: Number,
-      },
-      check: {
-        type: Boolean,
-        default: false,
-      },
+    check: {
+      type: Boolean,
+      default: false,
     },
   },
+
+  //  selectionProcedure
+  onlineExam: {
+    value: {
+      type: String,
+      default: "",
+    },
+    check: {
+      type: Boolean,
+      default: false,
+    },
+    enum: ["Yes", "No"],
+  },
+  aptitudeTest: {
+    value: {
+      type: String,
+      default: "",
+    },
+    check: {
+      type: Boolean,
+      default: false,
+    },
+    enum: ["Yes", "No"],
+  },
+  technicalTest: {
+    value: {
+      type: String,
+      default: "",
+    },
+    check: {
+      type: Boolean,
+      default: false,
+    },
+    enum: ["Yes", "No"],
+  },
+  groupDiscussion: {
+    value: {
+      type: String,
+      default: "",
+    },
+    check: {
+      type: Boolean,
+      default: false,
+    },
+    enum: ["Yes", "No"],
+  },
+  technicalInterview: {
+    value: {
+      type: String,
+      default: "",
+    },
+    check: {
+      type: Boolean,
+      default: false,
+    },
+    enum: ["Yes", "No"],
+  },
+  personalInterview: {
+    value: {
+      type: String,
+      default: "",
+    },
+    check: {
+      type: Boolean,
+      default: false,
+    },
+    enum: ["Yes", "No"],
+  },
+  branchOrientedInterview: {
+    value: {
+      type: String,
+      default: "",
+    },
+    check: {
+      type: Boolean,
+      default: false,
+    },
+    enum: ["Yes", "No"],
+  },
+  totalRounds: {
+    value: {
+      type: Number,
+    },
+    check: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
   recruiter_id: {
     type: String,
     required: true,

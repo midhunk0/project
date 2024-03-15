@@ -1,4 +1,5 @@
-// Import necessary libraries and components
+// Recruiter viewed JAF form
+
 import React, { useState } from "react";
 
 import {
