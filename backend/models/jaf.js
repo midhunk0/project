@@ -179,6 +179,16 @@ const jafSchema = new mongoose.Schema({
       default: false,
     },
   },
+
+  recruitmentProcess: {
+    values: {
+      type: [String],
+    },
+    check: {
+      type: Boolean,
+      default: false,
+    },
+  },
   //payPackage
   grossSalary: {
     value: {
@@ -232,87 +242,21 @@ const jafSchema = new mongoose.Schema({
     },
   },
 
-  //  selectionProcedure
-  onlineExam: {
-    value: {
-      type: String,
-      default: "",
-    },
-    check: {
-      type: Boolean,
-      default: false,
-    },
-    enum: ["Yes", "No"],
-  },
-  aptitudeTest: {
-    value: {
-      type: String,
-      default: "",
-    },
-    check: {
-      type: Boolean,
-      default: false,
-    },
-    enum: ["Yes", "No"],
-  },
-  technicalTest: {
-    value: {
-      type: String,
-      default: "",
-    },
-    check: {
-      type: Boolean,
-      default: false,
-    },
-    enum: ["Yes", "No"],
-  },
-  groupDiscussion: {
-    value: {
-      type: String,
-      default: "",
-    },
-    check: {
-      type: Boolean,
-      default: false,
-    },
-    enum: ["Yes", "No"],
-  },
-  technicalInterview: {
-    value: {
-      type: String,
-      default: "",
-    },
-    check: {
-      type: Boolean,
-      default: false,
-    },
-    enum: ["Yes", "No"],
-  },
-  personalInterview: {
-    value: {
-      type: String,
-      default: "",
-    },
-    check: {
-      type: Boolean,
-      default: false,
-    },
-    enum: ["Yes", "No"],
-  },
-  branchOrientedInterview: {
-    value: {
-      type: String,
-      default: "",
-    },
-    check: {
-      type: Boolean,
-      default: false,
-    },
-    enum: ["Yes", "No"],
-  },
+
   totalRounds: {
     value: {
       type: Number,
+    },
+    check: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
+  nb: {
+    value: {
+      type: String,
+      default: "",
     },
     check: {
       type: Boolean,

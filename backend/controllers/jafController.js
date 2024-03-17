@@ -28,21 +28,20 @@ export const postJafController = async (req, res, next) => {
       bondYears,
       recruitmentTechnique,
       preferredDates,
-      onlineExam,
-      aptitudeTest,
-      technicalTest,
-      groupDiscussion,
-      technicalInterview,
-      personalInterview,
-      branchOrientedInterview,
       totalRounds,
-
+      recruitmentProcess,
+      nb,
       recruiter_id,
     } = formData;
 
     let branchesEligibleDataValues = [];
+    let recruitmentProcessDataValues = [];
+
     if (formData.tableData) {
       branchesEligibleDataValues = formData.tableData.map((row) => row.label);
+    }
+    if (formData.recruitmentProcess) {
+      recruitmentProcessDataValues = formData.recruitmentProcess.map((process) => process.label);
     }
     const newJaf = new jaf({
       companyName: {
@@ -81,6 +80,9 @@ export const postJafController = async (req, res, next) => {
       branchesEligible: {
         values: branchesEligibleDataValues,
       },
+      recruitmentProcess:{
+        values: recruitmentProcessDataValues,
+      },
 
       tenthGradeCutoff: {
         value: formData?.tenthGradeCutoff || null,
@@ -118,34 +120,12 @@ export const postJafController = async (req, res, next) => {
         value: formData?.preferredDates || null,
       },
 
-      onlineExam: {
-        value: formData?.onlineExam || "Yes",
-      },
-      aptitudeTest: {
-        value: formData?.aptitudeTest || "No",
-      },
-
-      technicalTest: {
-        value: formData?.technicalTest || "No",
-      },
-      groupDiscussion: {
-        value: formData?.groupDiscussion || "No",
-      },
-      technicalInterview: {
-        value: formData?.technicalInterview || "Yes",
-      },
-      personalInterview: {
-        value: formData?.personalInterview || "Yes",
-      },
-      branchOrientedInterview: {
-        value: formData?.branchOrientedInterview || "No",
-      },
-
       totalRounds: {
         value: formData?.totalRounds || null,
       },
-      // Map other fields similarly
-
+      nb:{
+        value: "",
+      },
       recruiter_id: formData.recruiter_id,
     });
     console.log(newJaf);
@@ -178,29 +158,74 @@ export const getJafController = async (req, res, next) => {
   }
 };
 
+// export const updateJafController = async (req, res, next) => {
+//   try {
+//     const jafid = req.params.id;
+//     const { name, checked } = req.body;
+//     console.log(name, checked);
+//     const updatedJAF = await jaf.findByIdAndUpdate(
+//       jafid,
+//       { [`${name}.check`]: checked },
+//       { new: true } // Return the updated document
+//     );
+
+//     if (!updatedJAF) {
+//       return res.status(404).json({ message: "JAF not found" });
+//     }
+
+//     return res
+//       .status(200)
+//       .json({ message: `Check field of ${name} updated successfully` });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: "An error occurred" });
+//   }
+// };
+
+
 export const updateJafController = async (req, res, next) => {
   try {
     const jafid = req.params.id;
-    const { name, checked } = req.body;
-    console.log(name, checked);
-    const updatedJAF = await jaf.findByIdAndUpdate(
-      jafid,
-      { [`${name}.check`]: checked },
-      { new: true } // Return the updated document
-    );
+    const { name, value, checked } = req.body;
+    console.log(name, value, checked);
 
-    if (!updatedJAF) {
-      return res.status(404).json({ message: "JAF not found" });
+    if (name === "nb" && checked) {
+      // Update the "nb" field if it is checked and a new value is provided
+      const updatedJAF = await jaf.findByIdAndUpdate(
+        jafid,
+        { [name]: value },
+        { new: true } // Return the updated document
+      );
+
+      if (!updatedJAF) {
+        return res.status(404).json({ message: "JAF not found" });
+      }
+
+      return res
+        .status(200)
+        .json({ message: `"nb" field updated successfully`, updatedJAF });
+    } else {
+      // Update the checked values in the specified field
+      const updatedJAF = await jaf.findByIdAndUpdate(
+        jafid,
+        { [`${name}.check`]: checked },
+        { new: true } // Return the updated document
+      );
+
+      if (!updatedJAF) {
+        return res.status(404).json({ message: "JAF not found" });
+      }
+
+      return res
+        .status(200)
+        .json({ message: `Check field of ${name} updated successfully`, updatedJAF });
     }
-
-    return res
-      .status(200)
-      .json({ message: `Check field of ${name} updated successfully` });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "An error occurred" });
   }
 };
+
 
 export const isAdminJafSent = async (req, res) => {
   try {

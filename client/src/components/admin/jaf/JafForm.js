@@ -206,7 +206,7 @@ const JafForm = ({ recruiter }) => {
           {renderTextField("maxClearedBacklogs", "Max Cleared Backlogs")}
           {renderTextField("maxNonClearedBacklogs", "Max Non Cleared Backlogs")}
           <Box>
-            <Typography variant="h6" marginBottom="20px">
+            <Typography variant="h6" marginBottom="10px">
               Branches Eligible{" "}
               <Checkbox
                 value="branchesEligible"
@@ -247,17 +247,28 @@ const JafForm = ({ recruiter }) => {
           {renderTextField("bond", "Bond")}
           {renderTextField("bondYears", "Bond Years")}
           {renderTextField("preferredDates", "Preferred Dates for Recruitment")}
-          {renderCheckboxGroup("onlineExam", "Online Exam")}
-          {renderCheckboxGroup("aptitudeTest", "Aptitude Test")}
-          {renderCheckboxGroup("technicalTest", "Technical Test")}
-          {renderCheckboxGroup("groupDiscussion", "Group Discussion")}
-          {renderCheckboxGroup("technicalInterview", "Technical Interview")}
-          {renderCheckboxGroup("personalInterview", "Personal Interview")}
-          {renderCheckboxGroup(
-            "branchOrientedInterview",
-            "Branch Oriented Interview"
+          {renderTextField(
+            "recruitmentTechnique",
+            "Recruitment Technique(OnCampus/OffCampus)"
           )}
           {renderTextField("totalRounds", "Total Rounds")}
+          <Box>
+            <Typography variant="h6" marginBottom="10px">
+              Recruitment Process{" "}
+              <Checkbox
+                value="recruitmentProcess"
+                onChange={(e) => handleCheckboxChange(e)}
+              />
+            </Typography>
+            <Box display="flex" flexDirection="column">
+              {backenddata?.recruitmentProcess?.values?.map((branch, index) => (
+                <Typography key={index}>
+                  <b>{branch}</b>
+                </Typography>
+              ))}
+            </Box>
+          </Box>
+          {renderTextField("nb", "NB:")}
         </Box>
       </Box>
 
