@@ -158,6 +158,7 @@ export const getJafController = async (req, res, next) => {
   }
 };
 
+//to set the checked values
 export const updateJafController = async (req, res, next) => {
   try {
     const jafid = req.params.id;
