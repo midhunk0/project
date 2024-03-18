@@ -154,9 +154,7 @@ const handleRecruitmentProcessChange = (e, rowIndex) => {
       // Filter only checked branches eligible
       const checkedBranchesEligible = formData.tableData.filter((row) => row.isChecked);
       const checkedRecruitmentProcess = formData.recruitmentProcess.filter((process) => process.isChecked);
-  
-
-  
+    
       console.log(formData);
       // Send data to the server
       const res = await axios.post("http://localhost:8080/api/jaf/jafPost", {

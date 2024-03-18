@@ -158,73 +158,30 @@ export const getJafController = async (req, res, next) => {
   }
 };
 
-// export const updateJafController = async (req, res, next) => {
-//   try {
-//     const jafid = req.params.id;
-//     const { name, checked } = req.body;
-//     console.log(name, checked);
-//     const updatedJAF = await jaf.findByIdAndUpdate(
-//       jafid,
-//       { [`${name}.check`]: checked },
-//       { new: true } // Return the updated document
-//     );
-
-//     if (!updatedJAF) {
-//       return res.status(404).json({ message: "JAF not found" });
-//     }
-
-//     return res
-//       .status(200)
-//       .json({ message: `Check field of ${name} updated successfully` });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "An error occurred" });
-//   }
-// };
-
-
 export const updateJafController = async (req, res, next) => {
   try {
     const jafid = req.params.id;
-    const { name, value, checked } = req.body;
-    console.log(name, value, checked);
+    const { name, checked } = req.body;
+    console.log(name, checked);
+    const updatedJAF = await jaf.findByIdAndUpdate(
+      jafid,
+      { [`${name}.check`]: checked },
+      { new: true } // Return the updated document
+    );
 
-    if (name === "nb" && checked) {
-      // Update the "nb" field if it is checked and a new value is provided
-      const updatedJAF = await jaf.findByIdAndUpdate(
-        jafid,
-        { [name]: value },
-        { new: true } // Return the updated document
-      );
-
-      if (!updatedJAF) {
-        return res.status(404).json({ message: "JAF not found" });
-      }
-
-      return res
-        .status(200)
-        .json({ message: `"nb" field updated successfully`, updatedJAF });
-    } else {
-      // Update the checked values in the specified field
-      const updatedJAF = await jaf.findByIdAndUpdate(
-        jafid,
-        { [`${name}.check`]: checked },
-        { new: true } // Return the updated document
-      );
-
-      if (!updatedJAF) {
-        return res.status(404).json({ message: "JAF not found" });
-      }
-
-      return res
-        .status(200)
-        .json({ message: `Check field of ${name} updated successfully`, updatedJAF });
+    if (!updatedJAF) {
+      return res.status(404).json({ message: "JAF not found" });
     }
+
+    return res
+      .status(200)
+      .json({ message: `Check field of ${name} updated successfully` });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "An error occurred" });
   }
 };
+
 
 
 export const isAdminJafSent = async (req, res) => {
@@ -249,5 +206,29 @@ export const getAdminNotifications = async (req, res) => {
   } catch (error) {
     next(error);
     res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export const updateNbController = async (req, res) => {
+  try {
+    const jafid = req.params.id; // Assuming you have the JAF ID in the URL params
+    const { nb, check } = req.body; // Get the new NB value and check value from the request body
+
+    // Update the JAF document in the database with the new NB value and check value
+    const updatedJAF = await jaf.findByIdAndUpdate(
+      jafid,
+      { nb, check }, // Update both the 'nb' and 'check' fields with the new values
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedJAF) {
+      return res.status(404).json({ message: "JAF not found" });
+    }
+
+    // Return a success response with the updated JAF data
+    res.status(200).json({ message: "NB field updated successfully", jaf: updatedJAF });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An error occurred" });
   }
 };

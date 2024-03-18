@@ -31,12 +31,16 @@ const CssTextField = styled(TextField)({
 
 const JafForm = ({ recruiter }) => {
   const id = recruiter._id;
-  const [formData, setFormData] = useState({});
 
   const jafdata = useFetch(`http://localhost:8080/api/jaf/jafGet/${id}`);
   const backenddata = jafdata.data || {}; // Ensure backenddata is defined
-  console.log(backenddata);
+  // console.log(backenddata);
+
   const jafid = backenddata._id;
+  // const userdata = JSON.parse(localStorage.getItem("user"));
+  const [formData, setFormData] = useState({
+    nb: "",
+  });
 
   const handleChange = (e) => {
     setFormData((prevData) => ({
@@ -64,10 +68,14 @@ const JafForm = ({ recruiter }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put(
+      await axios.put(
         `http://localhost:8080/api/jaf/jafAdminSent/${jafid}`,
         true
       );
+      // Send the new NB value to the server
+      await axios.put(`http://localhost:8080/api/jaf/updateNb/${jafid}`, {
+        nb: { value: formData.nb, check: true },
+      });
       toast.success("Notification sent successfully!");
       setFormData({});
     } catch (err) {
@@ -89,6 +97,20 @@ const JafForm = ({ recruiter }) => {
         onChange={handleChange}
       />
       <Checkbox value={name} onChange={(e) => handleCheckboxChange(e)} />
+    </div>
+  );
+
+  const renderTextFieldNb = (name, label, required = true, type = "text") => (
+    <div>
+      <CssTextField
+        name={name}
+        required={required}
+        label={label}
+        type={type}
+        value={formData[name]}
+        onChange={handleChange}
+        sx={{ width: '100%', marginBottom: '10px' }}
+      />
     </div>
   );
 
@@ -268,9 +290,18 @@ const JafForm = ({ recruiter }) => {
               ))}
             </Box>
           </Box>
-          {renderTextField("nb", "NB:")}
         </Box>
+        
       </Box>
+      <Box marginTop="30px"
+        border="1px solid gray"
+        borderRadius="5px"
+        padding="15px">
+          <Typography variant="h6" marginBottom="20px">
+            Note:
+          </Typography>
+          {renderTextFieldNb("nb", "NB:")}
+        </Box>
 
       {/* Submit button */}
       <Button
