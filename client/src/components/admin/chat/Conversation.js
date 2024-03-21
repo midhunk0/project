@@ -4,6 +4,7 @@ import axios from "axios";
 
 const Conversation = ({ conversation, currentUser }) => {
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const recruiterId = conversation.members.find((m) => m !== currentUser._id);
@@ -13,15 +14,26 @@ const Conversation = ({ conversation, currentUser }) => {
         const res = await axios.get(
           `http://localhost:8080/api/recruiters/getRecruiterById/${recruiterId}`
         );
-        console.log(recruiterId);
-        setUser(res.data);
+        console.log(res.data);
+        if (res.data) {
+          setUser(res.data);
+        } else {
+          setUser(null);
+        }
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
-        setUser(null);
+        setIsLoading(false);
       }
     };
     getUser();
   }, [currentUser, conversation]);
+
+  if (isLoading || !user) {
+    // Hide the conversation component if loading or user not found
+    return null;
+  }
+
   return (
     <div className="conversation">
       <img
@@ -30,7 +42,7 @@ const Conversation = ({ conversation, currentUser }) => {
         alt="conversationImage"
       />
       <p className="conversationName">
-        {user ? user.companyName : "Loading..."}
+        {user.companyName}
       </p>
     </div>
   );

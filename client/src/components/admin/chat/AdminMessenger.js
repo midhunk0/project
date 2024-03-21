@@ -47,10 +47,14 @@ const AdminMessenger = () => {
   useEffect(() => {
     const getMessages = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:8080/api/students/messages/${currentChat?._id}`
-        );
-        setMessages(res.data);
+        if (currentChat) {
+          const res = await axios.get(
+            `http://localhost:8080/api/students/messages/${currentChat._id}`
+          );
+          setMessages(res.data);
+        } else {
+          setMessages([]); // Clear messages when there is no current chat
+        }
       } catch (err) {
         console.log(err);
       }
@@ -60,6 +64,10 @@ const AdminMessenger = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+   
+
+    // Create message object for text message
     const message = {
       sender: user._id,
       text: newmessage,
@@ -86,6 +94,7 @@ const AdminMessenger = () => {
     });
   }, [messages]);
 
+  
   return (
     <>
       <div className="messenger">
@@ -110,7 +119,7 @@ const AdminMessenger = () => {
 
         <div className="chatBox">
           <div className="chatBoxWrapper">
-            {messages.length > 0 ? (
+            {messages.length > 0 || currentChat ? (
               <>
                 <div className="chatBoxTop">
                   {messages ? (
@@ -138,6 +147,7 @@ const AdminMessenger = () => {
                     onChange={(e) => setNewMessage(e.target.value)}
                     value={newmessage}
                   ></textarea>
+
                   <button className="chatSubmitButton" onClick={handleSubmit}>
                     Send
                   </button>

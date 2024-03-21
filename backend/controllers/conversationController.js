@@ -1,6 +1,7 @@
 import Chat from "../models/chatModel.js";
 import Message from "../models/messageModel.js"
 
+
 //new conversation
 export const conversationController = async (req, res) => {
   const newChat = new Chat({

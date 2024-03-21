@@ -19,7 +19,6 @@ import {
 
 const router = express.Router();
 
-// Create a router instance
 
 // Student registration route
 router.post("/studentRegister", registerStudentController);
@@ -45,6 +44,7 @@ router.get("/conversations/:userId", getConvController);
 router.post("/messages", addMessageController);
 //get messages
 router.get("/messages/:chatId", getMessageController);
+
 
 
 export default router;
