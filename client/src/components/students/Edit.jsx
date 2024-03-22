@@ -19,7 +19,7 @@ const Edit = () => {
   const departments = ["CSE", "EEE", "IE", "EC", "AE", "ME", "CIVIL"];
 
   const handleChange = (e) => {
-    const { name, value, type, files } = e.target;
+    const { name, value, type, files, checked } = e.target;
 
     if (type === "file") {
       setProfileDetails((prevDetails) => ({
@@ -27,7 +27,7 @@ const Edit = () => {
         [name]: files[0],
       }));
     } else if (type === "checkbox") {
-      if (e.target.checked) {
+      if (checked) {
         setProfileDetails((prevDetails) => ({
           ...prevDetails,
           [name]: [...prevDetails[name], value],
@@ -38,6 +38,12 @@ const Edit = () => {
           [name]: prevDetails[name].filter((skill) => skill !== value),
         }));
       }
+    } else if (type === "radio") {
+      console.log("Radio ");
+      setProfileDetails((prevDetails) => ({
+        ...prevDetails,
+        [name]: value,
+      }));
     } else {
       setProfileDetails((prevDetails) => ({
         ...prevDetails,
@@ -156,8 +162,10 @@ const Edit = () => {
               inline
               type="radio"
               label="Male"
-              name="radioGroup"
+              name="gender" // Ensure name is set correctly
               id="radio1"
+              value="Male"
+              checked={profileDetails.gender === "Male"} // Check if Male is selected
               onChange={handleChange}
             />
 
@@ -165,8 +173,10 @@ const Edit = () => {
               inline
               type="radio"
               label="Female"
-              name="radioGroup"
+              name="gender" // Ensure name is set correctly
               id="radio2"
+              value="Female"
+              checked={profileDetails.gender === "Female"} // Check if Female is selected
               onChange={handleChange}
             />
 
@@ -174,8 +184,10 @@ const Edit = () => {
               inline
               type="radio"
               label="Others"
-              name="radioGroup"
+              name="gender" // Ensure name is set correctly
               id="radio3"
+              value="Others"
+              checked={profileDetails.gender === "Others"} // Check if Others is selected
               onChange={handleChange}
             />
           </Form.Group>
@@ -211,21 +223,21 @@ const Edit = () => {
           </Form.Group>
 
           <Form.Group className="mt-2">
-            <Form.Label>Aadhar</Form.Label>
+            <Form.Label>Aadhaar</Form.Label>
             <Form.Control
               type="text"
-              name="aadhar"
-              value={profileDetails.aadhar}
+              name="aadhaar"
+              value={profileDetails.aadhaar}
               onChange={handleChange}
             />
           </Form.Group>
 
           <Form.Group className="mt-2">
-            <Form.Label>Nationality</Form.Label>
+            <Form.Label>Domicile State</Form.Label>
             <Form.Control
               type="text"
-              name="nationality"
-              value={profileDetails.nationality}
+              name="domicileState"
+              value={profileDetails.domicileState}
               onChange={handleChange}
             />
           </Form.Group>
@@ -261,11 +273,40 @@ const Edit = () => {
           </Form.Group>
 
           <Form.Group className="mt-2">
-            <Form.Label>Plus Two Mark</Form.Label>
+            <Form.Label>Plus Two Grade</Form.Label>
             <Form.Control
               type="number"
-              name="plus2"
-              value={profileDetails.plus2}
+              name="plustwograde"
+              value={profileDetails.plustwograde}
+              onChange={handleChange}
+            />
+          </Form.Group>
+
+          <Form.Group className="mt-2">
+            <Form.Label>Tenth Grade</Form.Label>
+            <Form.Control
+              type="number"
+              name="tenthgrade"
+              value={profileDetails.tenthgrade}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group className="mt-2">
+            <Form.Label>Cleared Backlogs</Form.Label>
+            <Form.Control
+              type="number"
+              name="clearedBacklogs"
+              value={profileDetails.clearedBacklogs}
+              onChange={handleChange}
+            />
+          </Form.Group>
+
+          <Form.Group className="mt-2">
+            <Form.Label>Non Cleared Backlogs</Form.Label>
+            <Form.Control
+              type="number"
+              name="nonclearedBacklogs"
+              value={profileDetails.nonclearedBacklogs}
               onChange={handleChange}
             />
           </Form.Group>
@@ -349,11 +390,11 @@ const Edit = () => {
             </Form.Control>
           </Form.Group>
           <Form.Group className="mt-2">
-            <Form.Label>Staff Advisor</Form.Label>
+            <Form.Label>Staff Advisor Email</Form.Label>
             <Form.Control
               type="text"
-              name="staffadvisor"
-              value={profileDetails.faculty}
+              name="facultyEmail"
+              value={profileDetails.facultyEmail}
               onChange={handleChange}
             />
           </Form.Group>
@@ -403,20 +444,22 @@ const Edit = () => {
           <Form.Group className="mt-2">
             <Form.Label>Profile Picture</Form.Label>
             <Form.Control
-              type="file"
+              type="text"
               name="profilePicture"
-              accept="image/jpeg"
-              onChange={handleChange}
+              placeholder="Enter your photo Image Address"
+              value={profileDetails.profilePicture} // Set value to display the current link if available
+              onChange={handleChange} // Use the handleChange function to update the profilePicture link
             />
           </Form.Group>
 
           <Form.Group className="mt-2">
             <Form.Label>CV</Form.Label>
             <Form.Control
-              type="file"
+              type="text"
               name="cv"
-              accept="application/pdf"
-              onChange={handleChange}
+              placeholder="Enter Google Drive link"
+              value={profileDetails.cv} // Set value to display the current link if available
+              onChange={handleChange} // Use the handleChange function to update the profilePicture link
             />
           </Form.Group>
 

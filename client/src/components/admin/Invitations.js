@@ -49,6 +49,8 @@ const UploadExcel = () => {
                     })
             );
 
+            console.log(requests);
+
             Promise.all(requests)
                 .then(() => {
                     console.log("All users registered successfully");

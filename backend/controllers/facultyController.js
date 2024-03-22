@@ -37,8 +37,8 @@ export const getStudentsByFaculty = async (req, res) => {
   const department = req.params.dept; // Assuming facultyName is in the URL parameters
 
   try {
-    // Query the database to find students with the specified faculty name
-    const student = await students.find({ department: department });
+    // Query the database to find students with the faculty email
+    const student = await students.find({ facultyEmail: email });
 
     // Check if any students were found
     if (student.length === 0) {

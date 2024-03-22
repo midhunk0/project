@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 export const registerStudentController = async (req, res, next) => {
   try {
     const { studentCollegeID, cgpa } = req.body;
+    console.log("hi");
     console.log(studentCollegeID, cgpa);
     // Check if the student with the provided student ID already exists
     const existingStudent = await students.findOne({ studentCollegeID });
@@ -19,12 +20,30 @@ export const registerStudentController = async (req, res, next) => {
       semester: 2,
       studentCollegeID: req.body.studentCollegeID,
       phone: "",
-      faculty: "",
+      gender: "",
+      dob: "",
+      bloodGroup: "",
+      facultyEmail: "",
+      aadhaar: "",
+      phone: "",
       address: "",
+      domicileState: "",
+      religion: "",
+      category: "",
+      motherTongue: "",
+      tenthgrade: "",
+      plustwograde: "",
       cgpa: req.body.cgpa,
+      rank: "",
+      admissionQouta: "",
+      admissionNumber: "",
+      admittedScheme: "",
+      admittedProgram: "",
       skills: [""],
       department: "",
-      backlogs: 0,
+      admittedType: "",
+      clearedBacklogs: "",
+      nonclearedBacklogs: "",
       profilePicture: "",
       cv: "",
       isAdmin: false,
@@ -97,17 +116,20 @@ export const updateProfileStudentController = async (req, res) => {
       semester,
       gender,
       dob,
-      faculty,
+      facultyEmail,
       bloodGroup,
-      aadhar,
       phone,
       address,
-      nationality,
+      domicileState,
       religion,
       category,
       motherTongue,
-      plus2,
+      plustwograde,
+      tenthgrade,
+      aadhaar,
       rank,
+      clearedBacklogs,
+      nonclearedBacklogs,
       admissionQouta,
       admissionNumber,
       admittedScheme,
@@ -116,7 +138,6 @@ export const updateProfileStudentController = async (req, res) => {
       admittedType,
       cgpa,
       skills,
-      backlogs,
       profilePicture,
       cv,
       isAdmin,
@@ -133,16 +154,19 @@ export const updateProfileStudentController = async (req, res) => {
       semester: semester,
       gender: gender,
       dob: dob,
-      faculty: faculty,
+      facultyEmail: facultyEmail,
       bloodGroup: bloodGroup,
-      aadhar: aadhar,
+      aadhaar: aadhaar,
+      clearedBacklogs: clearedBacklogs,
+      nonclearedBacklogs: nonclearedBacklogs,
       phone: phone,
       address: address,
-      nationality: nationality,
+      domicileState: domicileState,
       religion: religion,
       category: category,
       motherTongue: motherTongue,
-      plus2: plus2,
+      plustwograde: plustwograde,
+      tenthgrade: tenthgrade,
       rank: rank,
       admissionQouta: admissionQouta,
       admissionNumber: admissionNumber,
@@ -152,7 +176,6 @@ export const updateProfileStudentController = async (req, res) => {
       admittedType: admittedType,
       cgpa: cgpa,
       skills: skills,
-      backlogs: backlogs,
       profilePicture: profilePicture,
       cv: cv,
       isAdmin: isAdmin,
@@ -165,20 +188,6 @@ export const updateProfileStudentController = async (req, res) => {
 
     res.status(200).json({
       message: "Profile updated successfully",
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "An error occurred" });
-  }
-};
-
-export const uploadExcelStudentController = async (req, res) => {
-  try {
-    // Process the uploaded Excel file and register students
-    // ...
-
-    res.status(200).json({
-      message: "Registration from Excel file completed",
     });
   } catch (error) {
     console.error(error);
@@ -261,3 +270,5 @@ export const getallStudentsController = async (req, res) => {
     });
   }
 };
+
+

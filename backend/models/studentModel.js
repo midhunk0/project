@@ -32,27 +32,25 @@ const studentSchema = new mongoose.Schema(
     dob: {
       type: String,
     },
-    faculty: {
+    facultyEmail: {
       type: String,
       default: "",
     },
     bloodGroup: {
       type: String,
     },
-    aadhar: {
+    aadhaar: {
       type: String,
     },
     phone: {
       type: String,
-      // required: true,
       default: "",
     },
     address: {
       type: String,
-      // required: true,
       default: "",
     },
-    nationality: {
+    domicileState: {
       type: String,
     },
     religion: {
@@ -64,7 +62,16 @@ const studentSchema = new mongoose.Schema(
     motherTongue: {
       type: String,
     },
-    plus2: {
+    plustwograde: {
+      type: Number,
+    },
+    tenthgrade: {
+      type: Number,
+    },
+    clearedBacklogs: {
+      type: Number,
+    },
+    nonclearedBacklogs: {
       type: Number,
     },
     rank: {
@@ -85,7 +92,6 @@ const studentSchema = new mongoose.Schema(
 
     department: {
       type: String,
-      // required: true,
       default: "",
     },
     admittedType: {
@@ -98,10 +104,6 @@ const studentSchema = new mongoose.Schema(
     skills: {
       type: [String],
       default: [],
-    },
-    backlogs: {
-      type: Number,
-      default: 0,
     },
     profilePicture: {
       type: String,
