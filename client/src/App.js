@@ -53,7 +53,6 @@ import StudentRepEdit from "./components/studentRep/Edit";
 import Conversation from "./components/recruiters/chat/Conversation";
 import FacultyRegister from "./components/faculty/Register";
 import Materials from "./components/studentDropdown/Materials";
-
 import StudentCredits from "./components/faculty/StudentCredits";
 import AppliedCompanies from "./components/students/AppliedCompanies";
 import ApplicationStatus from "./components/students/ApplicationStatus";
@@ -61,6 +60,7 @@ import ApplicationStatus from "./components/students/ApplicationStatus";
 const App = () => {
   return (
     <Router basename="">
+       
       <Topbar />
       <Routes>
         <Route path="/" element={<Home />} />

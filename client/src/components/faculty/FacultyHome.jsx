@@ -5,7 +5,7 @@ import StudentProfileModal from "./StudentProfileModal";
 
 const FacultyHome = () => {
     const { user } = useContext(AuthContext);
-    const dept = user.department;
+    const facultymail = user.email;
 
     const facName = user.username;
     const [students, setStudents] = useState([]);
@@ -41,7 +41,7 @@ const FacultyHome = () => {
         try {
             console.log(facName);
             const response = await axios.get(
-                `http://localhost:8080/api/faculty/facultystudent/${dept}`
+                `http://localhost:8080/api/faculty/facultystudent/${facultymail}`
             );
             console.log(response.data);
             setStudents(response.data.student); // Assuming response.data.student is an array of students

@@ -105,11 +105,31 @@ const StudentHome = () => {
             />
           </Box>
         ) : (
-          <div className="card" style={{ maxWidth: "40rem", width: "100%" ,marginBottom:"40px"}}>
+          <div
+            className="card"
+            style={{ maxWidth: "40rem", width: "100%", marginBottom: "40px" }}
+          >
             <div className="item">
-  
               <div className="details">
-                <h1 className="itemTitle">{student.username}</h1>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <h1 className="itemTitle" style={{ marginRight: "10px" }}>
+                    {student.username}
+                  </h1>
+                  {student.isVerified ? (
+                    <img
+                      src="/assets/verifiedStudent.jpg"
+                      alt="Verified"
+                      style={{ width: "100px", height: "100px" }}
+                    />
+                  ) : (
+                    <img
+                      src="/assets/notVerified.jpg"
+                      alt="Unverified"
+                      style={{ width: "100px", height: "100px" }}
+                    />
+                  )}
+                </div>
+
                 <div className="detailItem">
                   <span className="itemKey">College ID:</span>
                   <span className="itemValue">{student.studentCollegeID}</span>
@@ -184,7 +204,9 @@ const StudentHome = () => {
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Non-Cleared Backlogs:</span>
-                  <span className="itemValue">{student.nonclearedBacklogs}</span>
+                  <span className="itemValue">
+                    {student.nonclearedBacklogs}
+                  </span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Keam Rank:</span>

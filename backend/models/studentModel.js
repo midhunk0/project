@@ -92,14 +92,13 @@ const studentSchema = new mongoose.Schema(
 
     department: {
       type: String,
-      default: "",
+      required: true,
     },
     admittedType: {
       type: String,
     },
     cgpa: {
       type: Number,
-      required: true,
     },
     skills: {
       type: [String],

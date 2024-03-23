@@ -2,11 +2,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
+import toast, { Toaster } from "react-hot-toast";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import useFetch from "../../hooks/useFetch";
 
 const Notification = () => {
   const [notifications, setNotifications] = useState([]);
   const [expandedCardId, setExpandedCardId] = useState(null);
   const [filterKeyword, setFilterKeyword] = useState("");
+  const { user } = useContext(AuthContext);
+  const id = user._id;
+
+  const dataStudent = useFetch(
+    `http://localhost:8080/api/students/StudentProfile/${id}`
+  );
+  const student = dataStudent.data;
 
   const toggleFullCard = (notificationId) => {
     setExpandedCardId((prevId) =>
@@ -21,6 +32,7 @@ const Notification = () => {
         const notificationsData = response.data.filter(
           (notification) => notification.isAdminJafSent === true
         );
+
         setNotifications(notificationsData);
       } catch (error) {
         console.error("Error fetching notifications:", error);
@@ -30,9 +42,81 @@ const Notification = () => {
     fetchNotifications();
   }, []);
 
-  const handleApply = (id) => {
-    console.log("Applied for notification with id:", id);
-    // Implement your apply logic here
+  const handleApply = (notificationId) => {
+    // Filter notifications to get the selected company's notification object
+    const selectedNotification = notifications.find(
+      (notification) => notification._id === notificationId
+    );
+
+    // Check if selectedNotification exists
+    if (!selectedNotification) {
+      console.error("Selected notification not found.");
+      return;
+    }
+
+    // Check if student is verified
+    if (!student.isVerified) {
+      // Display message for not verified
+      toast.error("You are not verified. Please contact your faculty.");
+      return;
+    }
+
+    // Check if student's department is eligible for the selected company
+    const isDepartmentEligible =
+      Array.isArray(selectedNotification.branchesEligible.values) &&
+      selectedNotification.branchesEligible.values.includes(student.department);
+
+    if (!isDepartmentEligible) {
+      // Display message for ineligible department
+      toast.error("Your department is not eligible for this opportunity.");
+      return;
+    }
+
+    // Check student's grades and backlogs against notification's cutoff values
+    if (
+      selectedNotification.tenthGradeCutoff.check &&
+      student.tenthGrade < selectedNotification.tenthGradeCutoff.value
+    ) {
+      toast.error("Your Tenth Grade is lower than the cutoff.");
+      return;
+    }
+
+    if (
+      selectedNotification.twelfthGradeCutoff.check &&
+      student.plustwograde < selectedNotification.twelfthGradeCutoff.value
+    ) {
+      toast.error("Your Twelfth Grade is lower than the cutoff.");
+      return;
+    }
+
+    if (
+      selectedNotification.btechCutoff.check &&
+      student.cgpa < selectedNotification.btechCutoff.value
+    ) {
+      toast.error("Your BTech Grade is lower than the cutoff.");
+      return;
+    }
+
+    if (
+      selectedNotification.maxClearedBacklogs.check &&
+      student.clearedBacklogs > selectedNotification.maxClearedBacklogs.value
+    ) {
+      toast.error("Your cleared backlogs exceed the limit.");
+      return;
+    }
+
+    if (
+      selectedNotification.maxNonClearedBacklogs.check &&
+      student.nonClearedBacklogs >
+        selectedNotification.maxNonClearedBacklogs.value
+    ) {
+      toast.error("Your Non-cleared backlogs exceed the limit.");
+      return;
+    }
+
+    // If all conditions pass, allow the student to apply
+    toast.success("Application submitted successfully!");
+    // Add logic to submit the application to the server or perform other actions
   };
 
   const handleFilterChange = (e) => {
@@ -153,6 +237,7 @@ const Notification = () => {
           </Card.Body>
         </Card>
       ))}
+      <Toaster position="top-center" />
     </Container>
   );
 };

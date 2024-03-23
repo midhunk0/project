@@ -8,8 +8,6 @@ import {
   FormControlLabel,
   FormGroup,
   FormLabel,
-  Radio,
-  RadioGroup,
   Typography,
   TextField,
 } from "@mui/material";
@@ -34,10 +32,9 @@ const JafForm = ({ recruiter }) => {
 
   const jafdata = useFetch(`http://localhost:8080/api/jaf/jafGet/${id}`);
   const backenddata = jafdata.data || {}; // Ensure backenddata is defined
-  // console.log(backenddata);
+  console.log(backenddata);
 
   const jafid = backenddata._id;
-  // const userdata = JSON.parse(localStorage.getItem("user"));
   const [formData, setFormData] = useState({
     nb: "",
   });
@@ -84,18 +81,23 @@ const JafForm = ({ recruiter }) => {
     }
   };
 
-  const renderTextField = (name, value) => (
+  const renderTextField = (name, label) => (
     <div>
       <Typography variant="body2" color="textSecondary" marginBottom="5px">
-        {/* {name} */}
+        {/* {label} */}
       </Typography>
       <CssTextField
         name={name}
-        label={name}
+        label={label}
         type="text"
-        value={backenddata[name]?.value || ""} // Null check
+        value={
+          backenddata[name]?.value !== undefined
+            ? backenddata[name].value.toString()
+            : ""
+        } // Check for undefined and convert to string
         onChange={handleChange}
       />
+
       <Checkbox value={name} onChange={(e) => handleCheckboxChange(e)} />
     </div>
   );
@@ -109,7 +111,7 @@ const JafForm = ({ recruiter }) => {
         type={type}
         value={formData[name]}
         onChange={handleChange}
-        sx={{ width: '100%', marginBottom: '10px' }}
+        sx={{ width: "100%", marginBottom: "10px" }}
       />
     </div>
   );
@@ -226,6 +228,7 @@ const JafForm = ({ recruiter }) => {
           )}
           {renderTextField("btechCutoff", "B.Tech Cut off (Percentage)")}
           {renderTextField("maxClearedBacklogs", "Max Cleared Backlogs")}
+
           {renderTextField("maxNonClearedBacklogs", "Max Non Cleared Backlogs")}
           <Box>
             <Typography variant="h6" marginBottom="10px">
@@ -291,17 +294,18 @@ const JafForm = ({ recruiter }) => {
             </Box>
           </Box>
         </Box>
-        
       </Box>
-      <Box marginTop="30px"
+      <Box
+        marginTop="30px"
         border="1px solid gray"
         borderRadius="5px"
-        padding="15px">
-          <Typography variant="h6" marginBottom="20px">
-            Note:
-          </Typography>
-          {renderTextFieldNb("nb", "NB:")}
-        </Box>
+        padding="15px"
+      >
+        <Typography variant="h6" marginBottom="20px">
+          Note:
+        </Typography>
+        {renderTextFieldNb("nb", "NB:")}
+      </Box>
 
       {/* Submit button */}
       <Button

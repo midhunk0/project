@@ -45,7 +45,7 @@ const Jointform = () => {
     recruitmentTechnique: "",
     preferredDates: "",
     totalRounds: "",
-    nb:"",
+    nb: "",
     tableData: [
       {
         label: "Computer Science",
@@ -68,17 +68,42 @@ const Jointform = () => {
         value: "Electrical and Electronics",
         isChecked: false,
       },
+      {
+        label: "Applied Electronics & Instrumentation",
+        value: "Applied Electronics & Instrumentation",
+        isChecked: false,
+      },
+      {
+        label: "Industrial",
+        value: "Industrial",
+        isChecked: false,
+      },
     ],
     recruitmentProcess: [
       { label: "Online Test", value: "Online Test", isChecked: false },
       { label: "Aptitude Test", value: "Aptitude Test", isChecked: false },
       { label: "Technical Test", value: "Technical Test", isChecked: false },
-      { label: "Group Discussion", value: "Group Discussion", isChecked: false },
-      { label: "Technical Interview", value: "Technical Interview", isChecked: false },
-      { label: "Personal Interview", value: "Personal Interview", isChecked: false },
-      { label: "Branch Oriented Interview", value: "Branch Oriented Interview", isChecked: false },
+      {
+        label: "Group Discussion",
+        value: "Group Discussion",
+        isChecked: false,
+      },
+      {
+        label: "Technical Interview",
+        value: "Technical Interview",
+        isChecked: false,
+      },
+      {
+        label: "Personal Interview",
+        value: "Personal Interview",
+        isChecked: false,
+      },
+      {
+        label: "Branch Oriented Interview",
+        value: "Branch Oriented Interview",
+        isChecked: false,
+      },
     ],
-
   });
 
   // Define the colors variable using the tokens function
@@ -100,70 +125,68 @@ const Jointform = () => {
     }
   };
 
+  // Handle checkbox changes for Branches Eligible
+  const handleBranchesEligibleChange = (e, rowIndex) => {
+    const { checked } = e.target;
+    setFormData((prevData) => {
+      const updatedTableData = prevData.tableData.map((tableRow, index) => {
+        if (index === rowIndex) {
+          return {
+            ...tableRow,
+            isChecked: checked,
+          };
+        }
+        return tableRow;
+      });
 
-
-// Handle checkbox changes for Branches Eligible
-const handleBranchesEligibleChange = (e, rowIndex) => {
-  const { checked } = e.target;
-  setFormData((prevData) => {
-    const updatedTableData = prevData.tableData.map((tableRow, index) => {
-      if (index === rowIndex) {
-        return {
-          ...tableRow,
-          isChecked: checked,
-        };
-      }
-      return tableRow;
+      return {
+        ...prevData,
+        tableData: updatedTableData,
+      };
     });
+  };
 
-    return {
-      ...prevData,
-      tableData: updatedTableData,
-    };
-  });
-};
+  // Handle checkbox changes for Recruitment Process
+  const handleRecruitmentProcessChange = (e, rowIndex) => {
+    const { checked } = e.target;
+    setFormData((prevData) => {
+      const updatedRecruitmentProcess = prevData.recruitmentProcess.map(
+        (process, index) => {
+          if (index === rowIndex) {
+            return {
+              ...process,
+              isChecked: checked,
+            };
+          }
+          return process;
+        }
+      );
 
-// Handle checkbox changes for Recruitment Process
-const handleRecruitmentProcessChange = (e, rowIndex) => {
-  const { checked } = e.target;
-  setFormData((prevData) => {
-    const updatedRecruitmentProcess = prevData.recruitmentProcess.map((process, index) => {
-      if (index === rowIndex) {
-        return {
-          ...process,
-          isChecked: checked,
-        };
-      }
-      return process;
+      return {
+        ...prevData,
+        recruitmentProcess: updatedRecruitmentProcess,
+      };
     });
-
-    return {
-      ...prevData,
-      recruitmentProcess: updatedRecruitmentProcess,
-    };
-  });
-};
-
-
-
-  
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       // Filter only checked branches eligible
-      const checkedBranchesEligible = formData.tableData.filter((row) => row.isChecked);
-      const checkedRecruitmentProcess = formData.recruitmentProcess.filter((process) => process.isChecked);
-    
-      console.log(formData);
+      const checkedBranchesEligible = formData.tableData.filter(
+        (row) => row.isChecked
+      );
+      const checkedRecruitmentProcess = formData.recruitmentProcess.filter(
+        (process) => process.isChecked
+      );
+
       // Send data to the server
       const res = await axios.post("http://localhost:8080/api/jaf/jafPost", {
         ...formData,
         tableData: checkedBranchesEligible, // Update with checked branches eligible
-        recruitmentProcess : checkedRecruitmentProcess,
-
+        recruitmentProcess: checkedRecruitmentProcess,
       });
-  
+
       toast.success("Job Application Form sent successfully!");
       // Reset the form
       setFormData({
@@ -195,7 +218,7 @@ const handleRecruitmentProcessChange = (e, rowIndex) => {
         technicalInterview: "",
         personalInterview: "",
         branchOrientedInterview: "",
-        nb:"",
+        nb: "",
         totalRounds: "",
         tableData: [
           {
@@ -219,24 +242,52 @@ const handleRecruitmentProcessChange = (e, rowIndex) => {
             value: "Electrical and Electronics",
             isChecked: false,
           },
+          {
+            label: "Applied Electronics & Instrumentation",
+            value: "Applied Electronics & Instrumentation",
+            isChecked: false,
+          },
+          {
+            label: "Industrial",
+            value: "Industrial",
+            isChecked: false,
+          },
         ],
         recruitmentProcess: [
           { label: "Online Test", value: "Online Test", isChecked: false },
           { label: "Aptitude Test", value: "Aptitude Test", isChecked: false },
-          { label: "Technical Test", value: "Technical Test", isChecked: false },
-          { label: "Group Discussion", value: "Group Discussion", isChecked: false },
-          { label: "Technical Interview", value: "Technical Interview", isChecked: false },
-          { label: "Personal Interview", value: "Personal Interview", isChecked: false },
-          { label: "Branch Oriented Interview", value: "Branch Oriented Interview", isChecked: false },
+          {
+            label: "Technical Test",
+            value: "Technical Test",
+            isChecked: false,
+          },
+          {
+            label: "Group Discussion",
+            value: "Group Discussion",
+            isChecked: false,
+          },
+          {
+            label: "Technical Interview",
+            value: "Technical Interview",
+            isChecked: false,
+          },
+          {
+            label: "Personal Interview",
+            value: "Personal Interview",
+            isChecked: false,
+          },
+          {
+            label: "Branch Oriented Interview",
+            value: "Branch Oriented Interview",
+            isChecked: false,
+          },
         ],
-       
       });
     } catch (err) {
       console.log(err.response);
       toast.error("Registration failed!");
     }
   };
-  
 
   // Render text input fields
   const renderTextField = (name, label, required = true, type = "text") => (
@@ -249,7 +300,6 @@ const handleRecruitmentProcessChange = (e, rowIndex) => {
       onChange={handleChange}
     />
   );
-
 
   // Render checkboxes for the table
   const renderBranchesEligibleCheckboxes = () => (
@@ -289,7 +339,6 @@ const handleRecruitmentProcessChange = (e, rowIndex) => {
       ))}
     </FormGroup>
   );
-  
 
   // Main return block
   return (
@@ -424,7 +473,10 @@ const handleRecruitmentProcessChange = (e, rowIndex) => {
           {renderTextField("bondYears", "Bond Years", false)}
 
           {renderTextField("preferredDates", "Preferred Dates for Recruitment")}
-          {renderTextField("recruitmentTechnique", "Recruitment Technique(Online/Offline)")}
+          {renderTextField(
+            "recruitmentTechnique",
+            "Recruitment Technique(Online/Offline)"
+          )}
           {renderTextField("totalRounds", "Total Rounds")}
           <Box>
             <Typography variant="h6" marginBottom="20px">
@@ -432,7 +484,6 @@ const handleRecruitmentProcessChange = (e, rowIndex) => {
             </Typography>
             {renderRecruitmentProcessCheckboxes()}
           </Box>
-          
         </Box>
       </Box>
 

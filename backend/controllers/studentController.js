@@ -3,9 +3,8 @@ import bcrypt from "bcryptjs";
 
 export const registerStudentController = async (req, res, next) => {
   try {
-    const { studentCollegeID, cgpa } = req.body;
-    console.log("hi");
-    console.log(studentCollegeID, cgpa);
+    const { studentCollegeID, department } = req.body;
+    console.log(studentCollegeID, department);
     // Check if the student with the provided student ID already exists
     const existingStudent = await students.findOne({ studentCollegeID });
     if (existingStudent) {
@@ -33,14 +32,14 @@ export const registerStudentController = async (req, res, next) => {
       motherTongue: "",
       tenthgrade: "",
       plustwograde: "",
-      cgpa: req.body.cgpa,
+      cgpa: "",
       rank: "",
       admissionQouta: "",
       admissionNumber: "",
       admittedScheme: "",
       admittedProgram: "",
       skills: [""],
-      department: "",
+      department: req.body.department,
       admittedType: "",
       clearedBacklogs: "",
       nonclearedBacklogs: "",
@@ -181,10 +180,6 @@ export const updateProfileStudentController = async (req, res) => {
       isAdmin: isAdmin,
       isVerified: isVerified,
     });
-
-    // Update the student profile
-
-    // Save the updated student profile
 
     res.status(200).json({
       message: "Profile updated successfully",

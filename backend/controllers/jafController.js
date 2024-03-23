@@ -142,6 +142,7 @@ export const postJafController = async (req, res, next) => {
   }
 };
 
+//to get the jaf of a particular recruiter
 export const getJafController = async (req, res, next) => {
   try {
     const recruiterID = req.params.id;
@@ -200,6 +201,7 @@ export const isAdminJafSent = async (req, res) => {
   }
 };
 
+//to fetch all jaf which admin sent to students
 export const getAdminNotifications = async (req, res) => {
   try {
     const notifications = await jaf.find({ isAdminJafSent: true });

@@ -16,7 +16,15 @@ const Edit = () => {
 
   const [newSkill, setNewSkill] = useState("");
 
-  const departments = ["CSE", "EEE", "IE", "EC", "AE", "ME", "CIVIL"];
+  const departments = [
+    "Computer Science",
+    "Electronics and Communication",
+    "Mechanical",
+    "Civil",
+    "Electrical and Electronics",
+    "Applied Electronics & Instrumentation",
+    "Industrial",
+  ];
 
   const handleChange = (e) => {
     const { name, value, type, files, checked } = e.target;
@@ -106,10 +114,28 @@ const Edit = () => {
   };
   if (!userdata || userdata.isVerified) {
     return (
-      <div>
-        <h1>
-          You are not allowed to edit your profile Now! Contact your Faculty!
-        </h1>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh" /* Adjust the height as needed */,
+        }}
+      >
+        <div
+          style={{
+            backgroundColor: "#FFCCCB" /* Caution box background color */,
+            padding: "20px",
+            border: "1px solid #FF0000" /* Red border for the caution box */,
+            borderRadius: "5px" /* Rounded corners */,
+            textAlign: "center",
+            width: "50%" /* Adjust the width as needed */,
+          }}
+        >
+          <h1>
+            You are not allowed to edit your profile Now! Contact your Faculty!
+          </h1>
+        </div>
       </div>
     );
   } else {

@@ -34,7 +34,7 @@ export const loginfacultyController = async (req, res) => {
 };
 
 export const getStudentsByFaculty = async (req, res) => {
-  const department = req.params.dept; // Assuming facultyName is in the URL parameters
+  const email = req.params.facultymail;
 
   try {
     // Query the database to find students with the faculty email

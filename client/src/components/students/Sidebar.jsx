@@ -96,7 +96,6 @@ const StudentSidebar = ({ username, profilePicture }) => {
     `http://localhost:8080/api/students/StudentProfile/${id}`
   );
   const student = dataStudent.data;
-  console.log(student.profilePicture);
 
   return (
     <FlexBetween>
@@ -108,8 +107,8 @@ const StudentSidebar = ({ username, profilePicture }) => {
                 {student.profilePicture && (
                   <img
                     alt="user-profile"
-                    width="100px"
-                    height="100px"
+                    width="125px"
+                    height="125px"
                     src={student.profilePicture}
                     style={{
                       cursor: "pointer",
@@ -120,7 +119,7 @@ const StudentSidebar = ({ username, profilePicture }) => {
                 )}
               </Box>
               <Box textAlign="center" mt={2}>
-                <Typography variant="h4">
+                <Typography variant="h5">
                   Welcome Back {student.username}!
                 </Typography>
               </Box>
