@@ -8,6 +8,7 @@ import {
   changePasswordStudentController,
   addProfileDetailsStudentController,
   getallStudentsController,
+  updateCredits,
 } from "../controllers/studentController.js";
 
 import {
@@ -18,7 +19,6 @@ import {
 } from "../controllers/conversationController.js";
 
 const router = express.Router();
-
 
 // Student registration route
 router.post("/studentRegister", registerStudentController);
@@ -44,7 +44,7 @@ router.get("/conversations/:userId", getConvController);
 router.post("/messages", addMessageController);
 //get messages
 router.get("/messages/:chatId", getMessageController);
-
-
+//to update student credits
+router.put("/credit/:id", updateCredits);
 
 export default router;

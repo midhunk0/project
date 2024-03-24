@@ -143,6 +143,27 @@ const StudentHome = () => {
                   <span className="itemValue">+91 {student.phone}</span>
                 </div>
                 <div className="detailItem">
+                  <span className="itemKey">S2 Credits:</span>
+                  <span className="itemValue">{student.creditss2}</span>
+                </div>
+                <div className="detailItem">
+                  <span className="itemKey">S3 Credits:</span>
+                  <span className="itemValue">{student.creditss3}</span>
+                </div>
+                <div className="detailItem">
+                  <span className="itemKey">S4 Credits:</span>
+                  <span className="itemValue">{student.creditss4}</span>
+                </div>
+                <div className="detailItem">
+                  <span className="itemKey">S5 Credits:</span>
+                  <span className="itemValue">{student.creditss5}</span>
+                </div>
+                <div className="detailItem">
+                  <span className="itemKey">S6 Credits:</span>
+                  <span className="itemValue">{student.creditss6}</span>
+                </div>
+
+                <div className="detailItem">
                   <span className="itemKey">Address:</span>
                   <span className="itemValue">{student.address}</span>
                 </div>

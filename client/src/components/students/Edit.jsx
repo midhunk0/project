@@ -303,6 +303,7 @@ const Edit = () => {
             <Form.Control
               type="number"
               name="plustwograde"
+              placeholder="Enter percentage"
               value={profileDetails.plustwograde}
               onChange={handleChange}
             />
@@ -313,6 +314,7 @@ const Edit = () => {
             <Form.Control
               type="number"
               name="tenthgrade"
+              placeholder="Enter percentage"
               value={profileDetails.tenthgrade}
               onChange={handleChange}
             />

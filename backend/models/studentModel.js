@@ -26,6 +26,31 @@ const studentSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    creditss1: {
+      type: Number,
+      default: 0,
+    },
+    creditss2: {
+      type: Number,
+      default: 0,
+    },
+    creditss3: {
+      type: Number,
+      default: 0,
+    },
+    creditss4: {
+      type: Number,
+      default: 0,
+    },
+    creditss5: {
+      type: Number,
+      default: 0,
+    },
+    creditss6: {
+      type: Number,
+      default: 0,
+    },
+
     gender: {
       type: String,
     },

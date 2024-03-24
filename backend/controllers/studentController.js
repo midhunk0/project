@@ -266,4 +266,50 @@ export const getallStudentsController = async (req, res) => {
   }
 };
 
+//to update student credits
+export const updateCredits = async (req, res) => {
+  const { id } = req.params;
+  const { semester } = req.body;
+  console.log(id,semester,5)
+
+  try {
+      let updatedStudent;
+
+      // Find the student by ID
+      updatedStudent = await students.findById(id);
+
+      // Update credits based on the semester
+      switch (semester) {
+          case 1:
+              updatedStudent.creditss1 += 5;
+              break;
+          case 2:
+              updatedStudent.creditss2 += 5;
+              break;
+          case 3:
+              updatedStudent.creditss3 += 5;
+              break;
+          case 4:
+              updatedStudent.creditss4 += 5;
+              break;
+          case 5:
+              updatedStudent.creditss5 += 5;
+              break;
+          case 6:
+              updatedStudent.creditss6 += 5;
+              break;
+          default:
+              return res.status(400).json({ message: "Invalid semester" });
+      }
+
+      // Save the updated student
+      await updatedStudent.save();
+
+      res.status(200).json({ message: "Credits updated successfully" });
+  } catch (error) {
+      console.error("Error updating credits:", error);
+      res.status(500).json({ message: "Failed to update credits" });
+  }
+}
+
 
