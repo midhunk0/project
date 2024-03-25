@@ -26,10 +26,6 @@ const studentSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    creditss1: {
-      type: Number,
-      default: 0,
-    },
     creditss2: {
       type: Number,
       default: 0,

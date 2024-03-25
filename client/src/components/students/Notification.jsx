@@ -42,7 +42,7 @@ const Notification = () => {
     fetchNotifications();
   }, []);
 
-  const handleApply = (notificationId) => {
+  const handleApply = async (notificationId) => {
     // Filter notifications to get the selected company's notification object
     const selectedNotification = notifications.find(
       (notification) => notification._id === notificationId
@@ -114,9 +114,28 @@ const Notification = () => {
       return;
     }
 
-    // If all conditions pass, allow the student to apply
-    toast.success("Application submitted successfully!");
-    // Add logic to submit the application to the server or perform other actions
+    console.log(student._id);
+    console.log(selectedNotification.recruiter_id);
+    console.log(selectedNotification.totalRounds);
+
+    try {
+      // Send a POST request to create the application
+      const response = await axios.post(
+        "http://localhost:8080/api/application/createApplication",
+        {
+          studentId: student._id,
+          companyId: selectedNotification.recruiter_id,
+          totalStages: selectedNotification.totalRounds.value, // Assuming totalRounds corresponds to totalStages
+        }
+      );
+
+      // Handle successful application creation
+      toast.success("Application submitted successfully!");
+      // Add logic to update UI or perform other actions
+    } catch (error) {
+      console.error("Error applying to notification:", error);
+      toast.error("Failed to submit application. Please try again.");
+    }
   };
 
   const handleFilterChange = (e) => {

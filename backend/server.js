@@ -10,6 +10,7 @@ import matchedRoute from "./routes/matchedRoute.js";
 import facultyRoute from "./routes/facultyRoute.js";
 import studentRepRoute from "./routes/studentRepRoute.js";
 import jafRoute from "./routes/jafRoute.js";
+import applicationRoute from "./routes/applicationRoute.js"
 
 import cors from "cors";
 // Configure env
@@ -40,6 +41,7 @@ app.use("/api/matched", matchedRoute);
 app.use("/api/faculty", facultyRoute);
 app.use("/api/studentRep", studentRepRoute);
 app.use("/api/jaf", jafRoute);
+app.use("/api/application",applicationRoute);
 
 //to handle errors
 app.use((err, req, res, next) => {

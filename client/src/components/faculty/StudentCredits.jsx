@@ -129,15 +129,7 @@ const StudentCredits = () => {
                         >
                             Student ID
                         </th>
-                        <th
-                            style={{
-                                border: "1px solid #dddddd",
-                                padding: "8px",
-                                backgroundColor: "#f2f2f2",
-                            }}
-                        >
-                            Credits S1
-                        </th>
+                        
                         <th
                             style={{
                                 border: "1px solid #dddddd",
@@ -204,20 +196,7 @@ const StudentCredits = () => {
                             >
                                 {student.studentCollegeID}
                             </td>
-                            <td
-                                style={{
-                                    border: "1px solid #dddddd",
-                                    padding: "8px",
-                                }}
-                            >
-                                {student.creditss1}
-                                <button
-                                    style={{ marginLeft: "5px" }}
-                                    onClick={() => changeCredit(student,1)}
-                                >
-                                    Add
-                                </button>
-                            </td>
+                            
                             <td
                                 style={{
                                     border: "1px solid #dddddd",

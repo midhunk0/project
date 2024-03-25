@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import Recruiter from "../models/recruiterModel.js";
 // import MatchedStudents from "../models/matchedModel.js";
 import students from "../models/studentModel.js";

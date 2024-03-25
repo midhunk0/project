@@ -47,4 +47,5 @@ router.get("/messages/:chatId", getMessageController);
 //to update student credits
 router.put("/credit/:id", updateCredits);
 
+
 export default router;
