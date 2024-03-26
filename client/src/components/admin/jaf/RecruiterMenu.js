@@ -2,6 +2,9 @@ import React from "react";
 import "./RecruiterMenu.css"; // Make sure to import the CSS file
 
 const RecruiterMenu = ({ recruiters, onSelectRecruiter }) => {
+  if (!recruiters) {
+    return <div>No recruiters found</div>;
+  }
   return (
     <div className="recruiterMenu">
       <h2>Recruiters</h2>

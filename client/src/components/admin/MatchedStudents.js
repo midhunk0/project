@@ -1,176 +1,106 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+import RecruiterMenu from "./jaf/RecruiterMenu"; // Import the RecruiterMenu component
 
 const MatchedStudents = () => {
-    const [companies, setCompanies] = useState([]);
-    const [searchTerm, setSearchTerm] = useState("");
+    const [currentRound, setCurrentRound] = useState(1);
+    const totalRounds = 3; // Assuming there are 3 rounds
 
-    useEffect(() => {
-        // Fetch the list of companies from the backend API
-        const fetchCompanies = async () => {
-            try {
-                const response = await axios.get(
-                    "http://localhost:8080/api/recruiters/companies"
-                );
-                setCompanies(response.data);
-            } catch (error) {
-                console.error("Failed to fetch companies:", error);
-            }
-        };
-
-        fetchCompanies();
-    }, []);
-
-    const handleSearch = (event) => {
-        setSearchTerm(event.target.value);
+    const handleRoundChange = (round) => {
+        setCurrentRound(round);
     };
 
-    const filteredCompanies = companies.filter((company) =>
-        company.companyName.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const renderContent = () => {
+        switch (currentRound) {
+            case 1:
+                return (
+                    <div>
+                        <h2>Round 1 content </h2>
+                    </div>
+                );
+            case 2:
+                return (
+                    <div>
+                        <h2>Round 2 Content </h2>
+                    </div>
+                );
+            case 3:
+                return (
+                    <div>
+                        <h3>Round 3 Content</h3>
+                    </div>
+                );
+                
+            // Add more cases for additional rounds if needed
+            default:
+                return null;
+        }
+    };
 
     return (
-        <div className="container">
-            <div className="row mb-4">
-                <div className="col">
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Search by company name"
-                        value={searchTerm}
-                        onChange={handleSearch}
-                    />
-                </div>
+        <div className="matched-students-page" style={matchedStudentsPageStyle}>
+            {/* Render the RecruiterMenu component on the left side */}
+            <div className="left-panel" style={leftPanelStyle}>
+                <RecruiterMenu />
             </div>
-            <div className="row">
-                {filteredCompanies.map((company) => (
-                    <div className="col-md-12 mb-4" key={company._id}>
-                        <CompanyRow company={company} />
-                    </div>
-                ))}
+            {/* Placeholder for the main content on the right side */}
+            <div className="right-panel" style={rightPanelStyle}>
+                <div className="top-bar" style={topBarStyle}>
+                    {/* Render buttons for each round */}
+                    {[...Array(totalRounds)].map((_, index) => (
+                        <button
+                            key={index + 1}
+                            className={
+                                currentRound === index + 1 ? "active" : ""
+                            }
+                            onClick={() => handleRoundChange(index + 1)}
+                            style={roundButtonStyle}
+                        >
+                            Round {index + 1}
+                        </button>
+                    ))}
+                </div>
+                <div className="content" style={contentStyle}>
+                    {renderContent()}
+                </div>
             </div>
         </div>
     );
 };
 
-const CompanyRow = ({ company }) => {
-    const [showStudents, setShowStudents] = useState(false);
-    const [MatchedStudents,setMatchedStudents]=useState([]);
-    const [studid, setStudid] = useState([]);
+// Styles
+const matchedStudentsPageStyle = {
+    display: "flex",
+};
 
-    const handleViewStudents = async () => {
-        // Fetch the matched students for the company from the backend API
-        try {
-            const response = await axios.get(
-                `http://localhost:8080/api/recruiters/companies/${company._id}`
-            );
-            const studentIds = response.data.matchedStudents[0].studentIds;
-            setStudid(studentIds);
-            // const students = await Promise.all(
-            //     studentIds.map(async (studentId) => {
-            //         const studentResponse = await axios.get(
-            //             `http://localhost:8080/api/recruiters/students/${studentId.studentId}`
-            //         );
-            //         return studentResponse.data;
-            //     })
-            // );
-            const {data}=await axios.get("http://localhost:8080/api/students/get-all-students")
-            setMatchedStudents(data)
-            setShowStudents(true);
-        } catch (error) {
-            console.error("Failed to fetch matched students:", error);
-        }
-    };
+const leftPanelStyle = {
+    width: "30%",
+    padding: "10px",
+    backgroundColor: "#fff",
+    borderRadius: "8px",
+    boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+};
 
-    const handleClose = () => {
-        setShowStudents(false);
-    };
+const rightPanelStyle = {
+    width: "70%",
+    padding: "10px",
+};
 
-    const handleSendNotification = async () => {
-        try {
-            const notificationData = {
-                recruiterId: company._id,
-                isNotification: true,
-                studentIds: studid.map((id) => ({
-                    studentId: id.studentId,
-                    accepted: false,
-                })),
-            };
+const topBarStyle = {
+    display: "flex",
+    justifyContent: "space-around", // Adjust spacing between buttons
+    marginBottom: "10px",
+};
 
-            await axios.post(
-                "http://localhost:8080/api/recruiters/notifications",
-                notificationData
-            );
+const contentStyle = {
+    padding: "10px",
+};
 
-            // Show success notification or perform any other actions after sending notifications
-        } catch (error) {
-            console.error("Failed to send notifications:", error);
-        }
-    };
-
-    return (
-        <div className="card custom-card-width" style={{ maxWidth: "100%" }}>
-            <div className="card-body">
-                <h3 className="card-title">{company.companyName}</h3>
-                <p className="card-text">{company.natureOfBusiness}</p>
-                {company.payPackage && (
-                    <p className="card-text">
-                        Package: {company.payPackage.grossSalary}
-                    </p>
-                )}
-                {!showStudents && (
-                    <button
-                        className="btn btn-primary"
-                        onClick={handleViewStudents}
-                    >
-                        View Matched Students
-                    </button>
-                )}
-                {showStudents && (
-                    <div>
-                        <div className="table-responsive">
-                            <table className="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Username</th>
-                                        <th>Email</th>
-                                        <th>CGPA</th>
-                                        <th>Skills</th>
-                                        <th>Department</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {MatchedStudents.map((student) => (
-                                        <tr key={student._id}>
-                                            <td>{student.username}</td>
-                                            <td>{student.email}</td>
-                                            <td>{student.cgpa}</td>
-                                            <td>{student.skills.join(", ")}</td>
-                                            <td>{student.department}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                        <div className="d-flex justify-content-between">
-                            <button
-                                className="btn btn-primary"
-                                onClick={handleSendNotification}
-                            >
-                                Send Notification
-                            </button>
-                            <button
-                                className="btn btn-secondary"
-                                onClick={handleClose}
-                            >
-                                Close
-                            </button>
-                        </div>
-                    </div>
-                )}
-            </div>
-        </div>
-    );
+const roundButtonStyle = {
+    backgroundColor: "#f0f0f0", // Light color for buttons
+    border: "none",
+    borderRadius: "4px",
+    padding: "8px 16px",
+    cursor: "pointer",
 };
 
 export default MatchedStudents;
