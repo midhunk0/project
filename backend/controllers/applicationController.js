@@ -1,4 +1,5 @@
 import Application from "../models/applicationModel.js";
+import Student from "../models/studentModel.js";
 
 // Controller function for creating a new application
 export const createApplication = async (req, res) => {
@@ -12,15 +13,15 @@ export const createApplication = async (req, res) => {
         .json({ error: "Please provide all required fields." });
     }
 
-    // Create a new application instance
+    // Create a new application instance with stage 0 status as "Passed"
     const newApplication = new Application({
       studentId,
       companyId,
       totalStages,
-      currentStage: 0, // Assuming the current stage starts at 1
+      currentStage: 0,
       stages: Array.from({ length: totalStages + 1 }, (_, index) => ({
-        stageNumber: index + 1,
-        status: "Not Started",
+        stageNumber: index,
+        status: index === 0 ? "Completed" : "Not Started",
         feedback: "",
       })),
     });
@@ -37,5 +38,70 @@ export const createApplication = async (req, res) => {
     res
       .status(500)
       .json({ error: "Failed to create application. Please try again." });
+  }
+};
+
+export const getApplicationsByRecruiterId = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Fetch applications with the given companyId (assuming it's the recruiterId)
+    const applications = await Application.find({ companyId: id });
+
+    // Initialize an array to store student details
+    const studentDetails = [];
+
+    // Iterate through each application to get student details
+    for (const application of applications) {
+      // Fetch student details using the studentId from the application
+      const student = await Student.findById(application.studentId);
+
+      // Push required student details to the studentDetails array
+      studentDetails.push({
+        _id: student._id,
+        name: student.username,
+        phone: student.phone,
+        email: student.email,
+        tenthGrade: student.tenthgrade,
+        twelfthGrade: student.plustwograde,
+        cgpa: student.cgpa,
+        collegeId: student.studentCollegeID,
+      });
+    }
+
+    res.status(200).json({ applications, studentDetails });
+  } catch (error) {
+    console.error("Error fetching applications by companyId:", error);
+    res.status(500).json({ error: "Failed to fetch applications." });
+  }
+};
+
+export const updateApplication = async (req, res) => {
+  const { id } = req.params; // Assuming the application ID is passed in the URL params
+  const updatedApplicationData = req.body; // Assuming the updated application data is sent in the request body
+
+  try {
+    // Find the application by ID
+    const application = await Application.findById(id);
+
+    if (!application) {
+      return res.status(404).json({ error: "Application not found." });
+    }
+
+    // Update the application data
+    application.currentStage = updatedApplicationData.currentStage;
+    application.stages = updatedApplicationData.stages;
+
+    // Save the updated application to the database
+    await application.save();
+
+    res
+      .status(200)
+      .json({ message: "Application updated successfully.", application });
+  } catch (error) {
+    console.error("Error updating application:", error);
+    res
+      .status(500)
+      .json({ error: "Failed to update application. Please try again." });
   }
 };

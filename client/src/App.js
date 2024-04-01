@@ -9,7 +9,6 @@ import Recruiter from "./components/recruiters";
 import Student from "./components/students";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Schedules from "./components/recruiters/Schedules";
-import Matched from "./components/recruiters/Matched";
 import EditRecruiter from "./components/recruiters/EditRecruiter";
 import RecruiterPlacement from "./components/recruiters/Placement";
 import Edit from "./components/students/Edit";
@@ -26,7 +25,6 @@ import AdminDashboard from "./components/admin/AdminDashboard";
 import Invitations from "./components/admin/Invitations";
 import Company from "./components/admin/Company";
 import Students from "./components/admin/Students";
-import MatchedStudents from "./components/admin/MatchedStudents";
 import AcceptedStudents from "./components/admin/AcceptedStudents";
 import PlacementRules from "./components/studentDropdown/placementRules";
 import PlacementTraining from "./components/studentDropdown/placementTraining";
@@ -50,6 +48,8 @@ import Materials from "./components/studentDropdown/Materials";
 import StudentCredits from "./components/faculty/StudentCredits";
 import AppliedCompanies from "./components/students/AppliedCompanies";
 import ApplicationStatus from "./components/students/ApplicationStatus";
+import StudentApplications from "./components/admin/studentApplications.js";
+import Applications from "./components/recruiters/applications.js";
 
 const App = () => {
   return (
@@ -70,7 +70,7 @@ const App = () => {
           <Route path="home" element={<RecruiterHome />} />
           <Route path="request" element={<Request />} />
           <Route path="schedules" element={<Schedules />} />
-          <Route path="matched" element={<Matched />} />
+          <Route path="Applications" element={<Applications />} />
           <Route path="edit" element={<EditRecruiter />} />
           <Route path="placement" element={<RecruiterPlacement />} />
           <Route path="chat" element={<RecruiterMessenger />} />
@@ -105,7 +105,7 @@ const App = () => {
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="invitations" element={<Invitations />} />
           <Route path="students" element={<Students />} />
-          <Route path="matched" element={<MatchedStudents />} />
+          <Route path="studentApplications" element={<StudentApplications/>} />
           <Route path="accepted" element={<AcceptedStudents />} />
           <Route path="company" element={<Company />} />
           <Route path="students" element={<Students />} />
