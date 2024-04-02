@@ -74,13 +74,18 @@ export const getProfileRecruiterController = async (req, res) => {
 export const updateProfileRecruiterController = async (req, res) => {
   try {
     const recruiterID = req.params.id;
-    const { companyName, email } = req.body;
+    const { companyName, email, natureOfBuisiness,contactPerson,designation,phoneNo,address} = req.body;
     console.log(recruiterID, req.body);
 
     // Find the student with the provided student ID
     await Recruiter.findByIdAndUpdate(recruiterID, {
       companyName: companyName,
       email: email,
+      natureOfBuisiness:natureOfBuisiness,
+      contactPerson:contactPerson,
+      designation:designation,
+      phoneNo:phoneNo,
+      address:address,
     });
 
     // Update the student profile

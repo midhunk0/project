@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 import "./applications.css";
 import useFetch from "../../hooks/useFetch";
 import { useContext } from "react";
@@ -66,9 +67,9 @@ const Applications = () => {
 
         if (selectedApplication) {
           // Increment current stage by 1
-          console.log(selectedApplication.currentStage)
+          console.log(selectedApplication.currentStage);
           const updatedCurrentStage = selectedApplication.currentStage + 1;
-          console.log(updatedCurrentStage)
+          console.log(updatedCurrentStage);
 
           // Update the current stage in the application object
           selectedApplication.currentStage = updatedCurrentStage;
@@ -83,8 +84,10 @@ const Applications = () => {
               `http://localhost:8080/api/application/updateApplication/${selectedApplication._id}`,
               selectedApplication
             );
+            toast.success("Selected to next round");
             console.log(`Updated application for student ${collegeId}`);
           } catch (error) {
+            toast.error("Error updating!");
             console.error(
               `Error updating application for student ${collegeId}:`,
               error
@@ -107,9 +110,28 @@ const Applications = () => {
       return <div>No student details available</div>;
     }
 
+    let displayText = "";
+    let filteredStudents = [];
+
+    if (currentRound === 0) {
+      displayText = "Applied Students";
+      filteredStudents = applications.studentDetails;
+    } else {
+      displayText = `Round ${currentRound - 1} Passed`;
+      filteredStudents = applications.studentDetails.filter((student) => {
+        const application = applications.applications.find(
+          (app) => app.studentId === student._id
+        );
+        return (
+          application &&
+          application.stages[currentRound - 1]?.status === "Completed"
+        );
+      });
+    }
+
     return (
       <div>
-        <h2>Applied Students</h2>
+        <h2>{displayText}</h2>
         <table className="student-table1">
           <thead>
             <tr>
@@ -124,7 +146,7 @@ const Applications = () => {
             </tr>
           </thead>
           <tbody>
-            {applications.studentDetails.map((student, index) => (
+            {filteredStudents.map((student, index) => (
               <tr key={index}>
                 <td>
                   <input
@@ -144,9 +166,11 @@ const Applications = () => {
             ))}
           </tbody>
         </table>
-        <button className="next-round-button" onClick={handleNextRoundClick}>
-          Select to next round
-        </button>
+        {currentRound !== totalRounds  && ( // Render button for all rounds except the last one
+          <button className="next-round-button" onClick={handleNextRoundClick}>
+            Select to next round
+          </button>
+        )}
       </div>
     );
   };
@@ -168,6 +192,7 @@ const Applications = () => {
         ))}
       </div>
       <div className="content1">{renderContent()}</div>
+      <Toaster position="top-center" />
     </div>
   );
 };

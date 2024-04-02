@@ -13,6 +13,26 @@ const recruiterSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
+    natureOfBuisiness: {
+        type: String,
+        default: "",
+    },
+    contactPerson: {
+        type: String,
+        default: "",
+    },
+    designation: {
+        type: String,
+        default: "",
+    },
+    phoneNo: {
+        type: String,
+        default: "",
+    },
+    address: {
+        type: String,
+        default: "",
+    },
     password: {
         type: String,
         default: "",
