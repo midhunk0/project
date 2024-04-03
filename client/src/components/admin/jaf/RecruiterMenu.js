@@ -7,7 +7,20 @@ const RecruiterMenu = ({ recruiters, onSelectRecruiter }) => {
   }
   return (
     <div className="recruiterMenu">
-      <h2>Recruiters</h2>
+      <h2
+        style={{
+          marginBottom: "30px",
+          marginTop:"20px",
+          color: "#333",
+          fontSize: "24px",
+          fontWeight: "bold",
+          textAlign: "center",
+          textTransform: "uppercase",
+        }}
+      >
+        Recruiters
+      </h2>
+
       <div className="recruiterContainer">
         {recruiters.map((recruiter) => (
           <div key={recruiter._id} onClick={() => onSelectRecruiter(recruiter)}>

@@ -44,6 +44,10 @@ const applicationSchema = new Schema({
       },
     },
   ],
+  isAdminVerified: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 export default mongoose.model("Application", applicationSchema);

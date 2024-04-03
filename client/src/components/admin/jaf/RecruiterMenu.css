@@ -1,28 +1,46 @@
 .recruiterMenu {
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-  }
-  
-  .recruiter {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 8px;
-    transition: background-color 0.3s;
-  
-    &:hover {
-      background-color: #5e8193; /* Add your desired hover color */
-    }
-  
-    .companyName {
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-  
-    /* Add more styling for additional information if needed */
-  }
-  
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adjust the box shadow for a subtle effect */
+  width: 250px;
+  height:auto;
+  text-align: center;
+
+}
+
+.recruiterContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid layout */
+  gap: 20px; /* Add some spacing between items */
+  padding: 10px;
+}
+
+.recruiter {
+  background-color: #f0f0f0; /* Light background for each recruiter item */
+  padding: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+  display: flex;
+  flex-direction: column;
+}
+
+.recruiter:hover {
+  background-color: #e0e0e0; /* Darker background on hover */
+  transform: translateY(-5px); /* Add a slight lift effect on hover */
+}
+
+.recruiter:active {
+  background-color: #5e8193; /* Darker background on hover */
+}
+
+.companyName {
+  font-weight:normal;
+  margin-bottom: 5px;
+  color: #333; /* Change the color to your desired text color */
+  font-size: 16px; /* Adjust the font size as needed */
+  text-transform: capitalize; /* Capitalize the company name */
+}
+
+

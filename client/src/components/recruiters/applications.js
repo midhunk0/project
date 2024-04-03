@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import "./applications.css";
-import useFetch from "../../hooks/useFetch";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 
@@ -115,16 +114,24 @@ const Applications = () => {
 
     if (currentRound === 0) {
       displayText = "Applied Students";
-      filteredStudents = applications.studentDetails;
+      // Filter students for Round 0 based on isAdminVerified field
+      filteredStudents = applications.studentDetails.filter((student) => {
+        const application = applications.applications.find(
+          (app) => app.studentId === student._id
+        );
+        return application && application.isAdminVerified;
+      });
     } else {
       displayText = `Round ${currentRound - 1} Passed`;
+      // Filter students for other rounds based on their application status
       filteredStudents = applications.studentDetails.filter((student) => {
         const application = applications.applications.find(
           (app) => app.studentId === student._id
         );
         return (
           application &&
-          application.stages[currentRound - 1]?.status === "Completed"
+          application.stages[currentRound - 1]?.status === "Completed" &&
+          application.isAdminVerified
         );
       });
     }
@@ -166,7 +173,7 @@ const Applications = () => {
             ))}
           </tbody>
         </table>
-        {currentRound !== totalRounds  && ( // Render button for all rounds except the last one
+        {currentRound !== totalRounds && ( // Render button for all rounds except the last one
           <button className="next-round-button" onClick={handleNextRoundClick}>
             Select to next round
           </button>

@@ -24,6 +24,7 @@ export const createApplication = async (req, res) => {
         status: index === 0 ? "Completed" : "Not Started",
         feedback: "",
       })),
+      isAdminVerified: false,
     });
 
     // Save the application to the database
@@ -94,6 +95,36 @@ export const updateApplication = async (req, res) => {
 
     // Save the updated application to the database
     await application.save();
+
+    res
+      .status(200)
+      .json({ message: "Application updated successfully.", application });
+  } catch (error) {
+    console.error("Error updating application:", error);
+    res
+      .status(500)
+      .json({ error: "Failed to update application. Please try again." });
+  }
+};
+
+export const updateIsAdminVerified = async (req, res) => {
+  const { id } = req.params; // Assuming the application ID is passed in the URL params
+  const updatedApplicationData = req.body;
+
+  try {
+    // Find the application by ID
+    const application = await Application.findById(id);
+
+    if (!application) {
+      return res.status(404).json({ error: "Application not found." });
+    }
+
+    // Update the isAdminVerified field
+    application.isAdminVerified = updatedApplicationData.isAdminVerified;
+
+    // Save the updated application to the database
+    await application.save();
+    console.log("Updated application:", application);
 
     res
       .status(200)
