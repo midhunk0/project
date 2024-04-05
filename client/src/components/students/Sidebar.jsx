@@ -99,25 +99,25 @@ const StudentSidebar = ({ username, profilePicture }) => {
 
   return (
     <FlexBetween>
-      <Box sx={{ display: { xs: "none", md: "flex" }, height: "100%" }} >
-        <Box display="flex" >
+      <Box sx={{ display: { xs: "none", md: "flex" }, height: "100%" }}>
+        <Box display="flex">
           <Sidebar>
             <Box mb="25px" mt="45px">
               <Box display="flex" justifyContent="center" alignItems="center">
-                {student.profilePicture && (
-                  <img
-                    alt="user-profile"
-                    width="125px"
-                    height="125px"
-                    src={student.profilePicture}
-                    style={{
-                      cursor: "pointer",
-                      borderRadius: "50%",
-                      margin: "10px",
-                    }}
-                  />
-                )}
+                <img
+                  alt="user-profile"
+                  width="125px"
+                  height="125px"
+                  src={student.profilePicture}
+                  style={{
+                    cursor: "pointer",
+                    borderRadius: "50%",
+                    margin: "10px",
+                  }}
+                  
+                />
               </Box>
+
               <Box textAlign="center" mt={2}>
                 <Typography variant="h5">
                   Welcome Back {student.username}!

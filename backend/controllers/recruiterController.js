@@ -132,6 +132,25 @@ export const getRecruiterById = async (req, res) => {
   }
 };
 
+//to fetch recruiters from a list of company ids
+export const getRecruitersByCompanyIds = async(req, res) => {
+  try {
+    // Extract the companyIds array from the request body
+    const { companyIds } = req.body;
+
+    // Assuming you have a database model for recruiters
+    // Fetch recruiters based on the companyIds array
+    const recruiters = await Recruiter.find({ _id: { $in: companyIds } });
+
+    // Send the fetched recruiters as the response
+    res.json(recruiters);
+  } catch (error) {
+    console.error('Error fetching recruiters:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+
 // Controller to get recruiters whose isJafSent is true
 export const getRecruitersSentJaf = async (req, res) => {
   try {

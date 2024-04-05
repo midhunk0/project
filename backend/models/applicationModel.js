@@ -35,7 +35,7 @@ const applicationSchema = new Schema({
       },
       status: {
         type: String,
-        enum: ["Not Started", "In Progress", "Completed", "Failed"],
+        enum: ["Not Started", "In Progress", "Completed", "Rejected"],
         default: "Not Started",
       },
       feedback: {

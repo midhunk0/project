@@ -3,10 +3,10 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 1px;
-  background-color: rgb(204, 213, 224);
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 999;
 }
-
 
 

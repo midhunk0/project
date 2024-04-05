@@ -95,7 +95,7 @@ const AdminSidebar = () => {
                     cursor: "pointer",
                     borderRadius: "50%",
                     margin: "10px",
-                    border: "2px solid yellow",
+                    
                   }}
                 />
               </Box>

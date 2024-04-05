@@ -1,5 +1,6 @@
 import Application from "../models/applicationModel.js";
 import Student from "../models/studentModel.js";
+import Recruiter from "../models/recruiterModel.js";
 
 // Controller function for creating a new application
 export const createApplication = async (req, res) => {
@@ -77,6 +78,35 @@ export const getApplicationsByRecruiterId = async (req, res) => {
   }
 };
 
+export const getApplicationsByStudentId = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const applications = await Application.find({ studentId: id });
+
+    const recruiterDetails = [];
+
+    // Iterate through each application to get student details
+    for (const application of applications) {
+      // Fetch student details using the studentId from the application
+      const recruiter = await Recruiter.findById(application.companyId);
+
+      // Push required student details to the studentDetails array
+      recruiterDetails.push({
+        _id: recruiter._id,
+        name: recruiter.companyName,
+        natureOfBuisiness: recruiter.natureOfBuisiness,
+        email: recruiter.email,
+      });
+    }
+
+    res.status(200).json({ applications ,recruiterDetails});
+  } catch (error) {
+    console.error("Error fetching applications by companyId:", error);
+    res.status(500).json({ error: "Failed to fetch applications." });
+  }
+};
+
 export const updateApplication = async (req, res) => {
   const { id } = req.params; // Assuming the application ID is passed in the URL params
   const updatedApplicationData = req.body; // Assuming the updated application data is sent in the request body
@@ -92,6 +122,7 @@ export const updateApplication = async (req, res) => {
     // Update the application data
     application.currentStage = updatedApplicationData.currentStage;
     application.stages = updatedApplicationData.stages;
+    application.status = updatedApplicationData.status;
 
     // Save the updated application to the database
     await application.save();

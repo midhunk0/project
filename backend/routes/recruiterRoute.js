@@ -9,6 +9,7 @@ import {
   getAllRecruiters,
   getRecruiterById,
   getRecruitersSentJaf,
+  getRecruitersByCompanyIds,
 } from "../controllers/recruiterController.js";
 
 import {
@@ -39,6 +40,7 @@ router.post("/messages", addMessageController);
 router.get("/messages/:chatId", getMessageController);
 router.get("/conversations/:userId", getConvController);
 router.get("/getAllRecruiters", getAllRecruiters);
+router.post("/getRecruitersByCompanyIds", getRecruitersByCompanyIds);
 router.get("/getRecruiterById/:recruiterId", getRecruiterById);
 router.get("/getRecruitersSentjaf", getRecruitersSentJaf); //get all recruiters who sent jaf
 

@@ -1,0 +1,70 @@
+/* appliedCompanies.css */
+.applied-companies-container {
+  margin: 40px;
+}
+
+.application-card {
+  justify-content: center;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  width: auto;
+  margin-bottom: 40px;
+  background-color: #f9f9f9; /* Light background color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+  transition: transform 0.2s ease-in-out; /* Smooth transition on hover */
+}
+
+.application-card:hover {
+  transform: translateY(-5px); /* Lift the card slightly on hover */
+}
+
+.application-card h3 {
+  font-size: 1.5rem; /* Larger font size for headings */
+  margin-bottom: 10px;
+}
+
+.application-card p {
+  font-size: 1.1rem; /* Slightly larger font size for paragraphs */
+  color: #555; /* Darker text color */
+}
+
+.timeline {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  position: relative; /* Add this line */
+}
+
+.timeline-spot {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  border: 5px double silver;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  position: relative; /* Add this line */
+}
+
+.timeline-line {
+  flex: 2; /* Fill the remaining space to create the line */
+  height: 2px; /* Height of the line */
+  background-color: #ccc;
+  align-self: center; /* Center the line vertically */
+}
+
+.completed {
+  background-color: green;
+}
+
+.in-progress {
+  background-color: yellow;
+}
+
+.rejected {
+  background-color: red;
+}

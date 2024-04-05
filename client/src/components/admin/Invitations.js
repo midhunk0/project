@@ -71,6 +71,7 @@ const UploadExcel = () => {
       return;
     } else {
       toast.success("All users registered successfully");
+
     }
   };
 

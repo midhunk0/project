@@ -77,6 +77,12 @@ const Applications = () => {
           selectedApplication.stages[updatedCurrentStage].status = "Completed";
           console.log(selectedApplication.stages[updatedCurrentStage].status);
 
+          if (
+            selectedApplication.currentStage === selectedApplication.totalStages
+          ) {
+            selectedApplication.status = "Offered";
+          }
+
           try {
             // Update the application in the database
             await axios.put(
@@ -92,6 +98,43 @@ const Applications = () => {
               error
             );
           }
+        }
+      }
+    }
+
+    // Update statuses of unselected applications to "Rejected"
+    const unselectedStudents = applications.studentDetails.filter(
+      (student) => !selectedStudents.includes(student.collegeId)
+    );
+
+    for (const unselectedStudent of unselectedStudents) {
+      const unselectedApplication = applications.applications.find(
+        (app) => app.studentId === unselectedStudent._id
+      );
+
+      if (unselectedApplication) {
+        unselectedApplication.stages[currentRound].status = "Rejected";
+        if (currentRound === unselectedApplication.totalStages) {
+          unselectedApplication.status = "Rejected";
+        }
+        console.log(
+          `Rejected application for student ${unselectedStudent.collegeId}`
+        );
+
+        try {
+          // Update the application in the database
+          await axios.put(
+            `http://localhost:8080/api/application/updateApplication/${unselectedApplication._id}`,
+            unselectedApplication
+          );
+          console.log(
+            `Updated application for student ${unselectedStudent.collegeId}`
+          );
+        } catch (error) {
+          console.error(
+            `Error updating application for student ${unselectedStudent.collegeId}:`,
+            error
+          );
         }
       }
     }
