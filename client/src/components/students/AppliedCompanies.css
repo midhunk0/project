@@ -1,14 +1,15 @@
 /* appliedCompanies.css */
 .applied-companies-container {
   margin: 40px;
+  width:100%;
 }
 
 .application-card {
   justify-content: center;
-  border: 1px solid #ccc;
+  border: 2px solid #cccccc;
   padding: 20px;
   border-radius: 10px;
-  width: auto;
+  width: 75%;
   margin-bottom: 40px;
   background-color: #f9f9f9; /* Light background color */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
@@ -37,16 +38,16 @@
 }
 
 .timeline-spot {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   display: flex;
   border: 5px double silver;
   justify-content: center;
   align-items: center;
-  font-size: 12px;
+  font-size: 32px;
   margin-bottom: 10px;
-  font-weight: bold;
+  font-family: "Times New Roman", Times, serif;
   position: relative; /* Add this line */
 }
 

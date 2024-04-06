@@ -69,7 +69,7 @@ const AppliedCompanies = ({ studentId }) => {
   };
 
   return (
-    <div className="applied-companies-container">
+    <div className="applied-companies-container" style={{ backgroundImage: `url(/assets/appliedCompanies.jpg)`, backgroundSize: "cover", backgroundRepeat: "no-repeat" }}>
       {applications.map((application) => (
         <div key={application._id} className="application-card">
           {/* Fetch company name from recruiterDetails array */}

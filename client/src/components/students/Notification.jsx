@@ -203,9 +203,9 @@ const Notification = () => {
   );
 
   return (
-    <Container>
-      <h1 className="mb-4">Notification Dashboard</h1>
-      <Form.Group className="mb-4">
+    <Container style={{ backgroundImage: `url(/assets/notification.jpg)`, backgroundSize: "cover", backgroundRepeat: "no-repeat" }}>
+      
+      <Form.Group className="mb-4" style={{marginTop: "40px"}}>
         <Form.Control
           type="text"
           placeholder="Filter by Company Name"
