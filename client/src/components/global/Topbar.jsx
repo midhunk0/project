@@ -3,18 +3,11 @@ import { Box, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 import { tokens } from "../../theme";
 import MenuIcon from "@mui/icons-material/Menu";
+import "./TopBar.css";
 
 const colors = tokens();
 
 const DropdownMenu = ({ title, items, selected, setSelected }) => {
-  const isActive = selected === title;
-
-  const itemStyle = {
-    textDecoration: "none",
-    color: isActive ? colors.gray[900] : "inherit",
-    backgroundColor: isActive ? colors.gray[100] : "inherit",
-  };
-
   return (
     <li className="nav-item dropdown">
       <a
@@ -25,7 +18,6 @@ const DropdownMenu = ({ title, items, selected, setSelected }) => {
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
-        style={{ color: "inherit", textDecoration: "inherit" }}
       >
         {title}
       </a>
@@ -38,7 +30,6 @@ const DropdownMenu = ({ title, items, selected, setSelected }) => {
             className="dropdown-item"
             to={item.to}
             onClick={() => setSelected(item.title)}
-            style={itemStyle}
             key={item.title}
           >
             {item.title}
@@ -97,13 +88,8 @@ const Topbar = () => {
   ];
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <Link
-        to="/"
-        onClick={() => setSelected("home")}
-        className="navbar-brand"
-        style={{ color: "inherit", textDecoration: "inherit" }}
-      >
+    <nav className="navbar navbar-expand-lg navbar-light ">
+      <Link to="/" onClick={() => setSelected("home")} className="navbar-brand">
         <Box display="flex" alignItems="center">
           <img
             src="/assets/cet_logo.png"
@@ -133,17 +119,20 @@ const Topbar = () => {
               />
             ) : (
               <li
-                className={`nav-item${selected === item.title ? " active" : ""}`}
+                className={`nav-item${
+                  selected === item.title ? " active" : ""
+                }`}
                 key={item.title}
               >
                 <Link
                   className="nav-link"
                   to={item.to}
                   onClick={() => setSelected(item.title)}
-                  style={{ color: "inherit", textDecoration: "inherit" }}
                 >
                   {item.title}
-                  {selected === item.title && <span className="sr-only">(current)</span>}
+                  {selected === item.title && (
+                    <span className="sr-only">(current)</span>
+                  )}
                 </Link>
               </li>
             )
