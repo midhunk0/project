@@ -1,34 +1,36 @@
 /* StudentCredits.css */
 
-.container {
-  padding: 30px;
+.student-credits-container {
+  justify-content: center;
+  align-items: center;
+  width:100%;
+
 }
 
-h1 {
+.student-credits-heading {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
-.student-table {
-  width: 100%;
+.student-credits-table {
+  width: 75%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin: 20px auto;
 }
 
-.student-table th,
-.student-table td {
+
+
+.student-credits-table th,
+.student-credits-table td {
   border: 1px solid #dddddd;
   padding: 8px;
   background-color: #f2f2f2;
   text-align: center;
 }
 
-.student-table th {
-  background-color: #e6e6e6;
-}
 
 /* Styling for "Add" buttons */
-.student-table button {
+.student-credits-table button {
   padding: 5px 10px;
   margin: 0 5px;
   cursor: pointer;
@@ -38,6 +40,6 @@ h1 {
   border-radius: 3px;
 }
 
-.student-table button:hover {
+.student-credits-table button:hover {
   background-color: #45a049;
 }

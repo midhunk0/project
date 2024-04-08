@@ -316,7 +316,7 @@ const JafForm = ({ recruiter }) => {
           marginTop: "30px",
         }}
       >
-        Send
+        Send to Students
       </Button>
     </Box>
   );

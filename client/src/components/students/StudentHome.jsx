@@ -57,9 +57,14 @@ const StudentHome = () => {
   return (
     <div
       className="background  rounded "
-      style={{ width: "30rem", marginLeft: "20%" }}
+      style={{
+        width: "100%",
+        backgroundImage: `url(/assets/studenthome.jpg)`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
     >
-      <div className="container mt-5">
+      <div className="container mt-5" style={{ justifyContent: "center" }}>
         {flag ? (
           <Box
             height="100vh"
@@ -107,7 +112,13 @@ const StudentHome = () => {
         ) : (
           <div
             className="card"
-            style={{ maxWidth: "40rem", width: "100%", marginBottom: "40px" }}
+            style={{
+              maxWidth: "35rem",
+              margin: "20px auto",
+              marginBottom: "40px",
+              justifyContent: "center",
+              border: "1px solid #20313e",
+            }}
           >
             <div className="item">
               <div className="details">

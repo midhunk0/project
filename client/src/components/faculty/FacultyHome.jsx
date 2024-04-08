@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import axios from "axios";
-import { Grid, Typography ,Box} from "@mui/material"; // Import Grid and Typography from Material-UI
+import { Grid, Typography, Box } from "@mui/material"; // Import Grid and Typography from Material-UI
 import StudentProfileModal from "./StudentProfileModal";
 
 const FacultyHome = () => {
@@ -56,36 +56,46 @@ const FacultyHome = () => {
   }, []);
 
   return (
-    <Grid container spacing={3} justifyContent="center" style={{ padding: "30px", marginTop:"20px"}}>
+    <Grid
+      container
+      spacing={3}
+      justifyContent="center"
+      style={{
+        padding: "30px",
+        marginTop: "20px",
+        backgroundImage: `url(/assets/facultyhome.jpg)`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <Box boxShadow={3} borderRadius={5} padding={3} bgcolor="white">
-          <img
-            src="../../assets/classroom.png"
-            alt="Company_image"
-            style={{
-              width: "100%",
-              height: "200px",
-              objectFit: "cover",
-              borderRadius: "5px",
-            }}
-          />
-          <Typography variant="h3" style={{ marginTop: "25px" }}>
-            {user.username}
-          </Typography>
-          
-        </Box>
+        <img
+          src="../../assets/classroom.png"
+          alt="Company_image"
+          style={{
+            width: "100%",
+            height: "200px",
+            objectFit: "cover",
+            borderRadius: "5px",
+          }}
+        />
+        <Typography variant="h3" style={{ marginTop: "25px" }}>
+          {user.username}
+        </Typography>
+      </Box>
       <Grid item xs={12}>
         <table
           style={{
-            width: "100%",
+            width: "75%",
             borderCollapse: "collapse",
-            marginTop: "10px",
+            margin: "20px auto",
           }}
         >
           <thead>
             <tr>
               <th
                 style={{
-                  border: "1px solid #dddddd",
+                  border: "2px solid #dddddd",
                   padding: "8px",
                   backgroundColor: "#f2f2f2",
                 }}
@@ -94,7 +104,7 @@ const FacultyHome = () => {
               </th>
               <th
                 style={{
-                  border: "1px solid #dddddd",
+                  border: "2px solid #dddddd",
                   padding: "8px",
                   backgroundColor: "#f2f2f2",
                 }}
@@ -103,7 +113,7 @@ const FacultyHome = () => {
               </th>
               <th
                 style={{
-                  border: "1px solid #dddddd",
+                  border: "2px solid #dddddd",
                   padding: "8px",
                   backgroundColor: "#f2f2f2",
                 }}
@@ -117,27 +127,32 @@ const FacultyHome = () => {
               <tr key={student._id}>
                 <td
                   style={{
-                    border: "1px solid #dddddd",
+                    border: "2px solid #dddddd",
                     padding: "8px",
+                    backgroundColor: "#f2f2f2",
                   }}
                 >
                   {student.username}
                 </td>
                 <td
                   style={{
-                    border: "1px solid #dddddd",
+                    border: "2px solid #dddddd",
                     padding: "8px",
+                    backgroundColor: "#f2f2f2",
                   }}
                 >
                   {student.studentCollegeID}
                 </td>
                 <td
                   style={{
-                    border: "1px solid #dddddd",
+                    border: "2px solid #dddddd",
                     padding: "8px",
+                    backgroundColor: "#f2f2f2",
                   }}
                 >
-                  <button onClick={() => handleViewProfile(student)}>View</button>
+                  <button onClick={() => handleViewProfile(student)}>
+                    View
+                  </button>
                 </td>
               </tr>
             ))}
