@@ -1,56 +1,74 @@
+/* RecruiterMessenger Component Styles */
+
 .recruiterMessenger {
-    height: calc(100vh-70px);
-    display: flex;
-    width: 100%;
-  }
-  
- 
-  .chatBox {
-    display: flex;
-    padding: 10px;
-  }
+  height: calc(100vh - 70px);
+  display: flex;
+  width: 100%;
+  background-color: #f7f7f7; /* Light background color */
+}
 
-  .chatBoxWrapper {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    justify-content: space-between;
-  }
-  
-  .chatBoxTop {
-    max-height: 450px;
-    overflow-y: scroll;
-    padding-right: 10px;
-  }
-  
+.chatBox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px; /* Limiting maximum width for better readability */
+  margin: auto; /* Centering the chat box */
+  padding: 20px;
+  background-color: #fff; /* White background color */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
 
-  .chatBoxBottom {
-    margin-top: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .chatMessageInput {
-    width: 80%;
-  }
-  
-  .chatSubmitButton {
-    width: 70px;
-    height: 40px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: teal;
-    color: white;
-  }
-  
-  .noConversationText {
-    position: absolute;
-    margin-top: 10%;
-    font-size: 50px;
-    color: gray;
-    cursor: default;
-  }
-  
+.chatBoxWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.chatBoxTop {
+  max-height: 400px; /* Adjust as needed */
+  overflow-y: auto; /* Scrollable chat messages */
+  padding-right: 10px;
+}
+
+.chatBoxBottom {
+  margin-top: 10px; /* Increased margin for better separation */
+  display: flex;
+  align-items: center;
+}
+
+.chatMessageInput {
+  flex: 1;
+  min-height: 40px; /* Ensuring a minimum height for input */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical; /* Allowing vertical resizing */
+}
+
+.chatSubmitButton {
+  width: 80px; /* Slightly wider button for better clickability */
+  height: 40px;
+  margin-left: 10px; /* Spacing between input and button */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #007bff; /* Blue color for contrast */
+  color: #fff;
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.chatSubmitButton:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.noConversationText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px; /* Reduced font size for better readability */
+  color: #555; /* Slightly darker gray */
+  cursor: default;
+}

@@ -1,30 +1,3 @@
-// // RecruiterMessage.js
-// import React, { useEffect, useState } from "react";
-// import "./Message.css";
-
-// const Message = ({ message, own }) => {
-//   const [timeAgo, setTimeAgo] = useState(null);
-
-//   useEffect(() => {
-
-//   });
-
-//   return (
-//     <div className={own ? "recruiterMessage own" : "recruiterMessage"}>
-//       <div className="recruiterMessageTop">
-//         <img
-//           className="recruiterMessageImg"
-//           src="https://static.vecteezy.com/system/resources/thumbnails/010/260/479/small/default-avatar-profile-icon-of-social-media-user-in-clipart-style-vector.jpg"
-//           alt=""
-//         />
-//         <p className="recruiterMessageText">{message.text}</p>
-//       </div>
-//       <div className="recruiterMessageBottom">{timeAgo}</div>
-//     </div>
-//   );
-// };
-
-// export default Message;
 
 import React, { useEffect, useState } from "react";
 import "./Message.css";
