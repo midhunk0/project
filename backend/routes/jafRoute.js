@@ -6,7 +6,8 @@ import {
   updateJafController,
   isAdminJafSent,
   getAdminNotifications,
-  updateNbController
+  updateNbController,
+  sentEmailToStudentsController
 } from "../controllers/jafController.js";
 const router = express.Router();
 
@@ -16,6 +17,7 @@ router.put("/updateNb/:id", updateNbController);
 router.get("/jafGet/:id", getJafController);
 router.put("/jafPut/:id", updateJafController);
 router.get("/notification", getAdminNotifications);
+router.post("/send-email-to-students",sentEmailToStudentsController);
 
 
 export default router;

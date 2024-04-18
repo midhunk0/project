@@ -1,5 +1,7 @@
 import jaf from "../models/jaf.js";
 import Recruiter from "../models/recruiterModel.js";
+import students from "../models/studentModel.js";
+import nodemailer from "nodemailer";
 
 export const postJafController = async (req, res, next) => {
   try {
@@ -41,7 +43,9 @@ export const postJafController = async (req, res, next) => {
       branchesEligibleDataValues = formData.tableData.map((row) => row.label);
     }
     if (formData.recruitmentProcess) {
-      recruitmentProcessDataValues = formData.recruitmentProcess.map((process) => process.label);
+      recruitmentProcessDataValues = formData.recruitmentProcess.map(
+        (process) => process.label
+      );
     }
     const newJaf = new jaf({
       companyName: {
@@ -80,7 +84,7 @@ export const postJafController = async (req, res, next) => {
       branchesEligible: {
         values: branchesEligibleDataValues,
       },
-      recruitmentProcess:{
+      recruitmentProcess: {
         values: recruitmentProcessDataValues,
       },
 
@@ -123,7 +127,7 @@ export const postJafController = async (req, res, next) => {
       totalRounds: {
         value: formData?.totalRounds || null,
       },
-      nb:{
+      nb: {
         value: "",
       },
       recruiter_id: formData.recruiter_id,
@@ -184,8 +188,6 @@ export const updateJafController = async (req, res, next) => {
   }
 };
 
-
-
 export const isAdminJafSent = async (req, res) => {
   try {
     const jafId = req.params.id;
@@ -229,9 +231,61 @@ export const updateNbController = async (req, res) => {
     }
 
     // Return a success response with the updated JAF data
-    res.status(200).json({ message: "NB field updated successfully", jaf: updatedJAF });
+    res
+      .status(200)
+      .json({ message: "NB field updated successfully", jaf: updatedJAF });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "An error occurred" });
+  }
+};
+
+export const sentEmailToStudentsController = async (req, res, next) => {
+  try {
+    const fetchStudents = await students.find();
+    const studentsEmails = fetchStudents.map((student) => student.email);
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "temp200659@cet.ac.in",
+        pass: "rulj xmwv znic iksd",
+      },
+    });
+
+    const mailOptions = {
+      from: '"Placement Officer" <temp200659@cet.ac.in>',
+      to: studentsEmails.join(", "),
+      subject: "Message from STUDUP",
+      text: `Dear Student,
+
+We hope this message finds you well.
+We would like to inform you about an important update on your STUDUP dashboard. "A new company has started their placement process!"
+
+Please log in to your dashboard at your earliest convenience and apply for the opportunity.
+
+Should you encounter any difficulties or have any questions, please do not hesitate to reach out to us. We are here to assist you throughout this process.
+
+Best regards,
+
+Placement Officer
+College of Engineering Trivandrum`,
+    };
+
+    // Send the email
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        // Handle error response
+        return res.status(500).send("Error sending email");
+      }
+      // Handle success response
+      console.log("Email sent: " + info.response);
+      return res.status(200).send("Email sent successfully");
+    });
+  } catch (error) {
+    console.log(error);
+    // Handle error response
+    return res.status(500).send("Error sending email");
   }
 };

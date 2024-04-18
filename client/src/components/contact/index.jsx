@@ -2,6 +2,7 @@ import React from "react";
 import { Box } from "@mui/material";
 import Card from "react-bootstrap/Card";
 import { Container, Image } from "react-bootstrap";
+import "./contact.css"
 
 const Contact = () => {
     const containerStyle = {

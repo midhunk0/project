@@ -18,6 +18,7 @@ import {
   getMessageController,
 } from "../controllers/conversationController.js";
 
+
 const router = express.Router();
 
 // Student registration route
@@ -46,6 +47,7 @@ router.post("/messages", addMessageController);
 router.get("/messages/:chatId", getMessageController);
 //to update student credits
 router.put("/credit/:id", updateCredits);
+
 
 
 export default router;
