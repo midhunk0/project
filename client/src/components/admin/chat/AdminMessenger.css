@@ -24,11 +24,13 @@
   flex-direction: column;
   position: relative;
   justify-content: space-between;
+  height: 100vh;
 }
 
 .chatBoxTop {
-  max-height: 450px;
-  overflow-y: scroll;
+  flex: 1; /* Takes 80% of the vertical space */
+  max-height: 80vh; /* Maximum height to ensure it doesn't exceed 80% of viewport height */
+  overflow-y: scroll; /* Enable vertical scrolling if content exceeds max-height */
   padding-right: 10px;
 }
 
@@ -39,25 +41,43 @@
   border-bottom: 1px solid;
 }
 
+/* Styling for the chatBoxBottom container */
 .chatBoxBottom {
-  margin-top: 5px;
+  height: 20%; 
+  border-radius: 20px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #DCF8C6;
+  border-top: 1px solid #ccc;
 }
 
+/* Styling for the chatMessageInput textarea */
 .chatMessageInput {
-  width: 80%;
+  flex: 1;
+  min-height: 40px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical; /* Allow vertical resizing */
+  font-size: 16px;
 }
 
+/* Styling for the chatSubmitButton */
 .chatSubmitButton {
-  width: 70px;
-  height: 40px;
+  margin-left: 10px;
+  padding: 8px 16px;
+  background-color: #007bff; /* Blue color */
+  color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: teal;
-  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.chatSubmitButton:hover {
+  background-color: #0056b3; /* Darker blue on hover */
 }
 
 .noConversationText {
