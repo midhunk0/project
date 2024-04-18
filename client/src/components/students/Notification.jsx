@@ -6,6 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import useFetch from "../../hooks/useFetch";
+import "./Notification.css";
 
 const Notification = () => {
   const [notifications, setNotifications] = useState([]);
@@ -214,7 +215,7 @@ const Notification = () => {
         />
       </Form.Group>
       {filteredNotifications.map((notification) => (
-        <Card key={notification._id} className="mb-4">
+        <Card key={notification._id} className="mb-4 notification-card">
           <Card.Body>
             <Row className="align-items-center">
               <Col>

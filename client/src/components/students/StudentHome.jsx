@@ -59,12 +59,14 @@ const StudentHome = () => {
       className="background  rounded "
       style={{
         width: "100%",
-        backgroundImage: `url(/assets/studenthome.jpg)`,
+        height: "100vh",
+        backgroundImage: `url(/assets/studentHome.jpg)`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
+        backgroundPosition: "center", 
       }}
     >
-      <div className="container mt-5" style={{ justifyContent: "center" }}>
+      <div className="container home mt-5" style={{ justifyContent: "center" }}>
         {flag ? (
           <Box
             height="100vh"
@@ -111,13 +113,19 @@ const StudentHome = () => {
           </Box>
         ) : (
           <div
-            className="card"
+            className="cardhome"
             style={{
               maxWidth: "35rem",
-              margin: "20px auto",
+              margin: "40px auto",
               marginBottom: "40px",
               justifyContent: "center",
-              border: "1px solid #20313e",
+              alignItems: "center",
+              border: "2px solid #20313e",
+              overflowY: "auto",
+              maxHeight: "calc(100vh - 180px)",
+              backgroundColor: "rgba(255, 255, 255, 0.8)", // 90% opacity white background
+              backdropFilter: "blur(10px)", // Apply a blur effect for a frosted glass look
+              borderRadius: "10px",
             }}
           >
             <div className="item">
@@ -130,13 +138,13 @@ const StudentHome = () => {
                     <img
                       src="/assets/verifiedStudent.jpg"
                       alt="Verified"
-                      style={{ width: "100px", height: "100px" }}
+                      style={{ width: "50px", height: "50px" }}
                     />
                   ) : (
                     <img
                       src="/assets/notVerified.jpg"
                       alt="Unverified"
-                      style={{ width: "100px", height: "100px" }}
+                      style={{ width: "50px", height: "50px" }}
                     />
                   )}
                 </div>

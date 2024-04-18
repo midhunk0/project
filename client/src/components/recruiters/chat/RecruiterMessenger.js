@@ -73,12 +73,12 @@ const RecruiterMessenger = () => {
 
   return (
     <>
-      <div className="recruiterMessenger">
+      <div className="recruiterMessenger1" >
         {conversations ? "" : "loading"}
-        <div className="chatBox">
-          <div className="chatBoxWrapper">
+        <div className="chatBox1" style={{ backgroundImage: `url(/assets/chat.jpg)`, backgroundSize: "cover", backgroundRepeat: "no-repeat" }}>
+          <div className="chatBoxWrapper1">
             <>
-              <div className="chatBoxTop">
+              <div className="chatBoxTop1">
                 {messages ? (
                   <>
                     {messages.map((message) => {
@@ -96,14 +96,14 @@ const RecruiterMessenger = () => {
                   "loading"
                 )}
               </div>
-              <div className="chatBoxBottom">
+              <div className="chatBoxBottom1">
                 <textarea
-                  className="chatMessageInput"
+                  className="chatMessageInput1"
                   placeholder="write something..."
                   onChange={(e) => setNewMessage(e.target.value)}
                   value={newMessage}
                 ></textarea>
-                <button className="chatSubmitButton" onClick={handleSubmit}>
+                <button className="chatSubmitButton1" onClick={handleSubmit}>
                   Send
                 </button>
               </div>

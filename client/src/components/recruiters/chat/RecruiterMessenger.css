@@ -1,13 +1,13 @@
 /* RecruiterMessenger Component Styles */
 
-.recruiterMessenger {
+.recruiterMessenger1 {
   height: calc(100vh - 70px);
   display: flex;
   width: 100%;
   background-color: #f7f7f7; /* Light background color */
 }
 
-.chatBox {
+.chatBox1 {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -15,30 +15,31 @@
   margin: auto; /* Centering the chat box */
   padding: 20px;
   background-color: #fff; /* White background color */
+
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
 }
 
-.chatBoxWrapper {
+.chatBoxWrapper1 {
   flex: 1;
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
-.chatBoxTop {
+.chatBoxTop1 {
   max-height: 400px; /* Adjust as needed */
   overflow-y: auto; /* Scrollable chat messages */
   padding-right: 10px;
 }
 
-.chatBoxBottom {
+.chatBoxBottom1 {
   margin-top: 10px; /* Increased margin for better separation */
   display: flex;
   align-items: center;
 }
 
-.chatMessageInput {
+.chatMessageInput1 {
   flex: 1;
   min-height: 40px; /* Ensuring a minimum height for input */
   padding: 8px;
@@ -47,7 +48,7 @@
   resize: vertical; /* Allowing vertical resizing */
 }
 
-.chatSubmitButton {
+.chatSubmitButton1 {
   width: 80px; /* Slightly wider button for better clickability */
   height: 40px;
   margin-left: 10px; /* Spacing between input and button */
@@ -59,11 +60,11 @@
   transition: background-color 0.3s ease; /* Smooth transition on hover */
 }
 
-.chatSubmitButton:hover {
+.chatSubmitButton1:hover {
   background-color: #0056b3; /* Darker blue on hover */
 }
 
-.noConversationText {
+.noConversationText1 {
   position: absolute;
   top: 50%;
   left: 50%;

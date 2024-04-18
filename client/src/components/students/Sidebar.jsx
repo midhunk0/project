@@ -56,11 +56,9 @@ const Item = ({ title, to, selected, setSelected }) => {
 const getMenuItems = (selected, setSelected) => {
   const menuItems = [
     { title: "Profile", to: "/student/home" },
-    { title: "Resume", to: "/student/Resume" },
     { title: "Placements", to: "/student/placement" },
     { title: "Notifications", to: "/student/notification" },
     { title: "Applied Companies", to: "/student/appliedcompanies" },
-    { title: "Talks & Sessions", to: "/student/talksandsessions" },
     { title: "Edit Profile", to: "/student/edit" },
     { title: "Logout" },
   ];
@@ -99,7 +97,13 @@ const StudentSidebar = ({ username, profilePicture }) => {
 
   return (
     <FlexBetween>
-      <Box sx={{ display: { xs: "none", md: "flex" }, height: "100%" }}>
+      <Box
+        sx={{
+          display: { xs: "none", md: "flex" },
+          height: "100%",
+          marginBottom: "20px",
+        }}
+      >
         <Box display="flex">
           <Sidebar>
             <Box mb="25px" mt="45px">
@@ -114,7 +118,6 @@ const StudentSidebar = ({ username, profilePicture }) => {
                     borderRadius: "50%",
                     margin: "10px",
                   }}
-                  
                 />
               </Box>
 

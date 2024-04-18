@@ -35,4 +35,6 @@ object-fit: cover;
 .recruiterMessage.own .recruiterMessageText{
   background-color: lightgray;
   color: black;
+  word-wrap: break-word; 
+  overflow-wrap: break-word; 
 }
