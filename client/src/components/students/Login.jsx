@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
-import { Box, Button, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Box, Button, Typography} from "@mui/material";
+import { useNavigate,Link  } from "react-router-dom";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
@@ -105,6 +104,10 @@ const Login = () => {
                 >
                     Sign In
                 </Button>
+                <Typography variant="body2" marginTop="10px">
+                    <Link to="/reset-password">Forgot your password? Reset here</Link>
+                </Typography>
+                
             </Box>
             <Toaster position="bottom-center" /> {/* Add the toast container */}
         </Box>

@@ -65,7 +65,7 @@ const AppliedCompanies = ({ studentId }) => {
         return recruiter.companyName;
       }
     }
-    return "Unknown Recruiter"; // Return default if recruiterDetails is empty or companyId is not found
+    return "Recruiter not found"; // Return default if recruiterDetails is empty or companyId is not found
   };
 
   return (

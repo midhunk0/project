@@ -56,15 +56,16 @@ const StudentHome = () => {
 
   return (
     <div
-      className="background  rounded "
+      className="backgroundRounded "
       style={{
         width: "100%",
         height: "100vh",
         backgroundImage: `url(/assets/studentHome.jpg)`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        backgroundPosition: "center", 
+        backgroundPosition: "center",
       }}
+      
     >
       <div className="container home mt-5" style={{ justifyContent: "center" }}>
         {flag ? (

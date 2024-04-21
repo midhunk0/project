@@ -1,0 +1,56 @@
+.address-card,
+.contact-person-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  width: 70%;
+  max-width: 400px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.address-card:hover,
+.contact-person-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.address-card h3,
+.contact-person-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  transition: color 0.3s ease-in-out;
+  color: #20313e;
+
+}
+
+.address-card p,
+.contact-person-card p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  transition: color 0.3s ease-in-out;
+  text-align: center;
+  
+}
+
+.address-card .contact-details {
+  font-size: 16px;
+  transition: color 0.3s ease-in-out;
+  
+}
+
+.address-card:hover h3,
+.contact-person-card:hover h3,
+.address-card:hover p,
+.contact-person-card:hover p,
+.address-card:hover .contact-details,
+.contact-person-card:hover .contact-details {
+  color: #20313e;
+
+}

@@ -44,12 +44,12 @@
 /* Styling for the chatBoxBottom container */
 .chatBoxBottom {
   height: 20%; 
-  border-radius: 20px;
+ 
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #DCF8C6;
+  background-color: #D3D3D3;
   border-top: 1px solid #ccc;
 }
 

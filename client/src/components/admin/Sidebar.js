@@ -42,7 +42,7 @@ const getMenuItems = (selected, setSelected) => {
     { title: "Chats", to: "/admin/chat" },
     { title: "Job Announcement", to: "/admin/viewjaf" },
     { title: "Student Applications", to: "/admin/studentApplications" },
-    { title: "Accepted Students", to: "/admin/accepted" },
+    { title: "Training & materials", to: "/admin/training" },
     { title: "Logout", to: "/" },
   ];
 
@@ -93,15 +93,12 @@ const AdminSidebar = () => {
                     cursor: "pointer",
                     borderRadius: "50%",
                     margin: "10px",
-                    
                   }}
                 />
               </Box>
               <Box textAlign="center" mt={2}>
-              <Typography variant="h5">
-                Welcome Admin!
-              </Typography>
-            </Box>
+                <Typography variant="h5">Welcome Admin!</Typography>
+              </Box>
             </Box>
             {/* menu items */}
             <Box mb="25px">{getMenuItems(selected, setSelected)}</Box>

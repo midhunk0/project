@@ -89,18 +89,23 @@ export const getApplicationsByStudentId = async (req, res) => {
     // Iterate through each application to get student details
     for (const application of applications) {
       // Fetch student details using the studentId from the application
+      console.log(application);
       const recruiter = await Recruiter.findById(application.companyId);
+      console.log(recruiter);
 
-      // Push required student details to the studentDetails array
-      recruiterDetails.push({
-        _id: recruiter._id,
-        name: recruiter.companyName,
-        natureOfBuisiness: recruiter.natureOfBuisiness,
-        email: recruiter.email,
-      });
+      // Check if recruiter exists (not null)
+      if (recruiter) {
+        // Push required student details to the recruiterDetails array
+        recruiterDetails.push({
+          _id: recruiter._id,
+          name: recruiter.companyName,
+          natureOfBusiness: recruiter.natureOfBusiness,
+          email: recruiter.email,
+        });
+      }
     }
 
-    res.status(200).json({ applications ,recruiterDetails});
+    res.status(200).json({ applications, recruiterDetails });
   } catch (error) {
     console.error("Error fetching applications by companyId:", error);
     res.status(500).json({ error: "Failed to fetch applications." });

@@ -68,9 +68,6 @@ const RecruiterRegister = () => {
         formData
       );
       console.log(res.data);
-
-      // const recruiterId = res.data._id;
-
       // Step 2: Create a new conversation between admin and recruiter
       const conversationResponse = await axios.post(
         "http://localhost:8080/api/students/conversations",

@@ -3,28 +3,33 @@ import bcrypt from "bcryptjs";
 
 export const registerStudentController = async (req, res, next) => {
   try {
-    const { studentCollegeID, department } = req.body;
+    const {
+      studentCollegeID,
+      department,
+      email,
+      password, // Assuming password is included in the request body
+    } = req.body;
     console.log(studentCollegeID, department);
+
     // Check if the student with the provided student ID already exists
     const existingStudent = await students.findOne({ studentCollegeID });
     if (existingStudent) {
       return res.status(409).json({ error: "Student already exists" });
     }
 
-    // Create a new student instance
+    // Create a new student instance with password
     const student = new students({
       username: "",
-      password: "",
-      email: "",
+      password,
+      email,
       semester: 2,
-      studentCollegeID: req.body.studentCollegeID,
+      studentCollegeID,
       phone: "",
       gender: "",
       dob: "",
       bloodGroup: "",
       facultyEmail: "",
       aadhaar: "",
-      phone: "",
       address: "",
       domicileState: "",
       religion: "",
@@ -39,23 +44,23 @@ export const registerStudentController = async (req, res, next) => {
       admittedScheme: "",
       admittedProgram: "",
       skills: [""],
-      department: req.body.department,
+      department,
       admittedType: "",
       clearedBacklogs: "",
       nonclearedBacklogs: "",
       profilePicture: "",
-      cv: "",
       isAdmin: false,
       isVerified: false,
+      isPasswordChanged: false,
     });
 
-    // Save the student to the database
+    // Save the new student to the database
     await student.save();
 
     res.status(201).json({ message: "Student registered successfully" });
   } catch (error) {
-    next(error);
-    // res.status(500).json({ error: "An error occurred" });
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
   }
 };
 
@@ -190,38 +195,8 @@ export const updateProfileStudentController = async (req, res) => {
   }
 };
 
-export const changePasswordStudentController = async (req, res, next) => {
-  try {
-    const studentID = req.params.id;
-    const { newPassword } = req.body;
+export const updatePasswordController = async (req, res, next) => {
 
-    await students.findByIdAndUpdate(studentID, { password: newPassword });
-    // const { newPassword } = req.body;
-
-    // await students.findByIdAndUpdate(studentID, { password: newPassword });
-    // // Find the student with the provided student ID
-    // const student = await students.findById(studentID);
-    // if (!student) {
-    //     return res.status(404).json({ error: "Student not found" });
-    // }
-
-    // // Check if the current password is correct
-    // if (currentPassword !== student.password) {
-    //     return res.status(401).json({ error: "Invalid password" });
-    // }
-
-    // // Update the password
-    // student.password = newPassword;
-
-    // Save the updated password
-    // await student.save();
-
-    res.status(200).json({ message: "Password changed successfully" });
-  } catch (err) {
-    console.log(err);
-    next(err);
-    // res.status(500).json({ error: "An error occurred" });
-  }
 };
 
 export const addProfileDetailsStudentController = async (req, res) => {
@@ -270,46 +245,44 @@ export const getallStudentsController = async (req, res) => {
 export const updateCredits = async (req, res) => {
   const { id } = req.params;
   const { semester } = req.body;
-  console.log(id,semester,5)
+  console.log(id, semester, 5);
 
   try {
-      let updatedStudent;
+    let updatedStudent;
 
-      // Find the student by ID
-      updatedStudent = await students.findById(id);
+    // Find the student by ID
+    updatedStudent = await students.findById(id);
 
-      // Update credits based on the semester
-      switch (semester) {
-          case 1:
-              updatedStudent.creditss1 += 5;
-              break;
-          case 2:
-              updatedStudent.creditss2 += 5;
-              break;
-          case 3:
-              updatedStudent.creditss3 += 5;
-              break;
-          case 4:
-              updatedStudent.creditss4 += 5;
-              break;
-          case 5:
-              updatedStudent.creditss5 += 5;
-              break;
-          case 6:
-              updatedStudent.creditss6 += 5;
-              break;
-          default:
-              return res.status(400).json({ message: "Invalid semester" });
-      }
+    // Update credits based on the semester
+    switch (semester) {
+      case 1:
+        updatedStudent.creditss1 += 5;
+        break;
+      case 2:
+        updatedStudent.creditss2 += 5;
+        break;
+      case 3:
+        updatedStudent.creditss3 += 5;
+        break;
+      case 4:
+        updatedStudent.creditss4 += 5;
+        break;
+      case 5:
+        updatedStudent.creditss5 += 5;
+        break;
+      case 6:
+        updatedStudent.creditss6 += 5;
+        break;
+      default:
+        return res.status(400).json({ message: "Invalid semester" });
+    }
 
-      // Save the updated student
-      await updatedStudent.save();
+    // Save the updated student
+    await updatedStudent.save();
 
-      res.status(200).json({ message: "Credits updated successfully" });
+    res.status(200).json({ message: "Credits updated successfully" });
   } catch (error) {
-      console.error("Error updating credits:", error);
-      res.status(500).json({ message: "Failed to update credits" });
-  }
-}
-
-
+    console.error("Error updating credits:", error);
+    res.status(500).json({ message: "Failed to update credits" });
+  }
+};

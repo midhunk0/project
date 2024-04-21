@@ -56,7 +56,6 @@ const Item = ({ title, to, selected, setSelected }) => {
 const getMenuItems = (selected, setSelected) => {
   const menuItems = [
     { title: "Profile", to: "/student/home" },
-    { title: "Placements", to: "/student/placement" },
     { title: "Notifications", to: "/student/notification" },
     { title: "Applied Companies", to: "/student/appliedcompanies" },
     { title: "Edit Profile", to: "/student/edit" },
@@ -102,6 +101,7 @@ const StudentSidebar = ({ username, profilePicture }) => {
           display: { xs: "none", md: "flex" },
           height: "100%",
           marginBottom: "20px",
+          marginTop: "20px",
         }}
       >
         <Box display="flex">

@@ -1,23 +1,25 @@
 import mongoose from "mongoose";
 
-const facultySchema = new mongoose.Schema({
+const facultySchema = new mongoose.Schema(
+  {
     username: {
-        type: String,
-        default:""
+      type: String,
+      default: "",
     },
     email: {
-        type: String,
-        default:""
+      type: String,
+      default: "",
     },
-    password:{
-        type:String,
-        default:""
+    password: {
+      type: String,
+      default: "",
     },
-    department:{
-        type:String,
-        default:""
+    department: {
+      type: String,
+      default: "",
     },
-    
-},{ timestamps: true });
+  },
+  { timestamps: true }
+);
 
 export default mongoose.model("Faculty", facultySchema);

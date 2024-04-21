@@ -3,52 +3,10 @@ import { Box } from "@mui/material";
 import Card from "react-bootstrap/Card";
 import { Container, Image } from "react-bootstrap";
 import "./contact.css"
+import { display } from "@mui/system";
 
 const Contact = () => {
-    const containerStyle = {
-        background: "url('../../../assets/abstract-watercolor-paper.jpg')",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-    };
 
-    const cardStyle = {
-        position: "relative",
-        overflow: "hidden",
-        transition: "transform 0.5s",
-        transformStyle: "preserve-3d",
-        perspective: "1000px",
-        transform: "rotateX(0)",
-    };
-
-    const cardHoverStyle = {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        background: "rgba(0, 0, 0, 0.5)",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        transform: "translateY(100%)",
-        transition: "transform 0.5s",
-    };
-
-    const cardHoverText = {
-        color: "#fff",
-        fontSize: "18px",
-        textAlign: "center",
-    };
-
-    const handleCardHover = (e) => {
-        e.currentTarget.querySelector(".card-hover").style.transform =
-            "translateY(0)";
-    };
-
-    const handleCardLeave = (e) => {
-        e.currentTarget.querySelector(".card-hover").style.transform =
-            "translateY(100%)";
-    };
 
     return (
         <Box margin="10px" width="auto">
@@ -102,113 +60,35 @@ const Contact = () => {
 
             <br />
             <br />
-            <h1 className="display-10 mb-4 ml-2">Address</h1>
-            <Container fluid className="py-5 " style={containerStyle}>
-                <div className="row">
-                    <div className="col-md-1 mr-3"></div>
-                    <div className="col-md-3 mr-3 mb-2 d-none d-md-block">
-                        <Image
-                            src="../../../assets/contactaddress.jpg"
-                            alt="Profile Picture"
-                            fluid
-                            roundedCircle
-                        />
-                    </div>
+            <div style={{display:"flex"}}>
+            <Card className="address-card" >
+                <Card.Body>
+                    <Card.Title>Address</Card.Title>
+                    <Card.Text>
+                        Dr. K. Sunil Kumar<br />
+                        Training and Placement Officer<br />
+                        Career Guidance and Placement Unit (CGPU),<br />
+                        College of Engineering Trivandrum,<br />
+                        Engineering College P.O., Sreekaryam,<br />
+                        Thiruvananthapuram, Kerala 695016
+                    </Card.Text>
+                </Card.Body>
+            </Card>
 
-                    <div className="col-md-7 ml-5">
-                        <Card
-                            style={cardStyle}
-                            onMouseEnter={handleCardHover}
-                            onMouseLeave={handleCardLeave}
-                        >
-                            <Card.Body>
-                                <Card.Title style={{ fontSize: "30px" }}>
-                                    <br />
-                                    Career Guidance and Placement Unit (CGPU)
-                                    <br />
-                                </Card.Title>
-
-                                <div
-                                    className="card-hover"
-                                    style={cardHoverStyle}
-                                >
-                                    <p style={cardHoverText}>
-                                        <Card.Text>
-                                            <br />
-                                            <p>College of Engineering,</p>
-                                            <p>Thiruvananthapuram - 695016</p>
-                                            <p>KERALA, South India.</p>
-                                            <p>
-                                                Phone: 0471 - 2595152, 2515682
-                                            </p>
-                                        </Card.Text>
-                                    </p>
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                </div>
-            </Container>
-            <br />
-            <br />
-
-            <h1 className="display-10 mb-4 ml-2">Contact Person</h1>
-
-            <Container fluid className="py-5" style={containerStyle}>
-                <div className="row">
-                    <div className="col-md-1 mr-2"></div>
-                    <div className="col-md-7 mb-5">
-                        <Card
-                            style={cardStyle}
-                            onMouseEnter={handleCardHover}
-                            onMouseLeave={handleCardLeave}
-                        >
-                            <Card.Body>
-                            <Card.Title className="text-center" style={{ fontSize: "35px" }}>
-                                    <br />
-                                    
-                                    Placement Officer <br />
-                                    CET
-                                    <br /><br />
-                                </Card.Title>
-                                <div
-                                    className="card-hover"
-                                    style={cardHoverStyle}
-                                >
-                                    <p style={cardHoverText}>
-                                        <br />
-                                        <Card.Title>
-                                            Dr. K. Sunil Kumar
-                                        </Card.Title>
-                                        <Card.Text>
-                                            <p>
-                                                Training and Placement Officer
-                                            </p>
-                                            <p>
-                                                College of Engineering
-                                                Trivandrum,{" "}
-                                            </p>
-                                            <p>Thiruvananthapuram - 695 016.</p>
-                                            <p>Mobile: 9946844277</p>
-                                            <p>Phone Office: 04712515682</p>
-                                        </Card.Text>
-                                    </p>
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                    <div className="col-md-3">
-                        <div className="text-center">
-                            <Image
-                                src="../../../assets/sunilkumarsir.jpg"
-                                alt="Profile Picture"
-                                fluid
-                                roundedCircle
-                            />
-                        </div>
-                    </div>
-                </div>
-            </Container>
+            {/* Contact Person Card */}
+            <Card className="contact-person-card">
+                <Card.Body>
+                    <Card.Title>Contact Person</Card.Title>
+                    <Card.Text>
+                        Mobile: 919946844277<br />
+                        Phone: 0471-2515682<br />
+                        Phone: +91 99468 44277<br />
+                        Email: placement@cet.ac.in
+                    </Card.Text>
+                </Card.Body>
+            </Card>
+            </div>
+            
 
             <Box className="bottomContainer">
                 <Box className="top-text">

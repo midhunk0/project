@@ -5,7 +5,6 @@ import {
   loginStudentController,
   getProfileStudentController,
   updateProfileStudentController,
-  changePasswordStudentController,
   addProfileDetailsStudentController,
   getallStudentsController,
   updateCredits,
@@ -18,7 +17,6 @@ import {
   getMessageController,
 } from "../controllers/conversationController.js";
 
-
 const router = express.Router();
 
 // Student registration route
@@ -30,8 +28,6 @@ router.post("/studentLogin", loginStudentController);
 // Student profile route
 router.get("/StudentProfile/:id", getProfileStudentController);
 router.put("/StudentProfile/:id", updateProfileStudentController);
-// Route for changing password
-router.put("/StudentPassword/:id", changePasswordStudentController);
 router.get("/get-all-students", getallStudentsController);
 
 // Route for adding other profile details
@@ -47,7 +43,5 @@ router.post("/messages", addMessageController);
 router.get("/messages/:chatId", getMessageController);
 //to update student credits
 router.put("/credit/:id", updateCredits);
-
-
 
 export default router;

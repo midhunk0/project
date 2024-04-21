@@ -14,7 +14,7 @@ import RecruiterPlacement from "./components/recruiters/Placement";
 import Edit from "./components/students/Edit";
 import StudentHome from "./components/students/StudentHome";
 import Notification from "./components/students/Notification";
-import Resume from "./components/students/Resume";
+import ForgotPassword from "./components/students/forgotPassword.jsx";
 import StudentPlacement from "./components/students/Placement";
 import RecruiterLogin from "./components/recruiters/Login";
 import Request from "./components/recruiters/Request";
@@ -50,6 +50,8 @@ import AppliedCompanies from "./components/students/AppliedCompanies";
 import ApplicationStatus from "./components/students/ApplicationStatus";
 import StudentApplications from "./components/admin/studentApplications.js";
 import Applications from "./components/recruiters/applications.js";
+import Training from "./components/admin/Training.jsx";
+import UpdatePassword from "./components/students/UpdatePassword.jsx";
 
 const App = () => {
   return (
@@ -92,6 +94,7 @@ const App = () => {
         <Route path="/internships" element={<Internships />} />
         <Route path="/placement-experience" element={<PlacementExperience />} />
         <Route path="student/login" element={<StudentLogin />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="student" element={<Student />}>
           <Route path="home" element={<StudentHome />} />
           <Route path="edit" element={<Edit />} />
@@ -99,7 +102,9 @@ const App = () => {
           <Route path="appliedCompanies" element={<AppliedCompanies/>} />
           <Route path="applicationStatus" element={<ApplicationStatus/>} />
           <Route path="placement" element={<StudentPlacement />} />
-          <Route path="resume" element={<Resume />} />
+          <Route path="update-password" element={<UpdatePassword/>} />
+          
+          
         </Route>
         <Route path="admin" element={<Admin />}>
           <Route path="dashboard" element={<AdminDashboard />} />
@@ -111,6 +116,7 @@ const App = () => {
           <Route path="students" element={<Students />} />
           <Route path="chat" element={<AdminMessenger />} />
           <Route path="viewjaf" element={<ViewJaf />} />
+          <Route path="training" element={<Training/>}/>
         </Route>
       </Routes>
       <Footer />

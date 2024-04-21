@@ -63,6 +63,7 @@ const FacultyRegister = () => {
     e.preventDefault();
 
     try {
+      console.log(formData);
       const res = await axios.post(
         "http://localhost:8080/api/faculty/facultyRegister",
         formData
@@ -70,9 +71,8 @@ const FacultyRegister = () => {
       toast.success("Faculty registered successfully!");
       setFormData({
         username: "",
-        email: "",
         password: "",
-        department: "",
+
       });
     } catch (err) {
       console.log(err.response);

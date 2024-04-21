@@ -8,13 +8,13 @@ export const registerfacultyController = async (req, res, next) => {
     // Create a new recruiter instance
     const faculty = new Faculty({
       username,
-      password,
+      password
     });
 
     // Save the recruiter to the database
     await faculty.save();
 
-    res.status(201).json({ message: "Recruiter registered successfully" });
+    res.status(201).json({ message: "Faculty registered successfully" });
   } catch (error) {
     next(error);
   }

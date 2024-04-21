@@ -10,6 +10,7 @@ import {
   getRecruiterById,
   getRecruitersSentJaf,
   getRecruitersByCompanyIds,
+  recruiterJafController,
 } from "../controllers/recruiterController.js";
 
 import {
@@ -43,5 +44,7 @@ router.get("/getAllRecruiters", getAllRecruiters);
 router.post("/getRecruitersByCompanyIds", getRecruitersByCompanyIds);
 router.get("/getRecruiterById/:recruiterId", getRecruiterById);
 router.get("/getRecruitersSentjaf", getRecruitersSentJaf); //get all recruiters who sent jaf
+router.put("/updateisjafSentfalse/:id",recruiterJafController);
+
 
 export default router;

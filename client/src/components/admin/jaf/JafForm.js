@@ -69,9 +69,7 @@ const JafForm = ({ recruiter }) => {
         `http://localhost:8080/api/jaf/jafAdminSent/${jafid}`,
         true
       );
-      await axios.post(
-        "http://localhost:8080/api/jaf/send-email-to-students"
-            );
+      await axios.post("http://localhost:8080/api/jaf/send-email-to-students");
       // Send the new NB value to the server
       await axios.put(`http://localhost:8080/api/jaf/updateNb/${jafid}`, {
         nb: { value: formData.nb, check: true },

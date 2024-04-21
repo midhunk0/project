@@ -226,6 +226,8 @@ const Notification = () => {
                 {expandedCardId === notification._id && (
                   <>
                     {renderFields(notification)}
+                    <div style={{display:"flex",justifyContent:"space-between"}}>                    
+                    <div>
                     <Button
                       variant="success"
                       className="mr-2"
@@ -240,11 +242,9 @@ const Notification = () => {
                     >
                       Cancel
                     </Button>
-                  </>
-                )}
-              </Col>
-              <Col xs="auto">
-                <Button
+                    </div>
+                    <div>
+                    <Button
                   variant="primary"
                   onClick={() => toggleFullCard(notification._id)}
                 >
@@ -252,7 +252,24 @@ const Notification = () => {
                     ? "View Less"
                     : "View More"}
                 </Button>
+                    </div>
+                </div>
+                  </>
+                )}
               </Col>
+              {!expandedCardId && 
+              <Col xs="auto">
+              <Button
+                variant="primary"
+                onClick={() => toggleFullCard(notification._id)}
+              >
+                {expandedCardId === notification._id
+                  ? "View Less"
+                  : "View More"}
+              </Button>
+            </Col>
+              }
+              
             </Row>
           </Card.Body>
         </Card>
@@ -262,4 +279,4 @@ const Notification = () => {
   );
 };
 
-export default Notification;
+export default Notification;

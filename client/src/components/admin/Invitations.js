@@ -71,7 +71,6 @@ const UploadExcel = () => {
       return;
     } else {
       toast.success("All users registered successfully");
-
     }
   };
 
@@ -119,6 +118,7 @@ const UploadExcel = () => {
             Upload
           </Button>
         </Box>
+        <Toaster position="bottom-center" />
       </Grid>
     </Grid>
   );

@@ -1,0 +1,153 @@
+/* .main-div{
+    margin: 20px;
+}
+
+form{
+    border: 1px solid black;
+    padding: 20px;
+}
+
+.inputs{
+    display: flex;
+    flex-direction: column;
+}
+
+form input[type="text"]{
+    border: 1px solid black;
+    padding: 7px;
+}
+
+form input[type="file"]{
+    padding: 3px;
+    border: 1px solid black;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+form input[type="radio"]{
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+label{
+    cursor: pointer;
+}
+
+button{
+    border: 1px solid black;
+    outline: none;
+    margin-left: 10px;
+    background-color: black;
+    color: white;
+}
+
+.submitBtn{
+    margin: 10px 0 0 0;
+} */
+
+/* Reset basic styles */
+/* body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+} */
+
+/* Main container */
+.main-div {
+  max-width: 600px;
+  margin: 50px;
+  padding: 20px;
+  height: fit-content;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Form styles */
+.addForm {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Input styles */
+.addForm input[type="text"],
+.addForm input[type="file"],
+.addForm input[type="radio"] {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.addForm input[type="text"]:focus,
+.addForm input[type="file"]:focus,
+.addForm input[type="radio"]:focus {
+  border-color: #007bff;
+}
+
+/* File input style */
+.addForm input[type="file"] {
+  padding: 7px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+/* Radio button style */
+.addForm input[type="radio"] {
+  margin-right: 5px;
+  margin: 10px;
+}
+
+/* Label styles */
+label {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Button styles */
+.addBtn,
+.submitBtn {
+  padding: 12px 20px;
+  width: fit-content;
+  height: 45px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.addBtn {
+  margin-left: 10px;
+}
+
+.addBtn:hover,
+.submitBtn:hover {
+  background-color: #0056b3;
+}
+
+/* Optional: Add spacing for the submit button */
+.submitBtn {
+  margin-top: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .main-container {
+    padding: 15px;
+  }
+  form input[type="text"],
+  form input[type="file"],
+  form input[type="radio"] {
+    font-size: 14px;
+  }
+  button {
+    font-size: 14px;
+  }
+}
