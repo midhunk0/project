@@ -18,6 +18,10 @@ const facultySchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    isPasswordChanged: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

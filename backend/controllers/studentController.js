@@ -1,4 +1,7 @@
 import students from "../models/studentModel.js";
+import { check, validationResult } from "express-validator";
+import nodemailer from "nodemailer";
+import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
 export const registerStudentController = async (req, res, next) => {
@@ -17,10 +20,13 @@ export const registerStudentController = async (req, res, next) => {
       return res.status(409).json({ error: "Student already exists" });
     }
 
-    // Create a new student instance with password
+    // Hash the password before saving
+    const hashedPassword = await bcrypt.hash(password, 10); // 10 is the salt rounds
+
+    // Create a new student instance with hashed password
     const student = new students({
       username: "",
-      password,
+      password: hashedPassword, // Save the hashed password
       email,
       semester: 2,
       studentCollegeID,
@@ -74,18 +80,18 @@ export const loginStudentController = async (req, res) => {
       return res.status(404).json({ error: "Student not found" });
     }
 
-    // Check if the provided password is correct
-    if (password !== student.password) {
+    // Compare the entered password with the hashed password
+    const isPasswordCorrect = await bcrypt.compare(password, student.password);
+    if (!isPasswordCorrect) {
       return res.status(401).json({ error: "Invalid password" });
     }
-    // const isPasswordCorrect = await bcrypt.compare(
-    //     password,
-    //     student.password
-    // );
-    // if (!isPasswordCorrect)
-    //     return res.status(401).json({ error: "Invalid password" });
-
-    res.status(200).json({ message: "Login successful", student });
+    const token = jwt.sign(
+      { id: student._id, isAdmin: student.isAdmin },
+      process.env.JWT
+    );
+    res
+      .status(200)
+      .json({ message: "Login successful", student, token: token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "An error occurred" });
@@ -146,6 +152,7 @@ export const updateProfileStudentController = async (req, res) => {
       cv,
       isAdmin,
       isVerified,
+      isPasswordChanged,
     } = req.body;
     console.log(studentID, req.body);
 
@@ -184,6 +191,7 @@ export const updateProfileStudentController = async (req, res) => {
       cv: cv,
       isAdmin: isAdmin,
       isVerified: isVerified,
+      isPasswordChanged: isPasswordChanged,
     });
 
     res.status(200).json({
@@ -195,8 +203,89 @@ export const updateProfileStudentController = async (req, res) => {
   }
 };
 
-export const updatePasswordController = async (req, res, next) => {
+export const updatePasswordController = async (req, res) => {
+  const { oldPassword, newPassword, confirmPassword } = req.body; // Assuming studentId is available in req.user after authentication
 
+  try {
+    // Fetch the student from the database
+    const student = await students.findById(req.params.id);
+    console.log(student);
+    if (!student) {
+      return res.status(404).json({ error: "Student not found" });
+    }
+
+    // Check if the old password matches the stored hashed password
+    const isPasswordCorrect = await bcrypt.compare(
+      oldPassword,
+      student.password
+    );
+    if (!isPasswordCorrect) {
+      return res.status(401).json({ error: "Incorrect old password" });
+    }
+
+    // Check if the new password matches the confirm password
+    if (newPassword !== confirmPassword) {
+      return res
+        .status(400)
+        .json({ error: "New password and confirm password do not match" });
+    }
+
+    // Hash the new password before updating
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10); // Use a salt rounds value, e.g., 10
+
+    // Update the student's password in the database
+    student.password = hashedNewPassword;
+    await student.save();
+
+    res.status(200).json({ message: "Password updated successfully" });
+  } catch (error) {
+    console.error("Error updating password:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+export const updateForgotPasswordController = async (req, res) => {
+  const { newPassword, email } = req.body;
+
+
+  if (!newPassword) {
+    return res.status(400).json({ error: "New password is required." });
+  }
+
+  try {
+    // Hash the new password before updating
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+
+    // Update the password in the database
+    await students.updateOne({ email: email }, { password: hashedPassword });
+
+    
+
+    res.status(200).json({ message: "Password updated successfully." });
+  } catch (error) {
+    console.error("Error updating password:", error);
+    res
+      .status(500)
+      .json({ error: "Internal server error. Please try again later." });
+  }
+};
+
+export const updateIsPasswordChangedController = async (req, res) => {
+  try {
+    const { id } = req.params; // Assuming the student ID is passed in the URL params
+    console.log(req.params);
+    const { isPasswordChanged } = req.body;
+    console.log(req.body);
+
+    // Find the student by ID and update isPasswordChanged
+    await students.findByIdAndUpdate(id, { isPasswordChanged });
+
+    res.status(200).json({ message: "isPasswordChanged updated successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 };
 
 export const addProfileDetailsStudentController = async (req, res) => {
@@ -223,6 +312,101 @@ export const addProfileDetailsStudentController = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "An error occurred" });
+  }
+};
+
+const generateOTP = () => {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+};
+
+export const forgotPasswordController = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  const otp = generateOTP();
+  const { email, studentCollegeID, captcha } = req.body;
+
+  try {
+    // Check if the student with the provided email and studentCollegeID exists
+    const student = await students.findOne({ email, studentCollegeID });
+    if (!student) {
+      console.log("ass");
+      return res.status(404).json({ error: "Student not found." });
+    }
+
+    const fetchStudents = await students.find();
+    const studentsEmails = fetchStudents.map((student) => student.email);
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "temp200659@cet.ac.in",
+        pass: "rulj xmwv znic iksd",
+      },
+    });
+
+    const mailOptions = {
+      from: '"Placement Officer" <temp200659@cet.ac.in>',
+      to: "tve20cs035@cet.ac.in",
+      subject: "Message from STUDUP",
+      text: `Dear Student,
+
+We hope this message finds you well.
+Your OTP is: ${otp}`,
+    };
+
+    // Send the email
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        // Handle error response
+        return res.status(500).send("Error sending email");
+      }
+      // Handle success response
+      console.log("Email sent: " + info.response);
+    });
+
+    // Send password reset OTP logic (this can be a separate function or integrated here)
+
+    // Return success message
+    return res
+      .status(200)
+      .json({ message: "Password reset OTP sent successfully.", data: otp });
+  } catch (error) {
+    console.log("Error sending OTP:", error.message);
+    return res
+      .status(500)
+      .json({ error: "Internal server error. Please try again later." });
+  }
+};
+
+export const verifyOTPController = async (req, res) => {
+  try {
+    console.log(req.body);
+    const { otp, correct_otp } = req.body;
+
+    // Assuming you have the user ID from authentication
+
+    // Retrieve the stored OTP from the database based on the user ID
+
+    if (!correct_otp) {
+      return res.status(404).json({ error: "OTP not found" });
+    }
+
+    // Compare the OTPs
+    if (otp !== correct_otp) {
+      return res.status(400).json({ error: "Invalid OTP" });
+    }
+
+    // If OTP is valid, mark it as used or delete it from the database
+    // This step depends on your application's logic
+
+    // Send a success response
+    res.status(200).json({ message: "OTP verified successfully" });
+  } catch (error) {
+    console.error("Error verifying OTP:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 };
 

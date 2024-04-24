@@ -13,3 +13,4 @@ const PrivateRoute = ({ children, isAdmin }) => {
 };
 
 export default PrivateRoute;
+

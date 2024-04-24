@@ -8,4 +8,6 @@ router.get("/facultystudent/:facultymail", getStudentsByFaculty);
 router.get("/facultyProfile:id", editFacultyProfile);
 router.put("/facultyEdit/:id", editFacultyProfile);
 
+
+
 export default router;

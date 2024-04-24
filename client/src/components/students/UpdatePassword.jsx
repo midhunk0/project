@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CssTextField from "../global/CssTextField";
 import toast, { Toaster } from "react-hot-toast";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const UpdatePassword = () => {
   const [formData, setFormData] = useState({
@@ -12,7 +13,8 @@ const UpdatePassword = () => {
     confirmPassword: "",
   });
   const navigate = useNavigate();
-
+  const { user } = useContext(AuthContext);
+  const id = user._id;
   const handleChange = (e) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -24,13 +26,17 @@ const UpdatePassword = () => {
     e.preventDefault();
 
     try {
-        console.log(formData);
       const res = await axios.put(
-        "http://localhost:8080/api/students/updatePassword",
+        "http://localhost:8080/api/students/updatePassword/" + id,
         formData
       );
       toast.success(res.data.message);
-      navigate("/students/home");
+      // Update isPasswordChanged field
+      await axios.put(
+        "http://localhost:8080/api/students/updateIsPasswordChanged/" + id,
+        { isPasswordChanged: true }
+      );
+      navigate("/student/home");
     } catch (err) {
       console.log(err.response);
       toast.error("Failed to update password!");
@@ -85,11 +91,7 @@ const UpdatePassword = () => {
           onChange={handleChange}
           fullWidth
         />
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleSubmit}
-        >
+        <Button variant="contained" color="primary" onClick={handleSubmit}>
           Update Password
         </Button>
       </Box>

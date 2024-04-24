@@ -133,12 +133,19 @@ const studentSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
-   
+
     isVerified: {
       type: Boolean,
       default: false,
     },
-
+    isPasswordChanged: {
+      type: Boolean,
+      default: false,
+    },
+    isAdmin: {
+      type: Boolean,   //created only for admin
+      default: false,
+    },
   },
   { timestamps: true }
 );

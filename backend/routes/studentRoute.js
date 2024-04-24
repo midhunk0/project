@@ -1,4 +1,5 @@
 import express from "express";
+import { verifyToken } from "../utils/verifyToken.js";
 
 import {
   registerStudentController,
@@ -8,6 +9,11 @@ import {
   addProfileDetailsStudentController,
   getallStudentsController,
   updateCredits,
+  updatePasswordController,
+  updateIsPasswordChangedController,
+  forgotPasswordController,
+  updateForgotPasswordController,
+  verifyOTPController,
 } from "../controllers/studentController.js";
 
 import {
@@ -24,6 +30,12 @@ router.post("/studentRegister", registerStudentController);
 
 // Student login route
 router.post("/studentLogin", loginStudentController);
+
+router.put("/updatePassword/:id", updatePasswordController);
+router.put("/updateIsPasswordChanged/:id", updateIsPasswordChangedController);
+router.post("/forgotPassword", forgotPasswordController);
+router.post("/verifyOTP", verifyOTPController);
+router.put("/updateForgotPassword", updateForgotPasswordController);
 
 // Student profile route
 router.get("/StudentProfile/:id", getProfileStudentController);

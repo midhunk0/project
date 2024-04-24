@@ -17,7 +17,7 @@ const Login = () => {
   };
 
   const [credentialsFaculty, setCredentialsFaculty] = useState({
-    username: "",
+    email: "",
     password: "",
   });
   const [credentialsAdmin, setCredentialsAdmin] = useState({
@@ -102,9 +102,9 @@ const Login = () => {
         </Typography>
         <CssTextField
           required
-          id={adminMode ? "studentCollegeID" : "username"} // Change the id based on adminMode
+          id={adminMode ? "studentCollegeID" : "email"} // Change the id based on adminMode
           onChange={adminMode ? handleAdminChange : handleFacultyChange}
-          label={adminMode ? "Enter your ID" : "Enter your Username"} // Change the label based on adminMode
+          label={adminMode ? "Enter your ID" : "Enter your Email"} // Change the label based on adminMode
         />
         <CssTextField
           required
@@ -124,12 +124,10 @@ const Login = () => {
         >
           Sign In
         </Button>
-        <Typography variant="h6">
-          Don't have an account?{" "}
-          <Link to="/faculty/register" style={{ textDecoration: "none" }}>
-            Register
-          </Link>
+        <Typography variant="body2" marginTop="10px">
+          <Link to="/faculty/forgot-password">Forgot your password? Reset here</Link>
         </Typography>
+        
         {/* Toggle button to switch between admin and faculty login */}
         <Button onClick={() => setAdminMode(!adminMode)}>
           {adminMode ? "Switch to Faculty Login" : "Switch to Admin Login"}

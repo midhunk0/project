@@ -11,6 +11,8 @@ import facultyRoute from "./routes/facultyRoute.js";
 import studentRepRoute from "./routes/studentRepRoute.js";
 import jafRoute from "./routes/jafRoute.js";
 import applicationRoute from "./routes/applicationRoute.js"
+import jwt from "jsonwebtoken"
+import cookieParser from "cookie-parser"
 
 import cors from "cors";
 // Configure env
@@ -25,9 +27,8 @@ const app = express();
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
-
-
 app.use(cors());
+app.use(cookieParser());
 
 // Routes
 app.get("/", (req, res) => {
@@ -42,6 +43,7 @@ app.use("/api/faculty", facultyRoute);
 app.use("/api/studentRep", studentRepRoute);
 app.use("/api/jaf", jafRoute);
 app.use("/api/application",applicationRoute);
+
 
 //to handle errors
 app.use((err, req, res, next) => {
@@ -82,6 +84,7 @@ const storage=multer.diskStorage({
     }
 })
 import {} from "./models/trainingModel.js"
+import { updatePasswordController } from "./controllers/studentController.js";
 const PdfSchema=mongoose.model("PdfDetails")
 const upload=multer({storage: storage});
 

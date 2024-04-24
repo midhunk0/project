@@ -1,16 +1,27 @@
 import React, { useState } from "react";
 import { Box, Typography, IconButton, Menu, MenuItem } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Sidebar } from "react-pro-sidebar";
 import { tokens } from "../../theme";
+import toast from "react-hot-toast";
 import FlexBetween from "../global/FlexBetween";
 
 const colors = tokens();
 
 const Item = ({ title, to, selected, setSelected }) => {
   const isActive = selected === title;
+  const navigate = useNavigate();
 
+  const handleLogout = () => {
+    if (title === "Logout") {
+      localStorage.clear();
+      toast.success("Logged out Successfully!");
+      setTimeout(() => {
+        navigate("/");
+      }, 500);
+    }
+  };
   const itemStyle = {
     textDecoration: "none",
     height: "50px",
@@ -23,7 +34,10 @@ const Item = ({ title, to, selected, setSelected }) => {
 
   return (
     <MenuItem
-      onClick={() => setSelected(title)}
+      onClick={() => {
+        setSelected(title);
+        handleLogout();
+      }}
       selected={isActive}
       component={Link}
       to={to}
@@ -37,7 +51,7 @@ const Item = ({ title, to, selected, setSelected }) => {
 const getMenuItems = (selected, setSelected) => {
   const menuItems = [
     { title: "Dashboard", to: "/admin/dashboard" },
-    { title: "Register Students", to: "/admin/invitations" },
+    { title: "Register", to: "/admin/invitations" },
     { title: "Students", to: "/admin/students" },
     { title: "Chats", to: "/admin/chat" },
     { title: "Job Announcement", to: "/admin/viewjaf" },

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./App.css";
 import Footer from "./components/global/footer";
 import Topbar from "./components/global/Topbar";
@@ -7,14 +7,19 @@ import Alumni from "./components/alumni";
 import Contact from "./components/contact";
 import Recruiter from "./components/recruiters";
 import Student from "./components/students";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import {
+  Route,
+  BrowserRouter as Router,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import Schedules from "./components/recruiters/Schedules";
 import EditRecruiter from "./components/recruiters/EditRecruiter";
 import RecruiterPlacement from "./components/recruiters/Placement";
 import Edit from "./components/students/Edit";
 import StudentHome from "./components/students/StudentHome";
 import Notification from "./components/students/Notification";
-import ForgotPassword from "./components/students/forgotPassword.jsx";
+import StudentForgotPassword from "./components/students/forgotPassword.jsx";
 import StudentPlacement from "./components/students/Placement";
 import RecruiterLogin from "./components/recruiters/Login";
 import Request from "./components/recruiters/Request";
@@ -52,11 +57,18 @@ import StudentApplications from "./components/admin/studentApplications.js";
 import Applications from "./components/recruiters/applications.js";
 import Training from "./components/admin/Training.jsx";
 import UpdatePassword from "./components/students/UpdatePassword.jsx";
+import FacultyForgotPassword from "./components/faculty/forgotPassword.jsx";
+import { AuthContext } from "./contexts/AuthContext";
 
 const App = () => {
+  const { user } = useContext(AuthContext); // Get the user object from AuthContext
+
+  // Define a function to check if the user is logged in
+  const isLoggedIn = () => {
+    return !!user; // Assuming your user object has a property indicating login status
+  };
   return (
     <Router basename="">
-       
       <Topbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -68,23 +80,57 @@ const App = () => {
         <Route path="/recruiter-guide" element={<Guide />} />
         <Route path="recruiter/login" element={<RecruiterLogin />} />
         <Route path="recruiter/register" element={<RecruiterRegister />} />
-        <Route path="recruiter" element={<Recruiter />}>
-          <Route path="home" element={<RecruiterHome />} />
-          <Route path="request" element={<Request />} />
-          <Route path="schedules" element={<Schedules />} />
-          <Route path="Applications" element={<Applications />} />
-          <Route path="edit" element={<EditRecruiter />} />
-          <Route path="placement" element={<RecruiterPlacement />} />
-          <Route path="chat" element={<RecruiterMessenger />} />
-          <Route path="form" element={<Jointform />} />
-        </Route>
+        {isLoggedIn() ? (
+          <>
+            <Route path="/recruiter" element={<Recruiter />}>
+              {/* Define recruiter sub-routes here */}
+              <Route path="home" element={<RecruiterHome />} />
+              <Route path="request" element={<Request />} />
+              <Route path="schedules" element={<Schedules />} />
+              <Route path="Applications" element={<Applications />} />
+              <Route path="edit" element={<EditRecruiter />} />
+              <Route path="placement" element={<RecruiterPlacement />} />
+              <Route path="chat" element={<RecruiterMessenger />} />
+              <Route path="form" element={<Jointform />} />
+            </Route>
+            <Route path="/faculty" element={<Faculty />}>
+              {/* Define faculty sub-routes here */}
+              <Route path="home" element={<FacultyHome />} />
+              <Route path="studentcredits" element={<StudentCredits />} />
+              <Route path="edit" element={<FacultyEdit />} />
+            </Route>
+            <Route path="/student" element={<Student />}>
+              {/* Define student sub-routes here */}
+              <Route path="home" element={<StudentHome />} />
+              <Route path="edit" element={<Edit />} />
+              <Route path="notification" element={<Notification />} />
+              <Route path="appliedCompanies" element={<AppliedCompanies />} />
+              <Route path="applicationStatus" element={<ApplicationStatus />} />
+              <Route path="placement" element={<StudentPlacement />} />
+            </Route>
+            <Route path="/admin" element={<Admin />}>
+              {/* Define admin sub-routes here */}
+              <Route path="dashboard" element={<AdminDashboard />} />
+              <Route path="invitations" element={<Invitations />} />
+              <Route path="students" element={<Students />} />
+              <Route
+                path="studentApplications"
+                element={<StudentApplications />}
+              />
+              <Route path="accepted" element={<AcceptedStudents />} />
+              <Route path="company" element={<Company />} />
+              <Route path="students" element={<Students />} />
+              <Route path="chat" element={<AdminMessenger />} />
+              <Route path="viewjaf" element={<ViewJaf />} />
+              <Route path="training" element={<Training />} />
+            </Route>
+          </>
+        ) : (
+          // Redirect to home page if not logged in and trying to access private routes
+          <Route path="*" element={<Navigate to="/" replace />} />
+        )}
         <Route path="faculty/login" element={<FacultyLogin />} />
         <Route path="faculty/register" element={<FacultyRegister />} />
-        <Route path="faculty" element={<Faculty />}>
-          <Route path="home" element={<FacultyHome />} />
-          <Route path="studentcredits" element={<StudentCredits />} />
-          <Route path="edit" element={<FacultyEdit />} />
-        </Route>
         <Route path="placement-training" element={<PlacementTraining />} />
         <Route path="placement-training/materials" element={<Materials />} />
         <Route
@@ -94,30 +140,9 @@ const App = () => {
         <Route path="/internships" element={<Internships />} />
         <Route path="/placement-experience" element={<PlacementExperience />} />
         <Route path="student/login" element={<StudentLogin />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="student" element={<Student />}>
-          <Route path="home" element={<StudentHome />} />
-          <Route path="edit" element={<Edit />} />
-          <Route path="notification" element={<Notification />} />
-          <Route path="appliedCompanies" element={<AppliedCompanies/>} />
-          <Route path="applicationStatus" element={<ApplicationStatus/>} />
-          <Route path="placement" element={<StudentPlacement />} />
-          <Route path="update-password" element={<UpdatePassword/>} />
-          
-          
-        </Route>
-        <Route path="admin" element={<Admin />}>
-          <Route path="dashboard" element={<AdminDashboard />} />
-          <Route path="invitations" element={<Invitations />} />
-          <Route path="students" element={<Students />} />
-          <Route path="studentApplications" element={<StudentApplications/>} />
-          <Route path="accepted" element={<AcceptedStudents />} />
-          <Route path="company" element={<Company />} />
-          <Route path="students" element={<Students />} />
-          <Route path="chat" element={<AdminMessenger />} />
-          <Route path="viewjaf" element={<ViewJaf />} />
-          <Route path="training" element={<Training/>}/>
-        </Route>
+        <Route path="/student/forgot-password" element={<StudentForgotPassword />} />
+        <Route path="/faculty/forgot-password" element={<FacultyForgotPassword />} />
+        <Route path="update-password" element={<UpdatePassword />} />
       </Routes>
       <Footer />
     </Router>

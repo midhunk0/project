@@ -1,7 +1,7 @@
 import jaf from "../models/jaf.js";
 import Recruiter from "../models/recruiterModel.js";
 import students from "../models/studentModel.js";
-import nodemailer from "nodemailer";
+import nodemailer from "nodemailer";
 
 export const postJafController = async (req, res, next) => {
   try {

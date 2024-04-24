@@ -79,6 +79,7 @@ const StudentSidebar = ({ username, profilePicture }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const { user } = useContext(AuthContext);
   const id = user._id;
+  console.log(id);
 
   const handleMenuToggle = (event) => {
     setAnchorEl(event.currentTarget);
@@ -110,10 +111,13 @@ const StudentSidebar = ({ username, profilePicture }) => {
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
                   alt="user-profile"
-                  width="125px"
-                  height="125px"
-                  src={student.profilePicture}
+                  width="100px"
+                  height="100px"
+                  src="../../assets/student_icon.png"
                   style={{
+                    alt: "admin-profile",
+                    width: "125px",
+                    height: "125px",
                     cursor: "pointer",
                     borderRadius: "50%",
                     margin: "10px",
