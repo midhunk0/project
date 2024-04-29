@@ -1,129 +1,156 @@
-
-
-
 .main-divi {
-    display: flex;
-    flex-direction: column;
-    padding: 40px;
-    height: fit-content;
-    font-family: Arial, sans-serif;
-}
+  display: flex;
+  flex-direction: column;
+  margin: 40px;
+  align-items: center;
+  height: 100vh; /* Adjust the height as needed */
+  max-width: 100%;
 
+}
 select {
-    width: 200px;
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-    margin-bottom: 20px;
+  width: 200px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  margin-bottom: 20px;
 }
 
 select:hover {
-    border-color: #888;
+  border-color: #888;
 }
 
-p {
-    color: #888;
-}
+
 
 .btnDiv {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-h3 {
-    color: #333;
-}
-
-.btns {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 
 
-.btns button{
-    height: 150px;
-    min-width: 330px;
+.topic-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-button {
-    width: 150px;
-    height: 50px;
-    margin: 10px;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.topic-buttons .btn-info {
+  padding: 10px 20px;
+  background-color: #17a2b8;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #0056b3;
+.topic-buttons .btn-info:hover {
+  background-color: #138496;
 }
 
-.pdf-titles{
-    display: flex;
-}
-
-.files{
-    margin: 40px;
-}
-
-table{
-    border-collapse: collapse;
-    width: 50%;
-    border: 1px solid black;
-}
-
-td, th{
-    border: 1px solid black;
-    padding: 10px;
-    text-align: left;
-}
-
-.download{
-    width: 100px;
-}
-
-.modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    outline: none;
-}
-
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.pdf-titles {
+  display: flex;
 }
 
 .files {
-    margin-top: 20px;
+  margin: 40px;
+}
+
+.materials-table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid black;
+}
+
+.materials-table td,
+.materials-table th {
+  border: 1px solid black;
+  padding: 10px;
+  text-align: left;
+}
+
+.materials-table tbody tr:nth-of-type(odd) {
+  background-color: #f8f9fa;
+}
+
+.materials-table tbody tr:nth-of-type(even) {
+  background-color: #e9ecef;
+}
+
+.materials-table tbody tr:hover {
+  background-color: #cce5ff;
+}
+.download {
+  width: 100px;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  outline: none;
+}
+
+.modal-header {
+  background-color: #007bff;
+  color: #fff;
+  border-bottom: none;
+}
+
+.modal-footer .btn-secondary {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
+}
+
+.modal-footer .btn-secondary:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.modal-footer {
+  border-top: none; /* Remove border from the modal footer */
+  border-radius: 0 0 10px 10px; /* Rounded bottom corners for the modal footer */
+}
+
+.modal-dialog {
+  max-width: 90%; /* Adjust the maximum width of the modal */
+}
+
+.modal-content {
+  border-radius: 10px; /* Add border-radius to the modal content */
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.files {
+  margin-top: 20px;
 }
 
 .pdf {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
 }

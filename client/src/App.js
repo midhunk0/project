@@ -32,7 +32,6 @@ import Company from "./components/admin/Company";
 import Students from "./components/admin/Students";
 import AcceptedStudents from "./components/admin/AcceptedStudents";
 import PlacementRules from "./components/studentDropdown/placementRules";
-import PlacementTraining from "./components/studentDropdown/placementTraining";
 import Internships from "./components/studentDropdown/internships";
 import PlacementExperience from "./components/studentDropdown/placementExperience";
 import WhyRecruit from "./components/RecruiterDropDown/whyRecruit";
@@ -131,8 +130,7 @@ const App = () => {
         )}
         <Route path="faculty/login" element={<FacultyLogin />} />
         <Route path="faculty/register" element={<FacultyRegister />} />
-        <Route path="placement-training" element={<PlacementTraining />} />
-        <Route path="placement-training/materials" element={<Materials />} />
+        <Route path="placement-training" element={<Materials />} />
         <Route
           path="/placement-rules_&_regulations"
           element={<PlacementRules />}
@@ -140,8 +138,14 @@ const App = () => {
         <Route path="/internships" element={<Internships />} />
         <Route path="/placement-experience" element={<PlacementExperience />} />
         <Route path="student/login" element={<StudentLogin />} />
-        <Route path="/student/forgot-password" element={<StudentForgotPassword />} />
-        <Route path="/faculty/forgot-password" element={<FacultyForgotPassword />} />
+        <Route
+          path="/student/forgot-password"
+          element={<StudentForgotPassword />}
+        />
+        <Route
+          path="/faculty/forgot-password"
+          element={<FacultyForgotPassword />}
+        />
         <Route path="update-password" element={<UpdatePassword />} />
       </Routes>
       <Footer />
