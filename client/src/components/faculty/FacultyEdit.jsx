@@ -72,7 +72,7 @@ const FacultyEdit = () => {
             >
                 {renderTextField("username", "User Name")}
                 {renderTextField("email","Email")}
-                {renderTextField("password", "Password")}
+                
 
                 <FormControl fullWidth>
                     <InputLabel id="department-label">Department</InputLabel>

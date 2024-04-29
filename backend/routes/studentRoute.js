@@ -21,6 +21,8 @@ import {
   getConvController,
   addMessageController,
   getMessageController,
+  getUnreadMessageCounts,
+  markMessagesAsRead
 } from "../controllers/conversationController.js";
 
 const router = express.Router();
@@ -53,6 +55,8 @@ router.get("/conversations/:userId", getConvController);
 router.post("/messages", addMessageController);
 //get messages
 router.get("/messages/:chatId", getMessageController);
+router.get("/unreadMessages/:chatId", getUnreadMessageCounts);
+router.patch('/messages/markAsRead/:chatId', markMessagesAsRead);
 //to update student credits
 router.put("/credit/:id", updateCredits);
 

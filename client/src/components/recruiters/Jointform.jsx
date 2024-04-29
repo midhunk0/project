@@ -181,6 +181,7 @@ const Jointform = () => {
       );
 
       // Send data to the server
+      console.log(formData)
       const res = await axios.post("http://localhost:8080/api/jaf/jafPost", {
         ...formData,
         tableData: checkedBranchesEligible, // Update with checked branches eligible
@@ -498,7 +499,7 @@ const Jointform = () => {
           color: colors.white,
         }}
       >
-        Send
+        Send to Admin
       </Button>
 
       {/* ... (other components) */}

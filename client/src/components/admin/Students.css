@@ -1,0 +1,78 @@
+/* Student component styling */
+.page {
+  padding: 20px;
+}
+
+.block-heading {
+    background-color: #f0f0f0; /* Light gray background */
+    padding: 20px; /* Add padding for spacing */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  .block-heading h2 {
+    margin: 0; /* Remove default margin */
+    font-size: 24px; /* Adjust font size */
+    color: #333; /* Dark text color */
+    font-weight: bold;
+  }
+  
+
+.text-info {
+  color: #007bff; /* Blue color */
+  font-weight: bold;
+  
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.filters {
+  background-color: #20313e;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.filter-item {
+  margin-bottom: 15px;
+}
+
+.form-check-input {
+  margin-right: 5px;
+}
+
+.form-check-label {
+  cursor: pointer;
+}
+
+.filter-item h5 {
+  margin-bottom: 10px;
+}
+
+/* Table styling */
+.table {
+  margin-bottom: 20px;
+}
+
+/* Responsive table */
+.table-responsive {
+  overflow-x: auto;
+}
+
+/* Table header */
+.table thead th {
+  font-weight: bold;
+  background-color: #20313e;
+  color: #fff;
+}
+
+/* Alternating row colors */
+.table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+/* Hover effect on table rows */
+.table tbody tr:hover {
+  background-color: #e9ecef;
+}

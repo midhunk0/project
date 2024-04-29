@@ -47,6 +47,7 @@ export const postJafController = async (req, res, next) => {
         (process) => process.label
       );
     }
+
     const newJaf = new jaf({
       companyName: {
         value: formData.companyName || "",
@@ -132,7 +133,6 @@ export const postJafController = async (req, res, next) => {
       },
       recruiter_id: formData.recruiter_id,
     });
-    console.log(newJaf);
 
     const savedJAF = await newJaf.save();
     res.status(201).json({ message: "JAF posted successfully" });
@@ -188,6 +188,28 @@ export const updateJafController = async (req, res, next) => {
   }
 };
 
+export const jafPutNbDeadlineController = async (req, res) => {
+  const { id } = req.params;
+  const { nb, applicationDeadline, ...otherFields } = req.body; // Destructure the request body
+
+  try {
+    const updatedJaf = await jaf.findByIdAndUpdate(
+      id,
+      { nb, applicationDeadline, ...otherFields },
+      { new: true }
+    );
+
+    if (!updatedJaf) {
+      return res.status(404).json({ message: "JAF not found" });
+    }
+
+    res.status(200).json(updatedJaf);
+  } catch (error) {
+    console.error("Error updating JAF:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 export const isAdminJafSent = async (req, res) => {
   try {
     const jafId = req.params.id;
@@ -206,11 +228,44 @@ export const isAdminJafSent = async (req, res) => {
 //to fetch all jaf which admin sent to students
 export const getAdminNotifications = async (req, res) => {
   try {
-    const notifications = await jaf.find({ isAdminJafSent: true });
+    const notifications = await jaf.find({
+      isAdminJafSent: true,
+      "applicationDeadline.value": { $gt: new Date().toISOString() },
+    });
+    console.log(notifications)
     res.json(notifications);
-  } catch (error) {
-    next(error);
+  } catch (err) {
+    next(err);
     res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
+// Controller function to update isStudentRead for a notification
+export const updateIsStudentReadController = async (req, res) => {
+  const { notificationId } = req.params; // Extract notification ID from URL params
+  const _id = notificationId;
+  console.log("Notification ID:", _id); // Log the notification ID
+
+  try {
+    // Find the notification by ID and update isStudentRead to true
+    const notification = await jaf.findByIdAndUpdate(
+      _id,
+      { isStudentRead: true },
+      { new: true } // Return the updated notification
+    );
+    console.log("Updated Notification:", notification); // Log the updated notification
+
+    if (!notification) {
+      return res.status(404).json({ message: "Notification not found" });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "isStudentRead updated successfully", notification });
+  } catch (error) {
+    console.error("Error updating isStudentRead:", error);
+    return res.status(500).json({ message: "Server error" });
   }
 };
 
@@ -237,6 +292,31 @@ export const updateNbController = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "An error occurred" });
+  }
+};
+
+export const updateIsAdminReadController = async (req, res) => {
+  const { recruiterId } = req.params; // Extract recruiterId from URL params
+  const { isAdminRead } = req.body; // Extract isAdminRead from request body
+
+  try {
+    // Find the JAF with the specified recruiterId
+    const Jaf = await jaf.findOne({ recruiter_id: recruiterId });
+
+    if (!Jaf) {
+      return res.status(404).json({ message: "JAF not found" });
+    }
+
+    // Update isAdminRead field
+    Jaf.isAdminRead = isAdminRead;
+    await Jaf.save();
+
+    return res
+      .status(200)
+      .json({ message: "isAdminRead updated successfully", jaf });
+  } catch (error) {
+    console.error("Error updating isAdminRead:", error);
+    return res.status(500).json({ message: "Server error" });
   }
 };
 

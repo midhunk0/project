@@ -1,5 +1,6 @@
 import Faculty from "../models/facultyModel.js";
 import students from "../models/studentModel.js";
+import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
 export const registerfacultyController = async (req, res, next) => {
@@ -38,16 +39,27 @@ export const registerfacultyController = async (req, res, next) => {
 };
 export const loginfacultyController = async (req, res) => {
   try {
-    const faculty = await Faculty.findOne({ username: req.body.username });
+    const { email, password } = req.body;
+
+    // Check if the student with the provided student ID exists
+    const faculty = await Faculty.findOne({ email });
     if (!faculty) {
-      return next(createError(404, "no faculty with this email"));
-    }
-    if (req.body.password !== faculty.password) {
-      return res.status(401).json({ error: "Invalid password" });
+      return res.status(404).json({ error: "Student not found" });
     }
 
-    res.status(200).json({ message: "Login successful", faculty });
-  } catch (error) {}
+    // Compare the entered password with the hashed password
+    const isPasswordCorrect = await bcrypt.compare(password, faculty.password);
+    if (!isPasswordCorrect) {
+      return res.status(401).json({ error: "Invalid password" });
+    }
+    const token = jwt.sign({ id: faculty._id }, process.env.JWT);
+    res
+      .status(200)
+      .json({ message: "Login successful", faculty, token: token });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 };
 
 export const getStudentsByFaculty = async (req, res) => {

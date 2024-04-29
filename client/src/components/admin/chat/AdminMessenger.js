@@ -4,16 +4,17 @@ import Conversation from "./Conversation";
 import Message from "./message";
 import { AuthContext } from "../../../contexts/AuthContext";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBell } from "@fortawesome/free-solid-svg-icons";
 
 const AdminMessenger = () => {
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
-  const [newmessage, setNewMessage] = useState("");
+  const [newMessage, setNewMessage] = useState("");
+  const [unreadMessageCounts, setUnreadMessageCounts] = useState({});
   const [recruiters, setRecruiters] = useState([]);
   const scrollRef = useRef();
-  const [socket, setSocket] = useState(null);
-
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
@@ -53,7 +54,7 @@ const AdminMessenger = () => {
           );
           setMessages(res.data);
         } else {
-          setMessages([]); // Clear messages when there is no current chat
+          setMessages([]);
         }
       } catch (err) {
         console.log(err);
@@ -62,15 +63,28 @@ const AdminMessenger = () => {
     getMessages();
   }, [currentChat]);
 
+  const handleConversationClick = async (conversation) => {
+    setCurrentChat(conversation);
+    // Call your function to mark message as read
+    await markMessagesAsRead(conversation._id);
+  };
+
+  const markMessagesAsRead = async (conversationId) => {
+    try {
+      const res = await axios.patch(
+        `http://localhost:8080/api/students/messages/markAsRead/${conversationId}`
+      );
+      // Handle success response if needed
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-   
-
-    // Create message object for text message
     const message = {
       sender: user._id,
-      text: newmessage,
+      text: newMessage,
       chatId: currentChat._id,
     };
 
@@ -94,7 +108,38 @@ const AdminMessenger = () => {
     });
   }, [messages]);
 
-  
+  const fetchUnreadMessageCount = async (conversationId) => {
+    try {
+      const res = await axios.get(
+        `http://localhost:8080/api/students/unreadMessages/${conversationId}`
+      );
+
+      if (
+        res.data &&
+        res.data.unreadCounts &&
+        res.data.unreadCounts[conversationId] !== undefined
+      ) {
+        setUnreadMessageCounts((prevCounts) => ({
+          ...prevCounts,
+          [conversationId]: res.data.unreadCounts[conversationId],
+        }));
+      } else {
+        console.log("Invalid API response for unread message count");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    const fetchAllUnreadCounts = async () => {
+      for (const conversation of conversations) {
+        await fetchUnreadMessageCount(conversation._id);
+      }
+    };
+    fetchAllUnreadCounts();
+  }, [conversations]);
+
   return (
     <>
       <div className="messenger">
@@ -106,13 +151,15 @@ const AdminMessenger = () => {
             />
 
             {conversations
-              ? conversations.map((c) => {
-                  return (
-                    <div onClick={() => setCurrentChat(c)}>
-                      <Conversation conversation={c} currentUser={user} />
-                    </div>
-                  );
-                })
+              ? conversations.map((c) => (
+                  <div onClick={() => handleConversationClick(c)}>
+                    <Conversation
+                      conversation={c}
+                      currentUser={user}
+                      unreadMessageCount={unreadMessageCounts[c._id]}
+                    />
+                  </div>
+                ))
               : "loading"}
           </div>
         </div>
@@ -124,17 +171,14 @@ const AdminMessenger = () => {
                 <div className="chatBoxTop">
                   {messages ? (
                     <>
-                      {messages.map((message) => {
-                        return (
-                          <div ref={scrollRef}>
-                            <Message
-                              message={message}
-                              own={message.sender === user._id}
-                              key={message._id}
-                            />
-                          </div>
-                        );
-                      })}
+                      {messages.map((message) => (
+                        <div ref={scrollRef} key={message._id}>
+                          <Message
+                            message={message}
+                            own={message.sender === user._id}
+                          />
+                        </div>
+                      ))}
                     </>
                   ) : (
                     "loading"
@@ -145,7 +189,7 @@ const AdminMessenger = () => {
                     className="chatMessageInput"
                     placeholder="write something..."
                     onChange={(e) => setNewMessage(e.target.value)}
-                    value={newmessage}
+                    value={newMessage}
                   ></textarea>
 
                   <button className="chatSubmitButton" onClick={handleSubmit}>

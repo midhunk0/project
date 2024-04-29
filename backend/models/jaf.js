@@ -5,6 +5,27 @@ const jafSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  isAdminRead: {
+    type: Boolean,
+    default: false,
+  },
+  isStudentRead: {
+    type: Boolean,
+    default: false,
+  },
+  isLive:{
+    type: Boolean,
+    default: true,
+  },
+  applicationDeadline: {
+    value: {
+      type: Date,
+    },
+    check: {
+      type: Boolean,
+      default: false,
+    },
+  },
   companyName: {
     value: {
       type: String,
@@ -241,7 +262,6 @@ const jafSchema = new mongoose.Schema({
       default: false,
     },
   },
-
 
   totalRounds: {
     value: {

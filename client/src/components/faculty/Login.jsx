@@ -30,8 +30,10 @@ const Login = () => {
   const { user, loading, error, dispatch } = useContext(AuthContext);
 
   const handleAdminChange = (e) => {
-    setCredentialsAdmin((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    const updatedCredentialsAdmin = { ...credentialsAdmin, [e.target.id]: e.target.value };
+    setCredentialsAdmin(updatedCredentialsAdmin);
   };
+  
 
   const handleFacultyChange = (e) => {
     setCredentialsFaculty((prev) => ({
@@ -44,10 +46,14 @@ const Login = () => {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
 
+
     try {
       let res;
+
       if (adminMode) {
+        
         // admin is defined in student schema hence calling student route
+    
         res = await axios.post(
           "http://localhost:8080/api/students/studentLogin",
           credentialsAdmin

@@ -4,7 +4,7 @@
     padding: 10px;
     cursor: pointer;
     margin-top: 10px;
-  
+    border-bottom: 1px solid #ccc;
   }
   
   .conversation:hover{
@@ -22,4 +22,19 @@
   .conversationName{
     margin-top: 10px;
     font-weight: 500; 
+  }
+
+  .conversationDetails {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .unreadCount {
+    background-color: #20313e;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 50%;
+    font-size: 12px;
+    margin-left: 10px;
   }

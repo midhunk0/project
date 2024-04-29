@@ -1,5 +1,3 @@
-//Admin viewed JAF form
-
 import React, { useState } from "react";
 import {
   Box,
@@ -11,6 +9,7 @@ import {
   Typography,
   TextField,
 } from "@mui/material";
+import Datetime from "react-datetime";
 import { styled } from "@mui/system";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
@@ -37,7 +36,14 @@ const JafForm = ({ recruiter }) => {
   const jafid = backenddata._id;
   const [formData, setFormData] = useState({
     nb: "",
+    applicationDeadline: backenddata.applicationDeadline || new Date(), // Use existing value or default to current date/time
   });
+
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
 
   const handleChange = (e) => {
     setFormData((prevData) => ({
@@ -65,15 +71,27 @@ const JafForm = ({ recruiter }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const utcDate = new Date(selectedDate);
+      const utcDateString = utcDate.toISOString(); // Convert to UTC string format
+
+      const updatedData = {
+        nb: { value: formData.nb, check: true },
+        applicationDeadline: { value: utcDateString, check: true },
+        // Include other fields as needed
+      };
+
       await axios.put(
         `http://localhost:8080/api/jaf/jafAdminSent/${jafid}`,
         true
       );
       await axios.post("http://localhost:8080/api/jaf/send-email-to-students");
       // Send the new NB value to the server
-      await axios.put(`http://localhost:8080/api/jaf/updateNb/${jafid}`, {
-        nb: { value: formData.nb, check: true },
-      });
+      const res = await axios.put(
+        `http://localhost:8080/api/jaf/jafPutNbDeadline/${jafid}`,
+        updatedData
+      );
+
+      console.log(res.data);
       toast.success("Notification sent successfully!");
       setFormData({});
     } catch (err) {
@@ -114,18 +132,6 @@ const JafForm = ({ recruiter }) => {
         onChange={handleChange}
         sx={{ width: "100%", marginBottom: "10px" }}
       />
-    </div>
-  );
-
-  const renderCheckboxGroup = (name, label) => (
-    <div>
-      <FormLabel>{label}</FormLabel>
-      <FormGroup>
-        <FormControlLabel
-          control={<Checkbox onChange={handleCheckboxChange} name={name} />}
-          label={label}
-        />
-      </FormGroup>
     </div>
   );
 
@@ -229,7 +235,6 @@ const JafForm = ({ recruiter }) => {
           )}
           {renderTextField("btechCutoff", "B.Tech Cut off (Percentage)")}
           {renderTextField("maxClearedBacklogs", "Max Cleared Backlogs")}
-
           {renderTextField("maxNonClearedBacklogs", "Max Non Cleared Backlogs")}
           <Box>
             <Typography variant="h6" marginBottom="10px">
@@ -268,6 +273,7 @@ const JafForm = ({ recruiter }) => {
             md: "1fr 1fr 1fr",
           }}
           gap="20px"
+          marginBottom="20px"
         >
           {renderTextField("grossSalary", "Gross Salary per Annum (INR)")}
           {renderTextField("bond", "Bond")}
@@ -286,6 +292,7 @@ const JafForm = ({ recruiter }) => {
                 onChange={(e) => handleCheckboxChange(e)}
               />
             </Typography>
+
             <Box display="flex" flexDirection="column">
               {backenddata?.recruitmentProcess?.values?.map((branch, index) => (
                 <Typography key={index}>
@@ -293,7 +300,26 @@ const JafForm = ({ recruiter }) => {
                 </Typography>
               ))}
             </Box>
+            <Box></Box>
           </Box>
+        </Box>
+        <Box
+          display="grid"
+          gridTemplateColumns={{
+            xs: "1fr",
+            sm: "1fr 1fr",
+            md: "1fr 1fr 1fr",
+          }}
+          gap="20px"
+        >
+          <Typography variant="h6">Select Deadline:</Typography>
+
+          <Datetime
+            label="Application Deadline"
+            value={selectedDate}
+            onChange={handleDateChange}
+            renderInput={(params) => <CssTextField {...params} />}
+          />
         </Box>
       </Box>
       <Box

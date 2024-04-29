@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import useFetch from "../../hooks/useFetch";
 import "./Notification.css";
+import { Notifications } from "@mui/icons-material";
 
 const Notification = () => {
   const [notifications, setNotifications] = useState([]);
@@ -20,20 +21,28 @@ const Notification = () => {
   );
   const student = dataStudent.data;
 
-  const toggleFullCard = (notificationId) => {
+  const toggleFullCard = async (notificationId) => {
     setExpandedCardId((prevId) =>
       prevId === notificationId ? null : notificationId
     );
+    try {
+      await axios.put(
+        `/api/jaf/notification/updateIsStudentRead/${notificationId}`
+      );
+    } catch (error) {
+      console.error("Error updating isStudentRead:", error);
+    }
   };
 
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
         const response = await axios.get("/api/jaf/notification");
+        
         const notificationsData = response.data.filter(
-          (notification) => notification.isAdminJafSent === true
+          (notification) =>
+            notification.isAdminJafSent === true
         );
-
         setNotifications(notificationsData);
       } catch (error) {
         console.error("Error fetching notifications:", error);
@@ -52,6 +61,16 @@ const Notification = () => {
     // Check if selectedNotification exists
     if (!selectedNotification) {
       console.error("Selected notification not found.");
+      return;
+    }
+
+    const currentUTCDate = new Date().toISOString(); // Get current UTC date and time
+    const isDeadlinePassed =
+      new Date(selectedNotification.applicationDeadline.value) <=
+      new Date(currentUTCDate);
+
+    if (isDeadlinePassed) {
+      toast.error("Deadline has passed. You cannot apply to this opportunity.");
       return;
     }
 
@@ -144,6 +163,7 @@ const Notification = () => {
   };
 
   const keyDisplayMap = {
+    applicationDeadline: "Application Deadline",
     tenthGradeCutoff: "Tenth Grade Cutoff",
     twelfthGradeCutoff: "Twelfth Grade Cutoff",
     btechCutoff: "B.Tech Cutoff",
@@ -177,6 +197,12 @@ const Notification = () => {
           const displayKey = keyDisplayMap[key] || key;
           let displayValue = value.value; // Default display value is "value"
 
+          if (key === "applicationDeadline") {
+            const deadlineUtc = new Date(value.value);
+            const deadlineLocal = deadlineUtc.toLocaleString(); // Convert to local time format
+            displayValue = deadlineLocal;
+          }
+
           // Check if the field is branchesEligible or recruitmentProcess and handle multiple values
           if (key === "branchesEligible" || key === "recruitmentProcess") {
             displayValue = value.values.join(", "); // Join array values with a comma
@@ -204,9 +230,14 @@ const Notification = () => {
   );
 
   return (
-    <Container style={{ backgroundImage: `url(/assets/notification.jpg)`, backgroundSize: "cover", backgroundRepeat: "no-repeat" }}>
-      
-      <Form.Group className="mb-4" style={{marginTop: "40px"}}>
+    <Container
+      style={{
+        backgroundImage: `url(/assets/notification.jpg)`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <Form.Group className="mb-4" style={{ marginTop: "40px" }}>
         <Form.Control
           type="text"
           placeholder="Filter by Company Name"
@@ -219,57 +250,64 @@ const Notification = () => {
           <Card.Body>
             <Row className="align-items-center">
               <Col>
-                <Card.Subtitle className="mb-2 text-muted">
-                  <h4>{notification.companyName.value}</h4>
+                <Card.Subtitle className="notification">
+                  <h4 className="companyname">
+                    {notification.companyName.value}
+                    {!notification.isStudentRead && <Notifications />}
+                  </h4>
                 </Card.Subtitle>
 
                 {expandedCardId === notification._id && (
                   <>
                     {renderFields(notification)}
-                    <div style={{display:"flex",justifyContent:"space-between"}}>                    
-                    <div>
-                    <Button
-                      variant="success"
-                      className="mr-2"
-                      onClick={() => handleApply(notification._id)}
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
                     >
-                      Apply
-                    </Button>
-                    <Button
-                      variant="danger"
-                      className="mr-2"
-                      onClick={() => cancelJaf(notification._id)}
-                    >
-                      Cancel
-                    </Button>
+                      <div>
+                        <Button
+                          variant="success"
+                          className="mr-2"
+                          onClick={() => handleApply(notification._id)}
+                        >
+                          Apply
+                        </Button>
+                        <Button
+                          variant="danger"
+                          className="mr-2"
+                          onClick={() => cancelJaf(notification._id)}
+                        >
+                          Cancel
+                        </Button>
+                      </div>
+                      <div>
+                        <Button
+                          variant="primary"
+                          onClick={() => toggleFullCard(notification._id)}
+                        >
+                          {expandedCardId === notification._id
+                            ? "View Less"
+                            : "View More"}
+                        </Button>
+                      </div>
                     </div>
-                    <div>
-                    <Button
-                  variant="primary"
-                  onClick={() => toggleFullCard(notification._id)}
-                >
-                  {expandedCardId === notification._id
-                    ? "View Less"
-                    : "View More"}
-                </Button>
-                    </div>
-                </div>
                   </>
                 )}
               </Col>
-              {!expandedCardId && 
-              <Col xs="auto">
-              <Button
-                variant="primary"
-                onClick={() => toggleFullCard(notification._id)}
-              >
-                {expandedCardId === notification._id
-                  ? "View Less"
-                  : "View More"}
-              </Button>
-            </Col>
-              }
-              
+              {!expandedCardId && (
+                <Col xs="auto">
+                  <Button
+                    variant="primary"
+                    onClick={() => toggleFullCard(notification._id)}
+                  >
+                    {expandedCardId === notification._id
+                      ? "View Less"
+                      : "View More"}
+                  </Button>
+                </Col>
+              )}
             </Row>
           </Card.Body>
         </Card>
@@ -279,4 +317,4 @@ const Notification = () => {
   );
 };
 
-export default Notification;
+export default Notification;

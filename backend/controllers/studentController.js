@@ -73,9 +73,12 @@ export const registerStudentController = async (req, res, next) => {
 export const loginStudentController = async (req, res) => {
   try {
     const { studentCollegeID, password } = req.body;
+    console.log(studentCollegeID);
+    console.log(password);
 
     // Check if the student with the provided student ID exists
     const student = await students.findOne({ studentCollegeID });
+
     if (!student) {
       return res.status(404).json({ error: "Student not found" });
     }
@@ -292,6 +295,7 @@ export const addProfileDetailsStudentController = async (req, res) => {
   try {
     const studentID = req.params.id;
     const { address } = req.body;
+    console.log(address);
 
     // Find the student with the provided student ID
     const student = await students.findById(studentID);

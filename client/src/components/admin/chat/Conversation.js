@@ -2,7 +2,7 @@ import "./Conversation.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const Conversation = ({ conversation, currentUser }) => {
+const Conversation = ({ conversation, currentUser, unreadMessageCount }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -14,7 +14,7 @@ const Conversation = ({ conversation, currentUser }) => {
         const res = await axios.get(
           `http://localhost:8080/api/recruiters/getRecruiterById/${recruiterId}`
         );
-        console.log(res.data);
+
         if (res.data) {
           setUser(res.data);
         } else {
@@ -41,9 +41,10 @@ const Conversation = ({ conversation, currentUser }) => {
         src="https://static.vecteezy.com/system/resources/thumbnails/010/260/479/small/default-avatar-profile-icon-of-social-media-user-in-clipart-style-vector.jpg"
         alt="conversationImage"
       />
-      <p className="conversationName">
-        {user.companyName}
-      </p>
+      <div className="conversationDetails">
+        <p className="conversationName">{user.companyName}</p>
+        {unreadMessageCount > 0 && <span className="unreadCount">{unreadMessageCount}</span>}
+      </div>
     </div>
   );
 };

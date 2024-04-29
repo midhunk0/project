@@ -8,9 +8,18 @@ const ViewJaf = () => {
   const [recruiters, setRecruiters] = useState([]);
   const [selectedRecruiter, setSelectedRecruiter] = useState(null);
 
-  const handleRecruiterSelect = (recruiter) => {
+  const handleRecruiterSelect = async(recruiter) => {
     // Handle the selected recruiter, e.g., update state
-    setSelectedRecruiter(recruiter);
+    try {
+      // Update the selected recruiter's isAdminRead to true
+      console.log(recruiter._id);
+      await axios.put(`http://localhost:8080/api/jaf/updateIsAdminRead/${recruiter._id}`, {
+        isAdminRead: true,
+      });
+      setSelectedRecruiter({ ...recruiter, isAdminRead: true });
+    } catch (error) {
+      console.error("Error updating isAdminRead:", error);
+    }
   };
 
   useEffect(() => {

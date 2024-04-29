@@ -11,12 +11,16 @@ const MessageSchema = new mongoose.Schema(
     text: {
       type: String,
     },
+    read: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-const messageModel = mongoose.model("Message",MessageSchema);
+const messageModel = mongoose.model("Message", MessageSchema);
 
-export default messageModel
+export default messageModel;

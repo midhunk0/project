@@ -118,6 +118,9 @@ const studentSchema = new mongoose.Schema(
     admittedType: {
       type: String,
     },
+    passoutYear:{
+      type:Number,
+    },
     cgpa: {
       type: Number,
     },

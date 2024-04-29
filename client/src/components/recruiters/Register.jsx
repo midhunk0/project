@@ -72,7 +72,7 @@ const RecruiterRegister = () => {
       const conversationResponse = await axios.post(
         "http://localhost:8080/api/students/conversations",
         {
-          senderId: "6494405c573b71cfcda5f70e", // Replace with the actual admin user ID
+          senderId: "6625d50f0ac57115661aa1da", // Replace with the actual admin user ID
           receiverId: res.data._id,
         }
       );
