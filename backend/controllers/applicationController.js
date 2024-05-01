@@ -5,14 +5,15 @@ import Recruiter from "../models/recruiterModel.js";
 // Controller function for creating a new application
 export const createApplication = async (req, res) => {
   try {
-    const { studentId, companyId, totalStages } = req.body;
+    const { studentId, companyId, totalStages,recruitmentProcess } = req.body;
 
     // Check if required fields are provided
-    if (!studentId || !companyId || !totalStages) {
+    if (!studentId || !companyId || !totalStages || !recruitmentProcess || recruitmentProcess.length === 0) {
       return res
         .status(400)
         .json({ error: "Please provide all required fields." });
     }
+    
 
     // Create a new application instance with stage 0 status as "Passed"
     const newApplication = new Application({
@@ -22,6 +23,7 @@ export const createApplication = async (req, res) => {
       currentStage: 0,
       stages: Array.from({ length: totalStages + 1 }, (_, index) => ({
         stageNumber: index,
+        stageName: index === 0 ? "Applied" : recruitmentProcess[index - 1],
         status: index === 0 ? "Completed" : "Not Started",
         feedback: "",
       })),

@@ -33,6 +33,10 @@ const applicationSchema = new Schema({
         type: Number,
         required: true,
       },
+      stageName:{
+        type:String,
+        default:"",
+      },
       status: {
         type: String,
         enum: ["Not Started", "In Progress", "Completed", "Rejected"],

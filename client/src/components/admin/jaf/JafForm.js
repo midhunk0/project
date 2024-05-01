@@ -26,6 +26,28 @@ const CssTextField = styled(TextField)({
   },
 });
 
+const customStyles = {
+  input: {
+    width: "100%",
+    padding: "8px",
+    borderRadius: "5px",
+    border: "1px solid #6F7E8C",
+    color: "#333",
+    fontSize: "14px",
+    lineHeight: "1.5",
+    fontFamily: "Arial, sans-serif",
+    boxSizing: "border-box",
+  },
+  calendarContainer: {
+    borderRadius: "5px",
+    border: "1px solid #6F7E8C",
+    backgroundColor: "#fff",
+    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
+    zIndex: "9999",
+  },
+};
+
+
 const JafForm = ({ recruiter }) => {
   const id = recruiter._id;
 
@@ -315,11 +337,23 @@ const JafForm = ({ recruiter }) => {
           <Typography variant="h6">Select Deadline:</Typography>
 
           <Datetime
-            label="Application Deadline"
-            value={selectedDate}
-            onChange={handleDateChange}
-            renderInput={(params) => <CssTextField {...params} />}
-          />
+  label="Application Deadline"
+  value={selectedDate}
+  onChange={handleDateChange}
+  inputProps={{ style: customStyles.input }} // Change InputProps to inputProps
+  renderInput={(params) => (
+    <input
+      {...params}
+      style={customStyles.input} // Apply custom styles directly to the input element
+    />
+  )}
+  renderCalendar={(props, openCalendar) => (
+    <Box style={customStyles.calendarContainer}>
+      <div onClick={openCalendar}>{props.value}</div>
+    </Box>
+  )}
+/>
+
         </Box>
       </Box>
       <Box

@@ -134,18 +134,18 @@ const Notification = () => {
       return;
     }
 
-    console.log(student._id);
-    console.log(selectedNotification.recruiter_id);
-    console.log(selectedNotification.totalRounds);
 
+   
     try {
+      console.log(selectedNotification.recruitmentProcess.values)
       // Send a POST request to create the application
       const response = await axios.post(
         "http://localhost:8080/api/application/createApplication",
         {
           studentId: student._id,
           companyId: selectedNotification.recruiter_id,
-          totalStages: selectedNotification.totalRounds.value, // Assuming totalRounds corresponds to totalStages
+          totalStages: selectedNotification.totalRounds.value, 
+          recruitmentProcess: selectedNotification.recruitmentProcess.values// Assuming totalRounds corresponds to totalStages
         }
       );
 

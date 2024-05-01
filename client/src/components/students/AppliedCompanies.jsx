@@ -69,32 +69,39 @@ const AppliedCompanies = ({ studentId }) => {
   };
 
   return (
-    <div className="applied-companies-container" style={{ backgroundImage: `url(/assets/appliedCompanies.jpg)`, backgroundSize: "cover", backgroundRepeat: "no-repeat" }}>
+    <div
+      className="applied-companies-container"
+      style={{
+        backgroundImage: `url(/assets/appliedCompanies.jpg)`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       {applications.map((application) => (
-        <div key={application._id} className="application-card">
-          {/* Fetch company name from recruiterDetails array */}
-          <h3>{getRecruiterName(application.companyId)}</h3>
-          <p>Status: {application.status}</p>
-          <div className="timeline">
-            {Array(application.totalStages)
-              .fill(null)
-              .map((_, roundIndex) => (
-                <React.Fragment key={roundIndex}>
-                  <div
-                    className={`timeline-spot ${getStatusColor(
-                      application.stages[roundIndex + 1]?.status
-                    )}`}
-                  >
-                    {roundIndex + 1}
-                  </div>
-                  {roundIndex < application.totalStages -1 && (
-                    <div className="timeline-line"></div>
-                  )}
-                </React.Fragment>
-              ))}
-          </div>
-        </div>
-      ))}
+  <div key={application._id} className="application-card">
+    {/* Fetch company name from recruiterDetails array */}
+    <h3>{getRecruiterName(application.companyId)}</h3>
+    <p>Status: {application.status}</p>
+    <div className="timeline">
+      {Array(application.totalStages + 1)
+        .fill(null)
+        .map((_, roundIndex) => (
+          <React.Fragment key={roundIndex}>
+            <div className="timeline-item">
+              <div className={`timeline-spot ${getStatusColor(application.stages[roundIndex]?.status)}`}>
+                {roundIndex}
+              </div>
+              <div className="stage-name">{application.stages[roundIndex]?.stageName || `Stage ${roundIndex}`}</div>
+            </div>
+            {roundIndex < application.totalStages && (
+              <div className="timeline-line"></div>
+            )}
+          </React.Fragment>
+        ))}
+    </div>
+  </div>
+))}
+
     </div>
   );
 };
