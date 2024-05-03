@@ -56,6 +56,7 @@ const getMenuItems = (selected, setSelected) => {
     { title: "Chats", to: "/admin/chat" },
     { title: "Job Announcement", to: "/admin/viewjaf" },
     { title: "Student Applications", to: "/admin/studentApplications" },
+    { title: "Placements", to: "/admin/placements" },
     { title: "Training & materials", to: "/admin/training" },
     { title: "Logout", to: "/" },
   ];

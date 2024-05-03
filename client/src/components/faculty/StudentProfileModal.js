@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import { Box } from "@mui/material";
-
+import toast, { Toaster } from "react-hot-toast";
 import "./StudentProfileModal.css";
 
 const customStyles = {
@@ -26,25 +26,26 @@ const StudentProfileModal = ({
   onVerify,
   onSubmit,
 }) => {
-  const [isToggled, setToggled] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
-  const handleToggle = async () => {
-    setToggled(!isToggled);
+  const handleVerify = async () => {
+    // Call the onVerify function and pass the updated student object with isVerified set to true
     try {
-      // Perform verification process here based on isToggled
-      if (isToggled) {
-        // Update isVerified to true
-        student.isVerified = false;
-      } else {
-        // Update isVerified to false
-        student.isVerified = true;
-      }
-
-      // Call the onVerify function and pass the updated student object
-      await onVerify(student);
+      await onVerify({ ...student, isVerified: true });
+      toast.success("Student verified successfully!");
     } catch (error) {
       console.error("Verification failed:", error);
-      // Handle error, show message, etc.
+      toast.error("Verification failed. Please try again.");
+    }
+  };
+
+  const handleEdit = async () => {
+    try {
+      await onVerify({ ...student, isVerified: false });
+      toast.success("Student edit enabled!");
+    } catch (error) {
+      console.error("Edit action failed:", error);
+      toast.error("Failed to enable edit mode. Please try again.");
     }
   };
 
@@ -246,18 +247,21 @@ const StudentProfileModal = ({
           </tr>
         </tbody>
       </table>
-      <div className="toggle-container" >
-        <button 
-          className={`toggle-button ${
-            isToggled ? "toggle-verified" : "toggle-edit-enabled"
-          }`}
-          onClick={handleToggle} 
+      <div className="button-container">
+        <button
+          className="verify-button"
+          onClick={handleVerify}
+          disabled={student.isVerified}
         >
-          {isToggled ? "Verified" : "Edit enabled"}
+          Verify
         </button>
-        <p>
-          Click to: {isToggled ? "Enable Student Edit!" : "Verify Student!"}
-        </p>
+        <button
+          className="edit-button"
+          onClick={handleEdit}
+          disabled={!student.isVerified}
+        >
+          Edit
+        </button>
       </div>
       <button
         onClick={onClose}
@@ -274,6 +278,7 @@ const StudentProfileModal = ({
       >
         Close
       </button>
+      <Toaster position="top-center" />
     </Modal>
   );
 };

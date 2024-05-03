@@ -1,0 +1,34 @@
+.faculty-home-container {
+    padding: 30px;
+    margin-top: 20px;
+    background-image: url(../../../public/assets/facultyhome.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow-y: auto;
+  max-height: calc(100vh - 150px); 
+  }
+  
+  .faculty-home-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .faculty-home-heading {
+    margin-top: 25px;
+  }
+  
+  .faculty-home-table {
+    width: 75%;
+    border-collapse: collapse;
+    margin: 20px auto;
+  }
+  
+  .faculty-home-table th,
+  .faculty-home-table td {
+    border: 2px solid #dddddd;
+    padding: 8px;
+    background-color: #f2f2f2;
+  }
+  

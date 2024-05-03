@@ -1,29 +1,36 @@
 /* Your CSS file or style block */
 
 /* Container styling */
-.toggle-container {
+.button-container {
   display: flex;
   align-items: center;
   margin-top: 20px;
 }
 
-/* Button styling */
-.toggle-button {
-  padding: 10px;
-  cursor: pointer;
-  background-color: #3498db;
-  color: #fff;
+.verify-button,
+.edit-button {
+  padding: 10px 20px;
+  margin-right: 10px;
   border: none;
   border-radius: 5px;
-  margin-right: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
-/* Styles for the "Verified" state */
-.toggle-verified {
-  background-color: #0eea6a;
+.verify-button {
+  background-color: #28a745; /* Green color for verification */
+  color: white;
 }
 
-/* Styles for the "Edit enabled" state */
-.toggle-edit-enabled {
-  background-color: #de2b18;
+.edit-button {
+  background-color: #007bff; /* Blue color for edit */
+  color: white;
+}
+
+.verify-button:disabled,
+.edit-button:disabled {
+  background-color: #6c757d; /* Gray color for disabled state */
+  cursor: not-allowed;
 }

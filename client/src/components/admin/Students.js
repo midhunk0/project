@@ -1,18 +1,47 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, CircularProgress } from "@mui/material";
+import { Box, Typography, CircularProgress,Button } from "@mui/material";
 import { Table } from "react-bootstrap";
 import axios from "axios";
 import "./Students.css";
+import StudentProfileModal from "../faculty/StudentProfileModal";
 
 const Student = () => {
   const [students, setStudents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [departmentFilter, setDepartmentFilter] = useState("");
   const [genderFilter, setGenderFilter] = useState("");
   const [verifiedFilter, setVerifiedFilter] = useState(false);
   const [categoryFilter, setCategoryFilter] = useState("");
   const [cgpaFilter, setCgpaFilter] = useState("");
   const [domicileStateFilter, setDomicileStateFilter] = useState("");
+
+  const handleViewProfile = (student) => {
+    setSelectedStudent(student);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  useEffect(() => {
+    const fetchStudents = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8080/api/students/get-all-students"
+        );
+        setStudents(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchStudents();
+  }, []);
 
   const domicileStateOptions = [
     "Andhra Pradesh",
@@ -123,7 +152,7 @@ const Student = () => {
   return (
     <main className="page catalog-page">
       <section className="clean-block clean-catalog dark">
-        <div className="container">
+        <div className="container-fluid">
           <div className="block-heading">
             <Typography variant="h2" className="text-info">
               Complete Student's list
@@ -414,6 +443,16 @@ const Student = () => {
                         ))}
                       </select>
                     </div>
+                    <div className="filter-item">
+                    {selectedStudent && (
+        <StudentProfileModal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          student={selectedStudent}
+          // You can add any additional props needed for your modal
+        />
+      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -434,6 +473,7 @@ const Student = () => {
                             <th>Department</th>
                             <th>Phone</th>
                             <th>Domicile State</th>
+                            <th>Full Profile</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -447,6 +487,11 @@ const Student = () => {
                               <td>{student.department}</td>
                               <td>{student.phone}</td>
                               <td>{student.domicileState}</td>
+                              <td>
+        <Button onClick={() => handleViewProfile(student)} variant="outlined">
+          View Profile
+        </Button>
+      </td>
                             </tr>
                           ))}
                         </tbody>

@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import axios from "axios";
-import { Grid, Typography, Box } from "@mui/material"; // Import Grid and Typography from Material-UI
+import { Grid, Typography, Box } from "@mui/material";
 import StudentProfileModal from "./StudentProfileModal";
+import "./FacultyHome.css"; // Import the CSS file
 
 const FacultyHome = () => {
   const { user } = useContext(AuthContext);
@@ -10,7 +11,6 @@ const FacultyHome = () => {
 
   const facName = user.username;
   const [students, setStudents] = useState([]);
-
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -21,31 +21,26 @@ const FacultyHome = () => {
 
   const handleVerify = async (updatedStudent) => {
     try {
-      // Update the student in the state with the modified data
       const updatedStudents = students.map((s) =>
         s._id === updatedStudent._id ? updatedStudent : s
       );
       setStudents(updatedStudents);
 
-      // Send updated data to the server
       await axios.put(
         `http://localhost:8080/api/students/StudentProfile/${updatedStudent._id}`,
         updatedStudent
       );
     } catch (error) {
       console.error("Verification failed:", error);
-      // Handle error, show message, etc.
     }
   };
 
   const fetchData = async () => {
     try {
-      console.log(facName);
       const response = await axios.get(
         `http://localhost:8080/api/faculty/facultystudent/${facultymail}`
       );
-      console.log(response.data);
-      setStudents(response.data.student); // Assuming response.data.student is an array of students
+      setStudents(response.data.student);
     } catch (error) {
       console.error(error);
     }
@@ -60,99 +55,36 @@ const FacultyHome = () => {
       container
       spacing={3}
       justifyContent="center"
-      style={{
-        padding: "30px",
-        marginTop: "20px",
-        backgroundImage: `url(/assets/facultyhome.jpg)`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-      }}
+      className="faculty-home-container" // Add class name for container styles
     >
       <Box boxShadow={3} borderRadius={5} padding={3} bgcolor="white">
         <img
           src="../../assets/classroom.png"
           alt="Company_image"
-          style={{
-            width: "100%",
-            height: "200px",
-            objectFit: "cover",
-            borderRadius: "5px",
-          }}
+          className="faculty-home-image" // Add class name for image styles
         />
-        <Typography variant="h3" style={{ marginTop: "25px" }}>
+        <Typography variant="h3" className="faculty-home-heading"> {/* Add class name for heading styles */}
           {user.username}
         </Typography>
       </Box>
       <Grid item xs={12}>
-        <table
-          style={{
-            width: "75%",
-            borderCollapse: "collapse",
-            margin: "20px auto",
-          }}
-        >
+        <table className="faculty-home-table"> {/* Add class name for table styles */}
+          {/* Table header */}
           <thead>
             <tr>
-              <th
-                style={{
-                  border: "2px solid #dddddd",
-                  padding: "8px",
-                  backgroundColor: "#f2f2f2",
-                }}
-              >
-                Student Name
-              </th>
-              <th
-                style={{
-                  border: "2px solid #dddddd",
-                  padding: "8px",
-                  backgroundColor: "#f2f2f2",
-                }}
-              >
-                Student ID
-              </th>
-              <th
-                style={{
-                  border: "2px solid #dddddd",
-                  padding: "8px",
-                  backgroundColor: "#f2f2f2",
-                }}
-              >
-                View Full Profile
-              </th>
+              <th>Student Name</th>
+              <th>Student ID</th>
+              <th>View Full Profile</th>
             </tr>
           </thead>
+          {/* Table body */}
           <tbody>
             {students.map((student) => (
               <tr key={student._id}>
-                <td
-                  style={{
-                    border: "2px solid #dddddd",
-                    padding: "8px",
-                    backgroundColor: "#f2f2f2",
-                  }}
-                >
-                  {student.username}
-                </td>
-                <td
-                  style={{
-                    border: "2px solid #dddddd",
-                    padding: "8px",
-                    backgroundColor: "#f2f2f2",
-                  }}
-                >
-                  {student.studentCollegeID}
-                </td>
-                <td
-                  style={{
-                    border: "2px solid #dddddd",
-                    padding: "8px",
-                    backgroundColor: "#f2f2f2",
-                  }}
-                >
-                  <button onClick={() => handleViewProfile(student)}>
-                    View
-                  </button>
+                <td>{student.username}</td>
+                <td>{student.studentCollegeID}</td>
+                <td>
+                  <button onClick={() => handleViewProfile(student)}>View</button>
                 </td>
               </tr>
             ))}

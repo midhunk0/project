@@ -70,9 +70,9 @@ export const getApplicationsByRecruiterId = async (req, res) => {
         twelfthGrade: student.plustwograde,
         cgpa: student.cgpa,
         collegeId: student.studentCollegeID,
+        department: student.department,
       });
     }
-
     res.status(200).json({ applications, studentDetails });
   } catch (error) {
     console.error("Error fetching applications by companyId:", error);

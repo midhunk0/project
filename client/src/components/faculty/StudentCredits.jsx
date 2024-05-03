@@ -105,48 +105,50 @@ const StudentCredits = () => {
       }}
     >
       <h1 className="student-credits-heading">Student Credit Points</h1>
-      <table className="student-credits-table">
-        <thead>
-          <tr>
-            <th>Student Name</th>
-            <th>Student ID</th>
-            <th>Credits S2</th>
-            <th>Credits S3</th>
-            <th>Credits S4</th>
-            <th>Credits S5</th>
-            <th>Credits S6</th>
-          </tr>
-        </thead>
-        <tbody>
-          {students.map((student) => (
-            <tr key={student._id}>
-              <td>{student.username}</td>
-              <td>{student.studentCollegeID}</td>
-
-              <td>
-                {student.creditss2}
-                <button onClick={() => changeCredit(student, 2)}>Add</button>
-              </td>
-              <td>
-                {student.creditss3}
-                <button onClick={() => changeCredit(student, 3)}>Add</button>
-              </td>
-              <td>
-                {student.creditss4}
-                <button onClick={() => changeCredit(student, 4)}>Add</button>
-              </td>
-              <td>
-                {student.creditss5}
-                <button onClick={() => changeCredit(student, 5)}>Add</button>
-              </td>
-              <td>
-                {student.creditss6}
-                <button onClick={() => changeCredit(student, 6)}>Add</button>
-              </td>
+      <div className="student-credits-table-container">
+        <table className="student-credits-table">
+          <thead>
+            <tr>
+              <th>Student Name</th>
+              <th>Student ID</th>
+              <th>Credits S2</th>
+              <th>Credits S3</th>
+              <th>Credits S4</th>
+              <th>Credits S5</th>
+              <th>Credits S6</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {students.map((student) => (
+              <tr key={student._id}>
+                <td>{student.username}</td>
+                <td>{student.studentCollegeID}</td>
+
+                <td>
+                  {student.creditss2}
+                  <button onClick={() => changeCredit(student, 2)}>Add</button>
+                </td>
+                <td>
+                  {student.creditss3}
+                  <button onClick={() => changeCredit(student, 3)}>Add</button>
+                </td>
+                <td>
+                  {student.creditss4}
+                  <button onClick={() => changeCredit(student, 4)}>Add</button>
+                </td>
+                <td>
+                  {student.creditss5}
+                  <button onClick={() => changeCredit(student, 5)}>Add</button>
+                </td>
+                <td>
+                  {student.creditss6}
+                  <button onClick={() => changeCredit(student, 6)}>Add</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       {/* Display the modal */}
       {selectedStudent && (

@@ -57,6 +57,7 @@ import Applications from "./components/recruiters/applications.js";
 import Training from "./components/admin/Training.jsx";
 import UpdatePassword from "./components/students/UpdatePassword.jsx";
 import FacultyForgotPassword from "./components/faculty/forgotPassword.jsx";
+import Placements from "./components/admin/Placements.jsx";
 import { AuthContext } from "./contexts/AuthContext";
 
 const App = () => {
@@ -110,6 +111,7 @@ const App = () => {
             <Route path="/admin" element={<Admin />}>
               {/* Define admin sub-routes here */}
               <Route path="dashboard" element={<AdminDashboard />} />
+              <Route path="placements" element={<Placements />} />
               <Route path="invitations" element={<Invitations />} />
               <Route path="students" element={<Students />} />
               <Route
