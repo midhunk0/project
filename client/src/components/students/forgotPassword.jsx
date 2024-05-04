@@ -51,7 +51,7 @@ const StudentForgotPassword = () => {
       );
       const data = await res.json();
       // Handle response from the server
-   
+
       setCorrectOTP(data.data);
       toast.success("Password reset OTP sent successfully!");
       setOtpSent(true); // Set otpSent to true when OTP is sent
@@ -177,10 +177,13 @@ const StudentForgotPassword = () => {
                 "&:hover": { background: "#45a049" },
               }}
               onClick={handleSendOTP}
-              disabled={!verified}
+              disabled={
+                !verified || !formData.email || !formData.studentCollegeID
+              } // Disable if email or college ID is empty
             >
               Send OTP
             </Button>
+
             {otpSent &&
               !showNewPassword && ( // Render OTP input and Verify button when OTP is sent
                 <>
@@ -200,6 +203,7 @@ const StudentForgotPassword = () => {
                       "&:hover": { background: "#1976D2" },
                     }}
                     onClick={handleVerifyOTP}
+                    disabled={!otp} // Disable if OTP is empty
                   >
                     Verify
                   </Button>

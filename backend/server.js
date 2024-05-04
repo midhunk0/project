@@ -18,7 +18,6 @@ import cors from "cors";
 // Configure env
 dotenv.config();
 
-// Database config
 connectDB();
 
 const app = express();
