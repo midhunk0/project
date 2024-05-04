@@ -1,22 +1,30 @@
 import express from "express";
 
 import {
-  registerRecruiterController,
-  loginRecruiterController,
-  changePasswordRecruiterController,
-  updateProfileRecruiterController,
-  getProfileRecruiterController,
-  getAllRecruiters,
-  getRecruiterById,
-  getRecruitersSentJaf,
-  getRecruitersByCompanyIds,
-  recruiterJafController,
+    registerRecruiterController,
+    loginRecruiterController,
+    changePasswordRecruiterController,
+    updateProfileRecruiterController,
+    getProfileRecruiterController,
+    getAllRecruiters,
+    getRecruiterById,
+    getRecruitersSentJaf,
+    getRecruitersByCompanyIds,
+    recruiterJafController,
+    getUnverifiedRecruiters,
+    verifyRecruiter,
+    rejectRecruiter,
+    updateIsPasswordChangedController,
+    updatePasswordController,
+    forgotPasswordController,
+    updateForgotPasswordController,
+    verifyOTPController,
 } from "../controllers/recruiterController.js";
 
 import {
-  addMessageController,
-  getConvController,
-  getMessageController,
+    addMessageController,
+    getConvController,
+    getMessageController,
 } from "../controllers/conversationController.js";
 
 const router = express.Router();
@@ -44,7 +52,16 @@ router.get("/getAllRecruiters", getAllRecruiters);
 router.post("/getRecruitersByCompanyIds", getRecruitersByCompanyIds);
 router.get("/getRecruiterById/:recruiterId", getRecruiterById);
 router.get("/getRecruitersSentjaf", getRecruitersSentJaf); //get all recruiters who sent jaf
-router.put("/updateisjafSentfalse/:id",recruiterJafController);
+router.put("/updateisjafSentfalse/:id", recruiterJafController);
 
+router.get("/unverified", getUnverifiedRecruiters);
+router.put("/:recruiterId/verify", verifyRecruiter);
+router.delete("/:recruiterId", rejectRecruiter);
+
+router.put("/updatePassword/:id", updatePasswordController);
+router.put("/updateIsPasswordChanged/:id", updateIsPasswordChangedController);
+router.post("/forgotPassword", forgotPasswordController);
+router.post("/verifyOTP", verifyOTPController);
+router.put("/updateForgotPassword", updateForgotPasswordController);
 
 export default router;

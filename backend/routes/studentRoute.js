@@ -2,28 +2,31 @@ import express from "express";
 import { verifyToken } from "../utils/verifyToken.js";
 
 import {
-  registerStudentController,
-  loginStudentController,
-  getProfileStudentController,
-  updateProfileStudentController,
-  addProfileDetailsStudentController,
-  getallStudentsController,
-  updateCredits,
-  updatePasswordController,
-  updateIsPasswordChangedController,
-  forgotPasswordController,
-  updateForgotPasswordController,
-  verifyOTPController,
+    registerStudentController,
+    loginStudentController,
+    getProfileStudentController,
+    updateProfileStudentController,
+    addProfileDetailsStudentController,
+    getallStudentsController,
+    updateCredits,
+    updatePasswordController,
+    updateIsPasswordChangedController,
+    forgotPasswordController,
+    updateForgotPasswordController,
+    verifyOTPController,
+    
 } from "../controllers/studentController.js";
 
 import {
-  conversationController,
-  getConvController,
-  addMessageController,
-  getMessageController,
-  getUnreadMessageCounts,
-  markMessagesAsRead
+    conversationController,
+    getConvController,
+    addMessageController,
+    getMessageController,
+    getUnreadMessageCounts,
+    markMessagesAsRead,
 } from "../controllers/conversationController.js";
+
+
 
 const router = express.Router();
 
@@ -56,8 +59,10 @@ router.post("/messages", addMessageController);
 //get messages
 router.get("/messages/:chatId", getMessageController);
 router.get("/unreadMessages/:chatId", getUnreadMessageCounts);
-router.patch('/messages/markAsRead/:chatId', markMessagesAsRead);
+router.patch("/messages/markAsRead/:chatId", markMessagesAsRead);
 //to update student credits
 router.put("/credit/:id", updateCredits);
+
+
 
 export default router;

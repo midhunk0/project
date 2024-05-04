@@ -41,6 +41,14 @@ const recruiterSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    verified:{
+        type:Boolean,
+        default: false,
+    },
+    isPasswordChanged: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 export default mongoose.model("Recruiter", recruiterSchema);

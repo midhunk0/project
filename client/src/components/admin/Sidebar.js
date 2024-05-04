@@ -52,6 +52,7 @@ const getMenuItems = (selected, setSelected) => {
   const menuItems = [
     { title: "Dashboard", to: "/admin/dashboard" },
     { title: "Register", to: "/admin/invitations" },
+    {title:"Verify Recruiters", to:"/admin/company"},
     { title: "Students", to: "/admin/students" },
     { title: "Chats", to: "/admin/chat" },
     { title: "Job Announcement", to: "/admin/viewjaf" },

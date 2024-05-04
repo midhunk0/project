@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useContext } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { useNavigate, Link } from "react-router-dom";
@@ -11,13 +10,12 @@ import toast, { Toaster } from "react-hot-toast";
 const colors = tokens();
 
 const RecruiterLogin = () => {
-
-
     const containerStyle = {
         background: "url(../../../assets/loginBg.jpeg)",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
     };
+
     const [credentials, setCredentials] = useState({
         email: "",
         password: "",
@@ -39,13 +37,25 @@ const RecruiterLogin = () => {
                 "http://localhost:8080/api/recruiters/recruiterLogin",
                 credentials
             );
-            dispatch({ type: "LOGIN_SUCCESS", payload: res.data.recruiter });
-            toast.success("Recruiter Logged in Successfully!");
-            setTimeout(() => {
-                navigate("/recruiter/home");
-            }, 1000);
+            const loggedInRecruiter = res.data.recruiter;
 
-            console.log(user)
+            if (!loggedInRecruiter.verified) {
+                toast.error(
+                    "Your account is not verified. Please wait for verification."
+                );
+                return; // Stop further execution
+            }
+
+            dispatch({ type: "LOGIN_SUCCESS", payload: loggedInRecruiter });
+            if (!loggedInRecruiter.isPasswordChanged) {
+                // If isPasswordChecked is false, redirect to change password page
+                navigate("/recruiter/update-password");
+            } else {
+                toast.success("Recruiter Logged in Successfully!");
+                setTimeout(() => {
+                    navigate("/recruiter/home");
+                }, 1000);
+            }
         } catch (err) {
             console.log(err.response);
             toast.error("Invalid Credentials!");
@@ -97,6 +107,11 @@ const RecruiterLogin = () => {
                 >
                     Sign In
                 </Button>
+                <Typography variant="body2" marginTop="10px">
+                    <Link to="/recruiter/forgot-password">
+                        Forgot your password? Reset here
+                    </Link>
+                </Typography>
                 <Typography variant="h6">
                     Don't have an account?{" "}
                     <Link
