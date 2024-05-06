@@ -518,6 +518,16 @@ const Edit = () => {
           </Form.Group>
 
           <Form.Group className="mt-2">
+            <Form.Label>Backlogs</Form.Label>
+            <Form.Control
+              type="number"
+              name="backlogs"
+              value={profileDetails.backlogs}
+              onChange={handleChange}
+            />
+          </Form.Group>
+
+          <Form.Group className="mt-2">
             <Form.Label>Profile Picture</Form.Label>
             <Form.Control
               type="text"

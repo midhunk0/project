@@ -1,3 +1,4 @@
+// @ts-nocheck
 import students from "../models/studentModel.js";
 import Recruiter from "../models/recruiterModel.js";
 import { createError } from "../utils/error.js";
@@ -474,48 +475,9 @@ export const updateCredits = async (req, res) => {
         // Save the updated student
         await updatedStudent.save();
 
-        res.status(200).json({ message: "Credits updated successfully" });
-    } catch (error) {
-        console.error("Error updating credits:", error);
-        res.status(500).json({ message: "Failed to update credits" });
-    }
+    res.status(200).json({ message: "Credits updated successfully" });
+  } catch (error) {
+    console.error("Error updating credits:", error);
+    res.status(500).json({ message: "Failed to update credits" });
+  }
 };
-
-// // Verify a recruiter
-// export const verifyRecruiter = async (req, res) => {
-//     const { recruiterId } = req.params;
-
-//     try {
-//         const recruiter = await Recruiter.findById(recruiterId);
-//         if (!recruiter) {
-//             return res.status(404).json({ message: "Recruiter not found" });
-//         }
-
-//         recruiter.verified = true;
-//         await recruiter.save();
-
-//         res.status(200).json({ message: "Recruiter verified successfully" });
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ error: "Internal Server Error" });
-//     }
-// };
-
-// // Reject a recruiter
-// export const rejectRecruiter = async (req, res) => {
-//     const { recruiterId } = req.params;
-
-//     try {
-//         const recruiter = await Recruiter.findById(recruiterId);
-//         if (!recruiter) {
-//             return res.status(404).json({ message: "Recruiter not found" });
-//         }
-
-//         await Recruiter.findByIdAndDelete(recruiterId);
-
-//         res.status(200).json({ message: "Recruiter rejected successfully" });
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ error: "Internal Server Error" });
-//     }
-// };

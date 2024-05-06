@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Faculty from "../models/facultyModel.js";
 import students from "../models/studentModel.js";
 import jwt from "jsonwebtoken";
@@ -83,6 +84,59 @@ export const getStudentsByFaculty = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
+// Faculty Selection Controller
+export const selectedStudent = async (req, res) => {
+    try {
+        const facultyID = req.params.facultyID;
+        const studentID = req.params.studentCollegeID;
+
+        // Update the student's selectedByFaculty field
+        await students.findByIdAndUpdate(studentID, {
+            selectedByFaculty: facultyID,
+        });
+
+        // Update the faculty's selectedStudents array
+        await Faculty.findByIdAndUpdate(facultyID, {
+            $addToSet: { selectedStudents: studentID },
+        });
+
+        res.status(200).json({
+            message: "Student selected by faculty successfully",
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "An error occurred" });
+    }
+};
+
+// Faculty Verification Controller
+export const verifyStudent = async (req, res) => {
+    try {
+        const studentID = req.params.id;
+
+        // Find the student with the provided student ID
+        const student = await students.findById(studentID);
+        if (!student) {
+            return res.status(404).json({ error: "Student not found" });
+        }
+
+        // Update the verification status
+        student.isVerified = true;
+
+        // Save the updated student profile
+        await student.save();
+
+        res.status(200).json({
+            message: "Student verified successfully",
+            student,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "An error occurred" });
+    }
+};
+
 
 export const getFacultyProfile = async (req, res) => {
   try {

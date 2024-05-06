@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,7 +8,7 @@ import ReCAPTCHA from "react-google-recaptcha"; // Import the CAPTCHA component
 import { AuthContext } from "../../contexts/AuthContext";
 
 
-const StudentForgotPassword = () => {
+const RecruiterForgotPassword = () => {
     const [verified, setVerified] = useState(false);
     const [otp, setOtp] = useState(null);
     const [correctOTP, setCorrectOTP] = useState(null);
@@ -244,4 +245,4 @@ const StudentForgotPassword = () => {
     );
 };
 
-export default StudentForgotPassword;
+export default RecruiterForgotPassword;

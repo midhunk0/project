@@ -23,7 +23,7 @@ export const getConvController = async (req, res) => {
     });
     res.status(200).json(chat);
   } catch (error) {
-    response.status(500).json(error);
+    res.status(500).json(error);
   }
 };
 

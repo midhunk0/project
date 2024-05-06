@@ -52,12 +52,10 @@ const getMenuItems = (selected, setSelected) => {
   const menuItems = [
     { title: "Dashboard", to: "/admin/dashboard" },
     { title: "Register", to: "/admin/invitations" },
-    {title:"Verify Recruiters", to:"/admin/company"},
     { title: "Students", to: "/admin/students" },
     { title: "Chats", to: "/admin/chat" },
     { title: "Job Announcement", to: "/admin/viewjaf" },
     { title: "Student Applications", to: "/admin/studentApplications" },
-    { title: "Placements", to: "/admin/placements" },
     { title: "Training & materials", to: "/admin/training" },
     { title: "Logout", to: "/" },
   ];
@@ -103,7 +101,6 @@ const AdminSidebar = () => {
                   height="100px"
                   src="../../assets/admin_image.png"
                   style={{
-                    alt: "admin-profile",
                     width: "125px",
                     height: "125px",
                     cursor: "pointer",

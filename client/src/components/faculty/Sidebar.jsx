@@ -17,8 +17,8 @@ const Item = ({ title, to, selected, setSelected }) => {
       localStorage.clear();
       toast.success("Logged out Successfully!");
       setTimeout(() => {
-        navigate("/");
-      }, 500);
+        navigate("/faculty/login");
+      }, 1500);
     }
   };
   const itemStyle = {

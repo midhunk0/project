@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useContext } from "react";
 import "./App.css";
 import Footer from "./components/global/footer";
@@ -47,20 +48,25 @@ import Faculty from "./components/faculty";
 import FacultyLogin from "./components/faculty/Login";
 import FacultyHome from "./components/faculty/FacultyHome";
 import FacultyEdit from "./components/faculty/FacultyEdit";
+// import StudentRep from "./components/studentRep";
+// import StudentRepLogin from "./components/studentRep/Login";
+// import StudentRepHome from "./components/studentRep/Home";
+// import StudentRepEdit from "./components/studentRep/Edit";
+import Conversation from "./components/recruiters/chat/Conversation";
 import FacultyRegister from "./components/faculty/Register";
 import Materials from "./components/studentDropdown/Materials";
 import StudentCredits from "./components/faculty/StudentCredits";
 import AppliedCompanies from "./components/students/AppliedCompanies";
 import ApplicationStatus from "./components/students/ApplicationStatus";
+import Training from "./components/admin/Training.jsx";
+import UpdatePassword_R from "./components/recruiters/UpdatePassword.jsx";
+import UpdatePassword_S from "./components/students/UpdatePassword.jsx";
+import FacultyForgotPassword from "./components/faculty/forgotPassword.jsx";
 import StudentApplications from "./components/admin/studentApplications.js";
 import Applications from "./components/recruiters/applications.js";
-import Training from "./components/admin/Training.jsx";
-import UpdatePassword_S from "./components/students/UpdatePassword.jsx";
-import UpdatePassword_R from "./components/recruiters/UpdatePassword.jsx";
-import FacultyForgotPassword from "./components/faculty/forgotPassword.jsx";
-import RecruiterForgotPassword from "./components/recruiters/forgotPassword.jsx"
 import Placements from "./components/admin/Placements.jsx";
 import { AuthContext } from "./contexts/AuthContext";
+import RecruiterForgotPassword from "./components/recruiters/forgotPassword.jsx";
 
 const App = () => {
     const { user } = useContext(AuthContext); // Get the user object from AuthContext
@@ -92,10 +98,10 @@ const App = () => {
                             <Route path="home" element={<RecruiterHome />} />
                             <Route path="request" element={<Request />} />
                             <Route path="schedules" element={<Schedules />} />
-                            <Route path="update-password" element={<UpdatePassword_R />} />
+                            <Route path="update-password" element={<UpdatePassword_R/>} />
                             <Route
                                 path="Applications"
-                                element={<Applications />}
+                                element={<Applications/>}
                             />
                             <Route path="edit" element={<EditRecruiter />} />
                             <Route
@@ -189,13 +195,13 @@ const App = () => {
                 />
                  <Route
                     path="/recruiter/forgot-password"
-                    element={<RecruiterForgotPassword />}
+                    element={<RecruiterForgotPassword/>}
                 />
                 <Route
                     path="/faculty/forgot-password"
                     element={<FacultyForgotPassword />}
                 />
-                <Route path="update-password" element={<UpdatePassword_S />} />
+                <Route path="update-password" element={<UpdatePassword_S/>} />
                 
                 
             </Routes>

@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
+import Faculty from "./facultyModel.js";
 
 const studentSchema = new mongoose.Schema(
   {
@@ -136,19 +137,12 @@ const studentSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
-
+   
     isVerified: {
       type: Boolean,
       default: false,
     },
-    isPasswordChanged: {
-      type: Boolean,
-      default: false,
-    },
-    isAdmin: {
-      type: Boolean,   //created only for admin
-      default: false,
-    },
+
   },
   { timestamps: true }
 );

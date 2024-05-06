@@ -16,16 +16,16 @@ const Item = ({ title, to, selected, setSelected }) => {
   const isActive = selected === title;
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    if (title === "Logout") {
-      localStorage.clear();
-      toast.success("Logged out Successfully!");
-      // Handle admin login - redirect to the admin dashboard
-      setTimeout(() => {
-        navigate("/");
-      }, 500);
-    }
-  };
+    const handleLogout = () => {
+        if (title === "Logout") {
+            localStorage.clear();
+            toast.success("Logged out Successfully!");
+            // Handle admin login - redirect to the admin dashboard
+            setTimeout(() => {
+                navigate("/");
+            }, 500);
+        }
+    };
 
   const itemStyle = {
     textDecoration: "none",
