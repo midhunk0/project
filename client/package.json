@@ -23,12 +23,10 @@
         "react-chat-engine-pretty": "^0.1.8",
         "react-datetime": "^3.2.0",
         "react-dom": "^18.2.0",
-        "react-font": "^1.2.1",
         "react-hot-toast": "^2.4.1",
         "react-modal": "^3.16.1",
         "react-pro-sidebar": "^1.1.0-alpha.1",
         "react-router-dom": "^6.23.0",
-        "react-vis": "^1.12.1",
         "socket.io-client": "^4.7.2",
         "web-vitals": "^2.1.4",
         "xlsx": "^0.18.5"
