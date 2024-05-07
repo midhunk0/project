@@ -46,7 +46,7 @@ const Materials = () => {
   };
 
   const openPdfInNewTab = (pdfUrl) => {
-    const fullPdfUrl = `http://${baseUrl}/files/${pdfUrl}`;
+    const fullPdfUrl = `${baseUrl}/files/${pdfUrl}`;
     window.open(fullPdfUrl, "_blank");
   };
 

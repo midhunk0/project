@@ -30,7 +30,7 @@ const RecruiterRegister = () => {
     try {
       console.log(recruiterDetails);
       const res = await axios.put(
-        `http://${baseUrl}/api/recruiters/recruiterProfile/${id}`,
+        `${baseUrl}/api/recruiters/recruiterProfile/${id}`,
         recruiterDetails
       );
       toast.success("Recruiter profile updated successfully!");

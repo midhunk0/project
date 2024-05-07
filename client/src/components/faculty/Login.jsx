@@ -56,7 +56,7 @@ const Login = () => {
         // admin is defined in student schema hence calling student route
     
         res = await axios.post(
-          `http://${baseUrl}/api/students/studentLogin`,
+          `${baseUrl}/api/students/studentLogin`,
           credentialsAdmin
         );
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data.student });
@@ -70,7 +70,7 @@ const Login = () => {
         }
       } else {
         res = await axios.post(
-          `http://${baseUrl}/api/faculty/facultyLogin`,
+          `${baseUrl}/api/faculty/facultyLogin`,
           credentialsFaculty
         );
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data.faculty });

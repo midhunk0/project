@@ -21,7 +21,7 @@ const Applications = () => {
         const companyId = id;
 
         const response = await axios.get(
-          `http://${baseUrl}/api/application/getApplicationsByRecruiterId/${companyId}`
+          `${baseUrl}/api/application/getApplicationsByRecruiterId/${companyId}`
         );
 
         setApplications(response.data);
@@ -88,7 +88,7 @@ const Applications = () => {
           try {
             // Update the application in the database
             await axios.put(
-              `http://${baseUrl}/api/application/updateApplication/${selectedApplication._id}`,
+              `${baseUrl}/api/application/updateApplication/${selectedApplication._id}`,
               selectedApplication
             );
             toast.success("Selected to next round");
@@ -126,7 +126,7 @@ const Applications = () => {
         try {
           // Update the application in the database
           await axios.put(
-            `http://${baseUrl}/api/application/updateApplication/${unselectedApplication._id}`,
+            `${baseUrl}/api/application/updateApplication/${unselectedApplication._id}`,
             unselectedApplication
           );
           console.log(

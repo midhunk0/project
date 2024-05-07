@@ -29,7 +29,7 @@ const FacultyHome = () => {
       setStudents(updatedStudents);
 
       await axios.put(
-        `http://${baseUrl}/api/students/StudentProfile/${updatedStudent._id}`,
+        `${baseUrl}/api/students/StudentProfile/${updatedStudent._id}`,
         updatedStudent
       );
     } catch (error) {
@@ -40,7 +40,7 @@ const FacultyHome = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://${baseUrl}/api/faculty/facultystudent/${facultymail}`
+        `${baseUrl}/api/faculty/facultystudent/${facultymail}`
       );
       setStudents(response.data.student);
     } catch (error) {

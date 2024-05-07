@@ -24,7 +24,7 @@ const FacultyEdit = () => {
         e.preventDefault();
         try{
             const res = await axios.put(
-                `http://${baseUrl}/api/faculty/facultyEdit/${id}`,
+                `${baseUrl}/api/faculty/facultyEdit/${id}`,
                 facultyDetails
             )
             toast.success("Profile updated successfully!");

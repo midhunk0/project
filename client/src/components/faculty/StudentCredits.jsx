@@ -51,7 +51,7 @@ const StudentCredits = () => {
 
       // Send updated data to the server
       await axios.put(
-        `http://${baseUrl}/api/students/credit/${updatedStudent._id}`,
+        `${baseUrl}/api/students/credit/${updatedStudent._id}`,
         { semester: semester }
       );
       console.log(updatedStudent);
@@ -71,7 +71,7 @@ const StudentCredits = () => {
 
       // Send updated data to the server
       await axios.put(
-        `http://${baseUrl}/api/students/StudentProfile/${updatedStudent._id}`,
+        `${baseUrl}/api/students/StudentProfile/${updatedStudent._id}`,
         updatedStudent
       );
     } catch (error) {
@@ -84,7 +84,7 @@ const StudentCredits = () => {
     try {
       console.log(facName);
       const response = await axios.get(
-        `http://${baseUrl}/api/faculty/facultystudent/${facultymail}`
+        `${baseUrl}/api/faculty/facultystudent/${facultymail}`
       );
       console.log(response.data);
       setStudents(response.data.student); // Assuming response.data.student is an array of students

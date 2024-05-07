@@ -89,7 +89,7 @@ const RecruiterSidebar = () => {
   };
 
   const dataRecruiter = useFetch(
-    `http://${baseUrl}/api/recruiters/recruiterProfile/${id}`
+    `${baseUrl}/api/recruiters/recruiterProfile/${id}`
   );
   const recruiter = dataRecruiter.data;
 

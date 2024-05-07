@@ -18,7 +18,7 @@ const StudentHome = () => {
   const id = user._id;
 
   const dataStudent = useFetch(
-    `http://${baseUrl}/api/students/StudentProfile/${id}`
+    `${baseUrl}/api/students/StudentProfile/${id}`
   );
   const student = dataStudent.data;
 
@@ -37,7 +37,7 @@ const StudentHome = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `http://${baseUrl}/api/students/StudentPassword/${id}`,
+        `${baseUrl}/api/students/StudentPassword/${id}`,
         {
           newPassword: password,
         }

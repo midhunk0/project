@@ -14,7 +14,7 @@ const Conversation = ({ conversation, currentUser, unreadMessageCount }) => {
     const getUser = async () => {
       try {
         const res = await axios.get(
-          `http://${baseUrl}/api/recruiters/getRecruiterById/${recruiterId}`
+          `${baseUrl}/api/recruiters/getRecruiterById/${recruiterId}`
         );
 
         if (res.data) {

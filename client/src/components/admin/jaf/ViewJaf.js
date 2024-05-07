@@ -14,7 +14,7 @@ const ViewJaf = () => {
     try {
       // Update the selected recruiter's isAdminRead to true
       console.log(recruiter._id);
-      await axios.put(`http://${baseUrl}/api/jaf/updateIsAdminRead/${recruiter._id}`, {
+      await axios.put(`${baseUrl}/api/jaf/updateIsAdminRead/${recruiter._id}`, {
         isAdminRead: true,
       });
       setSelectedRecruiter({ ...recruiter, isAdminRead: true });
@@ -27,7 +27,7 @@ const ViewJaf = () => {
     const fetchRecruiters = async () => {
       try {
         const response = await axios.get(
-            `http://${baseUrl}/api/recruiters/getRecruitersSentJaf`
+            `${baseUrl}/api/recruiters/getRecruitersSentJaf`
         );
         setRecruiters(response.data);
       } catch (error) {

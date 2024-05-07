@@ -93,7 +93,7 @@ const StudentSidebar = ({ username, profilePicture }) => {
   };
 
   const dataStudent = useFetch(
-    `http://${baseUrl}/api/students/StudentProfile/${id}`
+    `${baseUrl}/api/students/StudentProfile/${id}`
   );
   const student = dataStudent.data;
 

@@ -50,7 +50,7 @@ const customStyles = {
 const JafForm = ({ recruiter }) => {
   const id = recruiter._id;
 
-  const jafdata = useFetch(`http://${baseUrl}/api/jaf/jafGet/${id}`);
+  const jafdata = useFetch(`${baseUrl}/api/jaf/jafGet/${id}`);
   const backenddata = jafdata.data || {}; // Ensure backenddata is defined
   console.log(backenddata);
 
@@ -80,7 +80,7 @@ const JafForm = ({ recruiter }) => {
 
     try {
       const res = await axios.put(
-        `http://${baseUrl}/api/jaf/jafPut/${jafid}`,
+        `${baseUrl}/api/jaf/jafPut/${jafid}`,
         { name, checked }
       );
       console.log(res.data); // Log the response data if needed
@@ -102,13 +102,13 @@ const JafForm = ({ recruiter }) => {
       };
 
       await axios.put(
-        `http://${baseUrl}/api/jaf/jafAdminSent/${jafid}`,
+        `${baseUrl}/api/jaf/jafAdminSent/${jafid}`,
         true
       );
-      await axios.post(`http://${baseUrl}/api/jaf/send-email-to-students`);
+      await axios.post(`${baseUrl}/api/jaf/send-email-to-students`);
       // Send the new NB value to the server
       const res = await axios.put(
-        `http://${baseUrl}/api/jaf/jafPutNbDeadline/${jafid}`,
+        `${baseUrl}/api/jaf/jafPutNbDeadline/${jafid}`,
         updatedData
       );
 

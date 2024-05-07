@@ -17,7 +17,7 @@ const RecruiterHome = () => {
   const id = user._id;
 
   const dataRecruiter = useFetch(
-    `http://${baseUrl}/api/recruiters/recruiterProfile/${id}`
+    `${baseUrl}/api/recruiters/recruiterProfile/${id}`
   );
   const recruiter = dataRecruiter.data;
 
@@ -35,7 +35,7 @@ const RecruiterHome = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `http://${baseUrl}/api/recruiters/recruiterPassword/${id}`,
+        `${baseUrl}/api/recruiters/recruiterPassword/${id}`,
         { newPassword: password }
       );
       setSnackbarOpen(true);

@@ -35,7 +35,7 @@ const RecruiterLogin = () => {
 
         try {
             const res = await axios.post(
-                `http://${baseUrl}/api/recruiters/recruiterLogin`,
+                `${baseUrl}/api/recruiters/recruiterLogin`,
                 credentials
             );
             const loggedInRecruiter = res.data.recruiter;

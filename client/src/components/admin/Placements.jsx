@@ -15,7 +15,7 @@ const Placements = () => {
     const fetchRecruiters = async () => {
       try {
         const response = await axios.get(
-          `http://${baseUrl}/api/recruiters/getAllRecruiters`
+          `${baseUrl}/api/recruiters/getAllRecruiters`
         );
         setRecruiters(response.data);
       } catch (error) {
@@ -29,7 +29,7 @@ const Placements = () => {
   const fetchApplications = async (recruiterId) => {
     try {
       const response = await axios.get(
-        `http://${baseUrl}/api/application/getApplicationsByRecruiterId/${recruiterId}`
+        `${baseUrl}/api/application/getApplicationsByRecruiterId/${recruiterId}`
       );
       const updatedApplications = response.data.applications.map((app) => {
         const matchingStudent = response.data.studentDetails.find(

@@ -13,7 +13,7 @@ const Conversation = ({ conversation, currentUser }) => {
     const getAdmin = async () => {
       try {
         const res = await axios.get(
-          `http://${baseUrl}/api/admins/getAdminById/${adminId}`
+          `${baseUrl}/api/admins/getAdminById/${adminId}`
         );
         setAdmin(res.data);
       } catch (error) {

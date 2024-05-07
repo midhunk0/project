@@ -66,7 +66,7 @@ const RecruiterRegister = () => {
 
         try {
             const res = await axios.post(
-                `http://${baseUrl}/api/recruiters/recruiterRegister`,
+                `${baseUrl}/api/recruiters/recruiterRegister`,
                 formData
             );
 

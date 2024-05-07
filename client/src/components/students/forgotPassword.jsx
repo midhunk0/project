@@ -42,7 +42,7 @@ const StudentForgotPassword = () => {
     try {
       // Simulating API call
       const res = await fetch(
-        `http://${baseUrl}/api/students/forgotPassword`,
+        `${baseUrl}/api/students/forgotPassword`,
         {
           method: "POST",
           body: JSON.stringify(formData),
@@ -73,7 +73,7 @@ const StudentForgotPassword = () => {
         correct_otp: correctOTP,
       };
 
-      const res = await fetch(`http://${baseUrl}/api/students/verifyOTP`, {
+      const res = await fetch(`${baseUrl}/api/students/verifyOTP`, {
         method: "POST",
         body: JSON.stringify(f), // Send the OTP for verification
         headers: {
@@ -110,7 +110,7 @@ const StudentForgotPassword = () => {
       // Simulating API call to update password
 
       const res = await fetch(
-        `http://${baseUrl}/api/students/updateForgotPassword`,
+        `${baseUrl}/api/students/updateForgotPassword`,
         {
           method: "PUT",
           body: JSON.stringify(formData),

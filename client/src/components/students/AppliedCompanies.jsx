@@ -19,7 +19,7 @@ const AppliedCompanies = ({ studentId }) => {
       console.log(studentId);
       try {
         const response = await axios.get(
-          `http://${baseUrl}/api/application/getApplicationsByStudentId/${studentId}`
+          `${baseUrl}/api/application/getApplicationsByStudentId/${studentId}`
         );
 
         setApplications(response.data.applications);
@@ -31,7 +31,7 @@ const AppliedCompanies = ({ studentId }) => {
 
         // Assuming you have an API endpoint that accepts an array of company IDs
         const recruiterResponse = await axios.post(
-          `http://${baseUrl}/api/recruiters/getRecruitersByCompanyIds`,
+          `${baseUrl}/api/recruiters/getRecruitersByCompanyIds`,
           { companyIds: companyIdArray }
         );
 

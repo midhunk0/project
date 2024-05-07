@@ -66,7 +66,7 @@ const FacultyRegister = () => {
     try {
       console.log(formData);
       const res = await axios.post(
-        `http://${baseUrl}/api/faculty/facultyRegister`,
+        `${baseUrl}/api/faculty/facultyRegister`,
         formData
       );
       toast.success("Faculty registered successfully!");

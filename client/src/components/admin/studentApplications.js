@@ -23,7 +23,7 @@ const StudentApplications = () => {
     const fetchRecruiters = async () => {
       try {
         const response = await axios.get(
-          `http://${baseUrl}/api/recruiters/getRecruitersSentJaf`
+          `${baseUrl}/api/recruiters/getRecruitersSentJaf`
         );
         setRecruiters(response.data);
       } catch (error) {
@@ -41,7 +41,7 @@ const StudentApplications = () => {
           const companyId = selectedRecruiter._id;
 
           const response = await axios.get(
-            `http://${baseUrl}/api/application/getApplicationsByRecruiterId/${companyId}`
+            `${baseUrl}/api/application/getApplicationsByRecruiterId/${companyId}`
           );
 
           setApplications(response.data);
@@ -91,7 +91,7 @@ const StudentApplications = () => {
           try {
             // Update the application in the database
             await axios.put(
-              `http://${baseUrl}/api/application/updateIsAdminVerified/${selectedApplication._id}`,
+              `${baseUrl}/api/application/updateIsAdminVerified/${selectedApplication._id}`,
               selectedApplication
             );
 

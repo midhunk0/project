@@ -28,13 +28,13 @@ const UpdatePassword = () => {
 
     try {
       const res = await axios.put(
-        `http://${baseUrl}/api/students/updatePassword/` + id,
+        `${baseUrl}/api/students/updatePassword/` + id,
         formData
       );
       toast.success(res.data.message);
       // Update isPasswordChanged field
       await axios.put(
-        `http://${baseUrl}/api/students/updateIsPasswordChanged/` + id,
+        `${baseUrl}/api/students/updateIsPasswordChanged/` + id,
         { isPasswordChanged: true }
       );
       navigate("/student/home");

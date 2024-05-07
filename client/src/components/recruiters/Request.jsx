@@ -42,7 +42,7 @@ const Request = () => {
     console.log(action)
     e.preventDefault();
     try {
-      await axios.put(`http://${baseUrl}/api/recruiters/recruiterRequest/${id}`, {
+      await axios.put(`${baseUrl}/api/recruiters/recruiterRequest/${id}`, {
         action: action,
       });
       toast.success("Request sent successfully")

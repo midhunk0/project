@@ -229,7 +229,7 @@ const UploadExcel = () => {
           />
           <Button
             variant="contained"
-            onClick={(e) => handleSubmit(e, `http://${baseUrl}/api/students/studentRegister`)}
+            onClick={(e) => handleSubmit(e, `${baseUrl}/api/students/studentRegister`)}
             sx={{
               bgcolor: "#4CAF50", // Green color
               "&:hover": {
@@ -242,7 +242,7 @@ const UploadExcel = () => {
           </Button>
           <Button
             variant="contained"
-            onClick={(e) => handleSubmit(e, `http://${baseUrl}/api/faculty/facultyRegister`)}
+            onClick={(e) => handleSubmit(e, `${baseUrl}/api/faculty/facultyRegister`)}
             sx={{
               bgcolor: "#1976D2", // Blue color
               "&:hover": {

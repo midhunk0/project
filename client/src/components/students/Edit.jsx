@@ -96,7 +96,7 @@ const Edit = () => {
     });
     try {
       const res = await axios.put(
-        `http://${baseUrl}/api/students/StudentProfile/${id}`,
+        `${baseUrl}/api/students/StudentProfile/${id}`,
         profileDetails
       );
 

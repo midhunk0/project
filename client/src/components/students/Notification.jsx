@@ -138,7 +138,7 @@ const Notification = () => {
   const id = user._id;
 
   const dataStudent = useFetch(
-    `http://${baseUrl}/api/students/StudentProfile/${id}`
+    `${baseUrl}/api/students/StudentProfile/${id}`
   );
   const student = dataStudent.data;
 
@@ -256,7 +256,7 @@ const Notification = () => {
       console.log(selectedNotification.recruitmentProcess.values)
       // Send a POST request to create the application
       const response = await axios.post(
-        `http://${baseUrl}/api/application/createApplication`,
+        `${baseUrl}/api/application/createApplication`,
         {
           studentId: student._id,
           companyId: selectedNotification.recruiter_id,

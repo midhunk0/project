@@ -32,7 +32,7 @@ const Student = () => {
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          `http://${baseUrl}/api/students/get-all-students`
+          `${baseUrl}/api/students/get-all-students`
         );
         setStudents(response.data);
         setIsLoading(false);
@@ -115,7 +115,7 @@ const Student = () => {
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          `http://${baseUrl}/api/students/get-all-students`
+          `${baseUrl}/api/students/get-all-students`
         );
         const filteredStudents = response.data.filter(
           (student) =>

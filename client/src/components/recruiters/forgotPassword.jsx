@@ -42,7 +42,7 @@ const RecruiterForgotPassword = () => {
         try {
             // Simulating API call
             const res = await fetch(
-                `http://${baseUrl}/api/recruiters/forgotPassword`,
+                `${baseUrl}/api/recruiters/forgotPassword`,
                 {
                     method: "POST",
                     body: JSON.stringify(formData),
@@ -74,7 +74,7 @@ const RecruiterForgotPassword = () => {
             };
 
             const res = await fetch(
-                `http://${baseUrl}/api/recruiters/verifyOTP`,
+                `${baseUrl}/api/recruiters/verifyOTP`,
           {
                     method: "POST",
                     body: JSON.stringify(f), // Send the OTP for verification
@@ -113,7 +113,7 @@ const RecruiterForgotPassword = () => {
             // Simulating API call to update password
 
             const res = await fetch(
-                `http://${baseUrl}/api/recruiters/updateForgotPassword`,
+                `${baseUrl}/api/recruiters/updateForgotPassword`,
                 {
                     method: "PUT",
                     body: JSON.stringify(formData),

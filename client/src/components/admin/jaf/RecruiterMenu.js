@@ -13,7 +13,7 @@ const RecruiterMenu = ({ recruiters, onSelectRecruiter }) => {
         const jafAdminReads = {};
         for (const recruiter of recruiters) {
           const response = await axios.get(
-            `http://${baseUrl}/api/jaf/jafGet/${recruiter._id}`
+            `${baseUrl}/api/jaf/jafGet/${recruiter._id}`
           );
           const jaf = response.data;
           jafAdminReads[recruiter._id] = jaf.isAdminRead;

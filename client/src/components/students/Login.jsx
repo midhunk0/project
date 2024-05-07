@@ -37,7 +37,7 @@ const Login = () => {
 
         try {
             const res = await axios.post(
-                `http://${baseUrl}/api/students/studentLogin`,
+                `${baseUrl}/api/students/studentLogin`,
                 credentials
             );
             dispatch({ type: "LOGIN_SUCCESS", payload: res.data.student });

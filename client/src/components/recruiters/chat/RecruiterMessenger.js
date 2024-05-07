@@ -19,7 +19,7 @@ const RecruiterMessenger = () => {
     const getConversations = async () => {
       try {
         const res = await axios.get(
-          `http://${baseUrl}/api/recruiters/conversations/${user._id}`
+          `${baseUrl}/api/recruiters/conversations/${user._id}`
         );
         setConversations(res.data);
         setCurrentChat(res.data[0]);
@@ -34,7 +34,7 @@ const RecruiterMessenger = () => {
     const getMessages = async () => {
       try {
         const res = await axios.get(
-          `http://${baseUrl}/api/recruiters/messages/${currentChat?._id}`
+          `${baseUrl}/api/recruiters/messages/${currentChat?._id}`
         );
         setMessages(res.data);
       } catch (err) {
@@ -54,7 +54,7 @@ const RecruiterMessenger = () => {
 
     try {
       const res = await axios.post(
-        `http://${baseUrl}/api/recruiters/messages`,
+        `${baseUrl}/api/recruiters/messages`,
         message
       );
       setMessages([...messages, res.data]);

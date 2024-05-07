@@ -184,7 +184,7 @@ const Jointform = () => {
 
       // Send data to the server
       console.log(formData)
-      const res = await axios.post(`http://${baseUrl}/api/jaf/jafPost`, {
+      const res = await axios.post(`${baseUrl}/api/jaf/jafPost`, {
         ...formData,
         tableData: checkedBranchesEligible, // Update with checked branches eligible
         recruitmentProcess: checkedRecruitmentProcess,
