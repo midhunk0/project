@@ -10,21 +10,29 @@
   text-align: justify;
 }
 
-.overview-card {
-  
-  font-size: 20px;
-  width: 800px;
+.section-container {
+  display: flex; /* Use flexbox for horizontal centering */
+  justify-content: center; /* Center items horizontally */
+  flex-wrap: wrap; /* Allow items to wrap if needed */
 }
 
-.overview-card {
-  color: #20313e;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin-bottom: 20px;
-  font-size: 20px;
-  width: 800px;
+.custom-card {
+  border: 1px solid #ccc; /* Border style for the card */
+  border-radius: 10px; /* Rounded corners for the card */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow effect for the card */
+  padding: 20px; /* Padding inside the card */
+  width: 100%; /* Ensure cards take full width */
+
+  justify-content: center; /* Center horizontally */
+  max-width: 850px; /* Set a maximum width for the card */
+  margin: 0 auto; /* Center the card horizontally */
+}
+
+/* CSS styles for the paragraph content */
+.section-content {
+  font-size: 18px; /* Font size for paragraphs */
+  line-height: 1.6; /* Line height for better readability */
+  color: #666; /* Text color */
 }
 
 .card1 {
@@ -155,18 +163,34 @@
   color: #0b0f08;
 }
 
+.testimony-box {
+  border: 1px solid;
+  padding: 20px;
+  width: 70%;
+  border-radius: 50px;
+  align-items: center;
+  margin: 0 auto;
+  background: radial-gradient(50% 123.47% at 50% 50%, #2360d0 0%, #20313e 100%),
+    linear-gradient(121.28deg, #669600 0%, #ff0000 100%),
+    linear-gradient(360deg, #0029ff 0%, #8fff00 100%),
+    radial-gradient(100% 164.72% at 100% 100%, #6100ff 0%, #00ff57 100%),
+    radial-gradient(100% 148.07% at 0% 0%, #fff500 0%, #51d500 100%);
+  box-shadow: 0 0 0 4px #fff, /* First line */ 0 0 0 6px #000; /* Second line */
+}
+
 .carousel-container-2 {
-  background: radial-gradient(circle, #ffffff, #334e63);
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 20px;
-  width: 60%;
+  border-radius: 50px;
+  width: 70%;
   align-items: center;
   margin: 0 auto;
 
   .carousel-item p2 {
     font-family: "Garamond", Arial, sans-serif;
+    color: white;
     /* Replace "Montserrat" with the desired font name */
     /* Add fallback fonts in case the primary font is not available */
   }
@@ -283,21 +307,26 @@
 }
 
 .recruiters-container {
-  display: flex;
-  overflow: hidden;
+  white-space: nowrap; /* Ensure logos stay in a single line */
 }
 
 .recruiter-logo {
-  animation: moveLeftToRight 10s linear infinite;
-  margin-right: 20px;
+  display: inline-block;
+  margin-right: 20px; /* Adjust spacing between logos */
 }
 
-@keyframes moveLeftToRight {
+.recruiters-scroll {
+  animation: scrollLeft 30s linear infinite; /* Adjust animation duration as needed */
+}
+
+@keyframes scrollLeft {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(100%);
+    transform: translateX(
+      calc(-100% - 20px)
+    ); /* Adjust to move from left to right */
   }
 }
 
