@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, CircularProgress,Button } from "@mui/material";
+import { Box, Typography, CircularProgress, Button } from "@mui/material";
 import { Table } from "react-bootstrap";
 import axios from "axios";
 import "./Students.css";
@@ -30,7 +30,7 @@ const Student = () => {
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/students/get-all-students"
+          "https://project-api-iwiy.onrender.com/api/students/get-all-students"
         );
         setStudents(response.data);
         setIsLoading(false);
@@ -113,7 +113,7 @@ const Student = () => {
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/students/get-all-students"
+          "https://project-api-iwiy.onrender.com/api/students/get-all-students"
         );
         const filteredStudents = response.data.filter(
           (student) =>
@@ -444,14 +444,14 @@ const Student = () => {
                       </select>
                     </div>
                     <div className="filter-item">
-                    {selectedStudent && (
-        <StudentProfileModal
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-          student={selectedStudent}
-          // You can add any additional props needed for your modal
-        />
-      )}
+                      {selectedStudent && (
+                        <StudentProfileModal
+                          isOpen={isModalOpen}
+                          onClose={handleCloseModal}
+                          student={selectedStudent}
+                          // You can add any additional props needed for your modal
+                        />
+                      )}
                     </div>
                   </div>
                 </div>
@@ -488,10 +488,13 @@ const Student = () => {
                               <td>{student.phone}</td>
                               <td>{student.domicileState}</td>
                               <td>
-        <Button onClick={() => handleViewProfile(student)} variant="outlined">
-          View Profile
-        </Button>
-      </td>
+                                <Button
+                                  onClick={() => handleViewProfile(student)}
+                                  variant="outlined"
+                                >
+                                  View Profile
+                                </Button>
+                              </td>
                             </tr>
                           ))}
                         </tbody>

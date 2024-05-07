@@ -17,7 +17,7 @@ const AppliedCompanies = ({ studentId }) => {
       console.log(studentId);
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/application/getApplicationsByStudentId/${studentId}`
+          `https://project-api-iwiy.onrender.com/api/application/getApplicationsByStudentId/${studentId}`
         );
 
         setApplications(response.data.applications);
@@ -29,7 +29,7 @@ const AppliedCompanies = ({ studentId }) => {
 
         // Assuming you have an API endpoint that accepts an array of company IDs
         const recruiterResponse = await axios.post(
-          `http://localhost:8080/api/recruiters/getRecruitersByCompanyIds`,
+          `https://project-api-iwiy.onrender.com/api/recruiters/getRecruitersByCompanyIds`,
           { companyIds: companyIdArray }
         );
 
@@ -78,30 +78,36 @@ const AppliedCompanies = ({ studentId }) => {
       }}
     >
       {applications.map((application) => (
-  <div key={application._id} className="application-card">
-    {/* Fetch company name from recruiterDetails array */}
-    <h3>{getRecruiterName(application.companyId)}</h3>
-    <p>Status: {application.status}</p>
-    <div className="timeline">
-      {Array(application.totalStages + 1)
-        .fill(null)
-        .map((_, roundIndex) => (
-          <React.Fragment key={roundIndex}>
-            <div className="timeline-item">
-              <div className={`timeline-spot ${getStatusColor(application.stages[roundIndex]?.status)}`}>
-                {roundIndex}
-              </div>
-              <div className="stage-name">{application.stages[roundIndex]?.stageName || `Stage ${roundIndex}`}</div>
-            </div>
-            {roundIndex < application.totalStages && (
-              <div className="timeline-line"></div>
-            )}
-          </React.Fragment>
-        ))}
-    </div>
-  </div>
-))}
-
+        <div key={application._id} className="application-card">
+          {/* Fetch company name from recruiterDetails array */}
+          <h3>{getRecruiterName(application.companyId)}</h3>
+          <p>Status: {application.status}</p>
+          <div className="timeline">
+            {Array(application.totalStages + 1)
+              .fill(null)
+              .map((_, roundIndex) => (
+                <React.Fragment key={roundIndex}>
+                  <div className="timeline-item">
+                    <div
+                      className={`timeline-spot ${getStatusColor(
+                        application.stages[roundIndex]?.status
+                      )}`}
+                    >
+                      {roundIndex}
+                    </div>
+                    <div className="stage-name">
+                      {application.stages[roundIndex]?.stageName ||
+                        `Stage ${roundIndex}`}
+                    </div>
+                  </div>
+                  {roundIndex < application.totalStages && (
+                    <div className="timeline-line"></div>
+                  )}
+                </React.Fragment>
+              ))}
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

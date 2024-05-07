@@ -19,7 +19,7 @@ const Applications = () => {
         const companyId = id;
 
         const response = await axios.get(
-          `http://localhost:8080/api/application/getApplicationsByRecruiterId/${companyId}`
+          `https://project-api-iwiy.onrender.com/api/application/getApplicationsByRecruiterId/${companyId}`
         );
 
         setApplications(response.data);
@@ -86,7 +86,7 @@ const Applications = () => {
           try {
             // Update the application in the database
             await axios.put(
-              `http://localhost:8080/api/application/updateApplication/${selectedApplication._id}`,
+              `https://project-api-iwiy.onrender.com/api/application/updateApplication/${selectedApplication._id}`,
               selectedApplication
             );
             toast.success("Selected to next round");
@@ -124,7 +124,7 @@ const Applications = () => {
         try {
           // Update the application in the database
           await axios.put(
-            `http://localhost:8080/api/application/updateApplication/${unselectedApplication._id}`,
+            `https://project-api-iwiy.onrender.com/api/application/updateApplication/${unselectedApplication._id}`,
             unselectedApplication
           );
           console.log(

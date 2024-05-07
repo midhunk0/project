@@ -25,7 +25,7 @@
 
 //       // Send each user from the jsonData array to the server for registration
 //       const requests = jsonData.map((user) =>
-//         fetch("http://localhost:8080/api/students/studentRegister", {
+//         fetch("https://project-api-iwiy.onrender.com/api/students/studentRegister", {
 //           method: "POST",
 //           headers: {
 //             "Content-Type": "application/json",
@@ -206,15 +206,15 @@ const UploadExcel = () => {
           bgcolor="white"
         >
           <img
-             src="../../assets/excel2.png"
-             alt="Company_image"
-             style={{
-               width: "100%",
-               height: "270px",
-               objectFit: "cover",
-               borderRadius: "5px",
-             }}
-           />
+            src="../../assets/excel2.png"
+            alt="Company_image"
+            style={{
+              width: "100%",
+              height: "270px",
+              objectFit: "cover",
+              borderRadius: "5px",
+            }}
+          />
           <Typography variant="h4" margin="20px">
             Upload Excel File
           </Typography>
@@ -227,7 +227,12 @@ const UploadExcel = () => {
           />
           <Button
             variant="contained"
-            onClick={(e) => handleSubmit(e, "http://localhost:8080/api/students/studentRegister")}
+            onClick={(e) =>
+              handleSubmit(
+                e,
+                "https://project-api-iwiy.onrender.com/api/students/studentRegister"
+              )
+            }
             sx={{
               bgcolor: "#4CAF50", // Green color
               "&:hover": {
@@ -240,7 +245,12 @@ const UploadExcel = () => {
           </Button>
           <Button
             variant="contained"
-            onClick={(e) => handleSubmit(e, "http://localhost:8080/api/faculty/facultyRegister")}
+            onClick={(e) =>
+              handleSubmit(
+                e,
+                "https://project-api-iwiy.onrender.com/api/faculty/facultyRegister"
+              )
+            }
             sx={{
               bgcolor: "#1976D2", // Blue color
               "&:hover": {
@@ -259,5 +269,3 @@ const UploadExcel = () => {
 };
 
 export default UploadExcel;
-
-

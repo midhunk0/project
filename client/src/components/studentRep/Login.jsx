@@ -11,91 +11,91 @@ import toast, { Toaster } from "react-hot-toast";
 
 const colors = tokens();
 const Login = () => {
-    const containerStyle = {
-        background: "url(../../../assets/loginBg.jpeg)",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-    };
+  const containerStyle = {
+    background: "url(../../../assets/loginBg.jpeg)",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+  };
 
-    const [credentials, setCredentials] = useState({
-        repCollegeId: "",
-        password: "",
-    });
-    const navigate = useNavigate();
+  const [credentials, setCredentials] = useState({
+    repCollegeId: "",
+    password: "",
+  });
+  const navigate = useNavigate();
 
-    const { user, loading, error, dispatch } = useContext(AuthContext);
+  const { user, loading, error, dispatch } = useContext(AuthContext);
 
-    const handleChange = (e) => {
-        setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-    };
+  const handleChange = (e) => {
+    setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        dispatch({ type: "LOGIN_START" });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    dispatch({ type: "LOGIN_START" });
 
-        try {
-            const res = await axios.post(
-                "http://localhost:8080/api/studentRep/studentRepLogin",
-                credentials
-            );
-            dispatch({ type: "LOGIN_SUCCESS", payload: res.data.studentRep});
+    try {
+      const res = await axios.post(
+        "https://project-api-iwiy.onrender.com/api/studentRep/studentRepLogin",
+        credentials
+      );
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data.studentRep });
 
-                    navigate("/studentRep/home");
-        } catch (err) {
-            console.log(err.response);
-            toast.error("Incorrect credentials!"); // Log the error response for troubleshooting
-        }
-    };
+      navigate("/studentRep/home");
+    } catch (err) {
+      console.log(err.response);
+      toast.error("Incorrect credentials!"); // Log the error response for troubleshooting
+    }
+  };
 
-    return (
-        <Box
-            height="91.5vh"
-            width="100%"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            style={containerStyle}
+  return (
+    <Box
+      height="91.5vh"
+      width="100%"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      style={containerStyle}
+    >
+      <Box
+        bgcolor="white"
+        padding="20px 60px"
+        borderRadius="10px"
+        display="flex"
+        alignItems="center"
+        flexDirection="column"
+        gap="10px"
+        className="card"
+      >
+        <Typography variant="h5" marginTop="10px" marginBottom="30px">
+          Student Rep Login
+        </Typography>
+        <CssTextField
+          required
+          id="repCollegeId"
+          onChange={handleChange}
+          label="Enter your collegeID"
+        />
+        <CssTextField
+          required
+          id="password"
+          type="password"
+          onChange={handleChange}
+          label="Password"
+        />
+        <Button
+          variant="contained"
+          sx={{
+            background: colors.gray[100],
+            "&:hover": { background: colors.gray[100] },
+          }}
+          onClick={handleSubmit}
         >
-            <Box
-                bgcolor="white"
-                padding="20px 60px"
-                borderRadius="10px"
-                display="flex"
-                alignItems="center"
-                flexDirection="column"
-                gap="10px"
-                className="card"
-            >
-                <Typography variant="h5" marginTop="10px" marginBottom="30px">
-                    Student Rep Login
-                </Typography>
-                <CssTextField
-                    required
-                    id="repCollegeId"
-                    onChange={handleChange}
-                    label="Enter your collegeID"
-                />
-                <CssTextField
-                    required
-                    id="password"
-                    type="password"
-                    onChange={handleChange}
-                    label="Password"
-                />
-                <Button
-                    variant="contained"
-                    sx={{
-                        background: colors.gray[100],
-                        "&:hover": { background: colors.gray[100] },
-                    }}
-                    onClick={handleSubmit}
-                >
-                    Sign In
-                </Button>
-            </Box>
-            <Toaster position="bottom-center" /> {/* Add the toast container */}
-        </Box>
-    );
+          Sign In
+        </Button>
+      </Box>
+      <Toaster position="bottom-center" /> {/* Add the toast container */}
+    </Box>
+  );
 };
 
 export default Login;

@@ -65,14 +65,13 @@ const FacultyRegister = () => {
     try {
       console.log(formData);
       const res = await axios.post(
-        "http://localhost:8080/api/faculty/facultyRegister",
+        "https://project-api-iwiy.onrender.com/api/faculty/facultyRegister",
         formData
       );
       toast.success("Faculty registered successfully!");
       setFormData({
         username: "",
         password: "",
-
       });
     } catch (err) {
       console.log(err.response);

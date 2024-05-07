@@ -30,10 +30,12 @@ const Login = () => {
   const { user, loading, error, dispatch } = useContext(AuthContext);
 
   const handleAdminChange = (e) => {
-    const updatedCredentialsAdmin = { ...credentialsAdmin, [e.target.id]: e.target.value };
+    const updatedCredentialsAdmin = {
+      ...credentialsAdmin,
+      [e.target.id]: e.target.value,
+    };
     setCredentialsAdmin(updatedCredentialsAdmin);
   };
-  
 
   const handleFacultyChange = (e) => {
     setCredentialsFaculty((prev) => ({
@@ -46,16 +48,14 @@ const Login = () => {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
 
-
     try {
       let res;
 
       if (adminMode) {
-        
         // admin is defined in student schema hence calling student route
-    
+
         res = await axios.post(
-          "http://localhost:8080/api/students/studentLogin",
+          "https://project-api-iwiy.onrender.com/api/students/studentLogin",
           credentialsAdmin
         );
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data.student });
@@ -69,7 +69,7 @@ const Login = () => {
         }
       } else {
         res = await axios.post(
-          "http://localhost:8080/api/faculty/facultyLogin",
+          "https://project-api-iwiy.onrender.com/api/faculty/facultyLogin",
           credentialsFaculty
         );
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data.faculty });
@@ -131,9 +131,11 @@ const Login = () => {
           Sign In
         </Button>
         <Typography variant="body2" marginTop="10px">
-          <Link to="/faculty/forgot-password">Forgot your password? Reset here</Link>
+          <Link to="/faculty/forgot-password">
+            Forgot your password? Reset here
+          </Link>
         </Typography>
-        
+
         {/* Toggle button to switch between admin and faculty login */}
         <Button onClick={() => setAdminMode(!adminMode)}>
           {adminMode ? "Switch to Faculty Login" : "Switch to Admin Login"}

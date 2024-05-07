@@ -17,7 +17,7 @@ const RecruiterMessenger = () => {
     const getConversations = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/api/recruiters/conversations/${user._id}`
+          `https://project-api-iwiy.onrender.com/api/recruiters/conversations/${user._id}`
         );
         setConversations(res.data);
         setCurrentChat(res.data[0]);
@@ -32,7 +32,7 @@ const RecruiterMessenger = () => {
     const getMessages = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/api/recruiters/messages/${currentChat?._id}`
+          `https://project-api-iwiy.onrender.com/api/recruiters/messages/${currentChat?._id}`
         );
         setMessages(res.data);
       } catch (err) {
@@ -52,7 +52,7 @@ const RecruiterMessenger = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8080/api/recruiters/messages",
+        "https://project-api-iwiy.onrender.com/api/recruiters/messages",
         message
       );
       setMessages([...messages, res.data]);
@@ -73,9 +73,16 @@ const RecruiterMessenger = () => {
 
   return (
     <>
-      <div className="recruiterMessenger1" >
+      <div className="recruiterMessenger1">
         {conversations ? "" : "loading"}
-        <div className="chatBox1" style={{ backgroundImage: `url(/assets/chat.jpg)`, backgroundSize: "cover", backgroundRepeat: "no-repeat" }}>
+        <div
+          className="chatBox1"
+          style={{
+            backgroundImage: `url(/assets/chat.jpg)`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
           <div className="chatBoxWrapper1">
             <>
               <div className="chatBoxTop1">

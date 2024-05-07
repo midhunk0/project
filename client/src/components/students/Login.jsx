@@ -34,7 +34,7 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8080/api/students/studentLogin",
+        "https://project-api-iwiy.onrender.com/api/students/studentLogin",
         credentials
       );
       const loggedInStudent = res.data.student;
@@ -101,7 +101,9 @@ const Login = () => {
           Sign In
         </Button>
         <Typography variant="body2" marginTop="10px">
-          <Link to="/student/forgot-password">Forgot your password? Reset here</Link>
+          <Link to="/student/forgot-password">
+            Forgot your password? Reset here
+          </Link>
         </Typography>
       </Box>
       <Toaster position="bottom-center" /> {/* Add the toast container */}

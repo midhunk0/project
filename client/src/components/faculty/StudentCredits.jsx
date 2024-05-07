@@ -49,7 +49,7 @@ const StudentCredits = () => {
 
       // Send updated data to the server
       await axios.put(
-        `http://localhost:8080/api/students/credit/${updatedStudent._id}`,
+        `https://project-api-iwiy.onrender.com/api/students/credit/${updatedStudent._id}`,
         { semester: semester }
       );
       console.log(updatedStudent);
@@ -69,7 +69,7 @@ const StudentCredits = () => {
 
       // Send updated data to the server
       await axios.put(
-        `http://localhost:8080/api/students/StudentProfile/${updatedStudent._id}`,
+        `https://project-api-iwiy.onrender.com/api/students/StudentProfile/${updatedStudent._id}`,
         updatedStudent
       );
     } catch (error) {
@@ -82,7 +82,7 @@ const StudentCredits = () => {
     try {
       console.log(facName);
       const response = await axios.get(
-        `http://localhost:8080/api/faculty/facultystudent/${facultymail}`
+        `https://project-api-iwiy.onrender.com/api/faculty/facultystudent/${facultymail}`
       );
       console.log(response.data);
       setStudents(response.data.student); // Assuming response.data.student is an array of students

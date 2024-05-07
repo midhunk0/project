@@ -13,7 +13,7 @@ const Placements = () => {
     const fetchRecruiters = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/recruiters/getAllRecruiters"
+          "https://project-api-iwiy.onrender.com/api/recruiters/getAllRecruiters"
         );
         setRecruiters(response.data);
       } catch (error) {
@@ -27,13 +27,13 @@ const Placements = () => {
   const fetchApplications = async (recruiterId) => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/application/getApplicationsByRecruiterId/${recruiterId}`
+        `https://project-api-iwiy.onrender.com/api/application/getApplicationsByRecruiterId/${recruiterId}`
       );
       const updatedApplications = response.data.applications.map((app) => {
         const matchingStudent = response.data.studentDetails.find(
           (student) => student._id === app.studentId
         );
-  
+
         return {
           ...app,
           studentName: matchingStudent ? matchingStudent.name : "Unknown",
@@ -41,19 +41,18 @@ const Placements = () => {
           department: matchingStudent ? matchingStudent.department : "Unknown",
         };
       });
-  
+
       const filteredApplications = updatedApplications.map((app) => ({
         ...app,
         stages: app.stages.filter((stage) => stage.stageNumber !== 0),
       }));
-  
+
       setApplications(filteredApplications);
       setModalOpen(true);
     } catch (error) {
       console.error("Error fetching applications:", error);
     }
   };
-  
 
   const handleRecruiterClick = (recruiterId) => {
     setSelectedRecruiter(recruiterId);

@@ -6,7 +6,6 @@ import axios from "axios";
 import { AuthContext } from "../../contexts/AuthContext";
 import toast, { Toaster } from "react-hot-toast";
 
-
 const StyledBox = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
@@ -23,7 +22,9 @@ const ContentBox = styled(Box)(({ theme }) => ({
   borderRadius: theme.spacing(1),
   padding: theme.spacing(2),
   backgroundColor: theme.palette.grey[100],
-  boxShadow: `${theme.spacing(1)} ${theme.spacing(1)} ${theme.spacing(3)} rgba(0, 0, 0, 0.1)`, // Add a 3D shadow effect
+  boxShadow: `${theme.spacing(1)} ${theme.spacing(1)} ${theme.spacing(
+    3
+  )} rgba(0, 0, 0, 0.1)`, // Add a 3D shadow effect
   transform: "rotateX(2deg)", // Rotate the component slightly on the X-axis for a 3D effect
   transition: "transform 0.3s ease-in-out", // Add transition for smooth animation
   "&:hover": {
@@ -38,13 +39,16 @@ const Request = () => {
 
   const handleRequest = async (e) => {
     setAction(true);
-    console.log(action)
+    console.log(action);
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:8080/api/recruiters/recruiterRequest/${id}`, {
-        action: action,
-      });
-      toast.success("Request sent successfully")
+      await axios.put(
+        `https://project-api-iwiy.onrender.com/api/recruiters/recruiterRequest/${id}`,
+        {
+          action: action,
+        }
+      );
+      toast.success("Request sent successfully");
     } catch (err) {
       console.log(err);
     }
@@ -54,12 +58,12 @@ const Request = () => {
 
   return (
     <StyledBox>
-      <ContentBox style={{display:"flex",flexDirection:"column"}}>
+      <ContentBox style={{ display: "flex", flexDirection: "column" }}>
         <Typography variant="h5" marginRight={2}>
-        Are you ready to submit your request to the administrator?
+          Are you ready to submit your request to the administrator?
         </Typography>
         <Button
-        style={{top:"120px"}}
+          style={{ top: "120px" }}
           onClick={handleRequest}
           variant="contained"
           sx={{

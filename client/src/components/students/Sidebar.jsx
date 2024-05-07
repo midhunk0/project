@@ -91,7 +91,7 @@ const StudentSidebar = ({ username, profilePicture }) => {
   };
 
   const dataStudent = useFetch(
-    `http://localhost:8080/api/students/StudentProfile/${id}`
+    `https://project-api-iwiy.onrender.com/api/students/StudentProfile/${id}`
   );
   const student = dataStudent.data;
 

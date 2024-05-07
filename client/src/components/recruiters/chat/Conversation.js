@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -11,7 +10,7 @@ const Conversation = ({ conversation, currentUser }) => {
     const getAdmin = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/api/admins/getAdminById/${adminId}`
+          `https://project-api-iwiy.onrender.com/api/admins/getAdminById/${adminId}`
         );
         setAdmin(res.data);
       } catch (error) {

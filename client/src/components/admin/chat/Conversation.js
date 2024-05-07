@@ -12,7 +12,7 @@ const Conversation = ({ conversation, currentUser, unreadMessageCount }) => {
     const getUser = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/api/recruiters/getRecruiterById/${recruiterId}`
+          `https://project-api-iwiy.onrender.com/api/recruiters/getRecruiterById/${recruiterId}`
         );
 
         if (res.data) {
@@ -43,7 +43,9 @@ const Conversation = ({ conversation, currentUser, unreadMessageCount }) => {
       />
       <div className="conversationDetails">
         <p className="conversationName">{user.companyName}</p>
-        {unreadMessageCount > 0 && <span className="unreadCount">{unreadMessageCount}</span>}
+        {unreadMessageCount > 0 && (
+          <span className="unreadCount">{unreadMessageCount}</span>
+        )}
       </div>
     </div>
   );

@@ -40,7 +40,7 @@ const StudentForgotPassword = () => {
     try {
       // Simulating API call
       const res = await fetch(
-        "http://localhost:8080/api/students/forgotPassword",
+        "https://project-api-iwiy.onrender.com/api/students/forgotPassword",
         {
           method: "POST",
           body: JSON.stringify(formData),
@@ -71,13 +71,16 @@ const StudentForgotPassword = () => {
         correct_otp: correctOTP,
       };
 
-      const res = await fetch("http://localhost:8080/api/students/verifyOTP", {
-        method: "POST",
-        body: JSON.stringify(f), // Send the OTP for verification
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        "https://project-api-iwiy.onrender.com/api/students/verifyOTP",
+        {
+          method: "POST",
+          body: JSON.stringify(f), // Send the OTP for verification
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const data = await res.json();
       // Handle response from the server
 
@@ -108,7 +111,7 @@ const StudentForgotPassword = () => {
       // Simulating API call to update password
 
       const res = await fetch(
-        "http://localhost:8080/api/students/updateForgotPassword",
+        "https://project-api-iwiy.onrender.com/api/students/updateForgotPassword",
         {
           method: "PUT",
           body: JSON.stringify(formData),

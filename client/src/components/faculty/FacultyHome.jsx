@@ -27,7 +27,7 @@ const FacultyHome = () => {
       setStudents(updatedStudents);
 
       await axios.put(
-        `http://localhost:8080/api/students/StudentProfile/${updatedStudent._id}`,
+        `https://project-api-iwiy.onrender.com/api/students/StudentProfile/${updatedStudent._id}`,
         updatedStudent
       );
     } catch (error) {
@@ -38,7 +38,7 @@ const FacultyHome = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/faculty/facultystudent/${facultymail}`
+        `https://project-api-iwiy.onrender.com/api/faculty/facultystudent/${facultymail}`
       );
       setStudents(response.data.student);
     } catch (error) {
@@ -63,12 +63,16 @@ const FacultyHome = () => {
           alt="Company_image"
           className="faculty-home-image" // Add class name for image styles
         />
-        <Typography variant="h3" className="faculty-home-heading"> {/* Add class name for heading styles */}
+        <Typography variant="h3" className="faculty-home-heading">
+          {" "}
+          {/* Add class name for heading styles */}
           {user.username}
         </Typography>
       </Box>
       <Grid item xs={12}>
-        <table className="faculty-home-table"> {/* Add class name for table styles */}
+        <table className="faculty-home-table">
+          {" "}
+          {/* Add class name for table styles */}
           {/* Table header */}
           <thead>
             <tr>
@@ -84,7 +88,9 @@ const FacultyHome = () => {
                 <td>{student.username}</td>
                 <td>{student.studentCollegeID}</td>
                 <td>
-                  <button onClick={() => handleViewProfile(student)}>View</button>
+                  <button onClick={() => handleViewProfile(student)}>
+                    View
+                  </button>
                 </td>
               </tr>
             ))}

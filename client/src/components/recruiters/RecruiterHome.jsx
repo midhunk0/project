@@ -15,7 +15,7 @@ const RecruiterHome = () => {
   const id = user._id;
 
   const dataRecruiter = useFetch(
-    `http://localhost:8080/api/recruiters/recruiterProfile/${id}`
+    `https://project-api-iwiy.onrender.com/api/recruiters/recruiterProfile/${id}`
   );
   const recruiter = dataRecruiter.data;
 
@@ -33,7 +33,7 @@ const RecruiterHome = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:8080/api/recruiters/recruiterPassword/${id}`,
+        `https://project-api-iwiy.onrender.com/api/recruiters/recruiterPassword/${id}`,
         { newPassword: password }
       );
       setSnackbarOpen(true);

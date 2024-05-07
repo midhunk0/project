@@ -21,7 +21,7 @@ const StudentApplications = () => {
     const fetchRecruiters = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/recruiters/getRecruitersSentJaf"
+          "https://project-api-iwiy.onrender.com/api/recruiters/getRecruitersSentJaf"
         );
         setRecruiters(response.data);
       } catch (error) {
@@ -39,7 +39,7 @@ const StudentApplications = () => {
           const companyId = selectedRecruiter._id;
 
           const response = await axios.get(
-            `http://localhost:8080/api/application/getApplicationsByRecruiterId/${companyId}`
+            `https://project-api-iwiy.onrender.com/api/application/getApplicationsByRecruiterId/${companyId}`
           );
 
           setApplications(response.data);
@@ -89,7 +89,7 @@ const StudentApplications = () => {
           try {
             // Update the application in the database
             await axios.put(
-              `http://localhost:8080/api/application/updateIsAdminVerified/${selectedApplication._id}`,
+              `https://project-api-iwiy.onrender.com/api/application/updateIsAdminVerified/${selectedApplication._id}`,
               selectedApplication
             );
 

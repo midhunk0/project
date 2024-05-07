@@ -21,7 +21,7 @@ const AdminMessenger = () => {
     const getRecruiters = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8080/api/recruiters/getAllRecruiters"
+          "https://project-api-iwiy.onrender.com/api/recruiters/getAllRecruiters"
         );
         setRecruiters(res.data);
       } catch (err) {
@@ -35,7 +35,7 @@ const AdminMessenger = () => {
     const getConversations = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/api/students/conversations/${user._id}`
+          `https://project-api-iwiy.onrender.com/api/students/conversations/${user._id}`
         );
         setConversations(res.data);
       } catch (err) {
@@ -50,7 +50,7 @@ const AdminMessenger = () => {
       try {
         if (currentChat) {
           const res = await axios.get(
-            `http://localhost:8080/api/students/messages/${currentChat._id}`
+            `https://project-api-iwiy.onrender.com/api/students/messages/${currentChat._id}`
           );
           setMessages(res.data);
         } else {
@@ -72,7 +72,7 @@ const AdminMessenger = () => {
   const markMessagesAsRead = async (conversationId) => {
     try {
       const res = await axios.patch(
-        `http://localhost:8080/api/students/messages/markAsRead/${conversationId}`
+        `https://project-api-iwiy.onrender.com/api/students/messages/markAsRead/${conversationId}`
       );
       // Handle success response if needed
     } catch (err) {
@@ -90,7 +90,7 @@ const AdminMessenger = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8080/api/students/messages",
+        "https://project-api-iwiy.onrender.com/api/students/messages",
         message
       );
       setMessages([...messages, res.data]);
@@ -111,7 +111,7 @@ const AdminMessenger = () => {
   const fetchUnreadMessageCount = async (conversationId) => {
     try {
       const res = await axios.get(
-        `http://localhost:8080/api/students/unreadMessages/${conversationId}`
+        `https://project-api-iwiy.onrender.com/api/students/unreadMessages/${conversationId}`
       );
 
       if (

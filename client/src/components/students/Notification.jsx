@@ -17,7 +17,7 @@ const Notification = () => {
   const id = user._id;
 
   const dataStudent = useFetch(
-    `http://localhost:8080/api/students/StudentProfile/${id}`
+    `https://project-api-iwiy.onrender.com/api/students/StudentProfile/${id}`
   );
   const student = dataStudent.data;
 
@@ -38,10 +38,9 @@ const Notification = () => {
     const fetchNotifications = async () => {
       try {
         const response = await axios.get("/api/jaf/notification");
-        
+
         const notificationsData = response.data.filter(
-          (notification) =>
-            notification.isAdminJafSent === true
+          (notification) => notification.isAdminJafSent === true
         );
         setNotifications(notificationsData);
       } catch (error) {
@@ -134,18 +133,16 @@ const Notification = () => {
       return;
     }
 
-
-   
     try {
-      console.log(selectedNotification.recruitmentProcess.values)
+      console.log(selectedNotification.recruitmentProcess.values);
       // Send a POST request to create the application
       const response = await axios.post(
-        "http://localhost:8080/api/application/createApplication",
+        "https://project-api-iwiy.onrender.com/api/application/createApplication",
         {
           studentId: student._id,
           companyId: selectedNotification.recruiter_id,
-          totalStages: selectedNotification.totalRounds.value, 
-          recruitmentProcess: selectedNotification.recruitmentProcess.values// Assuming totalRounds corresponds to totalStages
+          totalStages: selectedNotification.totalRounds.value,
+          recruitmentProcess: selectedNotification.recruitmentProcess.values, // Assuming totalRounds corresponds to totalStages
         }
       );
 

@@ -47,11 +47,12 @@ const customStyles = {
   },
 };
 
-
 const JafForm = ({ recruiter }) => {
   const id = recruiter._id;
 
-  const jafdata = useFetch(`http://localhost:8080/api/jaf/jafGet/${id}`);
+  const jafdata = useFetch(
+    `https://project-api-iwiy.onrender.com/api/jaf/jafGet/${id}`
+  );
   const backenddata = jafdata.data || {}; // Ensure backenddata is defined
   console.log(backenddata);
 
@@ -81,7 +82,7 @@ const JafForm = ({ recruiter }) => {
 
     try {
       const res = await axios.put(
-        `http://localhost:8080/api/jaf/jafPut/${jafid}`,
+        `https://project-api-iwiy.onrender.com/api/jaf/jafPut/${jafid}`,
         { name, checked }
       );
       console.log(res.data); // Log the response data if needed
@@ -103,13 +104,15 @@ const JafForm = ({ recruiter }) => {
       };
 
       await axios.put(
-        `http://localhost:8080/api/jaf/jafAdminSent/${jafid}`,
+        `https://project-api-iwiy.onrender.com/api/jaf/jafAdminSent/${jafid}`,
         true
       );
-      await axios.post("http://localhost:8080/api/jaf/send-email-to-students");
+      await axios.post(
+        "https://project-api-iwiy.onrender.com/api/jaf/send-email-to-students"
+      );
       // Send the new NB value to the server
       const res = await axios.put(
-        `http://localhost:8080/api/jaf/jafPutNbDeadline/${jafid}`,
+        `https://project-api-iwiy.onrender.com/api/jaf/jafPutNbDeadline/${jafid}`,
         updatedData
       );
 
@@ -337,23 +340,22 @@ const JafForm = ({ recruiter }) => {
           <Typography variant="h6">Select Deadline:</Typography>
 
           <Datetime
-  label="Application Deadline"
-  value={selectedDate}
-  onChange={handleDateChange}
-  inputProps={{ style: customStyles.input }} // Change InputProps to inputProps
-  renderInput={(params) => (
-    <input
-      {...params}
-      style={customStyles.input} // Apply custom styles directly to the input element
-    />
-  )}
-  renderCalendar={(props, openCalendar) => (
-    <Box style={customStyles.calendarContainer}>
-      <div onClick={openCalendar}>{props.value}</div>
-    </Box>
-  )}
-/>
-
+            label="Application Deadline"
+            value={selectedDate}
+            onChange={handleDateChange}
+            inputProps={{ style: customStyles.input }} // Change InputProps to inputProps
+            renderInput={(params) => (
+              <input
+                {...params}
+                style={customStyles.input} // Apply custom styles directly to the input element
+              />
+            )}
+            renderCalendar={(props, openCalendar) => (
+              <Box style={customStyles.calendarContainer}>
+                <div onClick={openCalendar}>{props.value}</div>
+              </Box>
+            )}
+          />
         </Box>
       </Box>
       <Box

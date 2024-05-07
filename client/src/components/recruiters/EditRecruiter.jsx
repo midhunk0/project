@@ -1,10 +1,5 @@
-
 import React, { useState } from "react";
-import {
-  Box,
-  Button,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import CssTextField from "../global/CssTextField";
 import axios from "axios";
@@ -28,7 +23,7 @@ const RecruiterRegister = () => {
     try {
       console.log(recruiterDetails);
       const res = await axios.put(
-        `http://localhost:8080/api/recruiters/recruiterProfile/${id}`,
+        `https://project-api-iwiy.onrender.com/api/recruiters/recruiterProfile/${id}`,
         recruiterDetails
       );
       toast.success("Recruiter profile updated successfully!");
@@ -81,7 +76,6 @@ const RecruiterRegister = () => {
           "natureOfBusiness",
           "Nature of Business (IT, R&D, etc)"
         )}
-
       </Box>
 
       <Box

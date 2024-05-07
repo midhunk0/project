@@ -87,7 +87,7 @@ const RecruiterSidebar = () => {
   };
 
   const dataRecruiter = useFetch(
-    `http://localhost:8080/api/recruiters/recruiterProfile/${id}`
+    `https://project-api-iwiy.onrender.com/api/recruiters/recruiterProfile/${id}`
   );
   const recruiter = dataRecruiter.data;
 

@@ -17,7 +17,7 @@ const StudentHome = () => {
   const id = user._id;
 
   const dataStudent = useFetch(
-    `http://localhost:8080/api/students/StudentProfile/${id}`
+    `https://project-api-iwiy.onrender.com/api/students/StudentProfile/${id}`
   );
   const student = dataStudent.data;
 
@@ -36,7 +36,7 @@ const StudentHome = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:8080/api/students/StudentPassword/${id}`,
+        `https://project-api-iwiy.onrender.com/api/students/StudentPassword/${id}`,
         {
           newPassword: password,
         }
@@ -65,7 +65,6 @@ const StudentHome = () => {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
       }}
-      
     >
       <div className="container home mt-5" style={{ justifyContent: "center" }}>
         {flag ? (

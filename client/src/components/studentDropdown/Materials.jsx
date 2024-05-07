@@ -38,7 +38,7 @@ const Materials = () => {
   };
 
   const openPdfInNewTab = (pdfUrl) => {
-    const fullPdfUrl = `http://localhost:8080/files/${pdfUrl}`;
+    const fullPdfUrl = `https://project-api-iwiy.onrender.com/files/${pdfUrl}`;
     window.open(fullPdfUrl, "_blank");
   };
 
@@ -48,7 +48,11 @@ const Materials = () => {
         <tr key={index}>
           <td>{file.title}</td>
           <td>
-            <Button variant="outline-primary" className="btn-download" onClick={() => openPdfInNewTab(file.fileName)}>
+            <Button
+              variant="outline-primary"
+              className="btn-download"
+              onClick={() => openPdfInNewTab(file.fileName)}
+            >
               Download
             </Button>
           </td>
@@ -67,14 +71,23 @@ const Materials = () => {
       <h3>Select a Topic</h3>
       <div className="topic-buttons">
         {topics.map((topic) => (
-          <Button key={topic} variant="info" className="btn-info" onClick={() => handleTopicSelection(topic)}>
+          <Button
+            key={topic}
+            variant="info"
+            className="btn-info"
+            onClick={() => handleTopicSelection(topic)}
+          >
             {topic}
           </Button>
         ))}
       </div>
 
-      <Modal show={showModal} onHide={handleCloseModal} className="custom-modal">
-        <Modal.Header className="modal-header" >
+      <Modal
+        show={showModal}
+        onHide={handleCloseModal}
+        className="custom-modal"
+      >
+        <Modal.Header className="modal-header">
           <Modal.Title>{selectedTopic}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -85,13 +98,15 @@ const Materials = () => {
                 <th>PDF</th>
               </tr>
             </thead>
-            <tbody>
-              {renderRows()}
-            </tbody>
+            <tbody>{renderRows()}</tbody>
           </Table>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" className="btn-close" onClick={handleCloseModal}>
+          <Button
+            variant="secondary"
+            className="btn-close"
+            onClick={handleCloseModal}
+          >
             Close
           </Button>
         </Modal.Footer>
@@ -101,7 +116,3 @@ const Materials = () => {
 };
 
 export default Materials;
-
-
-
-

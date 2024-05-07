@@ -95,7 +95,7 @@ const Edit = () => {
     });
     try {
       const res = await axios.put(
-        `http://localhost:8080/api/students/StudentProfile/${id}`,
+        `https://project-api-iwiy.onrender.com/api/students/StudentProfile/${id}`,
         profileDetails
       );
 
