@@ -1,8 +1,10 @@
+// @ts-nocheck
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import axios from "axios";
 import StudentProfileModal from "./StudentProfileModal";
 import "./StudentCredits.css";
+import { baseUrl } from "../../Url";
 
 const StudentCredits = () => {
   const { user } = useContext(AuthContext);
@@ -49,7 +51,7 @@ const StudentCredits = () => {
 
       // Send updated data to the server
       await axios.put(
-        `http://localhost:8080/api/students/credit/${updatedStudent._id}`,
+        `http://${baseUrl}/api/students/credit/${updatedStudent._id}`,
         { semester: semester }
       );
       console.log(updatedStudent);
@@ -69,7 +71,7 @@ const StudentCredits = () => {
 
       // Send updated data to the server
       await axios.put(
-        `http://localhost:8080/api/students/StudentProfile/${updatedStudent._id}`,
+        `http://${baseUrl}/api/students/StudentProfile/${updatedStudent._id}`,
         updatedStudent
       );
     } catch (error) {
@@ -82,7 +84,7 @@ const StudentCredits = () => {
     try {
       console.log(facName);
       const response = await axios.get(
-        `http://localhost:8080/api/faculty/facultystudent/${facultymail}`
+        `http://${baseUrl}/api/faculty/facultystudent/${facultymail}`
       );
       console.log(response.data);
       setStudents(response.data.student); // Assuming response.data.student is an array of students

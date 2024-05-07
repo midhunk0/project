@@ -1,7 +1,9 @@
+// @ts-nocheck
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Typography, Modal } from "@mui/material";
 import "./Placements.css";
+import { baseUrl } from "../../Url";
 
 const Placements = () => {
   const [recruiters, setRecruiters] = useState([]);
@@ -13,7 +15,7 @@ const Placements = () => {
     const fetchRecruiters = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/recruiters/getAllRecruiters"
+          `http://${baseUrl}/api/recruiters/getAllRecruiters`
         );
         setRecruiters(response.data);
       } catch (error) {
@@ -27,7 +29,7 @@ const Placements = () => {
   const fetchApplications = async (recruiterId) => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/application/getApplicationsByRecruiterId/${recruiterId}`
+        `http://${baseUrl}/api/application/getApplicationsByRecruiterId/${recruiterId}`
       );
       const updatedApplications = response.data.applications.map((app) => {
         const matchingStudent = response.data.studentDetails.find(

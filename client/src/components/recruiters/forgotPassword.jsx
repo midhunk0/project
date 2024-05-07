@@ -6,6 +6,7 @@ import CssTextField from "../global/CssTextField";
 import toast, { Toaster } from "react-hot-toast";
 import ReCAPTCHA from "react-google-recaptcha"; // Import the CAPTCHA component
 import { AuthContext } from "../../contexts/AuthContext";
+import { baseUrl } from "../../Url";
 
 
 const RecruiterForgotPassword = () => {
@@ -41,7 +42,7 @@ const RecruiterForgotPassword = () => {
         try {
             // Simulating API call
             const res = await fetch(
-                "http://localhost:8080/api/recruiters/forgotPassword",
+                `http://${baseUrl}/api/recruiters/forgotPassword`,
                 {
                     method: "POST",
                     body: JSON.stringify(formData),
@@ -73,8 +74,8 @@ const RecruiterForgotPassword = () => {
             };
 
             const res = await fetch(
-                "http://localhost:8080/api/recruiters/verifyOTP",
-                {
+                `http://${baseUrl}/api/recruiters/verifyOTP`,
+          {
                     method: "POST",
                     body: JSON.stringify(f), // Send the OTP for verification
                     headers: {
@@ -112,7 +113,7 @@ const RecruiterForgotPassword = () => {
             // Simulating API call to update password
 
             const res = await fetch(
-                "http://localhost:8080/api/recruiters/updateForgotPassword",
+                `http://${baseUrl}/api/recruiters/updateForgotPassword`,
                 {
                     method: "PUT",
                     body: JSON.stringify(formData),

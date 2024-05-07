@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Recruiter viewed JAF form
 
 import React, { useState } from "react";
@@ -16,6 +17,7 @@ import CssTextField from "../global/CssTextField";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthContext";
+import { baseUrl } from "../../Url";
 
 // Main component
 const Jointform = () => {
@@ -182,7 +184,7 @@ const Jointform = () => {
 
       // Send data to the server
       console.log(formData)
-      const res = await axios.post("http://localhost:8080/api/jaf/jafPost", {
+      const res = await axios.post(`http://${baseUrl}/api/jaf/jafPost`, {
         ...formData,
         tableData: checkedBranchesEligible, // Update with checked branches eligible
         recruitmentProcess: checkedRecruitmentProcess,

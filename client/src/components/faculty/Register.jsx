@@ -6,6 +6,7 @@ import axios from "axios";
 import { tokens } from "../../theme";
 import CssTextField from "../global/CssTextField";
 import toast, { Toaster } from "react-hot-toast";
+import { baseUrl } from "../../Url";
 
 const colors = tokens();
 
@@ -65,7 +66,7 @@ const FacultyRegister = () => {
     try {
       console.log(formData);
       const res = await axios.post(
-        "http://localhost:8080/api/faculty/facultyRegister",
+        `http://${baseUrl}/api/faculty/facultyRegister`,
         formData
       );
       toast.success("Faculty registered successfully!");

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
@@ -5,6 +6,7 @@ import CssTextField from "../global/CssTextField";
 import toast, { Toaster } from "react-hot-toast";
 import ReCAPTCHA from "react-google-recaptcha"; // Import the CAPTCHA component
 import { AuthContext } from "../../contexts/AuthContext";
+import { baseUrl } from "../../Url";
 
 const StudentForgotPassword = () => {
   const [verified, setVerified] = useState(false);
@@ -40,7 +42,7 @@ const StudentForgotPassword = () => {
     try {
       // Simulating API call
       const res = await fetch(
-        "http://localhost:8080/api/students/forgotPassword",
+        `http://${baseUrl}/api/students/forgotPassword`,
         {
           method: "POST",
           body: JSON.stringify(formData),
@@ -71,7 +73,7 @@ const StudentForgotPassword = () => {
         correct_otp: correctOTP,
       };
 
-      const res = await fetch("http://localhost:8080/api/students/verifyOTP", {
+      const res = await fetch(`http://${baseUrl}/api/students/verifyOTP`, {
         method: "POST",
         body: JSON.stringify(f), // Send the OTP for verification
         headers: {
@@ -108,7 +110,7 @@ const StudentForgotPassword = () => {
       // Simulating API call to update password
 
       const res = await fetch(
-        "http://localhost:8080/api/students/updateForgotPassword",
+        `http://${baseUrl}/api/students/updateForgotPassword`,
         {
           method: "PUT",
           body: JSON.stringify(formData),

@@ -5,6 +5,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import CssTextField from '../global/CssTextField';
 import { Box } from '@mui/system';
 import { Typography, Button,FormControl,Select,MenuItem,InputLabel } from '@mui/material';
+import { baseUrl } from '../../Url';
 
 const FacultyEdit = () => {
     const facultyData = JSON.parse(localStorage.getItem("user"));
@@ -23,7 +24,7 @@ const FacultyEdit = () => {
         e.preventDefault();
         try{
             const res = await axios.put(
-                `http://localhost:8080/api/faculty/facultyEdit/${id}`,
+                `http://${baseUrl}/api/faculty/facultyEdit/${id}`,
                 facultyDetails
             )
             toast.success("Profile updated successfully!");

@@ -7,6 +7,7 @@ import useFetch from "../../hooks/useFetch";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import CssTextField from "../global/CssTextField";
+import { baseUrl } from "../../Url";
 
 const StudentHome = () => {
   const [password, setPassword] = useState("");
@@ -17,7 +18,7 @@ const StudentHome = () => {
   const id = user._id;
 
   const dataStudent = useFetch(
-    `http://localhost:8080/api/students/StudentProfile/${id}`
+    `http://${baseUrl}/api/students/StudentProfile/${id}`
   );
   const student = dataStudent.data;
 
@@ -36,7 +37,7 @@ const StudentHome = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:8080/api/students/StudentPassword/${id}`,
+        `http://${baseUrl}/api/students/StudentPassword/${id}`,
         {
           newPassword: password,
         }

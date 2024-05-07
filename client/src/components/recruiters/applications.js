@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import "./applications.css";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import { baseUrl } from "../../Url";
 
 const Applications = () => {
   const [currentRound, setCurrentRound] = useState(1);
@@ -20,7 +21,7 @@ const Applications = () => {
         const companyId = id;
 
         const response = await axios.get(
-          `http://localhost:8080/api/application/getApplicationsByRecruiterId/${companyId}`
+          `http://${baseUrl}/api/application/getApplicationsByRecruiterId/${companyId}`
         );
 
         setApplications(response.data);
@@ -87,7 +88,7 @@ const Applications = () => {
           try {
             // Update the application in the database
             await axios.put(
-              `http://localhost:8080/api/application/updateApplication/${selectedApplication._id}`,
+              `http://${baseUrl}/api/application/updateApplication/${selectedApplication._id}`,
               selectedApplication
             );
             toast.success("Selected to next round");
@@ -125,7 +126,7 @@ const Applications = () => {
         try {
           // Update the application in the database
           await axios.put(
-            `http://localhost:8080/api/application/updateApplication/${unselectedApplication._id}`,
+            `http://${baseUrl}/api/application/updateApplication/${unselectedApplication._id}`,
             unselectedApplication
           );
           console.log(

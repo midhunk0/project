@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from "react";
 import Modal from "react-modal";
 import { Box } from "@mui/material";

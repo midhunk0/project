@@ -6,6 +6,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { tokens } from "../../theme";
 import CssTextField from "../global/CssTextField";
 import toast, { Toaster } from "react-hot-toast";
+import { baseUrl } from "../../Url";
 
 const colors = tokens();
 
@@ -34,7 +35,7 @@ const RecruiterLogin = () => {
 
         try {
             const res = await axios.post(
-                "http://localhost:8080/api/recruiters/recruiterLogin",
+                `http://${baseUrl}/api/recruiters/recruiterLogin`,
                 credentials
             );
             const loggedInRecruiter = res.data.recruiter;

@@ -5,6 +5,7 @@ import axios from "axios";
 import { Box } from "@mui/material";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../../Url";
 
 const Edit = () => {
   const storedUserData = localStorage.getItem("user");
@@ -95,7 +96,7 @@ const Edit = () => {
     });
     try {
       const res = await axios.put(
-        `http://localhost:8080/api/students/StudentProfile/${id}`,
+        `http://${baseUrl}/api/students/StudentProfile/${id}`,
         profileDetails
       );
 

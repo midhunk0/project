@@ -128,6 +128,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import useFetch from "../../hooks/useFetch";
 import "./Notification.css";
 import { Notifications } from "@mui/icons-material";
+import { baseUrl } from "../../Url";
 
 const Notification = () => {
   const [notifications, setNotifications] = useState([]);
@@ -137,7 +138,7 @@ const Notification = () => {
   const id = user._id;
 
   const dataStudent = useFetch(
-    `http://localhost:8080/api/students/StudentProfile/${id}`
+    `http://${baseUrl}/api/students/StudentProfile/${id}`
   );
   const student = dataStudent.data;
 
@@ -255,7 +256,7 @@ const Notification = () => {
       console.log(selectedNotification.recruitmentProcess.values)
       // Send a POST request to create the application
       const response = await axios.post(
-        "http://localhost:8080/api/application/createApplication",
+        `http://${baseUrl}/api/application/createApplication`,
         {
           studentId: student._id,
           companyId: selectedNotification.recruiter_id,

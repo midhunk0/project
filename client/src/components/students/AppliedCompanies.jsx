@@ -1,8 +1,10 @@
+// @ts-nocheck
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import "./AppliedCompanies.css";
+import { baseUrl } from "../../Url";
 
 const AppliedCompanies = ({ studentId }) => {
   const [applications, setApplications] = useState([]);
@@ -17,7 +19,7 @@ const AppliedCompanies = ({ studentId }) => {
       console.log(studentId);
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/application/getApplicationsByStudentId/${studentId}`
+          `http://${baseUrl}/api/application/getApplicationsByStudentId/${studentId}`
         );
 
         setApplications(response.data.applications);
@@ -29,7 +31,7 @@ const AppliedCompanies = ({ studentId }) => {
 
         // Assuming you have an API endpoint that accepts an array of company IDs
         const recruiterResponse = await axios.post(
-          `http://localhost:8080/api/recruiters/getRecruitersByCompanyIds`,
+          `http://${baseUrl}/api/recruiters/getRecruitersByCompanyIds`,
           { companyIds: companyIdArray }
         );
 

@@ -5,6 +5,7 @@ import axios from "axios";
 import CssTextField from "../global/CssTextField";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthContext";
+import { baseUrl } from "../../Url";
 
 const UpdatePassword = () => {
   const [formData, setFormData] = useState({
@@ -27,13 +28,13 @@ const UpdatePassword = () => {
 
     try {
       const res = await axios.put(
-        "http://localhost:8080/api/students/updatePassword/" + id,
+        `http://${baseUrl}/api/students/updatePassword/` + id,
         formData
       );
       toast.success(res.data.message);
       // Update isPasswordChanged field
       await axios.put(
-        "http://localhost:8080/api/students/updateIsPasswordChanged/" + id,
+        `http://${baseUrl}/api/students/updateIsPasswordChanged/` + id,
         { isPasswordChanged: true }
       );
       navigate("/student/home");

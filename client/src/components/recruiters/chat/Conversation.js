@@ -1,6 +1,8 @@
+// @ts-nocheck
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { baseUrl } from "../../../Url";
 
 const Conversation = ({ conversation, currentUser }) => {
   const [admin, setAdmin] = useState(null);
@@ -11,7 +13,7 @@ const Conversation = ({ conversation, currentUser }) => {
     const getAdmin = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/api/admins/getAdminById/${adminId}`
+          `http://${baseUrl}/api/admins/getAdminById/${adminId}`
         );
         setAdmin(res.data);
       } catch (error) {

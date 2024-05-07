@@ -5,6 +5,7 @@ import { tokens } from "../../theme";
 import axios from "axios";
 import { AuthContext } from "../../contexts/AuthContext";
 import toast, { Toaster } from "react-hot-toast";
+import { baseUrl } from "../../Url";
 
 
 const StyledBox = styled(Box)(({ theme }) => ({
@@ -41,7 +42,7 @@ const Request = () => {
     console.log(action)
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:8080/api/recruiters/recruiterRequest/${id}`, {
+      await axios.put(`http://${baseUrl}/api/recruiters/recruiterRequest/${id}`, {
         action: action,
       });
       toast.success("Request sent successfully")

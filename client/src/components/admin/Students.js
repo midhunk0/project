@@ -1,9 +1,11 @@
+// @ts-nocheck
 import React, { useEffect, useState } from "react";
 import { Box, Typography, CircularProgress,Button } from "@mui/material";
 import { Table } from "react-bootstrap";
 import axios from "axios";
 import "./Students.css";
 import StudentProfileModal from "../faculty/StudentProfileModal";
+import { baseUrl } from "../../Url";
 
 const Student = () => {
   const [students, setStudents] = useState([]);
@@ -30,7 +32,7 @@ const Student = () => {
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/students/get-all-students"
+          `http://${baseUrl}/api/students/get-all-students`
         );
         setStudents(response.data);
         setIsLoading(false);
@@ -113,7 +115,7 @@ const Student = () => {
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/students/get-all-students"
+          `http://${baseUrl}/api/students/get-all-students`
         );
         const filteredStudents = response.data.filter(
           (student) =>

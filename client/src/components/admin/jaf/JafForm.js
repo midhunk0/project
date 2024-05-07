@@ -1,11 +1,9 @@
+// @ts-nocheck
 import React, { useState } from "react";
 import {
   Box,
   Button,
   Checkbox,
-  FormControlLabel,
-  FormGroup,
-  FormLabel,
   Typography,
   TextField,
 } from "@mui/material";
@@ -14,6 +12,7 @@ import { styled } from "@mui/system";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import useFetch from "../../../hooks/useFetch";
+import { baseUrl } from "../../../Url";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -51,7 +50,7 @@ const customStyles = {
 const JafForm = ({ recruiter }) => {
   const id = recruiter._id;
 
-  const jafdata = useFetch(`http://localhost:8080/api/jaf/jafGet/${id}`);
+  const jafdata = useFetch(`http://${baseUrl}/api/jaf/jafGet/${id}`);
   const backenddata = jafdata.data || {}; // Ensure backenddata is defined
   console.log(backenddata);
 
@@ -81,7 +80,7 @@ const JafForm = ({ recruiter }) => {
 
     try {
       const res = await axios.put(
-        `http://localhost:8080/api/jaf/jafPut/${jafid}`,
+        `http://${baseUrl}/api/jaf/jafPut/${jafid}`,
         { name, checked }
       );
       console.log(res.data); // Log the response data if needed
@@ -103,13 +102,13 @@ const JafForm = ({ recruiter }) => {
       };
 
       await axios.put(
-        `http://localhost:8080/api/jaf/jafAdminSent/${jafid}`,
+        `http://${baseUrl}/api/jaf/jafAdminSent/${jafid}`,
         true
       );
-      await axios.post("http://localhost:8080/api/jaf/send-email-to-students");
+      await axios.post(`http://${baseUrl}/api/jaf/send-email-to-students`);
       // Send the new NB value to the server
       const res = await axios.put(
-        `http://localhost:8080/api/jaf/jafPutNbDeadline/${jafid}`,
+        `http://${baseUrl}/api/jaf/jafPutNbDeadline/${jafid}`,
         updatedData
       );
 

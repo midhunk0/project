@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./RecruiterMenu.css"; // Make sure to import the CSS file
 import { Notifications } from "@mui/icons-material";
+import { baseUrl } from "../../../Url";
 
 const RecruiterMenu = ({ recruiters, onSelectRecruiter }) => {
   const [jafAdminReadMap, setJafAdminReadMap] = useState({});
@@ -12,7 +13,7 @@ const RecruiterMenu = ({ recruiters, onSelectRecruiter }) => {
         const jafAdminReads = {};
         for (const recruiter of recruiters) {
           const response = await axios.get(
-            `http://localhost:8080/api/jaf/jafGet/${recruiter._id}`
+            `http://${baseUrl}/api/jaf/jafGet/${recruiter._id}`
           );
           const jaf = response.data;
           jafAdminReads[recruiter._id] = jaf.isAdminRead;

@@ -7,6 +7,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { tokens } from "../../theme";
 import CssTextField from "../global/CssTextField";
 import toast, { Toaster } from "react-hot-toast";
+import { baseUrl } from "../../Url";
 
 const colors = tokens();
 // ... (existing imports)
@@ -36,7 +37,7 @@ const Login = () => {
 
         try {
             const res = await axios.post(
-                "http://localhost:8080/api/students/studentLogin",
+                `http://${baseUrl}/api/students/studentLogin`,
                 credentials
             );
             dispatch({ type: "LOGIN_SUCCESS", payload: res.data.student });

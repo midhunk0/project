@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Modal, Table, Button } from "react-bootstrap";
 import "./Materials.css";
+import { baseUrl } from "../../Url";
 
 const Materials = () => {
   const [selectedTopic, setSelectedTopic] = useState("");
@@ -45,7 +46,7 @@ const Materials = () => {
   };
 
   const openPdfInNewTab = (pdfUrl) => {
-    const fullPdfUrl = `http://localhost:8080/files/${pdfUrl}`;
+    const fullPdfUrl = `http://${baseUrl}/files/${pdfUrl}`;
     window.open(fullPdfUrl, "_blank");
   };
 

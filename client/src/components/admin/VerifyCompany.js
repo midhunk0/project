@@ -1,5 +1,7 @@
+// @ts-nocheck
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { baseUrl } from "../../Url";
 
 const VerifyCompany = () => {
     const [recruiters, setRecruiters] = useState([]);
@@ -7,7 +9,7 @@ const VerifyCompany = () => {
     const fetchRecruiters = async () => {
         try {
             const response = await axios.get(
-                "http://localhost:8080/api/recruiters/unverified"
+                `http://${baseUrl}/api/recruiters/unverified`
             );
             setRecruiters(response.data);
         } catch (error) {
@@ -22,12 +24,12 @@ const VerifyCompany = () => {
     const handleVerify = async (recruiterId) => {
         try {
             await axios.put(
-                `http://localhost:8080/api/recruiters/${recruiterId}/verify`
+                `http://${baseUrl}/api/recruiters/${recruiterId}/verify`
             );
             fetchRecruiters();
             window.location.reload();
             const conversationResponse = await axios.post(
-                "http://localhost:8080/api/students/conversations",
+                `http://${baseUrl}/api/students/conversations`,
                 {
                     senderId: "6625d50f0ac57115661aa1da", // Replace with the actual admin user ID
                     receiverId: recruiterId,
@@ -41,7 +43,7 @@ const VerifyCompany = () => {
     const handleReject = async (recruiterId) => {
         try {
             await axios.delete(
-                `http://localhost:8080/api/recruiters/${recruiterId}`
+                `http://${baseUrl}/api/recruiters/${recruiterId}`
             );
             fetchRecruiters();
             window.location.reload();

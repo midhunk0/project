@@ -1,6 +1,8 @@
+// @ts-nocheck
 import "./Conversation.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { baseUrl } from "../../../Url";
 
 const Conversation = ({ conversation, currentUser, unreadMessageCount }) => {
   const [user, setUser] = useState(null);
@@ -12,7 +14,7 @@ const Conversation = ({ conversation, currentUser, unreadMessageCount }) => {
     const getUser = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/api/recruiters/getRecruiterById/${recruiterId}`
+          `http://${baseUrl}/api/recruiters/getRecruiterById/${recruiterId}`
         );
 
         if (res.data) {

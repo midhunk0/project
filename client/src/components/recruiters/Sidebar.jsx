@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from "react";
 import { Box, Typography, IconButton, Menu, MenuItem } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,6 +10,7 @@ import toast, { Toaster } from "react-hot-toast";
 import useFetch from "../../hooks/useFetch";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
+import { baseUrl } from "../../Url";
 
 const colors = tokens();
 const Item = ({ title, to, selected, setSelected }) => {
@@ -87,7 +89,7 @@ const RecruiterSidebar = () => {
   };
 
   const dataRecruiter = useFetch(
-    `http://localhost:8080/api/recruiters/recruiterProfile/${id}`
+    `http://${baseUrl}/api/recruiters/recruiterProfile/${id}`
   );
   const recruiter = dataRecruiter.data;
 

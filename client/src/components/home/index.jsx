@@ -137,7 +137,7 @@ const Home = () => {
                                 The College of Engineering, Trivandrum was
                                 established in 1939 as the first Engineering
                                 College in the then Travancore State. The first
-                                classes were started on 3rd July 1939 during the
+                                classNamees were started on 3rd July 1939 during the
                                 reign of the Travancore King, Sri Chithira
                                 Thirunal Balarama Varma, and as the head of the
                                 then Travancore state, he deserves his share of
@@ -229,14 +229,14 @@ const Home = () => {
           />
           <br />
           <section>
-            <div class="container">
-              <div class="row">
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="card1">
-                    <div class="cover item-a">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-4 col-sm-6 col-xs-12">
+                  <div className="card1">
+                    <div className="cover item-a">
                       <h1 className="year_heading">2022</h1>
 
-                      <div class="card-back">
+                      <div className="card-back">
                         <a href="http://placement.cet.ac.in/Placement202122.pdf">
                           Click me!
                         </a>
@@ -244,11 +244,11 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="card1">
-                    <div class="cover item-b">
+                <div className="col-md-4 col-sm-6 col-xs-12">
+                  <div className="card1">
+                    <div className="cover item-b">
                       <h1 className="year_heading">2021</h1>
-                      <div class="card-back">
+                      <div className="card-back">
                         <a href="http://placement.cet.ac.in/Placement202021.pdf">
                           Click me!
                         </a>
@@ -256,11 +256,11 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="card1">
-                    <div class="cover item-c">
+                <div className="col-md-4 col-sm-6 col-xs-12">
+                  <div className="card1">
+                    <div className="cover item-c">
                       <h1 className="year_heading">2020</h1>
-                      <div class="card-back">
+                      <div className="card-back">
                         <a href="http://placement.cet.ac.in/Placement201920.pdf">
                           click me!
                         </a>
@@ -271,14 +271,14 @@ const Home = () => {
               </div>
             </div>
 
-            <div class="container">
-              <div class="row">
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="card1">
-                    <div class="cover item-a">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-4 col-sm-6 col-xs-12">
+                  <div className="card1">
+                    <div className="cover item-a">
                       <h1 className="year_heading">2019</h1>
 
-                      <div class="card-back">
+                      <div className="card-back">
                         <a href="http://placement.cet.ac.in/Placement201819.pdf">
                           Click me!
                         </a>
@@ -286,21 +286,21 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="card1">
-                    <div class="cover item-b">
+                <div className="col-md-4 col-sm-6 col-xs-12">
+                  <div className="card1">
+                    <div className="cover item-b">
                       <h1 className="year_heading">2018</h1>
-                      <div class="card-back">
+                      <div className="card-back">
                         <a href="#">Click me!</a>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="card1">
-                    <div class="cover item-c">
+                <div className="col-md-4 col-sm-6 col-xs-12">
+                  <div className="card1">
+                    <div className="cover item-c">
                       <h1 className="year_heading">2017</h1>
-                      <div class="card-back">
+                      <div className="card-back">
                         <a href="#">click me!</a>
                       </div>
                     </div>
@@ -359,7 +359,7 @@ const Home = () => {
                     />
                   </div>
                   <h5 className="mt-4 mb-0">
-                    <p2>
+                    <p>
                       " Cognizant shares a fantastic relationship with CET. We
                       have been visiting the institute for the past several
                       years and every year the students seem to be getting
@@ -369,7 +369,7 @@ const Home = () => {
                       in the past are today in leading positions within
                       Cognizant, working across different technology platforms
                       and domains. "
-                    </p2>
+                    </p>
                   </h5>
                 </div>
                 <div className="carousel-item text-center">
@@ -381,12 +381,12 @@ const Home = () => {
                     />
                   </div>
                   <h5 className="mt-4 mb-0">
-                    <p2>
+                    <p>
                       " We are very happy with the way the students have fared
                       in the selection processes and in their general behavior
                       and attitude. Thanks to the hospitality extended to us by
                       your team. "
-                    </p2>
+                    </p>
                   </h5>
                 </div>
                 <div className="carousel-item text-center">
@@ -398,12 +398,12 @@ const Home = () => {
                     />
                   </div>
                   <h5 className="mt-4 mb-0">
-                    <p2>
+                    <p>
                       " Thank you for the overall arrangement made for the
                       campus placements. The quality of the students is very
                       good, and we would definitely consider visiting again next
                       year. "
-                    </p2>
+                    </p>
                   </h5>
                 </div>
               </div>
@@ -496,12 +496,12 @@ const Home = () => {
               alt="Recruiter 11"
             />
           </div>
-          <div className="recruiter-logo">
+          {/* <div className="recruiter-logo">
             <img
               src="../../../assets/Tata_Consultancy_Services-Logo.svg.png"
               alt="Recruiter 12"
             />
-          </div>
+          </div> */}
           <div className="recruiter-logo">
             <img src="../../../assets/Wipro-logo.png" alt="Recruiter 13" />
           </div>

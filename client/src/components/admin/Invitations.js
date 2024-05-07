@@ -1,3 +1,4 @@
+// @ts-nocheck
 // import { Box, Button, Typography, styled, Grid } from "@mui/material";
 // import React, { useState } from "react";
 // import * as XLSX from "xlsx";
@@ -25,7 +26,7 @@
 
 //       // Send each user from the jsonData array to the server for registration
 //       const requests = jsonData.map((user) =>
-//         fetch("http://localhost:8080/api/students/studentRegister", {
+//         fetch("http://${baseUrl}/api/students/studentRegister", {
 //           method: "POST",
 //           headers: {
 //             "Content-Type": "application/json",
@@ -131,6 +132,7 @@ import React, { useState } from "react";
 import * as XLSX from "xlsx";
 import CssTextField from "../../components/global/CssTextField";
 import toast, { Toaster } from "react-hot-toast";
+import { baseUrl } from "../../Url";
 
 const UploadExcel = () => {
   const [file, setFile] = useState(null);
@@ -227,7 +229,7 @@ const UploadExcel = () => {
           />
           <Button
             variant="contained"
-            onClick={(e) => handleSubmit(e, "http://localhost:8080/api/students/studentRegister")}
+            onClick={(e) => handleSubmit(e, `http://${baseUrl}/api/students/studentRegister`)}
             sx={{
               bgcolor: "#4CAF50", // Green color
               "&:hover": {
@@ -240,7 +242,7 @@ const UploadExcel = () => {
           </Button>
           <Button
             variant="contained"
-            onClick={(e) => handleSubmit(e, "http://localhost:8080/api/faculty/facultyRegister")}
+            onClick={(e) => handleSubmit(e, `http://${baseUrl}/api/faculty/facultyRegister`)}
             sx={{
               bgcolor: "#1976D2", // Blue color
               "&:hover": {

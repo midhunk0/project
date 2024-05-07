@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useEffect } from "react";
 import { Box, Button, Typography, Snackbar, Grid } from "@mui/material";
 import axios from "axios";
@@ -5,6 +6,7 @@ import useFetch from "../../hooks/useFetch";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import CssTextField from "../global/CssTextField";
+import { baseUrl } from "../../Url";
 
 const RecruiterHome = () => {
   const [password, setPassword] = useState("");
@@ -15,7 +17,7 @@ const RecruiterHome = () => {
   const id = user._id;
 
   const dataRecruiter = useFetch(
-    `http://localhost:8080/api/recruiters/recruiterProfile/${id}`
+    `http://${baseUrl}/api/recruiters/recruiterProfile/${id}`
   );
   const recruiter = dataRecruiter.data;
 
@@ -33,7 +35,7 @@ const RecruiterHome = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:8080/api/recruiters/recruiterPassword/${id}`,
+        `http://${baseUrl}/api/recruiters/recruiterPassword/${id}`,
         { newPassword: password }
       );
       setSnackbarOpen(true);

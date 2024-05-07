@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import React, { useState } from "react";
 import {
@@ -9,6 +10,7 @@ import { Link } from "react-router-dom";
 import CssTextField from "../global/CssTextField";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { baseUrl } from "../../Url";
 
 const RecruiterRegister = () => {
   const userdata = JSON.parse(localStorage.getItem("user"));
@@ -28,7 +30,7 @@ const RecruiterRegister = () => {
     try {
       console.log(recruiterDetails);
       const res = await axios.put(
-        `http://localhost:8080/api/recruiters/recruiterProfile/${id}`,
+        `http://${baseUrl}/api/recruiters/recruiterProfile/${id}`,
         recruiterDetails
       );
       toast.success("Recruiter profile updated successfully!");

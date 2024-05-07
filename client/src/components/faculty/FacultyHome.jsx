@@ -5,6 +5,7 @@ import axios from "axios";
 import { Grid, Typography, Box } from "@mui/material";
 import StudentProfileModal from "./StudentProfileModal";
 import "./FacultyHome.css"; // Import the CSS file
+import { baseUrl } from "../../Url";
 
 const FacultyHome = () => {
   const { user } = useContext(AuthContext);
@@ -28,7 +29,7 @@ const FacultyHome = () => {
       setStudents(updatedStudents);
 
       await axios.put(
-        `http://localhost:8080/api/students/StudentProfile/${updatedStudent._id}`,
+        `http://${baseUrl}/api/students/StudentProfile/${updatedStudent._id}`,
         updatedStudent
       );
     } catch (error) {
@@ -39,7 +40,7 @@ const FacultyHome = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/faculty/facultystudent/${facultymail}`
+        `http://${baseUrl}/api/faculty/facultystudent/${facultymail}`
       );
       setStudents(response.data.student);
     } catch (error) {
