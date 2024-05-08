@@ -239,7 +239,6 @@ const Home = () => {
                         className="d-block w-100"
                         src="../../../assets/Cognizant-Logo.png"
                         alt="First slide"
-                        
                       />
                     </div>
                     <h5 className="mt-4 mb-0">

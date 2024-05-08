@@ -1,19 +1,25 @@
 import Application from "../models/applicationModel.js";
 import Student from "../models/studentModel.js";
 import Recruiter from "../models/recruiterModel.js";
+import mongoose from 'mongoose';
 
 // Controller function for creating a new application
 export const createApplication = async (req, res) => {
   try {
-    const { studentId, companyId, totalStages,recruitmentProcess } = req.body;
+    const { studentId, companyId, totalStages, recruitmentProcess } = req.body;
 
     // Check if required fields are provided
-    if (!studentId || !companyId || !totalStages || !recruitmentProcess || recruitmentProcess.length === 0) {
+    if (
+      !studentId ||
+      !companyId ||
+      !totalStages ||
+      !recruitmentProcess ||
+      recruitmentProcess.length === 0
+    ) {
       return res
         .status(400)
         .json({ error: "Please provide all required fields." });
     }
-    
 
     // Create a new application instance with stage 0 status as "Passed"
     const newApplication = new Application({
@@ -174,3 +180,4 @@ export const updateIsAdminVerified = async (req, res) => {
       .json({ error: "Failed to update application. Please try again." });
   }
 };
+

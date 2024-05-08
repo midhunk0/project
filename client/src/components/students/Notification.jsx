@@ -37,7 +37,9 @@ const Notification = () => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const response = await axios.get("https://project-api-iwiy.onrender.com/api/jaf/notification");
+        const response = await axios.get(
+          "https://project-api-iwiy.onrender.com/api/jaf/notification"
+        );
 
         const notificationsData = response.data.filter(
           (notification) => notification.isAdminJafSent === true
@@ -134,9 +136,7 @@ const Notification = () => {
     }
 
     try {
-      console.log(selectedNotification.recruitmentProcess.values);
-      // Send a POST request to create the application
-      const response = await axios.post(
+      const res = await axios.post(
         "https://project-api-iwiy.onrender.com/api/application/createApplication",
         {
           studentId: student._id,

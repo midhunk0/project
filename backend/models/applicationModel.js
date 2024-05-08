@@ -52,6 +52,7 @@ const applicationSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  
 });
 
 export default mongoose.model("Application", applicationSchema);
