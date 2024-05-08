@@ -12,7 +12,7 @@ const Materials = () => {
   const handleTopicSelection = async (topic) => {
     setSelectedTopic(topic);
     try {
-      const result = await axios.get(`/get-files?topic=${topic}`);
+      const result = await axios.get(`https://project-api-iwiy.onrender.com/get-files?topic=${topic}`);
       setFilesByTopic(result.data.data);
       setShowModal(true);
     } catch (error) {
@@ -22,7 +22,7 @@ const Materials = () => {
 
   const fetchDistinctTopics = async () => {
     try {
-      const response = await axios.get("/get-distinct-topics");
+      const response = await axios.get("https://project-api-iwiy.onrender.com/get-distinct-topics");
       setTopics(response.data.topics);
     } catch (error) {
       console.error("Error fetching topics:", error);

@@ -146,7 +146,7 @@ const studentSchema = new mongoose.Schema(
       default: false,
     },
     isAdmin: {
-      type: Boolean,   //created only for admin
+      type: Boolean, 
       default: false,
     },
   },
