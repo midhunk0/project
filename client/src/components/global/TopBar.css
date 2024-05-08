@@ -38,35 +38,3 @@
   color: #fff; /* Change text color on hover */
 }
 
-@media (max-width: 768px) {
-  .navbar-nav {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #ffffff;
-    z-index: 1;
-  }
-
-  .navbar-toggler {
-    display: block;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
-
-  .navbar-toggler:focus {
-    outline: none;
-  }
-
-  .navbar-toggler::after {
-    content: "☰";
-    font-size: 24px;
-  }
-
-  .navbar-toggler.active ~ .navbar-nav {
-    display: flex;
-  }
-}
