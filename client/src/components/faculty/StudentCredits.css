@@ -8,9 +8,19 @@
   overflow-y: auto; /* Enable vertical scroll if content overflows */
 }
 
+.creditheadContainer{
+  background-color: #f2f2f2;
+  width:75%;
+  margin: 20px auto;
+  padding-bottom: 10px;
+  border-radius: 20px;
+
+}
+
 .student-credits-heading {
   text-align: center;
   margin-top: 50px;
+  color: #20313e;
 }
 
 .student-credits-table-container {

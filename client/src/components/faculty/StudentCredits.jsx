@@ -104,7 +104,10 @@ const StudentCredits = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <h1 className="student-credits-heading">Student Credit Points</h1>
+      <div className="creditheadContainer">
+        <h1 className="student-credits-heading">Student Credit Points</h1>
+      </div>
+
       <div className="student-credits-table-container">
         <table className="student-credits-table">
           <thead>

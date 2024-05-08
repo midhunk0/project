@@ -145,6 +145,7 @@ const StudentForgotPassword = () => {
         borderRadius="10px"
         display="flex"
         alignItems="center"
+        maxWidth="300px" // Limit maximum width for better responsiveness
         flexDirection="column"
         gap="10px"
         className="card"

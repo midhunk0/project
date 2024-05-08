@@ -26,6 +26,7 @@ const RecruiterRegister = () => {
       display: "flex",
       alignItems: "center",
       flexDirection: "column",
+      maxWidth:"300px",
       gap: "10px",
     },
     heading: {
