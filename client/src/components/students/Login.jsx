@@ -57,17 +57,19 @@ const Login = () => {
 
   return (
     <Box
-      height="91.5vh"
-      width="100%"
+      minHeight="100vh"
       display="flex"
       alignItems="center"
       justifyContent="center"
       style={containerStyle}
+      padding={{ xs: "20px", sm: "50px" }} // Adjust padding for different screen sizes
     >
       <Box
         bgcolor="white"
-        padding="20px 60px"
+        padding="20px"
         borderRadius="10px"
+        maxWidth="300px" // Limit maximum width for better responsiveness
+        width="100%"
         display="flex"
         alignItems="center"
         flexDirection="column"

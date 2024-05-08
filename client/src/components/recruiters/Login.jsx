@@ -79,6 +79,7 @@ const RecruiterLogin = () => {
         display="flex"
         alignItems="center"
         flexDirection="column"
+        maxWidth="300px" 
         gap="10px"
       >
         <Typography variant="h5" marginTop="10px" marginBottom="30px">

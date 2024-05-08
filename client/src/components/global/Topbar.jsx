@@ -7,7 +7,13 @@ import "./TopBar.css";
 
 const colors = tokens();
 
-const DropdownMenu = ({ title, items, selected, setSelected, handleMenuClose }) => {
+const DropdownMenu = ({
+  title,
+  items,
+  selected,
+  setSelected,
+  handleMenuClose,
+}) => {
   return (
     <li className="nav-item dropdown">
       <a
@@ -62,10 +68,7 @@ const Topbar = () => {
       items: [
         { title: "Student Login", to: "/student/login" },
         { title: "Placement Training", to: "/placement-training" },
-        {
-          title: "Placement Rules & Regulations",
-          to: "/placement-rules_&_regulations",
-        },
+
         { title: "Placement Experience", to: "/placement-experience" },
       ],
     },
@@ -78,9 +81,7 @@ const Topbar = () => {
       items: [
         { title: "Recruiter Login", to: "/recruiter/login" },
         { title: "Why Recruit?", to: "/why_recruit?" },
-        { title: "Achievements", to: "/Achievements" },
-        { title: "Recruiter's Policy", to: "/recruiter_policy" },
-        { title: "Recruiter's Portal Guide", to: "/recruiter-guide" },
+        { title: "Placement Brochure", to: "https://drive.google.com/file/d/1MZaPGEdU8U5mBt3wLXQCa7C6UJGnmDfR/view?usp=drivesdk" },
       ],
     },
     {
@@ -103,7 +104,7 @@ const Topbar = () => {
         </Box>
       </Link>
       <IconButton className="navbar-toggler" onClick={handleMenuToggle}>
-        <MenuIcon/>
+        <MenuIcon />
       </IconButton>
 
       <div

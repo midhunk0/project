@@ -101,6 +101,7 @@ const Login = () => {
         alignItems="center"
         flexDirection="column"
         gap="10px"
+        maxWidth="300px" 
         className="card"
       >
         <Typography variant="h5" marginTop="10px" marginBottom="30px">
