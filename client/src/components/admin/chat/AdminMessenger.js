@@ -145,10 +145,7 @@ const AdminMessenger = () => {
       <div className="messenger">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
-            <input
-              placeholder="Search Recruiter..."
-              className="chatMenuInput"
-            />
+            
 
             {conversations
               ? conversations.map((c) => (
