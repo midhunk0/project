@@ -20,7 +20,7 @@ const Training = () => {
         formData.append("topic", selectedTopic);
 
         try {
-            const result = await axios.post("/upload-files", formData, {
+            const result = await axios.post("https://project-api-iwiy.onrender.com/api/upload-files", formData, {
                 headers: { "Content-Type": "multipart/form-data" }
             });
             console.log(result);
@@ -35,7 +35,7 @@ const Training = () => {
 
     const fetchDistinctTopics = async () => {
         try {
-            const response = await axios.get("/get-distinct-topics");
+            const response = await axios.get("https://project-api-iwiy.onrender.com/api/get-distinct-topics");
             setTopics(response.data.topics);
         } catch (error) {
             console.error("Error fetching topics:", error);
@@ -94,4 +94,4 @@ const Training = () => {
     );
 };
 
-export default Training;
+export default Training;

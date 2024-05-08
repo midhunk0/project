@@ -27,7 +27,7 @@ const Notification = () => {
     );
     try {
       await axios.put(
-        `/api/jaf/notification/updateIsStudentRead/${notificationId}`
+        `https://project-api-iwiy.onrender.com/api/jaf/notification/updateIsStudentRead/${notificationId}`
       );
     } catch (error) {
       console.error("Error updating isStudentRead:", error);
