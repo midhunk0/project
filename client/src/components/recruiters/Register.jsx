@@ -9,6 +9,8 @@ import toast, { Toaster } from "react-hot-toast";
 
 const colors = tokens();
 
+
+
 const RecruiterRegister = () => {
   const styles = {
     container: {
@@ -17,7 +19,10 @@ const RecruiterRegister = () => {
       justifyContent: "center",
       height: "91.5vh",
       width: "100%",
-      backgroundColor: "whitesmoke",
+      backgroundImage: `url(../../../assets/loginBg.jpeg)`, // Set the background image directly
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+
     },
     formContainer: {
       backgroundColor: "white",
@@ -30,7 +35,7 @@ const RecruiterRegister = () => {
       gap: "10px",
     },
     heading: {
-      variant: "h5",
+      fontSize: "1.5rem",
       marginTop: "10px",
       marginBottom: "30px",
     },
