@@ -425,8 +425,11 @@ export const getallStudentsController = async (req, res) => {
         // Fetch all students from the database
         const fetchedStudents = await students.find();
 
-        // Send the students as the response
-        res.json(fetchedStudents);
+        // Filter students to exclude those with isAdmin set to true
+        const filteredStudents = fetchedStudents.filter(student => !student.isAdmin);
+
+        // Send the filtered students as the response
+        res.json(filteredStudents);
     } catch (error) {
         console.error(error);
         res.status(500).json({
@@ -434,6 +437,7 @@ export const getallStudentsController = async (req, res) => {
         });
     }
 };
+
 
 //to update student credits
 export const updateCredits = async (req, res) => {
