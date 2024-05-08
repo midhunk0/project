@@ -117,7 +117,7 @@ const Student = () => {
         );
         const filteredStudents = response.data.filter(
           (student) =>
-            student.studentCollegeID !== "admin123" &&
+            student.isAdmin === false &&
             (!departmentFilter ||
               student.department.toLowerCase() ===
                 departmentFilter.toLowerCase()) &&
