@@ -23,6 +23,7 @@ const Item = ({ title, to, selected, setSelected }) => {
       // Handle admin login - redirect to the admin dashboard
       setTimeout(() => {
         navigate("/");
+        window.location.reload(); // Refresh the page
       }, 500);
     }
   };

@@ -18,6 +18,7 @@ const Item = ({ title, to, selected, setSelected }) => {
       toast.success("Logged out Successfully!");
       setTimeout(() => {
         navigate("/");
+        window.location.reload(); // Refresh the page
       }, 500);
     }
   };

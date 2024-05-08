@@ -20,8 +20,9 @@ const Item = ({ title, to, selected, setSelected }) => {
       localStorage.clear();
       toast.success("Logged out Successfully!");
       setTimeout(() => {
-        navigate("/recruiter/login");
-      }, 1500);
+        navigate("/");
+        window.location.reload(); // Refresh the page
+      }, 500);
     }
   };
   const itemStyle = {
