@@ -9,8 +9,6 @@ import toast, { Toaster } from "react-hot-toast";
 
 const colors = tokens();
 
-
-
 const RecruiterRegister = () => {
   const styles = {
     container: {
@@ -22,7 +20,6 @@ const RecruiterRegister = () => {
       backgroundImage: `url(../../../assets/loginBg.jpeg)`, // Set the background image directly
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
-
     },
     formContainer: {
       backgroundColor: "white",
@@ -31,7 +28,7 @@ const RecruiterRegister = () => {
       display: "flex",
       alignItems: "center",
       flexDirection: "column",
-      maxWidth:"300px",
+      maxWidth: "300px",
       gap: "10px",
     },
     heading: {
@@ -89,7 +86,12 @@ const RecruiterRegister = () => {
 
   return (
     <Box sx={styles.container}>
-      <Box sx={styles.formContainer}>
+      <Box
+        sx={{
+          ...styles.formContainer,
+          maxWidth: { xs: "90%", md: "600px" }, // Adjust maxWidth for small screens
+        }}
+      >
         <Typography sx={styles.heading}>Register</Typography>
         <CssTextField
           name="companyName"

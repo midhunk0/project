@@ -6,8 +6,32 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { tokens } from "../../theme";
 import CssTextField from "../global/CssTextField";
 import toast, { Toaster } from "react-hot-toast";
+import { useMediaQuery } from "@mui/material";
+
 
 const colors = tokens();
+
+const BoxStyle = {
+  bgcolor: "white",
+  padding: "20px 60px",
+  borderRadius: "10px",
+  display: "flex",
+  alignItems: "center",
+  flexDirection: "column",
+  gap: "10px",
+  maxWidth: "600px", // Default maxWidth
+};
+
+const SmallScreenStyle = {
+  ...BoxStyle,
+  maxWidth: "300px", // MaxWidth for small screens
+};
+
+const LargeScreenStyle = {
+  ...BoxStyle,
+  maxWidth: "600px", // MaxWidth for larger screens
+};
+
 
 const RecruiterLogin = () => {
   const containerStyle = {
@@ -20,6 +44,9 @@ const RecruiterLogin = () => {
     email: "",
     password: "",
   });
+
+  
+  const isSmallScreen = useMediaQuery("(max-width: 600px)");
 
   const navigate = useNavigate();
   const { user, loading, error, dispatch } = useContext(AuthContext);
@@ -72,16 +99,11 @@ const RecruiterLogin = () => {
       bgcolor="whitesmoke"
       style={containerStyle}
     >
-      <Box
-        bgcolor="white"
-        padding="20px 60px"
-        borderRadius="10px"
-        display="flex"
-        alignItems="center"
-        flexDirection="column"
-        maxWidth="300px" 
-        gap="10px"
+      <Box sx={BoxStyle}
+        style={isSmallScreen ? SmallScreenStyle : LargeScreenStyle}
       >
+
+        
         <Typography variant="h5" marginTop="10px" marginBottom="30px">
           Recruiter Login
         </Typography>
