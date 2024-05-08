@@ -7,7 +7,7 @@ import "./TopBar.css";
 
 const colors = tokens();
 
-const DropdownMenu = ({ title, items, selected, setSelected }) => {
+const DropdownMenu = ({ title, items, selected, setSelected, handleMenuClose }) => {
   return (
     <li className="nav-item dropdown">
       <a
@@ -29,7 +29,10 @@ const DropdownMenu = ({ title, items, selected, setSelected }) => {
           <Link
             className="dropdown-item"
             to={item.to}
-            onClick={() => setSelected(item.title)}
+            onClick={() => {
+              setSelected(item.title);
+              handleMenuClose(); // Close the menu when item is clicked
+            }}
             key={item.title}
           >
             {item.title}
@@ -100,7 +103,7 @@ const Topbar = () => {
         </Box>
       </Link>
       <IconButton className="navbar-toggler" onClick={handleMenuToggle}>
-        <MenuIcon />
+        <MenuIcon/>
       </IconButton>
 
       <div
@@ -116,6 +119,7 @@ const Topbar = () => {
                 items={item.items}
                 selected={selected}
                 setSelected={setSelected}
+                handleMenuClose={handleMenuClose}
               />
             ) : (
               <li
