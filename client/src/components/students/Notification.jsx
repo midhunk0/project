@@ -37,7 +37,7 @@ const Notification = () => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const response = await axios.get("/api/jaf/notification");
+        const response = await axios.get("https://project-api-iwiy.onrender.com/api/jaf/notification");
 
         const notificationsData = response.data.filter(
           (notification) => notification.isAdminJafSent === true
