@@ -164,7 +164,7 @@ const StudentForgotPassword = () => {
 
             {/* Add CAPTCHA component */}
             <ReCAPTCHA
-              sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+              sitekey="6LfpbdUpAAAAAGIjg8MRnBSM-TP1ETBCPipPxGQr"
               onChange={handleCaptchaChange}
             />
             {/* Send OTP button */}
